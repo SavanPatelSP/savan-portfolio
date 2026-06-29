@@ -1,0 +1,75 @@
+export const expertiseCategories = [
+  {
+    name: "Software Development",
+    description: "Building production systems across the full stack",
+    skills: [
+      "Full Stack Development",
+      "Web Development",
+      "Mobile Development",
+      "Desktop Development",
+      "Backend Engineering",
+      "API Design",
+      "System Architecture",
+    ],
+  },
+  {
+    name: "Artificial Intelligence",
+    description: "Integrating intelligence into every product",
+    skills: [
+      "AI Integration",
+      "AI Agents",
+      "Prompt Engineering",
+      "Automation",
+      "LLM Applications",
+      "Vector Databases",
+    ],
+  },
+  {
+    name: "Cloud & Infrastructure",
+    description: "Scalable, reliable, performant systems",
+    skills: [
+      "Cloud Engineering",
+      "Deployment & CI/CD",
+      "Database Architecture",
+      "Performance Optimization",
+      "Containerization",
+      "Edge Computing",
+    ],
+  },
+  {
+    name: "Cyber Security",
+    description: "Security-first architecture and implementation",
+    skills: [
+      "Authentication & Authorization",
+      "Secure Architecture",
+      "Privacy & Encryption",
+      "Access Control",
+      "Compliance & Audit",
+      "Threat Modeling",
+    ],
+  },
+  {
+    name: "UI / UX",
+    description: "Crafting interfaces that feel inevitable",
+    skills: [
+      "Product Design",
+      "UI Design",
+      "UX Design",
+      "Motion Design",
+      "Responsive Design",
+      "Design Systems",
+    ],
+  },
+  {
+    name: "Leadership",
+    description: "Building products, teams, and companies",
+    skills: [
+      "Founder & CEO",
+      "Product Strategy",
+      "Technical Architecture",
+      "Team Leadership",
+      "Project Planning",
+      "Problem Solving",
+    ],
+  },
+];

@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-geist: #0a0a0a;
+  --color-elevated: #111111;
+  --color-surface: #1a1a1a;
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(255, 255, 255, 0.10);
+  --color-foreground: #ffffff;
+  --color-muted: rgba(255, 255, 255, 0.65);
+  --color-subtle: rgba(255, 255, 255, 0.35);
+  --color-accent: #3b82f6;
+  --color-accent-secondary: #8b5cf6;
+  --color-glow: rgba(59, 130, 246, 0.15);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.04) transparent;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--color-geist);
+    color: var(--color-foreground);
+    font-family: var(--font-sans), "SF Pro Display", "Inter", "system-ui", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: rgba(59, 130, 246, 0.25);
+    color: #ffffff;
+  }
+  ::-moz-selection {
+    background: rgba(59, 130, 246, 0.25);
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+@keyframes gradient-rotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes light-streak {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(200%); }
+}
+
+@media (width >= 1024px) {
+  .lg\:cursor-none, .lg-cursor-none {
+    cursor: none;
+  }
+}
+
+.animate-gradient-rotate {
+  animation: gradient-rotate 8s ease infinite;
+  background-size: 200% 200%;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
