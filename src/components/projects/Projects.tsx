@@ -114,7 +114,7 @@ export function ProjectsSection() {
       <SectionTitle
         label="Roadmap"
         title="What's next"
-        subtitle="The SP NET ecosystem is evolving. Here's where we've been and where we're headed."
+        subtitle="The SP NET ecosystem is evolving. Here's where I've been and where I'm headed."
       />
 
       {/* Achievements as roadmap milestones */}

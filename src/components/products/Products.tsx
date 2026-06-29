@@ -289,8 +289,8 @@ export function ProductsSection() {
 
         <SectionTitle
           label="Products"
-          title="What we're building"
-          subtitle="Every product is designed with intention. Each one solves a real problem at scale."
+          title="What I'm building"
+          subtitle="Every product I design is built with intention. Each one solves a real problem at scale."
         />
 
         <div className="space-y-12">

@@ -26,15 +26,6 @@ import { cn } from "@/lib/utils";
 function OsBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `linear-gradient(rgba(59,130,246,0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.12) 1px, transparent 1px)`,
-          backgroundSize: "32px 32px",
-          maskImage: "radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 70%)",
-          WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 70%)",
-        }}
-      />
       <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-96 w-[800px] rounded-full opacity-[0.15] blur-[120px]" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.6) 0%, transparent 70%)" }} />
       <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full opacity-[0.12] blur-[100px]" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.4) 0%, transparent 70%)" }} />
       <div className="absolute top-1/4 left-0 h-px w-full" style={{ background: "linear-gradient(90deg, transparent, rgba(59,130,246,0.5), transparent)", animation: "light-streak 8s ease-in-out infinite" }} />
