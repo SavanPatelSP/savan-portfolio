@@ -203,7 +203,7 @@ MIT. See [LICENSE](LICENSE).
 
 <div align="center">
 
-[GitHub](https://github.com/savanpatel) ·
+[GitHub](https://github.com/savanpatelssp) ·
 [LinkedIn](https://linkedin.com/in/savanpatel) ·
 [Email](mailto:savan@spnetinc.com) ·
 [Website](https://spnetinc.com)

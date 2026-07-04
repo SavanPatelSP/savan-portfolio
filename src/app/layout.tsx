@@ -85,7 +85,7 @@ const jsonLd = {
   knowsAbout: ["Software Engineering", "Product Design", "Full Stack Development", "AI", "System Architecture"],
   url: "https://spnetinc.com",
   sameAs: [
-    "https://github.com/savanpatel",
+    "https://github.com/savanpatelssp",
     "https://x.com/savanpatel",
     "https://linkedin.com/in/savanpatel",
   ],

@@ -13,7 +13,7 @@ export const personal = {
   email: "savan@spnetinc.com",
   calendar: "https://cal.com/savanpatel",
   social: {
-    github: "https://github.com/savanpatel",
+    github: "https://github.com/savanpatelssp",
     x: "https://x.com/savanpatel",
     linkedin: "https://linkedin.com/in/savanpatel",
   },
