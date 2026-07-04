@@ -118,9 +118,9 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
               </p>
             </BlurReveal>
 
-            {/* Tech stack */}
+            {/* Highlights */}
             <StaggerFade staggerDelay={0.04} className="mt-5 flex flex-wrap gap-2">
-              {product.technologies.map((t) => (
+              {product.highlights.map((t) => (
                 <StaggerItem key={t}>
                   <Badge>{t}</Badge>
                 </StaggerItem>
@@ -223,7 +223,7 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
                     </div>
 
                     <div className="mt-6 flex flex-wrap gap-1.5">
-                      {product.technologies.slice(0, 4).map((t) => (
+                      {product.highlights.slice(0, 4).map((t) => (
                         <Badge key={t}>{t}</Badge>
                       ))}
                     </div>

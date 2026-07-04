@@ -2,22 +2,25 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { personal } from "@/data/personal";
 
 export function SplashScreen() {
   const [show, setShow] = useState(true);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
-    const seen = sessionStorage.getItem("splash-seen");
-    if (seen) {
-      setShow(false);
-      return;
-    }
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener("change", handler);
+
     const timer = setTimeout(() => {
       setShow(false);
-      sessionStorage.setItem("splash-seen", "1");
-    }, 2600);
-    return () => clearTimeout(timer);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+      mq.removeEventListener("change", handler);
+    };
   }, []);
 
   return (
@@ -26,24 +29,41 @@ export function SplashScreen() {
         <motion.div
           className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black"
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          transition={{ duration: reducedMotion ? 0 : 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <motion.span
-            className="text-4xl sm:text-5xl font-semibold tracking-tight text-white"
-            initial={{ opacity: 0, scale: 0.9, filter: "blur(8px)" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            {personal.initials}
-          </motion.span>
-          <motion.p
-            className="mt-4 text-sm text-white/25 font-medium tracking-[0.15em] uppercase"
-            initial={{ opacity: 0, y: 10 }}
+            className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-[0.12em] text-white/90"
+            initial={reducedMotion ? {} : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.2, ease: [0.25, 0.1, 0.25, 1] }}
           >
-            {personal.company}
-          </motion.p>
+            SAVAN PATEL
+          </motion.span>
+          <motion.span
+            className="mt-3 text-xs sm:text-sm font-light tracking-[0.2em] text-white/60"
+            initial={reducedMotion ? {} : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: reducedMotion ? 0 : 0.6, delay: reducedMotion ? 0 : 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            SP NET INC
+          </motion.span>
+
+          {!reducedMotion && (
+            <motion.div
+              className="mt-8 h-px w-28 sm:w-36 bg-white/[0.04] overflow-hidden rounded-full"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+            >
+              <motion.div
+                className="h-full w-full bg-white/50"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 1.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+                style={{ transformOrigin: "left" }}
+              />
+            </motion.div>
+          )}
         </motion.div>
       )}
     </AnimatePresence>

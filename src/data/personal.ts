@@ -10,12 +10,14 @@ export const personal = {
   vision:
     "A world where technology feels invisible, intuitive, and delightful — where every interaction is intentional.",
   location: "India",
-  email: "savan@spnetinc.com",
+  email: "savan@sp-net.in",
   calendar: "https://cal.com/savanpatel",
   social: {
     github: "https://github.com/savanpatelssp",
     x: "https://x.com/savanpatel",
     linkedin: "https://linkedin.com/in/savanpatel",
+    telegram: "https://t.me/ABOUTME_SP",
+    instagram: "https://instagram.com/savanpatelssp",
   },
   madeIn: "India",
   firstCode: 2018,

@@ -9,7 +9,13 @@ export const products = [
     url: null,
     gradient: "from-blue-500 via-cyan-400 to-teal-300",
     color: "#3b82f6",
-    technologies: ["TypeScript", "Next.js", "WebSocket", "PostgreSQL", "Redis", "End-to-End Encryption"],
+    highlights: [
+      "Secure Messaging",
+      "Communities",
+      "Premium Experience",
+      "Privacy Focused",
+      "Cloud Sync",
+    ],
     features: [
       "End-to-end encrypted messaging",
       "Premium communication tools",
@@ -29,7 +35,13 @@ export const products = [
     url: null,
     gradient: "from-violet-500 via-purple-400 to-fuchsia-300",
     color: "#8b5cf6",
-    technologies: ["TypeScript", "React", "Node.js", "PostgreSQL", "Redis", "Docker", "GraphQL"],
+    highlights: [
+      "Administration",
+      "Analytics",
+      "Moderation",
+      "Team Management",
+      "Automation",
+    ],
     features: [
       "Comprehensive organization management",
       "Role-based permissions & audit logs",
@@ -49,7 +61,13 @@ export const products = [
     url: null,
     gradient: "from-emerald-500 via-green-400 to-teal-300",
     color: "#10b981",
-    technologies: ["Python", "TypeScript", "AI/ML", "LLMs", "Vector Databases", "API Design"],
+    highlights: [
+      "AI Assistant",
+      "Productivity",
+      "Automation",
+      "Knowledge Base",
+      "Smart Workflows",
+    ],
     features: [
       "Intelligent messaging assistance",
       "Automated administration workflows",

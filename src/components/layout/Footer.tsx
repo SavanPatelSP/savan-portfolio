@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowUpRight, Building2, ChevronDown, Code, Cpu, ExternalLink, Mail, MessageSquare, Rocket, Settings, Terminal, Zap } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
+import { GithubIcon, LinkedinIcon, TelegramIcon, InstagramIcon } from "@/components/ui/Icons";
+import { SocialModal } from "@/components/ui/SocialModal";
 import { personal } from "@/data/personal";
 import { products, futureProducts } from "@/data/products";
 import { cn } from "@/lib/utils";
@@ -49,7 +50,9 @@ const navGroups = [
     title: "Connect",
     links: [
       { label: "Email", href: `mailto:${personal.email}` },
-      { label: "LinkedIn", href: personal.social.linkedin },
+      { label: "Telegram", href: personal.social.telegram },
+      { label: "Instagram", href: personal.social.instagram },
+      { label: "LinkedIn", href: personal.social.linkedin, modal: true as const },
       { label: "GitHub", href: personal.social.github },
       { label: "Contact", href: "#contact" },
     ],
@@ -78,8 +81,10 @@ const techBadges = [
 ];
 
 const socialCards = [
+  { icon: TelegramIcon, label: "Telegram", href: personal.social.telegram, desc: "Direct messaging" },
   { icon: GithubIcon, label: "GitHub", href: personal.social.github, desc: "Open source & code" },
-  { icon: LinkedinIcon, label: "LinkedIn", href: personal.social.linkedin, desc: "Professional network" },
+  { icon: InstagramIcon, label: "Instagram", href: personal.social.instagram, desc: "Visual updates" },
+  { icon: LinkedinIcon, label: "LinkedIn", href: personal.social.linkedin, desc: "Professional network", modal: true as const },
   { icon: Mail, label: "Email", href: `mailto:${personal.email}`, desc: "Get in touch" },
 ];
 
@@ -104,8 +109,10 @@ function FadeSection({ children, delay = 0, className }: { children: React.React
 /* ─── MAIN ──────────────────────────────────────────────────── */
 
 export function Footer() {
+  const [modalOpen, setModalOpen] = useState(false);
   return (
     <footer className="relative overflow-hidden" style={{ backgroundColor: "#050505" }}>
+      <SocialModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%)" }} />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 h-48 w-96 opacity-[0.04] blur-[80px]" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.5) 0%, transparent 70%)" }} />
@@ -183,8 +190,10 @@ export function Footer() {
               <div className="mt-6 flex gap-2.5">
                 {socialCards.slice(0, 3).map((s) => {
                   const Icon = s.icon;
+                  const isModal = "modal" in s;
                   return (
-                    <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
+                    <a key={s.label} href={isModal ? "#" : s.href} target={isModal ? undefined : "_blank"} rel={isModal ? undefined : "noopener noreferrer"}
+                      onClick={isModal ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
                       className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.06] text-white/25 hover:text-white/60 hover:border-white/12 transition-all duration-200"
                       aria-label={s.label}
                     >
@@ -203,20 +212,24 @@ export function Footer() {
                 <div key={group.title}>
                   <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-4">{group.title}</h4>
                   <ul className="list-none p-0 m-0 space-y-2.5">
-                    {group.links.map((link) => (
+                    {group.links.map((link) => {
+                      const navIsModal = "modal" in link;
+                      return (
                       <li key={link.label}>
                         <a
-                          href={link.href}
-                          target={link.href.startsWith("http") ? "_blank" : undefined}
-                          rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="group/link inline-flex items-center gap-1.5 text-sm text-white/25 hover:text-white/60 transition-colors duration-200"
+                          href={navIsModal ? "#" : link.href}
+                          target={navIsModal ? undefined : (link.href.startsWith("http") ? "_blank" : undefined)}
+                          rel={navIsModal ? undefined : (link.href.startsWith("http") ? "noopener noreferrer" : undefined)}
+                          onClick={navIsModal ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
+                          className="group/link inline-flex items-center gap-1.5 text-sm text-white/35 hover:text-white/70 transition-colors duration-200"
                         >
-                          <span className="w-0 group-hover/link:w-2 h-px bg-white/30 transition-all duration-200" />
+                          <span className="h-px w-0 group-hover/link:w-2 bg-white/30 transition-all duration-200" />
                           {link.label}
-                          {link.href.startsWith("http") && <ExternalLink className="h-3 w-3 opacity-0 group-hover/link:opacity-60 transition-opacity duration-200" />}
+                          {link.href.startsWith("http") && !navIsModal && <ExternalLink className="h-3 w-3 opacity-0 group-hover/link:opacity-60 transition-opacity duration-200" />}
                         </a>
                       </li>
-                    ))}
+                    );
+                    })}
                   </ul>
                 </div>
               ))}
@@ -284,12 +297,16 @@ export function Footer() {
             <div className="grid grid-cols-3 gap-3">
               {socialCards.map((s) => {
                 const Icon = s.icon;
+                const isModal = "modal" in s;
                 return (
-                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
-                    className="group/social rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 text-center hover:border-white/10 hover:bg-white/[0.03] transition-all duration-300 backdrop-blur-sm"
+                  <a key={s.label} href={isModal ? "#" : s.href} target={isModal ? undefined : "_blank"} rel={isModal ? undefined : "noopener noreferrer"}
+                    onClick={isModal ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
+                    className="group/social rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 text-center transition-all duration-300 backdrop-blur-sm hover:border-white/10 hover:bg-white/[0.03]"
                   >
                     <Icon className="h-5 w-5 mx-auto text-white/20 group-hover/social:text-white/50 group-hover/social:scale-105 transition-all duration-300" />
-                    <p className="text-xs font-medium text-white/30 mt-2 group-hover/social:text-white/50 transition-colors duration-300">{s.label}</p>
+                    <div className="flex items-center justify-center gap-1.5 mt-2">
+                      <p className="text-xs font-medium text-white/30 group-hover/social:text-white/50 transition-colors duration-300">{s.label}</p>
+                    </div>
                     <p className="text-[9px] text-white/10 mt-0.5">{s.desc}</p>
                   </a>
                 );

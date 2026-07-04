@@ -93,7 +93,7 @@ function DevelopmentCard({ project, index, isInView }: { project: typeof project
 
         <div className="mt-4 pt-4 border-t border-white/[0.04]">
           <div className="flex flex-wrap gap-1.5">
-            {project.technologies.slice(0, 3).map((t) => (
+            {project.highlights.slice(0, 3).map((t) => (
               <Badge key={t}>{t}</Badge>
             ))}
           </div>

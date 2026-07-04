@@ -1,0 +1,118 @@
+"use client";
+
+import { useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Link2 } from "lucide-react";
+import { TelegramIcon } from "@/components/ui/Icons";
+import { Button } from "@/components/ui/Button";
+
+interface SocialModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export function SocialModal({ isOpen, onClose }: SocialModalProps) {
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const prevFocus = useRef<HTMLElement | null>(null);
+
+  const escHandler = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    },
+    [onClose]
+  );
+
+  useEffect(() => {
+    if (isOpen) {
+      prevFocus.current = document.activeElement as HTMLElement;
+      document.body.style.overflow = "hidden";
+      document.addEventListener("keydown", escHandler);
+      requestAnimationFrame(() => closeRef.current?.focus());
+    } else {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", escHandler);
+      prevFocus.current?.focus();
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", escHandler);
+    };
+  }, [isOpen, escHandler]);
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <motion.div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={onClose}
+            aria-hidden="true"
+          />
+          <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Social profile coming soon"
+            className="relative w-full max-w-md rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent bg-black/90 p-6 sm:p-8 shadow-2xl backdrop-blur-xl"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <button
+              ref={closeRef}
+              onClick={onClose}
+              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.06] text-white/25 hover:text-white/60 hover:border-white/12 transition-all duration-200"
+              aria-label="Close modal"
+            >
+              <X className="h-4 w-4" />
+            </button>
+
+            <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.02]">
+              <Link2 className="h-5 w-5 text-white/40" />
+            </div>
+
+            <h2 className="text-2xl font-semibold tracking-tight text-white/90">
+              🔗 Social Profile Coming Soon
+            </h2>
+
+            <div className="mt-4 space-y-3 text-sm text-white/35 leading-relaxed">
+              <p>Thank you for your interest.</p>
+              <p>
+                My public X (Twitter) and LinkedIn profiles are currently being carefully prepared and refined.
+              </p>
+              <p>
+                As I begin my academic journey and continue building the SP NET Ecosystem, I&apos;m taking the time to establish a professional online presence that reflects my work, projects, and long-term vision.
+              </p>
+              <p>
+                Once they&apos;re ready, these profiles will feature development updates, technical insights, project announcements, professional milestones, and content documenting my journey as a student, developer, and founder.
+              </p>
+              <p>
+                In the meantime, you&apos;re welcome to follow my official Telegram Channel to stay up to date with the latest announcements, project updates, and everything I&apos;m building.
+              </p>
+            </div>
+
+            <div className="mt-8 flex flex-col gap-3">
+              <Button
+                variant="primary"
+                href="https://t.me/ABOUTME_SP"
+                external
+              >
+                <TelegramIcon className="h-4 w-4" />
+                Visit Telegram Channel
+              </Button>
+              <Button variant="secondary" onClick={onClose}>
+                Close
+              </Button>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}

@@ -31,7 +31,7 @@ export async function POST(req: Request) {
         },
         body: JSON.stringify({
           from: `Contact <onboarding@resend.dev>`,
-          to: "savan@spnetinc.com",
+          to: ["savan@sp-net.in", "savanpatel@sp-net.in"],
           subject: `New message from ${name}`,
           replyTo: email,
           text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
