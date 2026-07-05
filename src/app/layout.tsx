@@ -22,6 +22,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  verification: {
+    google: "Y-qUzkMGzr9qMKHhBrBj3epLnjiFh00Mxsc80fzVh4k",
+  },
+
   title: {
     default: "Savan Patel — Founder & Product Engineer at SP NET INC",
     template: "%s | Savan Patel",
