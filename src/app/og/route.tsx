@@ -147,7 +147,7 @@ export async function GET(req: Request) {
           }}
         >
           <span style={{ fontWeight: 700, color: cfg.accent, opacity: 0.6 }}>SP</span>
-          spnetinc.com
+          sp-net.in
         </div>
       </div>
     ),

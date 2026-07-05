@@ -1,11 +1,13 @@
 {
-  "name": "Savan Patel — Founder & Product Engineer",
+  "name": "Savan Patel — Founder & Product Engineer at SP NET INC",
   "short_name": "Savan Patel",
   "description": "Building SP NET GRAM, SP NET ADMIN OS, and SP NET AI. Products that connect people, empower communities, and shape the future of technology.",
   "start_url": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#0a0a0a",
   "theme_color": "#0a0a0a",
+  "categories": ["portfolio", "technology", "development"],
   "icons": [
     {
       "src": "/icon-192.svg",

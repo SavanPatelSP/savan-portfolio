@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { MotionConfig } from "framer-motion";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -8,6 +9,7 @@ import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 import { SplashWrapper } from "@/components/ui/SplashWrapper";
 import { Cursor } from "@/components/ui/Cursor";
 import { CookieConsent } from "@/components/ui/CookieConsent";
+import { personal } from "@/data/personal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +22,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Savan Patel — Founder & Product Engineer at SP NET INC",
+  title: {
+    default: "Savan Patel — Founder & Product Engineer at SP NET INC",
+    template: "%s | Savan Patel",
+  },
   description:
     "Founder & Product Engineer building SP NET GRAM, SP NET ADMIN OS, and SP NET AI. Crafting products that connect people, empower communities, and shape the future of technology.",
   keywords: [
@@ -38,10 +43,13 @@ export const metadata: Metadata = {
     "SP NET AI",
     "Full Stack",
     "Entrepreneur",
+    "Portfolio",
   ],
-  authors: [{ name: "Savan Patel", url: "https://spnetinc.com" }],
+  authors: [{ name: "Savan Patel", url: "https://sp-net.in" }],
   creator: "Savan Patel",
   publisher: "SP NET INC",
+  category: "technology",
+  classification: "Portfolio",
   openGraph: {
     title: "Savan Patel — Founder & Product Engineer at SP NET INC",
     description:
@@ -49,8 +57,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "SP NET INC",
-    url: "https://spnetinc.com",
+    url: "https://sp-net.in",
     images: [{ url: "/og?section=default", width: 1200, height: 630 }],
+    countryName: "India",
   },
   twitter: {
     card: "summary_large_image",
@@ -64,30 +73,84 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-  metadataBase: new URL("https://spnetinc.com"),
+  metadataBase: new URL("https://sp-net.in"),
   alternates: {
     canonical: "/",
+  },
+  appleWebApp: {
+    capable: true,
+    title: "Savan Patel",
+    statusBarStyle: "black-translucent",
+  },
+  formatDetection: {
+    telephone: true,
+    email: true,
+    address: true,
   },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Savan Patel",
-  givenName: "Savan",
-  familyName: "Patel",
-  jobTitle: "Founder & Product Engineer",
-  affiliation: {
-    "@type": "Organization",
-    name: "SP NET INC",
-    description: "Building the infrastructure for modern communication, enterprise administration, and intelligent automation.",
-  },
-  knowsAbout: ["Software Engineering", "Product Design", "Full Stack Development", "AI", "System Architecture"],
-  url: "https://spnetinc.com",
-  sameAs: [
-    "https://github.com/savanpatelssp",
-    "https://x.com/savanpatel",
-    "https://linkedin.com/in/savanpatel",
+  "@graph": [
+    {
+      "@type": "Person",
+      name: "Savan Patel",
+      givenName: "Savan",
+      familyName: "Patel",
+      jobTitle: "Founder & Product Engineer",
+      description: personal.description,
+      email: personal.email,
+      image: "https://sp-net.in/logo.jpg",
+      url: "https://sp-net.in",
+      sameAs: [
+        personal.social.github,
+        personal.social.x,
+        personal.social.linkedin,
+        personal.social.telegram,
+        personal.social.instagram,
+      ],
+      knowsAbout: ["Software Engineering", "Product Design", "Full Stack Development", "AI", "System Architecture"],
+      affiliation: {
+        "@type": "Organization",
+        name: "SP NET INC",
+        url: "https://sp-net.in",
+        description: "Building the infrastructure for modern communication, enterprise administration, and intelligent automation.",
+      },
+      nationality: { "@type": "Country", name: "India" },
+    },
+    {
+      "@type": "Organization",
+      name: "SP NET INC",
+      alternateName: "SP NET",
+      url: "https://sp-net.in",
+      logo: "https://sp-net.in/icon-512.svg",
+      description: personal.description,
+      founder: { "@type": "Person", name: "Savan Patel" },
+      email: personal.email,
+      sameAs: [
+        personal.social.github,
+        personal.social.x,
+        personal.social.linkedin,
+        personal.social.telegram,
+        personal.social.instagram,
+      ],
+    },
+    {
+      "@type": "WebSite",
+      name: "Savan Patel — Portfolio",
+      alternateName: "SP NET INC",
+      url: "https://sp-net.in",
+      description: personal.description,
+      author: { "@type": "Person", name: "Savan Patel" },
+    },
+    {
+      "@type": "WebPage",
+      name: "Savan Patel — Founder & Product Engineer at SP NET INC",
+      description: personal.description,
+      url: "https://sp-net.in",
+      isPartOf: { "@type": "WebSite", url: "https://sp-net.in" },
+      breadcrumb: { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://sp-net.in" }] },
+    },
   ],
 };
 
@@ -112,14 +175,22 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-black text-white antialiased lg-cursor-none">
-        <Cursor />
-        <SplashWrapper />
-        <NoiseOverlay />
-        <ScrollProgress />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <CookieConsent />
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-xl focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-black focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white/30"
+        >
+          Skip to content
+        </a>
+        <MotionConfig reducedMotion="user">
+          <Cursor />
+          <SplashWrapper />
+          <NoiseOverlay />
+          <ScrollProgress />
+          <Header />
+          <main id="main-content" tabIndex={-1}>{children}</main>
+          <Footer />
+          <CookieConsent />
+        </MotionConfig>
       </body>
     </html>
   );

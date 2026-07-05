@@ -10,7 +10,7 @@ Building products that connect people,
 empower communities,  
 and shape the future.
 
-[![Portfolio](https://img.shields.io/badge/spnetinc.com-000000?style=flat&logo=vercel&labelColor=111111)](https://spnetinc.com)
+[![Portfolio](https://img.shields.io/badge/sp--net.in-000000?style=flat&logo=vercel&labelColor=111111)](https://sp-net.in)
 [![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=flat&logo=next.js&labelColor=111111)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React_19-000000?style=flat&logo=react&labelColor=111111)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript_5-000000?style=flat&logo=typescript&labelColor=111111)](https://typescriptlang.org)
@@ -205,8 +205,8 @@ MIT. See [LICENSE](LICENSE).
 
 [GitHub](https://github.com/savanpatelssp) ·
 [LinkedIn](https://linkedin.com/in/savanpatel) ·
-[Email](mailto:savan@spnetinc.com) ·
-[Website](https://spnetinc.com)
+[Email](mailto:savan@sp-net.in) ·
+[Website](https://sp-net.in)
 
 </div>
 

@@ -1,10 +1,10 @@
 "use client";
 
-import { useRef, ReactNode, useEffect, useState } from "react";
-import { motion, useInView, useScroll, useTransform, HTMLMotionProps } from "framer-motion";
+import { useRef, ReactNode, useState } from "react";
+import { motion, useInView, useScroll, useTransform, useReducedMotion, HTMLMotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-type MotionDivProps = HTMLMotionProps<"div">;
+type MotionDivProps = Omit<HTMLMotionProps<"div">, "children"> & { children?: ReactNode };
 
 export function FadeIn({
   children,
@@ -17,6 +17,11 @@ export function FadeIn({
 }: MotionDivProps & { delay?: number; duration?: number; y?: number; once?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, amount: 0.2 });
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
@@ -40,6 +45,11 @@ export function ScaleIn({
 }: MotionDivProps & { delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
@@ -63,6 +73,11 @@ export function Reveal({
 }: MotionDivProps & { delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <div ref={ref} className={cn("relative overflow-hidden", className)}>
@@ -86,6 +101,11 @@ export function BlurReveal({
 }: MotionDivProps & { delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
@@ -110,6 +130,7 @@ export function MaskReveal({
 }: MotionDivProps & { delay?: number; direction?: "up" | "down" | "left" | "right" }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const reducedMotion = useReducedMotion();
 
   const initialMask = {
     up: "inset(100% 0% 0% 0%)",
@@ -119,6 +140,10 @@ export function MaskReveal({
   }[direction];
 
   const animateMask = "inset(0% 0% 0% 0%)";
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <div ref={ref} className={cn("relative overflow-hidden", className)}>
@@ -144,8 +169,13 @@ export function ParallaxContainer({
   speed?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const reducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], [speed * 100, speed * -100]);
+
+  if (reducedMotion) {
+    return <div ref={ref} className={cn("relative overflow-hidden", className)}>{children}</div>;
+  }
 
   return (
     <div ref={ref} className={cn("relative overflow-hidden", className)}>
@@ -168,6 +198,7 @@ export function MagneticButton({
 } & Record<string, unknown>) {
   const ref = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const reducedMotion = useReducedMotion();
 
   const handleMouse = (e: React.MouseEvent) => {
     if (!ref.current) return;
@@ -178,6 +209,24 @@ export function MagneticButton({
   };
 
   const handleLeave = () => setPosition({ x: 0, y: 0 });
+
+  const inner = Component === "button" ? (
+    <button {...(props as React.ComponentPropsWithoutRef<"button">)}>
+      {children}
+    </button>
+  ) : (
+    <a {...(props as React.ComponentPropsWithoutRef<"a">)}>
+      {children}
+    </a>
+  );
+
+  if (reducedMotion) {
+    return (
+      <div ref={ref} className={cn("inline-block", className)}>
+        {inner}
+      </div>
+    );
+  }
 
   return (
     <div
@@ -190,15 +239,7 @@ export function MagneticButton({
         animate={{ x: position.x, y: position.y }}
         transition={{ type: "spring", stiffness: 200, damping: 15, mass: 0.5 }}
       >
-        {Component === "button" ? (
-          <button {...(props as React.ComponentPropsWithoutRef<"button">)}>
-            {children}
-          </button>
-        ) : (
-          <a {...(props as React.ComponentPropsWithoutRef<"a">)}>
-            {children}
-          </a>
-        )}
+        {inner}
       </motion.div>
     </div>
   );
@@ -212,6 +253,11 @@ export function StaggerFade({
 }: MotionDivProps & { staggerDelay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
@@ -235,6 +281,12 @@ export function StaggerItem({
   className,
   ...props
 }: MotionDivProps) {
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={className}

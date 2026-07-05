@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowDown, Sparkles, Terminal, Code } from "lucide-react";
+import { ArrowDown, Sparkles, Terminal } from "lucide-react";
 import { personal } from "@/data/personal";
 import { products } from "@/data/products";
 import { cn } from "@/lib/utils";
@@ -107,17 +107,10 @@ function Particles({ count = 100 }: { count?: number }) {
 }
 
 function CursorBlink() {
-  const [visible, setVisible] = useState(true);
-  useEffect(() => {
-    const interval = setInterval(() => setVisible((v) => !v), 530);
-    return () => clearInterval(interval);
-  }, []);
   return (
     <span
-      className={cn(
-        "inline-block w-[2px] h-[1em] bg-blue-400/60 align-middle ml-0.5 transition-opacity duration-100",
-        visible ? "opacity-100" : "opacity-0"
-      )}
+      className="inline-block w-[2px] h-[1em] bg-blue-400/60 align-middle ml-0.5 motion-safe:animate-cursor-blink"
+      aria-hidden="true"
     />
   );
 }

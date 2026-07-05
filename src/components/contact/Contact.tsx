@@ -245,7 +245,7 @@ export function ContactSection() {
             ref={formRef}
             onSubmit={handleSubmit}
           >
-            <div className="space-y-5">
+              <div className="space-y-5">
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="block text-xs font-medium text-white/25 mb-1.5">
@@ -256,6 +256,9 @@ export function ContactSection() {
                     name="name"
                     type="text"
                     required
+                    aria-required="true"
+                    aria-invalid={error ? "true" : undefined}
+                    aria-describedby={error ? "form-error" : undefined}
                     className="w-full rounded-lg border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-sm text-white placeholder-white/20 focus:outline-none focus:border-white/20 focus:bg-white/[0.03] focus:ring-1 focus:ring-white/10 transition-all"
                     placeholder="Your name"
                   />
@@ -269,6 +272,9 @@ export function ContactSection() {
                     name="email-c"
                     type="email"
                     required
+                    aria-required="true"
+                    aria-invalid={error ? "true" : undefined}
+                    aria-describedby={error ? "form-error" : undefined}
                     className="w-full rounded-lg border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-sm text-white placeholder-white/20 focus:outline-none focus:border-white/20 focus:bg-white/[0.03] focus:ring-1 focus:ring-white/10 transition-all"
                     placeholder="you@example.com"
                   />
@@ -282,6 +288,9 @@ export function ContactSection() {
                   id="message"
                   name="message"
                   required
+                  aria-required="true"
+                  aria-invalid={error ? "true" : undefined}
+                  aria-describedby={error ? "form-error" : undefined}
                   rows={4}
                   className="w-full rounded-lg border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-sm text-white placeholder-white/20 focus:outline-none focus:border-white/20 focus:bg-white/[0.03] focus:ring-1 focus:ring-white/10 transition-all resize-none"
                   placeholder="Tell me about your project..."
@@ -301,7 +310,11 @@ export function ContactSection() {
                   </span>
                 </Button>
               </div>
-              {error && <p className="text-xs text-red-400/70">Something went wrong. Please try again or email me directly.</p>}
+              {error && (
+                <p id="form-error" className="text-xs text-red-400/70" role="alert">
+                  Something went wrong. Please try again or email me directly.
+                </p>
+              )}
               <div className="mt-14 text-center">
                 <div className="relative max-w-lg mx-auto">
                   <div className="absolute -top-11 left-0 text-7xl text-white/[0.04] leading-none select-none pointer-events-none" aria-hidden="true">&ldquo;</div>

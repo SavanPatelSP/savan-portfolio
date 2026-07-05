@@ -279,10 +279,10 @@ export function Footer() {
         {/* ═══ NEWSLETTER + SOCIAL CARDS ═══ */}
         <div className="py-20 sm:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 border-t border-white/[0.04]">
           <FadeSection delay={0.1}>
-            <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-3">Future Updates</h4>
+            <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-3" id="newsletter-heading">Future Updates</h4>
             <p className="text-sm text-white/30 mb-5">Launching Soon</p>
             <div className="flex items-center gap-2">
-              <input type="email" placeholder="your@email.com" disabled
+              <input type="email" placeholder="your@email.com" disabled aria-labelledby="newsletter-heading"
                 className="flex-1 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-2.5 text-sm text-white/30 placeholder-white/10 focus:outline-none transition-all backdrop-blur-sm"
               />
               <span className="inline-flex items-center gap-1.5 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-2.5 text-xs font-medium text-white/20 backdrop-blur-sm">

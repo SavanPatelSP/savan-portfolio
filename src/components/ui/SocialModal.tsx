@@ -13,6 +13,7 @@ interface SocialModalProps {
 
 export function SocialModal({ isOpen, onClose }: SocialModalProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const prevFocus = useRef<HTMLElement | null>(null);
 
   const escHandler = useCallback(
@@ -22,22 +23,42 @@ export function SocialModal({ isOpen, onClose }: SocialModalProps) {
     [onClose]
   );
 
+  const trapFocus = useCallback((e: KeyboardEvent) => {
+    if (e.key !== "Tab" || !dialogRef.current) return;
+    const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+      "button, a, input, textarea, select, [tabindex]:not([tabindex='-1'])"
+    );
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  }, []);
+
   useEffect(() => {
     if (isOpen) {
       prevFocus.current = document.activeElement as HTMLElement;
       document.body.style.overflow = "hidden";
       document.addEventListener("keydown", escHandler);
+      document.addEventListener("keydown", trapFocus);
       requestAnimationFrame(() => closeRef.current?.focus());
     } else {
       document.body.style.overflow = "";
       document.removeEventListener("keydown", escHandler);
+      document.removeEventListener("keydown", trapFocus);
       prevFocus.current?.focus();
     }
     return () => {
       document.body.style.overflow = "";
       document.removeEventListener("keydown", escHandler);
+      document.removeEventListener("keydown", trapFocus);
     };
-  }, [isOpen, escHandler]);
+  }, [isOpen, escHandler, trapFocus]);
 
   return (
     <AnimatePresence>
@@ -55,6 +76,7 @@ export function SocialModal({ isOpen, onClose }: SocialModalProps) {
             aria-hidden="true"
           />
           <motion.div
+            ref={dialogRef}
             role="dialog"
             aria-modal="true"
             aria-label="Social profile coming soon"

@@ -15,7 +15,7 @@ export function SplashScreen() {
 
     const timer = setTimeout(() => {
       setShow(false);
-    }, 3000);
+    }, reducedMotion ? 300 : 3000);
 
     return () => {
       clearTimeout(timer);

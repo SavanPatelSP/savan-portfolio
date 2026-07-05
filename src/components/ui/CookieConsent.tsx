@@ -1,19 +1,28 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
+  const acceptRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const consent = localStorage.getItem("cookie-consent");
     if (!consent) {
-      const timeout = setTimeout(() => setVisible(true), 1000);
+      const timeout = setTimeout(() => {
+        setVisible(true);
+      }, 1000);
       return () => clearTimeout(timeout);
     }
   }, []);
+
+  useEffect(() => {
+    if (visible) {
+      requestAnimationFrame(() => acceptRef.current?.focus());
+    }
+  }, [visible]);
 
   const accept = () => {
     localStorage.setItem("cookie-consent", "accepted");
@@ -34,6 +43,8 @@ export function CookieConsent() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+          role="dialog"
+          aria-label="Cookie notice"
         >
           <div
             className="mx-auto max-w-3xl rounded-2xl border p-4 sm:p-5 backdrop-blur-xl"
@@ -54,6 +65,7 @@ export function CookieConsent() {
               </div>
               <div className="flex items-center gap-2 shrink-0">
                 <button
+                  ref={acceptRef}
                   onClick={accept}
                   className="rounded-lg bg-blue-500/20 border border-blue-500/30 px-3 sm:px-4 py-2 text-xs font-medium text-blue-200 hover:bg-blue-500/30 transition-all duration-200 whitespace-nowrap"
                 >
