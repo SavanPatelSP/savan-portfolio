@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowUpRight, Building2, ChevronDown, Code, Cpu, ExternalLink, Mail, MessageSquare, Rocket, Settings, Terminal, Zap } from "lucide-react";
+import Image from "next/image";
 import { GithubIcon, LinkedinIcon, TelegramIcon, InstagramIcon } from "@/components/ui/Icons";
 import { SocialModal } from "@/components/ui/SocialModal";
 import { personal } from "@/data/personal";
@@ -167,7 +168,7 @@ export function Footer() {
             <FadeSection delay={0.1}>
               <div className="flex items-center gap-4 mb-8">
                 <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/[0.04] ring-1 ring-white/[0.06] overflow-hidden shrink-0">
-                  <img src="/logo.jpg" alt={personal.name} className="object-cover w-full h-full" />
+                  <Image src="/logo.jpg" alt={personal.name} width={56} height={56} className="object-cover w-full h-full" />
                 </span>
                 <div>
                   <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white/90 leading-[1.1]">{personal.name}</h3>

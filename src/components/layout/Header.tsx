@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { personal } from "@/data/personal";
 import { useActiveSection } from "@/hooks/useActiveSection";
 
@@ -71,7 +72,7 @@ export function Header() {
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
         <a href="#" className="flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors">
           <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-blue-500/30 to-blue-600/20 ring-1 ring-blue-500/25 overflow-hidden">
-            <img src="/logo.jpg" alt={personal.company} className="object-cover w-full h-full" />
+            <Image src="/logo.jpg" alt={personal.company} width={28} height={28} className="object-cover w-full h-full" priority />
           </span>
           {personal.name}
         </a>

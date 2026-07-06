@@ -60,7 +60,7 @@ export function CookieConsent() {
                   <span className="text-xs font-medium text-blue-200">🍪 Cookie Notice</span>
                 </div>
                 <p className="text-xs text-white/40 leading-relaxed">
-                  This site uses essential cookies to function. No tracking or analytics cookies are used. By continuing, you accept the use of necessary cookies.
+                  This site uses localStorage to remember your consent preferences. No cookies, tracking, or analytics are used. By continuing, you accept this use of local storage.
                 </p>
               </div>
               <div className="flex items-center gap-2 shrink-0">

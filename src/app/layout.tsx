@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MotionConfig } from "framer-motion";
 import "./globals.css";
@@ -52,8 +52,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Savan Patel", url: "https://sp-net.in" }],
   creator: "Savan Patel",
   publisher: "SP NET INC",
-  category: "technology",
-  classification: "Portfolio",
   openGraph: {
     title: "Savan Patel — Founder & Product Engineer at SP NET INC",
     description:
@@ -63,7 +61,6 @@ export const metadata: Metadata = {
     siteName: "SP NET INC",
     url: "https://savan.sp-net.in",
     images: [{ url: "/og?section=default", width: 1200, height: 630 }],
-    countryName: "India",
   },
   twitter: {
     card: "summary_large_image",
@@ -91,6 +88,12 @@ export const metadata: Metadata = {
     email: true,
     address: true,
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#0a0a0a",
 };
 
 const jsonLd = {
@@ -172,7 +175,6 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/icon-192.svg" />
-        <meta name="theme-color" content="#0a0a0a" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
