@@ -118,13 +118,13 @@ function CursorBlink() {
 function TerminalBadge() {
   return (
     <motion.div
-      className="group inline-flex items-center gap-2.5 rounded-xl border border-blue-500/15 bg-blue-500/[0.04] px-4 py-2 hover:bg-blue-500/[0.08] hover:border-blue-500/25 transition-all duration-300 cursor-default"
+      className="group inline-flex items-center gap-2 sm:gap-2.5 rounded-xl border border-blue-500/15 bg-blue-500/[0.04] px-3 sm:px-4 py-2 hover:bg-blue-500/[0.08] hover:border-blue-500/25 transition-all duration-300 cursor-default"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.4 }}
     >
-      <Terminal className="h-3.5 w-3.5 text-blue-400/60 group-hover:text-blue-400/80 transition-colors" />
-      <span className="text-xs font-mono text-blue-400/50 group-hover:text-blue-400/70 transition-colors">
+      <Terminal className="h-3.5 w-3.5 text-blue-400/60 group-hover:text-blue-400/80 transition-colors shrink-0" />
+      <span className="text-[10px] sm:text-xs font-mono text-blue-400/50 group-hover:text-blue-400/70 transition-colors whitespace-nowrap">
         {'>'} First line of code in {personal.firstCode}
       </span>
       <CursorBlink />
@@ -294,13 +294,13 @@ export function Hero() {
       <div className="relative z-[3] mx-auto max-w-6xl px-4 text-center">
         {/* Roles badge */}
         <motion.div
-          className="mb-8"
+          className="mb-6 sm:mb-8"
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/10 bg-blue-500/[0.04] px-4 py-1.5 text-xs font-medium text-blue-400/60 tracking-[0.15em] uppercase">
-            <span className="h-1.5 w-1.5 rounded-full bg-blue-400/60 animate-pulse-soft" />
+          <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/10 bg-blue-500/[0.04] px-3 sm:px-4 py-1.5 text-[10px] sm:text-xs font-medium text-blue-400/60 tracking-[0.12em] sm:tracking-[0.15em] uppercase text-center flex-wrap justify-center">
+            <span className="h-1.5 w-1.5 rounded-full bg-blue-400/60 animate-pulse-soft shrink-0" />
             {personal.roles.join(" • ")}
           </span>
         </motion.div>
@@ -308,7 +308,7 @@ export function Hero() {
         {/* Gigantic name */}
         <div className="overflow-hidden">
           <motion.h1
-            className="text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[11rem] font-bold tracking-tight text-white leading-[0.85]"
+            className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] xl:text-[11rem] font-bold tracking-tight text-white leading-[0.85]"
             initial={{ y: "120%" }}
             animate={isInView ? { y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
@@ -320,7 +320,7 @@ export function Hero() {
         {/* Animated subtitle */}
         <div className="overflow-hidden mt-3">
           <motion.p
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white/30 font-light tracking-tight"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-white/30 font-light tracking-tight"
             initial={{ y: "100%" }}
             animate={isInView ? { y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
@@ -331,7 +331,7 @@ export function Hero() {
 
         {/* Founder statement */}
         <motion.p
-          className="mx-auto mt-6 max-w-2xl text-sm sm:text-base text-white/25 leading-relaxed font-light"
+          className="mx-auto mt-5 sm:mt-6 max-w-2xl text-xs sm:text-sm md:text-base text-white/25 leading-relaxed font-light px-2 sm:px-0"
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.55 }}
@@ -341,7 +341,7 @@ export function Hero() {
 
         {/* Terminal badge */}
         <motion.div
-          className="mt-8 flex justify-center"
+          className="mt-6 sm:mt-8 flex justify-center"
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.7 }}
@@ -351,7 +351,7 @@ export function Hero() {
 
         {/* CTAs */}
         <motion.div
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.85 }}

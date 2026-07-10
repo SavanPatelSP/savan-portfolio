@@ -120,9 +120,9 @@ export function ProjectsSection() {
       {/* Achievements as roadmap milestones */}
       <div ref={achRef}>
         <Reveal delay={0.1}>
-          <h3 className="text-xs font-medium uppercase tracking-[0.15em] text-white/20 mb-5">Milestones</h3>
+          <h3 className="text-xs font-medium uppercase tracking-[0.15em] text-white/20 mb-5 text-center sm:text-left">Milestones</h3>
         </Reveal>
-        <div className="grid gap-3 sm:grid-cols-4 mb-16">
+        <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mb-12 sm:mb-16">
           {achievements.map((a, i) => (
             <RoadmapPhase key={a.label} achievement={a} index={i} isInView={achInView} />
           ))}
@@ -131,10 +131,10 @@ export function ProjectsSection() {
 
       {/* Current development projects */}
       <Reveal delay={0.1}>
-        <h3 className="text-xs font-medium uppercase tracking-[0.15em] text-white/20 mb-5">Active Development</h3>
+        <h3 className="text-xs font-medium uppercase tracking-[0.15em] text-white/20 mb-5 text-center sm:text-left">Active Development</h3>
       </Reveal>
 
-      <div className="grid gap-5 md:grid-cols-3 mb-16">
+      <div className="grid gap-5 grid-cols-1 md:grid-cols-3 mb-12 sm:mb-16">
         {projects.map((project, i) => (
           <DevelopmentCard key={project.id} project={project} index={i} isInView={achInView} />
         ))}
@@ -142,7 +142,7 @@ export function ProjectsSection() {
 
       {/* Open Source Journey */}
       <Reveal delay={0.1}>
-        <h3 className="text-xs font-medium uppercase tracking-[0.15em] text-white/20 mb-5">Open Source</h3>
+        <h3 className="text-xs font-medium uppercase tracking-[0.15em] text-white/20 mb-5 text-center sm:text-left">Open Source</h3>
       </Reveal>
 
       <FadeIn delay={0.2}>

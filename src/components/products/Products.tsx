@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { products, futureProducts } from "@/data/products";
 import { SectionContainer, FadeIn, Reveal, BlurReveal, StaggerFade, StaggerItem, SectionTitle, ParallaxContainer } from "@/components/ui/AnimationPrimitives";
 import { Badge } from "@/components/ui/Badge";
-import { LiveStatus } from "@/components/products/LiveStatus";
+import { ProductStatus } from "@/components/products/ProductStatus";
 
 const statusConfig: Record<string, { label: string; variant: "success" | "warning" | "beta" }> = {
   building: { label: "Active Development", variant: "warning" },
@@ -44,7 +44,7 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
   return (
     <div
       ref={ref}
-      className="group relative overflow-hidden rounded-3xl transition-all duration-700"
+      className="group relative overflow-hidden rounded-3xl transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_8px_40px_-12px_rgba(0,0,0,0.5)]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -76,12 +76,12 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
       />
 
       {/* Content */}
-      <div className="relative border border-white/[0.04] hover:border-white/10 rounded-3xl transition-all duration-500 p-6 sm:p-8 lg:p-10">
+      <div className="relative border border-white/[0.04] hover:border-white/10 rounded-3xl transition-all duration-500 p-5 sm:p-6 lg:p-10">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
-          <div className={cn(index % 2 === 1 && "lg:order-2")}>
+          <div className={cn(index % 2 === 1 && "lg:order-2", "text-center sm:text-left")}>
             {/* Icon + Status */}
             <FadeIn delay={0.1 * index}>
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex items-center gap-3 mb-4 justify-center sm:justify-start">
                 <div
                   className="h-12 w-12 rounded-2xl flex items-center justify-center shadow-lg"
                   style={{
@@ -119,7 +119,7 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
             </BlurReveal>
 
             {/* Highlights */}
-            <StaggerFade staggerDelay={0.04} className="mt-5 flex flex-wrap gap-2">
+            <StaggerFade staggerDelay={0.04} className="mt-5 flex flex-wrap gap-2 justify-center sm:justify-start">
               {product.highlights.map((t) => (
                 <StaggerItem key={t}>
                   <Badge>{t}</Badge>
@@ -127,10 +127,10 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
               ))}
             </StaggerFade>
 
-            {/* Live build status */}
+            {/* Premium product status */}
             <FadeIn delay={0.25 + 0.05 * index}>
               <div className="mt-4">
-                <LiveStatus productId={product.id} />
+                <ProductStatus />
               </div>
             </FadeIn>
 
@@ -138,7 +138,7 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
             <FadeIn delay={0.3 + 0.05 * index}>
               <div className="mt-6 space-y-3">
                 {product.features.map((f) => (
-                  <div key={f} className="flex items-center gap-3 text-sm text-white/40">
+                  <div key={f} className="flex items-center gap-3 text-sm text-white/40 justify-center sm:justify-start">
                     <span
                       className="h-1.5 w-1.5 rounded-full shrink-0"
                       style={{ backgroundColor: product.color }}
@@ -152,7 +152,7 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
             {/* Roadmap progress */}
             {milestone && (
               <FadeIn delay={0.35 + 0.05 * index}>
-                <div className="mt-6 flex items-center gap-3 text-xs text-white/25">
+                <div className="mt-6 flex items-center gap-3 text-xs text-white/25 justify-center sm:justify-start flex-wrap">
                   <Clock className="h-3 w-3" />
                   <span>{milestone.phase}</span>
                   <div className="flex-1 max-w-[120px] h-1 rounded-full bg-white/[0.06] overflow-hidden">
@@ -299,9 +299,9 @@ export function ProductsSection() {
           ))}
         </div>
 
-        <div className="mt-16">
+        <div className="mt-12 sm:mt-16">
           <Reveal delay={0.1}>
-            <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-white/20 mb-6">On the horizon</h3>
+            <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-white/20 mb-6 text-center sm:text-left">On the horizon</h3>
           </Reveal>
           <div className="grid gap-4 sm:grid-cols-2">
             {futureProducts.map((product, i) => (

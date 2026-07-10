@@ -86,12 +86,12 @@ export function ContactSection() {
 
       <div className="mb-8 lg:mb-10">
         <FadeIn delay={0.05}>
-          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm p-6 sm:p-8 shadow-2xl">
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
-              <Sparkles className="h-3 w-3" />
+          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm p-5 sm:p-6 lg:p-8 shadow-2xl">
+            <span className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white/20 mb-3 sm:mb-4">
+              <Sparkles className="h-3 w-3 shrink-0" />
               Recommended Contact Method
             </span>
-            <h3 className="text-xl font-semibold tracking-tight text-white/80 flex items-center gap-3 flex-wrap">
+            <h3 className="text-lg sm:text-xl font-semibold tracking-tight text-white/80 flex items-center gap-2 sm:gap-3 flex-wrap">
               <MessageCircle className="h-5 w-5 text-white/40" />
               Personal Communication Assistant
               <span className="inline-flex items-center gap-1 rounded-full border border-amber-500/20 bg-amber-500/[0.06] px-2.5 py-0.5 text-[9px] font-medium uppercase tracking-[0.12em] text-amber-400/80 shadow-[0_0_12px_-4px_rgba(217,119,6,0.15)]">
@@ -113,14 +113,14 @@ export function ContactSection() {
                 The assistant helps organize conversations efficiently, allowing me to review and respond as quickly as possible while managing academic commitments and ongoing projects.
               </p>
             </div>
-            <div className="mt-6 space-y-3">
+            <div className="mt-4 sm:mt-6 space-y-3">
               {[
                 { title: "Direct message delivery", desc: "Your inquiry is delivered immediately through my dedicated communication channel." },
                 { title: "Personally reviewed", desc: "Every genuine message is personally reviewed by me." },
                 { title: "Professional conversations", desc: "Perfect for collaborations, internships, project discussions, business inquiries, and technical conversations." },
                 { title: "Available anytime", desc: "You can start a conversation whenever it's convenient for you." },
               ].map((f) => (
-                <div key={f.title} className="flex gap-3">
+                <div key={f.title} className="flex gap-2.5 sm:gap-3">
                   <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.02] mt-0.5">
                     <Check className="h-3 w-3 text-white/40" strokeWidth={2.5} />
                   </span>
@@ -148,16 +148,16 @@ export function ContactSection() {
                 Your privacy matters. Messages sent through my Personal Communication Assistant are intended solely for communication regarding projects, collaborations, internships, professional opportunities, and general inquiries. Please avoid sending sensitive personal information.
               </p>
             </div>
-            <div className="mt-8 text-center">
+            <div className="mt-6 sm:mt-8 text-center">
               <span className="text-sm text-white/15">— or —</span>
-              <p className="mt-3 text-sm text-white/30">Prefer email instead? You can also reach me by completing the contact form below.</p>
+              <p className="mt-2 sm:mt-3 text-xs sm:text-sm text-white/30">Prefer email instead? You can also reach me by completing the contact form below.</p>
             </div>
           </div>
         </FadeIn>
       </div>
 
       <div ref={sectionRef} className="grid gap-6 lg:grid-cols-5 lg:gap-8">
-        <div className="lg:col-span-2 space-y-4">
+        <div className="lg:col-span-2 space-y-3 sm:space-y-4">
           <FadeIn delay={0.1}>
             <div className="rounded-xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm p-5 hover:bg-white/[0.05] transition-all duration-300">
               <div className="flex items-center gap-3">
@@ -208,7 +208,7 @@ export function ContactSection() {
           </FadeIn>
 
           <FadeIn delay={0.25}>
-            <div className="flex gap-2">
+            <div className="flex gap-2 justify-center sm:justify-start">
               {socials.map((s) => {
                 const Icon = s.icon;
                 const isModal = "modal" in s;
@@ -232,7 +232,7 @@ export function ContactSection() {
         </div>
 
         <BlurReveal delay={0.1} className="lg:col-span-3">
-          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm p-6 sm:p-8 shadow-2xl">
+          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm p-5 sm:p-6 lg:p-8 shadow-2xl">
             <div className="mb-7">
               <h3 className="text-xl font-semibold tracking-tight text-white/80">
                 Send a Message
@@ -296,7 +296,7 @@ export function ContactSection() {
                   placeholder="Tell me about your project..."
                 />
               </div>
-              <div className="flex items-center justify-center gap-4">
+              <div className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap">
                 <Button type="submit" variant="primary" disabled={sending || sent}>
                   <span className="inline-flex items-center gap-1.5">
                     {sending ? "Sending" : sent ? "Sent!" : "Send message"}
@@ -315,9 +315,9 @@ export function ContactSection() {
                   Something went wrong. Please try again or email me directly.
                 </p>
               )}
-              <div className="mt-14 text-center">
+              <div className="mt-10 sm:mt-14 text-center">
                 <div className="relative max-w-lg mx-auto">
-                  <div className="absolute -top-11 left-0 text-7xl text-white/[0.04] leading-none select-none pointer-events-none" aria-hidden="true">&ldquo;</div>
+                  <div className="absolute -top-9 sm:-top-11 left-0 text-5xl sm:text-7xl text-white/[0.04] leading-none select-none pointer-events-none" aria-hidden="true">&ldquo;</div>
                   <div className="space-y-4 pt-5">
                     <p className="text-sm text-white/20 leading-relaxed">
                       Every conversation begins with a simple hello.

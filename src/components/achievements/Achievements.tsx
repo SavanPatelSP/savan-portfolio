@@ -19,7 +19,7 @@ export function AchievementsSection() {
         subtitle="Authentic milestones from building SP NET INC."
       />
 
-      <div ref={ref} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div ref={ref} className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {achievements.map((item, i) => (
           <ScaleIn key={item.label} delay={i * 0.1}>
             <div className="group rounded-2xl border border-white/[0.04] bg-white/[0.02] p-6 sm:p-8 hover:border-white/10 hover:bg-white/[0.03] transition-all duration-300">

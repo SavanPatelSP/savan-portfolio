@@ -329,7 +329,7 @@ export function SectionTitle({
   className?: string;
 }) {
   return (
-    <div className={cn("mb-16 sm:mb-20", className)}>
+    <div className={cn("mb-12 sm:mb-16 lg:mb-20 text-center lg:text-left", className)}>
       {label && (
         <FadeIn delay={0}>
           <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -338,13 +338,13 @@ export function SectionTitle({
         </FadeIn>
       )}
       <Reveal delay={0.1}>
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-white leading-[0.92] sm:leading-[0.88]">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[0.92] sm:leading-[0.88]">
           {title}
         </h2>
       </Reveal>
       {subtitle && (
         <FadeIn delay={0.2} y={10}>
-          <p className="mt-5 max-w-xl text-base sm:text-lg text-white/35 leading-relaxed">
+          <p className="mt-4 sm:mt-5 mx-auto lg:mx-0 max-w-xl text-sm sm:text-base lg:text-lg text-white/35 leading-relaxed">
             {subtitle}
           </p>
         </FadeIn>

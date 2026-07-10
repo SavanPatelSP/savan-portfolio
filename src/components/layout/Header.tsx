@@ -103,7 +103,8 @@ export function Header() {
 
         <button
           ref={hamburgerRef}
-          className="relative z-50 flex md:hidden items-center justify-center w-10 h-10 text-white/60 hover:text-white"
+          className="relative z-50 flex md:hidden items-center justify-center w-10 h-10 rounded-none bg-transparent border-none text-white/60 hover:text-white appearance-none [-webkit-appearance:none]"
+          style={{ outline: "none" }}
           onClick={() => setOpen(!open)}
           aria-label={open ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={open}

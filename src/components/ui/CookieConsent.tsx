@@ -38,7 +38,7 @@ export function CookieConsent() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed bottom-0 left-0 right-0 z-[100] p-4 sm:p-6"
+          className="fixed bottom-0 left-0 right-0 z-[100] p-3 sm:p-4 md:p-6"
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
@@ -54,7 +54,7 @@ export function CookieConsent() {
               boxShadow: "0 0 40px rgba(59,130,246,0.04)",
             }}
           >
-            <div className="flex items-start gap-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-start gap-3 sm:gap-4">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-xs font-medium text-blue-200">🍪 Cookie Notice</span>
@@ -63,7 +63,7 @@ export function CookieConsent() {
                   This site uses localStorage to remember your consent preferences. No cookies, tracking, or analytics are used. By continuing, you accept this use of local storage.
                 </p>
               </div>
-              <div className="flex items-center gap-2 shrink-0">
+              <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
                 <button
                   ref={acceptRef}
                   onClick={accept}

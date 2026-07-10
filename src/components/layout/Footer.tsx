@@ -122,7 +122,7 @@ export function Footer() {
 
       <div className="relative z-[2] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* ═══ TOP CTA ═══ */}
-        <FadeSection className="pt-28 sm:pt-36 pb-20 sm:pb-24 text-center">
+        <FadeSection className="pt-20 sm:pt-28 lg:pt-36 pb-16 sm:pb-20 lg:pb-24 text-center">
           <motion.h2
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white leading-[0.92]"
             initial={{ opacity: 0, y: 24 }}
@@ -162,11 +162,11 @@ export function Footer() {
         </FadeSection>
 
         {/* ═══ MAIN CONTENT GRID ═══ */}
-        <div className="py-20 sm:py-24 flex flex-col lg:flex-row gap-16 lg:gap-20 border-t border-white/[0.04]">
+        <div className="py-16 sm:py-20 lg:py-24 flex flex-col lg:flex-row gap-12 lg:gap-20 border-t border-white/[0.04]">
           {/* ─── FOUNDER BRAND ─── */}
-          <div className="lg:w-[420px] shrink-0">
+          <div className="lg:w-[420px] shrink-0 text-center sm:text-left">
             <FadeSection delay={0.1}>
-              <div className="flex items-center gap-4 mb-8">
+              <div className="flex items-center gap-4 mb-6 sm:mb-8 justify-center sm:justify-start">
                 <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/[0.04] ring-1 ring-white/[0.06] overflow-hidden shrink-0">
                   <Image src="/logo.jpg" alt={personal.name} width={56} height={56} className="object-cover w-full h-full" />
                 </span>
@@ -181,14 +181,14 @@ export function Footer() {
               <p className="text-sm text-white/20 leading-relaxed mt-4">
                 Founder of {personal.company}. Creating products that connect people, empower communities, and inspire what&apos;s next.
               </p>
-              <div className="mt-8 border-l border-white/[0.06] pl-4">
+              <div className="mt-6 sm:mt-8 border-l border-white/[0.06] pl-4 text-left">
                 <p className="text-sm text-white/15 italic leading-relaxed">&ldquo;{personal.mission}&rdquo;</p>
                 <div className="mt-3 flex items-center gap-2">
                   <span className="text-xs text-white/20 font-medium">&mdash; {personal.name}</span>
                   <span className="text-[10px] text-white/10">Founder, {personal.company}</span>
                 </div>
               </div>
-              <div className="mt-6 flex gap-2.5">
+              <div className="mt-5 sm:mt-6 flex gap-2.5 justify-center sm:justify-start">
                 {socialCards.slice(0, 3).map((s) => {
                   const Icon = s.icon;
                   const isModal = "modal" in s;
@@ -208,7 +208,7 @@ export function Footer() {
 
           {/* ─── NAVIGATION ─── */}
           <FadeSection delay={0.3} className="flex-1">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-10">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-10 text-center sm:text-left">
               {navGroups.map((group) => (
                 <div key={group.title}>
                   <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-4">{group.title}</h4>
@@ -239,7 +239,7 @@ export function Footer() {
         </div>
 
         {/* ═══ CODING JOURNEY ═══ */}
-        <FadeSection delay={0.1} className="py-20 sm:py-24 border-t border-white/[0.04]">
+        <FadeSection delay={0.1} className="py-16 sm:py-20 lg:py-24 border-t border-white/[0.04]">
           <div className="text-center mb-14">
             <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15">The Journey</span>
             <h3 className="text-2xl sm:text-3xl font-semibold text-white/70 mt-3 tracking-tight">From Curiosity to Creation</h3>
@@ -250,7 +250,7 @@ export function Footer() {
         </FadeSection>
 
         {/* ═══ QUICK STATS + BADGES ═══ */}
-        <FadeSection delay={0.15} className="py-20 sm:py-24 border-t border-white/[0.04]">
+        <FadeSection delay={0.15} className="py-16 sm:py-20 lg:py-24 border-t border-white/[0.04]">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {quickStats.map((s, i) => (
               <div key={s.label} className="text-center">
@@ -278,7 +278,7 @@ export function Footer() {
         </FadeSection>
 
         {/* ═══ NEWSLETTER + SOCIAL CARDS ═══ */}
-        <div className="py-20 sm:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 border-t border-white/[0.04]">
+        <div className="py-16 sm:py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 border-t border-white/[0.04]">
           <FadeSection delay={0.1}>
             <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-3" id="newsletter-heading">Future Updates</h4>
             <p className="text-sm text-white/30 mb-5">Launching Soon</p>
@@ -295,7 +295,7 @@ export function Footer() {
 
           <FadeSection delay={0.2}>
             <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-4">Connect</h4>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-3 gap-2 sm:gap-3">
               {socialCards.map((s) => {
                 const Icon = s.icon;
                 const isModal = "modal" in s;
@@ -317,7 +317,7 @@ export function Footer() {
         </div>
 
         {/* ═══ FOUNDER SIGNATURE ═══ */}
-        <FadeSection delay={0.1} className="py-16 sm:py-20 text-center border-t border-white/[0.04]">
+        <FadeSection delay={0.1} className="py-12 sm:py-16 lg:py-20 text-center border-t border-white/[0.04]">
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="h-px w-8 bg-white/[0.04]" />
             <span className="text-[9px] font-mono tracking-[0.3em] text-white/10 uppercase">{personal.tagline}</span>
@@ -358,7 +358,7 @@ export function Footer() {
 
         {/* ═══ COPYRIGHT BOTTOM BAR ═══ */}
         <FadeSection delay={0.15}>
-          <div className="border-t border-white/[0.03] py-6 sm:py-8 mt-0">
+          <div className="border-t border-white/[0.03] py-5 sm:py-6 lg:py-8 mt-0">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
               <p className="text-xs text-white/12 hover:text-white/20 transition-colors duration-300">
                 &copy; {new Date().getFullYear()} {personal.name}. All Rights Reserved.

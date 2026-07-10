@@ -28,7 +28,7 @@ export function TechGridSection() {
         subtitle="A comprehensive view of the skills and disciplines I bring to every product."
       />
 
-      <div className="flex flex-wrap gap-2 mb-10">
+      <div className="flex flex-wrap gap-2 mb-8 sm:mb-10 justify-center lg:justify-start">
         {expertiseCategories.map((cat, i) => (
           <button
             key={cat.name}
@@ -46,7 +46,7 @@ export function TechGridSection() {
 
       <div ref={ref} key={category.name}>
         <FadeIn delay={0.1}>
-          <p className="text-sm text-white/25 mb-8 max-w-xl">
+          <p className="text-sm text-white/25 mb-6 sm:mb-8 max-w-xl text-center lg:text-left">
             {category.description}
           </p>
         </FadeIn>

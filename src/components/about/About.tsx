@@ -210,7 +210,7 @@ function FounderCard() {
 
           {/* Tech-inspired metadata */}
           <motion.div
-            className="mt-8 flex flex-wrap gap-4"
+            className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start"
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.6 }}
@@ -255,13 +255,13 @@ export function AboutSection() {
       <FounderCard />
 
       {/* Founder Metrics */}
-      <div className="mt-20 sm:mt-24">
+      <div className="mt-16 sm:mt-20 lg:mt-24">
         <Reveal delay={0.1}>
-          <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-white/20 mb-8 text-center">
+          <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-white/20 mb-6 sm:mb-8 text-center">
             The Journey in Numbers
           </h3>
         </Reveal>
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
           {founderMetrics.map((m, i) => {
             const Icon = metricIcons[m.icon] || Code;
             return (
@@ -278,9 +278,9 @@ export function AboutSection() {
       </div>
 
       {/* Principles */}
-      <div className="mt-24 sm:mt-28">
+      <div className="mt-16 sm:mt-28">
         <Reveal delay={0.1}>
-          <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-white/20 mb-8">Engineering Principles</h3>
+          <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-white/20 mb-6 sm:mb-8 text-center lg:text-left">Engineering Principles</h3>
         </Reveal>
         <StaggerFade staggerDelay={0.08} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {principles.map((p) => {

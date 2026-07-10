@@ -38,7 +38,7 @@ export function GitHubSection() {
         subtitle="Building in public when it matters. Sharing what we can, when we can."
       />
 
-      <div ref={ref} className="grid gap-4 md:grid-cols-3">
+      <div ref={ref} className="grid gap-4 grid-cols-1 md:grid-cols-3">
         {journeyItems.map((item, i) => (
           <motion.div
             key={item.title}

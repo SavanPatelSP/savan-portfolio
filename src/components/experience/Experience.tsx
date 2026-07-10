@@ -105,7 +105,7 @@ export function ExperienceSection() {
         {/* Desktop timeline line */}
         <div className="hidden lg:block absolute left-1/2 top-32 bottom-0 w-px -translate-x-1/2 bg-gradient-to-b from-blue-500/20 via-blue-500/10 to-transparent" aria-hidden="true" />
 
-        <div ref={ref} className="relative max-w-4xl mx-auto">
+        <div ref={ref} className="relative max-w-4xl mx-auto px-2 sm:px-0">
           {journey.map((item, i) => (
             <TimelineMilestone key={item.year} item={item} index={i} isInView={isInView} />
           ))}

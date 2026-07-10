@@ -109,7 +109,7 @@ function TreeNode({ name, level, icon: Icon, children, idx, visible }: { name: s
         </div>
 
         <div className="flex-1 min-w-0 pt-0.5">
-          <button onClick={() => setOpen(!open)} className={cn("group relative w-full text-left flex items-center gap-2.5", level <= 1 ? "rounded-xl border px-3 sm:px-4 py-2 sm:py-2.5" : "py-1.5 px-1")}
+          <button onClick={() => setOpen(!open)} className={cn("group relative w-full text-left flex items-center gap-2 sm:gap-2.5", level <= 1 ? "rounded-xl border px-3 sm:px-4 py-2 sm:py-2.5" : "py-1.5 px-1")}
             style={level <= 1 ? { borderColor: "rgba(59,130,246,0.2)", backgroundColor: "rgba(59,130,246,0.04)" } : undefined}
             onMouseEnter={(e) => { if (level <= 1) { e.currentTarget.style.borderColor = `rgba(59,130,246,${level === 0 ? 0.6 : 0.4})`; e.currentTarget.style.backgroundColor = `rgba(59,130,246,${level === 0 ? 0.15 : 0.08})`; e.currentTarget.style.boxShadow = `0 0 ${level === 0 ? "40px" : "25px"} rgba(59,130,246,${level === 0 ? 0.25 : 0.12})`; } }}
             onMouseLeave={(e) => { if (level <= 1) { e.currentTarget.style.borderColor = "rgba(59,130,246,0.2)"; e.currentTarget.style.backgroundColor = "rgba(59,130,246,0.04)"; e.currentTarget.style.boxShadow = "none"; } }}
@@ -249,10 +249,10 @@ export function OrganizationSection() {
         <SectionTitle label="Organization" title="Company hierarchy" subtitle="SP NET ADMIN OS is built for real organizations—from startups to enterprise. Expand any department to see roles." />
 
         <div ref={treeRef} className="max-w-2xl mx-auto rounded-2xl" style={{ border: "1px solid rgba(59,130,246,0.15)", background: "linear-gradient(180deg, rgba(59,130,246,0.04) 0%, rgba(0,0,0,0.5) 100%)", boxShadow: "0 0 80px rgba(59,130,246,0.05)" }}>
-          <div className="flex items-center justify-between px-5 sm:px-6 py-3 border-b border-blue-500/15">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-blue-400/30" /><span className="h-2.5 w-2.5 rounded-full bg-blue-400/30" /><span className="h-2.5 w-2.5 rounded-full bg-blue-400/30" /></div>
-              <span className="text-[10px] font-mono tracking-wider text-blue-400/60">{'//'} organization-tree — SP NET ADMIN OS v1.0</span>
+          <div className="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-blue-500/15">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              <div className="flex items-center gap-1.5 shrink-0"><span className="h-2.5 w-2.5 rounded-full bg-blue-400/30" /><span className="h-2.5 w-2.5 rounded-full bg-blue-400/30" /><span className="h-2.5 w-2.5 rounded-full bg-blue-400/30" /></div>
+              <span className="text-[9px] sm:text-[10px] font-mono tracking-wider text-blue-400/60 truncate">{'//'} organization-tree — SP NET ADMIN OS v1.0</span>
             </div>
             <CircuitBoard className="h-3 w-3 text-blue-400/60 shrink-0" />
           </div>
@@ -261,15 +261,15 @@ export function OrganizationSection() {
           </div>
         </div>
 
-        <div ref={cardsRef} className="mt-16">
-          <div className="mb-6 flex items-center gap-3">
+        <div ref={cardsRef} className="mt-12 sm:mt-16">
+          <div className="mb-4 sm:mb-6 flex items-center gap-3 justify-center lg:justify-start">
             <div className="h-px flex-1 bg-gradient-to-r from-blue-400/25 via-blue-400/40 to-blue-400/25" />
             <Monitor className="h-3.5 w-3.5 text-blue-400/60 shrink-0" />
             <span className="text-[10px] font-mono tracking-wider text-blue-400/60">ROLE CATALOG</span>
             <Network className="h-3.5 w-3.5 text-blue-400/60 shrink-0" />
             <div className="h-px flex-1 bg-gradient-to-r from-blue-400/25 via-blue-400/40 to-blue-400/25" />
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 max-w-4xl mx-auto lg:max-w-none">
             {organizationCategories.map((c, i) => <RoleCard key={c.name} cat={c} idx={i} visible={cardsVis} />)}
           </div>
         </div>
