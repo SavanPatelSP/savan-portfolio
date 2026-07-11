@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowUp } from "lucide-react";
+import { spring } from "@/lib/motion";
 
 export function ScrollProgress() {
   const { scrollYProgress, scrollY } = useScroll();
@@ -24,8 +25,9 @@ export function ScrollProgress() {
         onClick={handleScrollToTop}
         className="fixed bottom-6 right-6 z-[100] flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/[0.08] bg-black/70 backdrop-blur-md shadow-lg shadow-black/20"
         style={{ opacity: showBtn, scale: btnScale }}
-        whileHover={{ scale: 1.08 }}
+        whileHover={{ scale: 1.1, y: -2 }}
         whileTap={{ scale: 0.95 }}
+        transition={spring.gentle}
         aria-label="Scroll to top"
       >
         <svg className="absolute inset-0 h-full w-full -rotate-90" viewBox="0 0 100 100">

@@ -5,6 +5,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Target, Compass, Zap, Globe, Code, Building2, Layers, Infinity, Heart, Sparkles } from "lucide-react";
 import { SectionContainer, FadeIn, Reveal, BlurReveal, StaggerFade, StaggerItem, SectionTitle, ParallaxContainer } from "@/components/ui/AnimationPrimitives";
 import { personal, founderMetrics, principles } from "@/data/personal";
+import { ease, spring, NORMAL } from "@/lib/motion";
 
 const metricIcons: Record<string, React.ElementType> = {
   code: Code,
@@ -267,7 +268,13 @@ export function AboutSection() {
             return (
               <FadeIn key={m.label} delay={0.1 + i * 0.06}>
                 <div className="group rounded-xl border border-white/[0.04] bg-white/[0.02] p-5 text-center hover:border-blue-500/15 hover:bg-blue-500/[0.03] transition-all duration-300">
-                  <Icon className="mx-auto h-4 w-4 text-white/15 group-hover:text-blue-400/40 transition-colors" />
+                  <motion.div
+                    className="mx-auto h-4 w-4 text-white/15 group-hover:text-blue-400/40 transition-colors"
+                    whileHover={{ rotate: 12, y: -2 }}
+                    transition={spring.gentle}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </motion.div>
                   <div className="mt-3 text-xl sm:text-2xl font-semibold text-white tracking-tight">{m.value}</div>
                   <div className="mt-1 text-xs text-white/25 leading-relaxed">{m.label}</div>
                 </div>
@@ -288,7 +295,13 @@ export function AboutSection() {
             return (
               <StaggerItem key={p.title}>
                 <div className="group rounded-xl border border-white/[0.04] bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.03] transition-all duration-300">
-                  <Icon className="h-4 w-4 text-white/20 group-hover:text-white/50 transition-colors duration-300" />
+                  <motion.div
+                    className="h-4 w-4 text-white/20 group-hover:text-white/50 transition-colors duration-300"
+                    whileHover={{ rotate: 8, y: -2 }}
+                    transition={spring.gentle}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </motion.div>
                   <h4 className="mt-4 text-sm font-medium text-white">{p.title}</h4>
                   <p className="mt-2 text-sm text-white/25 leading-relaxed">{p.description}</p>
                 </div>

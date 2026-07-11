@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { personal } from "@/data/personal";
 import { useActiveSection } from "@/hooks/useActiveSection";
+import { ease, spring, FAST, NORMAL } from "@/lib/motion";
 
 const links = [
   { label: "Products", href: "#products" },
@@ -16,6 +17,29 @@ const links = [
   { label: "Roadmap", href: "#roadmap" },
   { label: "Contact", href: "#contact" },
 ];
+
+function NavLink({ l, isActive }: { l: typeof links[number]; isActive: boolean }) {
+  return (
+    <a
+      href={l.href}
+      className={cn(
+        "relative text-sm transition-colors duration-300 py-1",
+        isActive ? "text-white/80" : "text-white/35 hover:text-white/80"
+      )}
+      aria-current={isActive ? "location" : undefined}
+    >
+      {l.label}
+      {/* Animated underline */}
+      {isActive && (
+        <motion.span
+          className="absolute -bottom-1 left-0 right-0 h-px bg-white/30"
+          layoutId="nav-underline"
+          transition={spring.snappy}
+        />
+      )}
+    </a>
+  );
+}
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -70,8 +94,8 @@ export function Header() {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-        <a href="#" className="flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors">
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-blue-500/30 to-blue-600/20 ring-1 ring-blue-500/25 overflow-hidden">
+        <a href="#home" className="group flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors">
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-blue-500/30 to-blue-600/20 ring-1 ring-blue-500/25 overflow-hidden transition-shadow duration-300 group-hover:shadow-[0_0_12px_rgba(59,130,246,0.2)]">
             <Image src="/logo.jpg" alt={personal.company} width={28} height={28} className="object-cover w-full h-full" priority />
           </span>
           {personal.name}
@@ -79,26 +103,17 @@ export function Header() {
 
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className={cn(
-                "text-sm transition-colors duration-300",
-                active === l.href.slice(1)
-                  ? "text-white/80"
-                  : "text-white/35 hover:text-white/80"
-              )}
-              aria-current={active === l.href.slice(1) ? "location" : undefined}
-            >
-              {l.label}
-            </a>
+            <NavLink key={l.href} l={l} isActive={active === l.href.slice(1)} />
           ))}
-          <a
+          <motion.a
             href="#contact"
-            className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90 transition-all duration-300"
+            className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90 transition-colors duration-300"
+            whileHover={{ scale: 1.02, y: -1 }}
+            whileTap={{ scale: 0.97 }}
+            transition={spring.gentle}
           >
             Get in touch
-          </a>
+          </motion.a>
         </div>
 
         <button
@@ -113,14 +128,17 @@ export function Header() {
             <motion.span
               className="block h-px w-5 bg-current"
               animate={open ? { rotate: 45, y: 2.5 } : { rotate: 0, y: 0 }}
+              transition={spring.snappy}
             />
             <motion.span
               className="block h-px w-5 bg-current"
-              animate={open ? { opacity: 0 } : { opacity: 1 }}
+              animate={open ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+              transition={{ duration: FAST }}
             />
             <motion.span
               className="block h-px w-5 bg-current"
               animate={open ? { rotate: -45, y: -2.5 } : { rotate: 0, y: 0 }}
+              transition={spring.snappy}
             />
           </div>
         </button>
@@ -131,10 +149,10 @@ export function Header() {
           <motion.div
             ref={mobileNavRef}
             className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-black/90 backdrop-blur-2xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0, filter: "blur(12px)", scale: 1.05 }}
+            animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+            exit={{ opacity: 0, filter: "blur(12px)", scale: 1.05 }}
+            transition={{ duration: NORMAL, ease: ease.out }}
             onKeyDown={handleKeyDown}
             role="dialog"
             aria-modal="true"
@@ -146,9 +164,10 @@ export function Header() {
                   key={l.href}
                   href={l.href}
                   className="text-3xl font-medium text-white/40 hover:text-white transition-colors"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.06, duration: 0.4 }}
+                  initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ delay: i * 0.05, duration: NORMAL, ease: ease.out }}
                   onClick={() => setOpen(false)}
                 >
                   {l.label}
@@ -157,9 +176,9 @@ export function Header() {
               <motion.a
                 href="#contact"
                 className="mt-4 rounded-xl bg-white px-6 py-3 text-base font-medium text-black"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.4 }}
+                initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ delay: 0.3, duration: NORMAL, ease: ease.out }}
                 onClick={() => setOpen(false)}
               >
                 Get in touch

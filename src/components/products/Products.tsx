@@ -8,6 +8,7 @@ import { products, futureProducts } from "@/data/products";
 import { SectionContainer, FadeIn, Reveal, BlurReveal, StaggerFade, StaggerItem, SectionTitle, ParallaxContainer } from "@/components/ui/AnimationPrimitives";
 import { Badge } from "@/components/ui/Badge";
 import { ProductStatus } from "@/components/products/ProductStatus";
+import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
 
 const statusConfig: Record<string, { label: string; variant: "success" | "warning" | "beta" }> = {
   building: { label: "Active Development", variant: "warning" },
@@ -42,55 +43,80 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
   const milestone = productMilestones[product.id];
 
   return (
-    <div
+    <motion.div
       ref={ref}
-      className="group relative overflow-hidden rounded-3xl transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.005] hover:shadow-[0_8px_40px_-12px_rgba(0,0,0,0.5)]"
+      className="group relative overflow-hidden rounded-3xl"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: index * 0.12, duration: SLOW, ease: ease.out }}
+      whileHover={{ y: -6, scale: 1.005 }}
     >
+      {/* Animated border glow on hover */}
+      <motion.div
+        className="absolute inset-0 rounded-3xl pointer-events-none"
+        animate={isHovered ? {
+          boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.10), 0 20px 60px -15px rgba(0,0,0,0.4), 0 0 40px -20px ${product.color}15`,
+        } : {
+          boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.04), 0 1px 2px rgba(0,0,0,0.1)`,
+        }}
+        transition={{ duration: 0.4, ease: ease.out }}
+      />
+
       {/* Premium gradient header bar */}
       <motion.div
         className="absolute top-0 inset-x-0 h-1"
         style={{
           background: `linear-gradient(90deg, ${product.color}, ${product.color}88, transparent)`,
         }}
-        animate={{ opacity: isHovered ? 1 : 0.6 }}
+        animate={{ opacity: isHovered ? 1 : 0.5 }}
+        transition={{ duration: FAST }}
         aria-hidden="true"
       />
 
-      {/* Ambient glow on hover */}
+      {/* Soft moving radial highlight */}
       <motion.div
-        className="absolute inset-0 transition-opacity duration-700"
+        className="absolute inset-0 pointer-events-none"
         style={{
           background: `radial-gradient(800px circle at 50% 50%, ${product.color}08, transparent 60%)`,
         }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
+        animate={isHovered ? { opacity: 1, scale: 1.05 } : { opacity: 0, scale: 1 }}
+        transition={{ duration: 0.6, ease: ease.out }}
         aria-hidden="true"
       />
 
-      <div
-        className="absolute inset-0"
+      {/* Background gradient movement */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
         style={{
           background: `linear-gradient(135deg, rgba(255,255,255,0.01) 0%, ${product.color}04 50%, transparent 100%)`,
+          backgroundSize: "200% 200%",
         }}
+        animate={isHovered ? { backgroundPosition: ["0% 0%", "100% 100%"] } : { backgroundPosition: "0% 0%" }}
+        transition={{ duration: 3, ease: "linear", repeat: isHovered ? Infinity : 0, repeatType: "reverse" }}
+        aria-hidden="true"
       />
 
       {/* Content */}
-      <div className="relative border border-white/[0.04] hover:border-white/10 rounded-3xl transition-all duration-500 p-5 sm:p-6 lg:p-10">
+      <div className="relative border border-transparent rounded-3xl p-5 sm:p-6 lg:p-10">
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
           <div className={cn(index % 2 === 1 && "lg:order-2", "text-center sm:text-left")}>
             {/* Icon + Status */}
             <FadeIn delay={0.1 * index}>
               <div className="flex items-center gap-3 mb-4 justify-center sm:justify-start">
-                <div
+                {/* Floating icon */}
+                <motion.div
                   className="h-12 w-12 rounded-2xl flex items-center justify-center shadow-lg"
                   style={{
                     background: `linear-gradient(135deg, ${product.color}22, ${product.color}11)`,
                     border: `1px solid ${product.color}33`,
                   }}
+                  animate={isHovered ? { y: -3, rotate: 3 } : { y: 0, rotate: 0 }}
+                  transition={spring.gentle}
                 >
                   {Icon && <Icon className="h-6 w-6" style={{ color: product.color }} />}
-                </div>
+                </motion.div>
                 <Badge variant={statusConfig[product.status].variant}>
                   {statusConfig[product.status].label}
                 </Badge>
@@ -139,9 +165,11 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
               <div className="mt-6 space-y-3">
                 {product.features.map((f) => (
                   <div key={f} className="flex items-center gap-3 text-sm text-white/40 justify-center sm:justify-start">
-                    <span
+                    <motion.span
                       className="h-1.5 w-1.5 rounded-full shrink-0"
                       style={{ backgroundColor: product.color }}
+                      animate={isHovered ? { scale: [1, 1.3, 1] } : {}}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
                     />
                     {f}
                   </div>
@@ -161,7 +189,7 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
                       style={{ backgroundColor: product.color }}
                       initial={{ width: 0 }}
                       animate={isInView ? { width: `${milestone.progress}%` } : {}}
-                      transition={{ duration: 1.2, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+                      transition={{ duration: 1.2, delay: 0.6, ease: ease.out }}
                     />
                   </div>
                   <span className="font-mono">{milestone.progress}%</span>
@@ -175,8 +203,8 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
             <ParallaxContainer speed={0.1}>
               <motion.div
                 className="relative w-full max-w-lg mx-auto"
-                animate={{ y: isHovered ? -4 : 0 }}
-                transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                animate={isHovered ? { y: -4 } : { y: 0 }}
+                transition={{ duration: 0.4, ease: ease.out }}
               >
                 <div className="relative rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-sm overflow-hidden shadow-2xl">
                   {/* Window chrome */}
@@ -234,7 +262,7 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -247,12 +275,20 @@ function FutureProductCard({
 }) {
   return (
     <motion.div
-      className="group relative rounded-2xl border border-white/[0.04] bg-white/[0.02] p-6 sm:p-8 hover:border-white/10 hover:bg-white/[0.03] transition-all duration-500 overflow-hidden"
+      className="group relative rounded-2xl border border-white/[0.04] bg-white/[0.02] p-6 sm:p-8 overflow-hidden"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ delay: index * 0.1, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ delay: index * 0.1, duration: NORMAL, ease: ease.out }}
+      whileHover={{ y: -4, scale: 1.01 }}
     >
+      {/* Animated border glow */}
+      <motion.div
+        className="absolute inset-0 rounded-2xl pointer-events-none"
+        initial={{ boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.04)" }}
+        whileHover={{ boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.10), 0 8px 40px -12px ${product.color}15` }}
+        transition={{ duration: 0.3 }}
+      />
       <div
         className="absolute -top-20 -right-20 h-40 w-40 opacity-[0.03]"
         style={{
@@ -261,12 +297,16 @@ function FutureProductCard({
         aria-hidden="true"
       />
       <div className="flex items-center gap-3 mb-4">
-        <div className={cn(
-          "h-10 w-10 rounded-xl bg-gradient-to-br flex items-center justify-center",
-          product.gradient
-        )}>
+        <motion.div
+          className={cn(
+            "h-10 w-10 rounded-xl bg-gradient-to-br flex items-center justify-center",
+            product.gradient
+          )}
+          whileHover={{ rotate: 5, y: -2 }}
+          transition={spring.gentle}
+        >
           <Clock className="h-5 w-5 text-white" />
-        </div>
+        </motion.div>
         <div>
           <h3 className="text-sm font-medium text-white">{product.name}</h3>
           <Badge variant="beta">Coming Soon</Badge>

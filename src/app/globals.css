@@ -97,6 +97,27 @@
   50% { opacity: 0.8; }
 }
 
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; box-shadow: 0 0 6px rgba(52,211,153,0.3); }
+  50% { opacity: 0.8; box-shadow: 0 0 12px rgba(52,211,153,0.5); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(255,255,255,0.04); }
+  50% { border-color: rgba(59,130,246,0.15); }
+}
+
 @keyframes light-streak {
   0% { transform: translateX(-100%); }
   50% { transform: translateX(100%); }
@@ -136,4 +157,29 @@
 
 .animate-pulse-soft {
   animation: pulse-soft 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 6s ease-in-out infinite;
+  background-size: 200% 200%;
+}
+
+.animate-border-glow {
+  animation: border-glow 4s ease-in-out infinite;
+}
+
+/* GPU acceleration hints */
+.will-change-transform {
+  will-change: transform;
+}
+.will-change-opacity {
+  will-change: opacity;
 }

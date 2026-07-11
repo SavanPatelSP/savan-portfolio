@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { SectionContainer, FadeIn, SectionTitle } from "@/components/ui/AnimationPrimitives";
 import { GithubIcon } from "@/components/ui/Icons";
 import { personal } from "@/data/personal";
+import { ease, spring, NORMAL } from "@/lib/motion";
 
 const journeyItems = [
   {
@@ -42,36 +43,49 @@ export function GitHubSection() {
         {journeyItems.map((item, i) => (
           <motion.div
             key={item.title}
-            className="group rounded-xl border border-white/[0.04] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.03]"
+            className="group relative rounded-xl border border-white/[0.04] bg-white/[0.02] p-6 overflow-hidden"
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: i * 0.08, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ delay: i * 0.08, duration: NORMAL, ease: ease.out }}
+            whileHover={{ y: -4, scale: 1.01 }}
           >
-            <div className="flex items-center gap-3 mb-3">
-              <GithubIcon className="h-4 w-4 text-white/30" />
-              <span className="text-[11px] font-medium uppercase tracking-wider text-white/15">{item.status}</span>
+            {/* Animated border glow */}
+            <motion.div
+              className="absolute inset-0 rounded-xl pointer-events-none"
+              initial={{ boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.04)" }}
+              whileHover={{ boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.10), 0 8px 30px -10px rgba(0,0,0,0.3)" }}
+              transition={{ duration: 0.3 }}
+            />
+            <div className="relative z-[1]">
+              <div className="flex items-center gap-3 mb-3">
+                <GithubIcon className="h-4 w-4 text-white/30" />
+                <span className="text-[11px] font-medium uppercase tracking-wider text-white/15">{item.status}</span>
+              </div>
+              <h3 className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">
+                {item.title}
+              </h3>
+              <p className="mt-2 text-sm text-white/25 leading-relaxed">
+                {item.description}
+              </p>
             </div>
-            <h3 className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">
-              {item.title}
-            </h3>
-            <p className="mt-2 text-sm text-white/25 leading-relaxed">
-              {item.description}
-            </p>
           </motion.div>
         ))}
       </div>
 
       <FadeIn delay={0.3}>
         <div className="mt-8 text-center">
-          <a
+          <motion.a
             href={personal.social.github}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:border-white/20 transition-all duration-300"
+            whileHover={{ y: -2, scale: 1.01 }}
+            whileTap={{ scale: 0.97 }}
+            transition={spring.gentle}
           >
             <GithubIcon className="h-4 w-4" />
             Follow on GitHub
-          </a>
+          </motion.a>
         </div>
       </FadeIn>
     </SectionContainer>

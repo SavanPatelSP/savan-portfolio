@@ -1,7 +1,9 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { spring, FAST } from "@/lib/motion";
 
 interface ButtonProps {
   variant?: "primary" | "secondary" | "ghost" | "outline";
@@ -30,13 +32,13 @@ export function Button({
   const ref = useRef<HTMLButtonElement & HTMLAnchorElement>(null);
 
   const base =
-    "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white/20 select-none";
+    "relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl font-medium transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-white/20 select-none";
 
   const variants = {
     primary:
       "bg-white text-black hover:bg-white/90 shadow-lg shadow-white/10 disabled:opacity-50 disabled:cursor-not-allowed",
     secondary:
-      "bg-white/[0.04] text-white hover:bg-white/[0.08] border border-white/10 disabled:opacity-50 disabled:cursor-not-allowed",
+      "bg-white/[0.04] text-white hover:bg-white/[0.08] border border-white/10 hover:border-white/20 disabled:opacity-50 disabled:cursor-not-allowed",
     ghost:
       "text-white/40 hover:text-white hover:bg-white/5 disabled:opacity-50 disabled:cursor-not-allowed",
     outline:
@@ -60,6 +62,7 @@ export function Button({
   const content = (
     <>
       <span className="relative z-[1]">{children}</span>
+      {/* Radial hover glow */}
       <span
         className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{
@@ -72,31 +75,39 @@ export function Button({
     </>
   );
 
+  const motionProps = {
+    whileHover: { scale: 1.02, y: -1 },
+    whileTap: { scale: 0.97 },
+    transition: spring.gentle,
+  };
+
   if (href) {
     return (
-      <a
+      <motion.a
         ref={ref}
         href={href}
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
         className={cls}
         onMouseMove={handleMouseMove}
+        {...motionProps}
       >
         {content}
-      </a>
+      </motion.a>
     );
   }
 
   return (
-    <button
+    <motion.button
       ref={ref}
       type={type}
       className={cls}
       disabled={disabled}
       onClick={onClick}
       onMouseMove={handleMouseMove}
+      {...motionProps}
     >
       {content}
-    </button>
+    </motion.button>
   );
 }

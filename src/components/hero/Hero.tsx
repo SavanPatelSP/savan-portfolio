@@ -6,6 +6,7 @@ import { ArrowDown, Sparkles, Terminal } from "lucide-react";
 import { personal } from "@/data/personal";
 import { products } from "@/data/products";
 import { cn } from "@/lib/utils";
+import { ease, spring, SLOW, NORMAL, FAST } from "@/lib/motion";
 
 function useMousePosition() {
   const pos = useRef({ x: 0.5, y: 0.5 });
@@ -50,7 +51,6 @@ function Particles({ count = 100 }: { count?: number }) {
       });
     }
 
-    // Add some connected lines
     const draw = () => {
       if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -69,7 +69,6 @@ function Particles({ count = 100 }: { count?: number }) {
         ctx.fill();
       }
 
-      // Draw connections between nearby particles
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -119,9 +118,9 @@ function TerminalBadge() {
   return (
     <motion.div
       className="group inline-flex items-center gap-2 sm:gap-2.5 rounded-xl border border-blue-500/15 bg-blue-500/[0.04] px-3 sm:px-4 py-2 hover:bg-blue-500/[0.08] hover:border-blue-500/25 transition-all duration-300 cursor-default"
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.4 }}
+      initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={{ duration: NORMAL, delay: 0.4, ease: ease.out }}
     >
       <Terminal className="h-3.5 w-3.5 text-blue-400/60 group-hover:text-blue-400/80 transition-colors shrink-0" />
       <span className="text-[10px] sm:text-xs font-mono text-blue-400/50 group-hover:text-blue-400/70 transition-colors whitespace-nowrap">
@@ -155,10 +154,10 @@ function FloatingProductCard({
       style={{ left: pos.x, top: pos.y }}
       initial={{ opacity: 0, x: pos.rotate > 0 ? 40 : -40, rotate: pos.rotate }}
       animate={isInView ? { opacity: 1, x: 0, rotate: pos.rotate } : {}}
-      transition={{ delay: 1 + index * 0.15, duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ delay: 1 + index * 0.15, duration: 0.7, ease: ease.out }}
     >
       <motion.div
-        animate={{ y: [0, -8, 0] }}
+        animate={{ y: [0, -6, 0] }}
         transition={{ duration: 4 + index, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
         className="rounded-xl border border-white/[0.06] bg-black/60 backdrop-blur-xl p-3 shadow-2xl"
         style={{ transform: `rotate(${pos.rotate}deg)` }}
@@ -180,6 +179,34 @@ function FloatingProductCard({
       </motion.div>
     </motion.div>
   );
+}
+
+function CountUp({ target, delay = 0 }: { target: string; delay?: number }) {
+  const [count, setCount] = useState("0");
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true });
+
+  useEffect(() => {
+    if (!isInView) return;
+    const num = parseInt(target.replace(/[^0-9]/g, ""));
+    if (isNaN(num)) { setCount(target); return; }
+    const suffix = target.replace(/[0-9]/g, "");
+    const duration = 1200;
+    const start = Date.now();
+    const timer = setTimeout(() => {
+      const animate = () => {
+        const elapsed = Date.now() - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        setCount(Math.round(num * eased) + suffix);
+        if (progress < 1) requestAnimationFrame(animate);
+      };
+      animate();
+    }, delay * 1000);
+    return () => clearTimeout(timer);
+  }, [isInView, target, delay]);
+
+  return <span ref={ref}>{count}</span>;
 }
 
 export function Hero() {
@@ -226,8 +253,9 @@ export function Hero() {
 
   return (
     <section
+      id="home"
       ref={ref}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black scroll-mt-16"
     >
       {/* Grid overlay */}
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
@@ -257,23 +285,31 @@ export function Hero() {
         aria-hidden="true"
       />
 
-      {/* Premium ambient orbs */}
+      {/* Premium ambient orbs — breathing glow */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
-        <div
+        <motion.div
           className="absolute -top-40 -right-40 h-[600px] w-[600px] rounded-full opacity-[0.04]"
           style={{
             background: "radial-gradient(circle, rgba(59,130,246,0.4) 0%, transparent 70%)",
-            transform: `translate(${mouse.current.x * 25}px, ${mouse.current.y * 25}px)`,
-            transition: "transform 2s ease-out",
           }}
+          animate={{
+            x: [0, mouse.current.x * 25, 0],
+            y: [0, mouse.current.y * 25, 0],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
-        <div
+        <motion.div
           className="absolute -bottom-40 -left-40 h-[500px] w-[500px] rounded-full opacity-[0.03]"
           style={{
             background: "radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)",
-            transform: `translate(${-mouse.current.x * 20}px, ${-mouse.current.y * 20}px)`,
-            transition: "transform 2s ease-out",
           }}
+          animate={{
+            x: [0, -mouse.current.x * 20, 0],
+            y: [0, -mouse.current.y * 20, 0],
+            scale: [1, 1.15, 1],
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
@@ -295,9 +331,9 @@ export function Hero() {
         {/* Roles badge */}
         <motion.div
           className="mb-6 sm:mb-8"
-          initial={{ opacity: 0, y: 10 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 10, filter: "blur(6px)" }}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: NORMAL, ease: ease.out }}
         >
           <span className="inline-flex items-center gap-2 rounded-full border border-blue-500/10 bg-blue-500/[0.04] px-3 sm:px-4 py-1.5 text-[10px] sm:text-xs font-medium text-blue-400/60 tracking-[0.12em] sm:tracking-[0.15em] uppercase text-center flex-wrap justify-center">
             <span className="h-1.5 w-1.5 rounded-full bg-blue-400/60 animate-pulse-soft shrink-0" />
@@ -305,12 +341,12 @@ export function Hero() {
           </span>
         </motion.div>
 
-        {/* Gigantic name */}
+        {/* Gigantic name — mask reveal */}
         <div className="overflow-hidden">
           <motion.h1
             className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] xl:text-[11rem] font-bold tracking-tight text-white leading-[0.85]"
-            initial={{ y: "120%" }}
-            animate={isInView ? { y: 0 } : {}}
+            initial={{ y: "120%", filter: "blur(8px)" }}
+            animate={isInView ? { y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
             {personal.name}
@@ -321,20 +357,20 @@ export function Hero() {
         <div className="overflow-hidden mt-3">
           <motion.p
             className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-white/30 font-light tracking-tight"
-            initial={{ y: "100%" }}
-            animate={isInView ? { y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+            initial={{ y: "100%", filter: "blur(6px)" }}
+            animate={isInView ? { y: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.7, delay: 0.35, ease: ease.out }}
           >
             {personal.tagline}
           </motion.p>
         </div>
 
-        {/* Founder statement */}
+        {/* Founder statement — fades after heading */}
         <motion.p
           className="mx-auto mt-5 sm:mt-6 max-w-2xl text-xs sm:text-sm md:text-base text-white/25 leading-relaxed font-light px-2 sm:px-0"
-          initial={{ opacity: 0, y: 10 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.55 }}
+          initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: NORMAL, delay: 0.55, ease: ease.out }}
         >
           {personal.founderStatement}
         </motion.p>
@@ -342,19 +378,19 @@ export function Hero() {
         {/* Terminal badge */}
         <motion.div
           className="mt-6 sm:mt-8 flex justify-center"
-          initial={{ opacity: 0, y: 10 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.7 }}
+          initial={{ opacity: 0, y: 10, filter: "blur(4px)" }}
+          animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+          transition={{ duration: NORMAL, delay: 0.7, ease: ease.out }}
         >
           <TerminalBadge />
         </motion.div>
 
-        {/* CTAs */}
+        {/* CTAs — staggered */}
         <motion.div
           className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.85 }}
+          transition={{ duration: NORMAL, delay: 0.85, ease: ease.out }}
         >
           <div
             ref={btnRef}
@@ -363,9 +399,11 @@ export function Hero() {
           >
             <motion.a
               href="#products"
-              className="group relative inline-flex items-center gap-2.5 rounded-xl bg-white px-7 py-3.5 text-sm font-medium text-black hover:bg-white/90 transition-all duration-300 overflow-hidden shadow-2xl shadow-blue-500/10"
+              className="group relative inline-flex items-center gap-2.5 rounded-xl bg-white px-7 py-3.5 text-sm font-medium text-black hover:bg-white/90 transition-colors overflow-hidden shadow-2xl shadow-blue-500/10"
               animate={{ x: magneticPos.x, y: magneticPos.y }}
-              transition={{ type: "spring", stiffness: 200, damping: 15, mass: 0.5 }}
+              transition={spring.gentle}
+              whileHover={{ scale: 1.02, y: -1 }}
+              whileTap={{ scale: 0.97 }}
             >
               <span className="relative z-[1]">Explore products</span>
               <ArrowDown className="relative z-[1] h-3.5 w-3.5 group-hover:translate-y-0.5 transition-transform" />
@@ -378,9 +416,11 @@ export function Hero() {
           >
             <motion.a
               href="#contact"
-              className="group relative inline-flex items-center gap-2.5 rounded-xl border border-white/10 px-7 py-3.5 text-sm font-medium text-white/50 hover:text-white hover:border-white/20 transition-all duration-300 overflow-hidden"
+              className="group relative inline-flex items-center gap-2.5 rounded-xl border border-white/10 px-7 py-3.5 text-sm font-medium text-white/50 hover:text-white hover:border-white/20 transition-all overflow-hidden"
               animate={{ x: magneticPos2.x, y: magneticPos2.y }}
-              transition={{ type: "spring", stiffness: 200, damping: 15, mass: 0.5 }}
+              transition={spring.gentle}
+              whileHover={{ scale: 1.02, y: -1 }}
+              whileTap={{ scale: 0.97 }}
             >
               <span className="relative z-[1]">Get in touch</span>
               <Sparkles className="relative z-[1] h-3.5 w-3.5 group-hover:rotate-12 transition-transform" />
@@ -389,7 +429,7 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — continuous bounce */}
       <motion.button
         onClick={scrollNext}
         className="absolute bottom-8 left-1/2 z-[3] -translate-x-1/2 text-white/10 hover:text-white/30 transition-colors"
@@ -400,7 +440,7 @@ export function Hero() {
       >
         <motion.div
           animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
         >
           <ArrowDown className="h-4 w-4" />
         </motion.div>

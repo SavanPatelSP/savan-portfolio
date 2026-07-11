@@ -1,13 +1,14 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Mail, Calendar, Send, Sparkles, MapPin, RotateCcw, MessageCircle, Check, ShieldCheck, Award } from "lucide-react";
 import { SectionContainer, FadeIn, SectionTitle, BlurReveal } from "@/components/ui/AnimationPrimitives";
 import { Button } from "@/components/ui/Button";
 import { GithubIcon, XIcon, LinkedinIcon, TelegramIcon, InstagramIcon } from "@/components/ui/Icons";
 import { SocialModal } from "@/components/ui/SocialModal";
 import { personal } from "@/data/personal";
+import { ease, spring, NORMAL, SLOW } from "@/lib/motion";
 
 const socials = [
   { icon: TelegramIcon, href: personal.social.telegram, label: "Telegram" },
@@ -16,6 +17,50 @@ const socials = [
   { icon: XIcon, href: personal.social.x, label: "X", modal: true as const },
   { icon: LinkedinIcon, href: personal.social.linkedin, label: "LinkedIn", modal: true as const },
 ];
+
+function PremiumInput({
+  id,
+  name,
+  type = "text",
+  required,
+  placeholder,
+  error,
+  tag: Tag = "input",
+  rows,
+}: {
+  id: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+  placeholder: string;
+  error?: boolean;
+  tag?: "input" | "textarea";
+  rows?: number;
+}) {
+  return (
+    <div className="relative group">
+      <Tag
+        id={id}
+        name={name}
+        type={type}
+        required={required}
+        rows={rows}
+        aria-required={required}
+        aria-invalid={error ? "true" : undefined}
+        aria-describedby={error ? "form-error" : undefined}
+        placeholder={placeholder}
+        className={`w-full rounded-lg border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-sm text-white placeholder-white/20 focus:outline-none focus:border-blue-500/30 focus:bg-white/[0.03] focus:ring-1 focus:ring-blue-500/20 focus:shadow-[0_0_20px_-5px_rgba(59,130,246,0.15)] transition-all duration-300 ${Tag === "textarea" ? "resize-none" : ""}`}
+      />
+      {/* Animated border glow on focus */}
+      <motion.div
+        className="absolute inset-0 rounded-lg pointer-events-none"
+        initial={{ opacity: 0 }}
+        whileFocus={{ opacity: 1 }}
+        style={{ boxShadow: "0 0 20px -5px rgba(59,130,246,0.15)" }}
+      />
+    </div>
+  );
+}
 
 export function ContactSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -213,17 +258,20 @@ export function ContactSection() {
                 const Icon = s.icon;
                 const isModal = "modal" in s;
                 return (
-                  <a
+                  <motion.a
                     key={s.label}
                     href={isModal ? "#" : s.href}
                     target={isModal ? undefined : "_blank"}
                     rel={isModal ? undefined : "noopener noreferrer"}
                     onClick={isModal ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
                     className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.02] text-white/25 hover:text-white/60 hover:border-white/15 hover:bg-white/[0.04] transition-all duration-200"
+                    whileHover={{ y: -2, scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={spring.gentle}
                     aria-label={s.label}
                   >
                     <Icon className="h-3.5 w-3.5" />
-                  </a>
+                  </motion.a>
                 );
               })}
               <SocialModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
@@ -251,56 +299,46 @@ export function ContactSection() {
                   <label htmlFor="name" className="block text-xs font-medium text-white/25 mb-1.5">
                     Name
                   </label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    aria-required="true"
-                    aria-invalid={error ? "true" : undefined}
-                    aria-describedby={error ? "form-error" : undefined}
-                    className="w-full rounded-lg border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-sm text-white placeholder-white/20 focus:outline-none focus:border-white/20 focus:bg-white/[0.03] focus:ring-1 focus:ring-white/10 transition-all"
-                    placeholder="Your name"
-                  />
+                  <PremiumInput id="name" name="name" required placeholder="Your name" error={error} />
                 </div>
                 <div>
                   <label htmlFor="email-c" className="block text-xs font-medium text-white/25 mb-1.5">
                     Email
                   </label>
-                  <input
-                    id="email-c"
-                    name="email-c"
-                    type="email"
-                    required
-                    aria-required="true"
-                    aria-invalid={error ? "true" : undefined}
-                    aria-describedby={error ? "form-error" : undefined}
-                    className="w-full rounded-lg border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-sm text-white placeholder-white/20 focus:outline-none focus:border-white/20 focus:bg-white/[0.03] focus:ring-1 focus:ring-white/10 transition-all"
-                    placeholder="you@example.com"
-                  />
+                  <PremiumInput id="email-c" name="email-c" type="email" required placeholder="you@example.com" error={error} />
                 </div>
               </div>
               <div>
                 <label htmlFor="message" className="block text-xs font-medium text-white/25 mb-1.5">
                   Message
                 </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  aria-required="true"
-                  aria-invalid={error ? "true" : undefined}
-                  aria-describedby={error ? "form-error" : undefined}
-                  rows={4}
-                  className="w-full rounded-lg border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-sm text-white placeholder-white/20 focus:outline-none focus:border-white/20 focus:bg-white/[0.03] focus:ring-1 focus:ring-white/10 transition-all resize-none"
-                  placeholder="Tell me about your project..."
-                />
+                <PremiumInput id="message" name="message" required rows={4} placeholder="Tell me about your project..." error={error} tag="textarea" />
               </div>
               <div className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap">
                 <Button type="submit" variant="primary" disabled={sending || sent}>
                   <span className="inline-flex items-center gap-1.5">
-                    {sending ? "Sending" : sent ? "Sent!" : "Send message"}
-                    <Send className={`h-3.5 w-3.5 ${sending ? "animate-pulse-soft" : ""}`} />
+                    <AnimatePresence mode="wait">
+                      {sending ? (
+                        <motion.span key="sending" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="inline-flex items-center gap-1.5">
+                          Sending
+                          <motion.span
+                            className="inline-block h-3 w-3 rounded-full border-2 border-white/30 border-t-white"
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+                          />
+                        </motion.span>
+                      ) : sent ? (
+                        <motion.span key="sent" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="inline-flex items-center gap-1.5 text-emerald-400">
+                          <Check className="h-3.5 w-3.5" />
+                          Sent!
+                        </motion.span>
+                      ) : (
+                        <motion.span key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="inline-flex items-center gap-1.5">
+                          Send message
+                          <Send className="h-3.5 w-3.5" />
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
                   </span>
                 </Button>
                 <Button type="button" variant="secondary" disabled={sending || sent} onClick={handleReset}>

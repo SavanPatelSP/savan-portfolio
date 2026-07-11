@@ -9,6 +9,7 @@ import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 import { SplashWrapper } from "@/components/ui/SplashWrapper";
 import { Cursor } from "@/components/ui/Cursor";
 import { CookieConsent } from "@/components/ui/CookieConsent";
+import { ScrollToHash } from "@/components/ScrollToHash";
 import { personal } from "@/data/personal";
 
 const geistSans = Geist({
@@ -193,6 +194,7 @@ export default function RootLayout({
           <NoiseOverlay />
           <ScrollProgress />
           <Header />
+          <ScrollToHash />
           <main id="main-content" tabIndex={-1}>{children}</main>
           <Footer />
           <CookieConsent />

@@ -10,6 +10,7 @@ import { achievements } from "@/data/achievements";
 import { personal } from "@/data/personal";
 import { Sparkles, Code, Rocket } from "lucide-react";
 import { GithubIcon } from "@/components/ui/Icons";
+import { ease, spring, NORMAL, SLOW } from "@/lib/motion";
 
 const statusStyles: Record<string, string> = {
   private: "border-yellow-500/20 text-yellow-400/60 bg-yellow-500/5",
@@ -36,14 +37,24 @@ function Layers(props: { className?: string }) {
 function RoadmapPhase({ achievement, index, isInView }: { achievement: typeof achievements[number]; index: number; isInView: boolean }) {
   return (
     <motion.div
-      className="group relative rounded-xl border border-white/[0.04] bg-white/[0.02] p-5 hover:border-blue-500/15 hover:bg-blue-500/[0.03] transition-all duration-300"
+      className="group relative rounded-xl border border-white/[0.04] bg-white/[0.02] p-5 overflow-hidden"
       initial={{ opacity: 0, y: 15 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.08, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ delay: index * 0.08, duration: NORMAL, ease: ease.out }}
+      whileHover={{ y: -4, scale: 1.01 }}
     >
-      <div className="text-lg sm:text-xl font-semibold text-white tracking-tight">{achievement.metric}</div>
-      <div className="mt-1 text-xs font-medium text-white/50">{achievement.label}</div>
-      <p className="mt-2 text-xs text-white/25 leading-relaxed">{achievement.description}</p>
+      {/* Animated border glow */}
+      <motion.div
+        className="absolute inset-0 rounded-xl pointer-events-none"
+        initial={{ boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.04)" }}
+        whileHover={{ boxShadow: "inset 0 0 0 1px rgba(59,130,246,0.15), 0 8px 30px -10px rgba(59,130,246,0.1)" }}
+        transition={{ duration: 0.3 }}
+      />
+      <div className="relative z-[1]">
+        <div className="text-lg sm:text-xl font-semibold text-white tracking-tight">{achievement.metric}</div>
+        <div className="mt-1 text-xs font-medium text-white/50">{achievement.label}</div>
+        <p className="mt-2 text-xs text-white/25 leading-relaxed">{achievement.description}</p>
+      </div>
     </motion.div>
   );
 }
@@ -54,51 +65,64 @@ function DevelopmentCard({ project, index, isInView }: { project: typeof project
       className="group"
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.1, duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ delay: index * 0.1, duration: NORMAL, ease: ease.out }}
     >
-      <div className="relative h-full rounded-2xl border border-white/[0.04] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.03]">
-        <div className="flex items-center justify-between gap-3 mb-4">
-          <div
-            className={cn(
-              "h-9 w-9 rounded-lg bg-gradient-to-br flex items-center justify-center text-sm font-semibold text-white",
-              project.gradient
-            )}
-          >
-            {project.title[0]}
+      <motion.div className="relative h-full rounded-2xl border border-white/[0.04] bg-white/[0.02] p-6 overflow-hidden transition-colors duration-300 hover:bg-white/[0.03]"
+        whileHover={{ y: -4, scale: 1.01 }}
+      >
+        {/* Animated border glow */}
+        <motion.div
+          className="absolute inset-0 rounded-2xl pointer-events-none"
+          initial={{ boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.04)" }}
+          whileHover={{ boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.10), 0 12px 40px -10px rgba(0,0,0,0.3)" }}
+          transition={{ duration: 0.3 }}
+        />
+        <div className="relative z-[1]">
+          <div className="flex items-center justify-between gap-3 mb-4">
+            <motion.div
+              className={cn(
+                "h-9 w-9 rounded-lg bg-gradient-to-br flex items-center justify-center text-sm font-semibold text-white",
+                project.gradient
+              )}
+              whileHover={{ rotate: 5, y: -2 }}
+              transition={spring.gentle}
+            >
+              {project.title[0]}
+            </motion.div>
+            <span className={cn("px-2.5 py-0.5 rounded-md text-[10px] font-medium uppercase tracking-wider border", statusStyles[project.status])}>
+              {project.status === "private" ? "In Development" : "Planned"}
+            </span>
           </div>
-          <span className={cn("px-2.5 py-0.5 rounded-md text-[10px] font-medium uppercase tracking-wider border", statusStyles[project.status])}>
-            {project.status === "private" ? "In Development" : "Planned"}
-          </span>
-        </div>
 
-        <h3 className="text-sm font-medium text-white group-hover:text-white/90 transition-colors">
-          {project.title}
-        </h3>
-        <p className="text-xs text-white/30 mt-1">{project.tagline}</p>
+          <h3 className="text-sm font-medium text-white group-hover:text-white/90 transition-colors">
+            {project.title}
+          </h3>
+          <p className="text-xs text-white/30 mt-1">{project.tagline}</p>
 
-        <p className="mt-3 text-sm text-white/25 leading-relaxed line-clamp-2">
-          {project.description}
-        </p>
+          <p className="mt-3 text-sm text-white/25 leading-relaxed line-clamp-2">
+            {project.description}
+          </p>
 
-        <StaggerFade staggerDelay={0.05} className="mt-4 flex flex-wrap gap-1.5">
-          {project.highlights.slice(0, 3).map((h) => (
-            <StaggerItem key={h}>
-              <div className="flex items-center gap-1.5 text-xs text-white/30">
-                <span className="h-1 w-1 rounded-full bg-white/15 shrink-0" />
-                {h}
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerFade>
-
-        <div className="mt-4 pt-4 border-t border-white/[0.04]">
-          <div className="flex flex-wrap gap-1.5">
-            {project.highlights.slice(0, 3).map((t) => (
-              <Badge key={t}>{t}</Badge>
+          <StaggerFade staggerDelay={0.05} className="mt-4 flex flex-wrap gap-1.5">
+            {project.highlights.slice(0, 3).map((h) => (
+              <StaggerItem key={h}>
+                <div className="flex items-center gap-1.5 text-xs text-white/30">
+                  <span className="h-1 w-1 rounded-full bg-white/15 shrink-0" />
+                  {h}
+                </div>
+              </StaggerItem>
             ))}
+          </StaggerFade>
+
+          <div className="mt-4 pt-4 border-t border-white/[0.04]">
+            <div className="flex flex-wrap gap-1.5">
+              {project.highlights.slice(0, 3).map((t) => (
+                <Badge key={t}>{t}</Badge>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
@@ -146,7 +170,10 @@ export function ProjectsSection() {
       </Reveal>
 
       <FadeIn delay={0.2}>
-        <div className="rounded-2xl border border-white/[0.04] bg-white/[0.02] p-6 sm:p-8 hover:border-white/10 transition-all duration-300">
+        <motion.div
+          className="rounded-2xl border border-white/[0.04] bg-white/[0.02] p-6 sm:p-8 transition-all duration-300"
+          whileHover={{ borderColor: "rgba(255,255,255,0.10)" }}
+        >
           <div className="flex flex-col sm:flex-row items-start gap-6">
             <div className="flex-1">
               <div className="flex items-center gap-2 text-xs text-white/15 mb-3">
@@ -163,17 +190,20 @@ export function ProjectsSection() {
                 <Badge variant="beta">Future Open Source</Badge>
               </div>
             </div>
-            <a
+            <motion.a
               href={personal.social.github}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-xl border border-white/10 px-5 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:border-white/20 transition-all duration-300 shrink-0"
+              whileHover={{ y: -2, scale: 1.01 }}
+              whileTap={{ scale: 0.97 }}
+              transition={spring.gentle}
             >
               <GithubIcon className="h-4 w-4" />
               Follow on GitHub
-            </a>
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
       </FadeIn>
     </SectionContainer>
   );

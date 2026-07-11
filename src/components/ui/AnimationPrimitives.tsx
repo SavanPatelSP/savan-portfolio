@@ -1,22 +1,26 @@
 "use client";
 
-import { useRef, ReactNode, useState } from "react";
+import { useRef, ReactNode, useState, useCallback } from "react";
 import { motion, useInView, useScroll, useTransform, useReducedMotion, HTMLMotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { FAST, NORMAL, SLOW, ease, spring, cardHover, buttonPress } from "@/lib/motion";
 
 type MotionDivProps = Omit<HTMLMotionProps<"div">, "children"> & { children?: ReactNode };
+
+/* ─── FadeIn ──────────────────────────────────────────────────── */
 
 export function FadeIn({
   children,
   className,
   delay = 0,
-  duration = 0.5,
-  y = 20,
+  duration = SLOW,
+  y = 24,
+  blur = 6,
   once = true,
   ...props
-}: MotionDivProps & { delay?: number; duration?: number; y?: number; once?: boolean }) {
+}: MotionDivProps & { delay?: number; duration?: number; y?: number; blur?: number; once?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once, amount: 0.2 });
+  const isInView = useInView(ref, { once, amount: 0.15 });
   const reducedMotion = useReducedMotion();
 
   if (reducedMotion) {
@@ -27,15 +31,17 @@ export function FadeIn({
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y }}
-      transition={{ duration, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      initial={{ opacity: 0, y, filter: `blur(${blur}px)` }}
+      animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y, filter: `blur(${blur}px)` }}
+      transition={{ duration, delay, ease: ease.out }}
       {...props}
     >
       {children}
     </motion.div>
   );
 }
+
+/* ─── ScaleIn ─────────────────────────────────────────────────── */
 
 export function ScaleIn({
   children,
@@ -44,7 +50,7 @@ export function ScaleIn({
   ...props
 }: MotionDivProps & { delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
   const reducedMotion = useReducedMotion();
 
   if (reducedMotion) {
@@ -57,7 +63,7 @@ export function ScaleIn({
       className={className}
       initial={{ opacity: 0, scale: 0.95 }}
       animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.5, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{ duration: NORMAL, delay, ease: ease.out }}
       {...props}
     >
       {children}
@@ -65,14 +71,17 @@ export function ScaleIn({
   );
 }
 
+/* ─── Reveal ──────────────────────────────────────────────────── */
+
 export function Reveal({
   children,
   className,
   delay = 0,
+  blur = true,
   ...props
-}: MotionDivProps & { delay?: number }) {
+}: MotionDivProps & { delay?: number; blur?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
   const reducedMotion = useReducedMotion();
 
   if (reducedMotion) {
@@ -82,9 +91,9 @@ export function Reveal({
   return (
     <div ref={ref} className={cn("relative overflow-hidden", className)}>
       <motion.div
-        initial={{ y: "100%" }}
-        animate={isInView ? { y: 0 } : { y: "100%" }}
-        transition={{ duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] }}
+        initial={{ y: "100%", filter: blur ? "blur(6px)" : undefined }}
+        animate={isInView ? { y: 0, filter: "blur(0px)" } : { y: "100%", filter: blur ? "blur(6px)" : undefined }}
+        transition={{ duration: SLOW, delay, ease: ease.out }}
         {...props}
       >
         {children}
@@ -93,14 +102,17 @@ export function Reveal({
   );
 }
 
+/* ─── BlurReveal ──────────────────────────────────────────────── */
+
 export function BlurReveal({
   children,
   className,
   delay = 0,
+  y = 16,
   ...props
-}: MotionDivProps & { delay?: number }) {
+}: MotionDivProps & { delay?: number; y?: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
   const reducedMotion = useReducedMotion();
 
   if (reducedMotion) {
@@ -111,15 +123,17 @@ export function BlurReveal({
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, filter: "blur(12px)" }}
-      animate={isInView ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0, filter: "blur(12px)" }}
-      transition={{ duration: 0.8, delay, ease: [0.25, 0.1, 0.25, 1] }}
+      initial={{ opacity: 0, y, filter: "blur(10px)" }}
+      animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y, filter: "blur(10px)" }}
+      transition={{ duration: NORMAL, delay, ease: ease.out }}
       {...props}
     >
       {children}
     </motion.div>
   );
 }
+
+/* ─── MaskReveal ──────────────────────────────────────────────── */
 
 export function MaskReveal({
   children,
@@ -129,7 +143,7 @@ export function MaskReveal({
   ...props
 }: MotionDivProps & { delay?: number; direction?: "up" | "down" | "left" | "right" }) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
   const reducedMotion = useReducedMotion();
 
   const initialMask = {
@@ -150,7 +164,7 @@ export function MaskReveal({
       <motion.div
         initial={{ clipPath: initialMask }}
         animate={isInView ? { clipPath: animateMask } : { clipPath: initialMask }}
-        transition={{ duration: 1, delay, ease: [0.25, 0.1, 0.25, 1] }}
+        transition={{ duration: SLOW, delay, ease: ease.out }}
         {...props}
       >
         {children}
@@ -158,6 +172,8 @@ export function MaskReveal({
     </div>
   );
 }
+
+/* ─── ParallaxContainer ───────────────────────────────────────── */
 
 export function ParallaxContainer({
   children,
@@ -185,6 +201,8 @@ export function ParallaxContainer({
     </div>
   );
 }
+
+/* ─── MagneticButton ──────────────────────────────────────────── */
 
 export function MagneticButton({
   children,
@@ -237,7 +255,7 @@ export function MagneticButton({
     >
       <motion.div
         animate={{ x: position.x, y: position.y }}
-        transition={{ type: "spring", stiffness: 200, damping: 15, mass: 0.5 }}
+        transition={spring.gentle}
       >
         {inner}
       </motion.div>
@@ -245,10 +263,12 @@ export function MagneticButton({
   );
 }
 
+/* ─── StaggerFade ─────────────────────────────────────────────── */
+
 export function StaggerFade({
   children,
   className,
-  staggerDelay = 0.08,
+  staggerDelay = 0.06,
   ...props
 }: MotionDivProps & { staggerDelay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -276,6 +296,8 @@ export function StaggerFade({
   );
 }
 
+/* ─── StaggerItem ─────────────────────────────────────────────── */
+
 export function StaggerItem({
   children,
   className,
@@ -291,8 +313,8 @@ export function StaggerItem({
     <motion.div
       className={className}
       variants={{
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
-        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: NORMAL, ease: ease.out } },
+        hidden: { opacity: 0, y: 16, filter: "blur(4px)" },
       }}
       {...props}
     >
@@ -300,6 +322,8 @@ export function StaggerItem({
     </motion.div>
   );
 }
+
+/* ─── SectionContainer ────────────────────────────────────────── */
 
 export function SectionContainer({
   children,
@@ -311,11 +335,13 @@ export function SectionContainer({
   id?: string;
 }) {
   return (
-    <section id={id} className={cn("relative py-28 sm:py-36", className)}>
+    <section id={id} className={cn("relative scroll-mt-16 py-28 sm:py-36", className)}>
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">{children}</div>
     </section>
   );
 }
+
+/* ─── SectionTitle ────────────────────────────────────────────── */
 
 export function SectionTitle({
   label,
@@ -331,7 +357,7 @@ export function SectionTitle({
   return (
     <div className={cn("mb-12 sm:mb-16 lg:mb-20 text-center lg:text-left", className)}>
       {label && (
-        <FadeIn delay={0}>
+        <FadeIn delay={0} blur={4} y={8}>
           <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
             {label}
           </span>
@@ -343,12 +369,207 @@ export function SectionTitle({
         </h2>
       </Reveal>
       {subtitle && (
-        <FadeIn delay={0.2} y={10}>
+        <FadeIn delay={0.2} y={10} blur={4}>
           <p className="mt-4 sm:mt-5 mx-auto lg:mx-0 max-w-xl text-sm sm:text-base lg:text-lg text-white/35 leading-relaxed">
             {subtitle}
           </p>
         </FadeIn>
       )}
     </div>
+  );
+}
+
+/* ─── HeadingReveal ───────────────────────────────────────────── */
+
+export function HeadingReveal({
+  children,
+  className,
+  delay = 0,
+  as: Tag = "h3",
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return <Tag className={className}>{children}</Tag>;
+  }
+
+  return (
+    <div ref={ref} className="overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0, y: "100%", letterSpacing: "0.05em" }}
+        animate={isInView ? { opacity: 1, y: 0, letterSpacing: "inherit" } : {}}
+        transition={{ duration: SLOW, delay, ease: ease.out }}
+      >
+        <Tag className={className}>{children}</Tag>
+      </motion.div>
+    </div>
+  );
+}
+
+/* ─── CardHover ───────────────────────────────────────────────── */
+
+export function CardHover({
+  children,
+  className,
+  ...props
+}: MotionDivProps) {
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      className={className}
+      initial="rest"
+      whileHover="hover"
+      variants={{
+        rest: cardHover.rest,
+        hover: cardHover.hover,
+      }}
+      transition={cardHover.transition}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ─── ButtonMotion ────────────────────────────────────────────── */
+
+export function ButtonMotion({
+  children,
+  className,
+  ...props
+}: MotionDivProps) {
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      className={className}
+      initial="rest"
+      whileHover="hover"
+      whileTap="press"
+      variants={{
+        rest: buttonPress.rest,
+        hover: buttonPress.hover,
+        press: buttonPress.press,
+      }}
+      transition={spring.gentle}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ─── Float ───────────────────────────────────────────────────── */
+
+export function Float({
+  children,
+  className,
+  amount = 4,
+  duration = 4,
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  amount?: number;
+  duration?: number;
+  delay?: number;
+}) {
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      className={className}
+      animate={{ y: [0, -amount, 0] }}
+      transition={{
+        duration,
+        repeat: Infinity,
+        ease: "easeInOut",
+        delay,
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ─── IconHover ───────────────────────────────────────────────── */
+
+export function IconHover({
+  children,
+  className,
+  rotate = 8,
+  float = false,
+}: {
+  children: ReactNode;
+  className?: string;
+  rotate?: number;
+  float?: boolean;
+}) {
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      className={cn("inline-flex", className)}
+      whileHover={float ? { y: -3, rotate: 0 } : { rotate, y: float ? -2 : 0 }}
+      transition={spring.gentle}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+/* ─── SectionReveal (wraps entire section with blur+opacity) ─── */
+
+export function SectionReveal({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.05 });
+  const reducedMotion = useReducedMotion();
+
+  if (reducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
+      animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+      transition={{ duration: 0.7, delay, ease: ease.out }}
+    >
+      {children}
+    </motion.div>
   );
 }
