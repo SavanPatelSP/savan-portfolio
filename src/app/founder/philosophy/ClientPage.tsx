@@ -66,7 +66,7 @@ const faqItems = [
   {
     question: "What does 'open by default' mean in practice?",
     answer:
-      "It means our source code is public, our development process is visible, and our decisions are documented. We publish RFCs for major features, maintain public roadmaps, and welcome contributions from the community. The only exceptions are secrets (keys, credentials) and features still in private research phases.",
+      "Our open source projects are currently private as products mature. The philosophy of openness still guides our internal development process — decisions are documented, roadmaps are maintained, and contributions will be welcomed when repositories are made public. The goal is to share foundations like design systems and utility libraries with the community once they reach a stable state.",
   },
   {
     question: "How do you balance quality with speed?",
@@ -343,28 +343,23 @@ export default function PhilosophyPage() {
           <FadeIn delay={0.1}>
             <div className="space-y-6 text-white/30 text-base leading-relaxed">
               <p>
-                We believe that great software should be inspectable, forkable, and improvable by
-                anyone. This is why the core of SP NET products — the shared libraries, utilities,
-                and design primitives — are released under permissive open source licenses. When you
-                can see how something works, you can trust it, learn from it, and make it better.
+                We believe that great software should eventually be inspectable, forkable, and
+                improvable by anyone. Our open source projects are currently private as products
+                mature, but the philosophy of openness still guides our internal development
+                process.
               </p>
               <p>
-                Open source is also how we attract the best collaborators. Engineers who contribute to
-                open projects demonstrate a level of care and craft that goes beyond simply completing
-                tasks. By building in the open, we create opportunities for talented people to engage
-                with our work and help shape the direction of the products.
+                When repositories are made public, they will include clear documentation,
+                contribution guidelines, and a code of conduct. We plan to review pull requests
+                promptly, respond to issues thoughtfully, and credit contributors publicly. Open
+                source done right is a two-way relationship: we give the community tools, and the
+                community makes us better.
               </p>
               <p>
-                Our open source strategy is deliberate: we open the foundations (design systems,
-                utilities, shared components) while keeping proprietary product logic closed until it
-                matures. This balance lets us benefit from community input where it matters most
-                without compromising competitive advantages in the product layer.
-              </p>
-              <p>
-                Every public repository includes clear documentation, contribution guidelines, and a
-                code of conduct. We review pull requests promptly, respond to issues thoughtfully, and
-                credit contributors publicly. Open source done right is a two-way relationship: we
-                give the community tools, and the community makes us better.
+                Our open source strategy is deliberate: we plan to release the foundations (design
+                systems, utilities, shared components) once they reach a stable state, while keeping
+                product logic closed. This balance will let us benefit from community input where it
+                matters most without compromising competitive advantages in the product layer.
               </p>
             </div>
           </FadeIn>
@@ -372,16 +367,16 @@ export default function PhilosophyPage() {
           <FadeIn delay={0.15}>
             <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-5 text-center">
-                <div className="text-2xl font-semibold text-white/60 mb-1">100%</div>
-                <div className="text-xs text-white/25">Core libraries open source</div>
+                <div className="text-2xl font-semibold text-white/60 mb-1">Planned</div>
+                <div className="text-xs text-white/25">Core libraries will be open source</div>
               </div>
               <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-5 text-center">
-                <div className="text-2xl font-semibold text-white/60 mb-1">&lt;24h</div>
-                <div className="text-xs text-white/25">Average PR review turnaround</div>
+                <div className="text-2xl font-semibold text-white/60 mb-1">Private</div>
+                <div className="text-xs text-white/25">Open source projects not yet public</div>
               </div>
               <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-5 text-center">
                 <div className="text-2xl font-semibold text-white/60 mb-1">Always</div>
-                <div className="text-xs text-white/25">Public roadmap and changelog</div>
+                <div className="text-xs text-white/25">Internal roadmap and changelog</div>
               </div>
             </div>
           </FadeIn>

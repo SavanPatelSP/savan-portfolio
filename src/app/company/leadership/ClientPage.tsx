@@ -135,6 +135,10 @@ const faqItems = [
     question: "Will SP NET INC remain founder-led?",
     answer: "For the foreseeable future, yes. The founder-led approach ensures speed, consistency, and alignment with the long-term vision. As the company grows, leadership will expand to include exceptional people — but the founder will remain deeply involved in product vision, engineering culture, and strategic direction.",
   },
+  {
+    question: "How can I contact SP NET INC?",
+    answer: "The recommended first point of contact is PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT. For specific needs, you can also email the appropriate department: hello@sp-net.in (general), business@sp-net.in (business), contact@sp-net.in (inquiries), media@sp-net.in (media), security@sp-net.in (security), or careers@sp-net.in (careers). You can also schedule a meeting at cal.com/savanpatel.",
+  },
 ];
 
 export default function ClientPage() {

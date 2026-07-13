@@ -121,7 +121,7 @@ const faqItems = [
   {
     question: "Will you open-source anything?",
     answer:
-      "Absolutely. The UI Kit is planned for 2027, followed by the CLI and TypeScript utilities. I want to give back to the open-source community that has taught me so much — I just want to make sure what I release is actually useful and well-documented.",
+      "Open source projects are currently private. The UI Kit is planned for 2027, followed by the CLI and TypeScript utilities. I want to give back to the open-source community that has taught me so much — I just want to make sure what I release is actually useful and well-documented. For the latest status, reach out to PCA at https://t.me/SAVANPATELSP_BOT.",
   },
   {
     question: "How do you decide what to work on?",
@@ -131,7 +131,7 @@ const faqItems = [
   {
     question: "How can someone follow along?",
     answer:
-      "I share updates on the Telegram community and occasionally on social media. As the open-source projects launch, GitHub will be the best place to follow development in real time.",
+      "The recommended first point of contact is PCA at https://t.me/SAVANPATELSP_BOT for updates and early access. X and LinkedIn profiles are coming soon. As open-source projects eventually launch, GitHub will be the best place to follow development in real time.",
   },
 ];
 

@@ -127,12 +127,12 @@ const faqItems = [
   {
     question: "Which product should I try first?",
     answer:
-      "Start with whatever solves your current pain point. GRAM if you want better messaging. ADMIN OS if you manage teams or organizations. The Ecosystem becomes more valuable as more products are available, so it is worth watching but the standalone products are built to deliver value on their own.",
+      "All SP NET products — GRAM, ADMIN OS, and AI — are currently in active development and not yet publicly available. Once betas launch, start with whatever solves your current pain point. For the latest status on availability, reach out to PCA at https://t.me/SAVANPATELSP_BOT.",
   },
   {
     question: "Are these products free?",
     answer:
-      "Core features will always be free. Premium features — more storage, advanced analytics, enterprise controls — will have paid tiers. I believe essential tools should be accessible to everyone, with clear value for power users who want more.",
+      "The products are still in active development. When launched, core features will always be free. Premium features — more storage, advanced analytics, enterprise controls — will have paid tiers. For early access opportunities, contact PCA at https://t.me/SAVANPATELSP_BOT.",
   },
   {
     question: "How do you decide what to build next?",
@@ -142,7 +142,7 @@ const faqItems = [
   {
     question: "When will everything be available?",
     answer:
-      "GRAM and ADMIN OS are in active development with beta access planned for 2026. AI powers features across both products today. The Ecosystem platform will launch as the integration layer once the core products are stable. Cloud, Teams, and Automate are on the horizon for 2027-2028.",
+      "All SP NET products are in active development and not yet publicly available. GRAM and ADMIN OS have beta access planned for 2026. AI powers features across both products internally. The Ecosystem platform will launch as the integration layer once the core products are stable. Cloud, Teams, and Automate are on the horizon for 2027-2028. For the latest updates, reach out to PCA at https://t.me/SAVANPATELSP_BOT.",
   },
 ];
 

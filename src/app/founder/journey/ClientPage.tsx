@@ -146,7 +146,7 @@ const faqItems = [
   },
   {
     question: "What has been built since founding SP NET INC?",
-    answer: "Since 2022, the company has shipped SP NET GRAM (a next-generation messaging platform), SP NET ADMIN OS (an enterprise administration platform), and initiated SP NET AI research. Each product is designed to work as part of a larger interconnected ecosystem.",
+    answer: "Since 2022, SP NET INC has been developing SP NET GRAM (a next-generation messaging platform), SP NET ADMIN OS (an enterprise administration platform), and SP NET AI (an AI research initiative). All products are currently in active development and not yet publicly available. Each is designed to work as part of a larger interconnected ecosystem.",
   },
   {
     question: "What is the biggest challenge faced so far?",
@@ -154,7 +154,7 @@ const faqItems = [
   },
   {
     question: "What is the next chapter for Savan Patel?",
-    answer: "The focus in 2026 and beyond is scaling the SP NET ecosystem, growing the community, contributing to open source, and pushing the boundaries of what AI can do for communication and enterprise tooling. The vision is bigger than any single product.",
+    answer: "The focus in 2026 and beyond is scaling the SP NET ecosystem, growing the community, and pushing the boundaries of what AI can do for communication and enterprise tooling. Open source projects are currently private, with plans to contribute to the community as products mature. The vision is bigger than any single product.",
   },
 ];
 

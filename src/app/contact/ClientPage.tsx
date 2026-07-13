@@ -136,29 +136,28 @@ const availabilityItems = [
 const faqItems = [
   {
     question: "What is the best way to reach you?",
-    email: "savan@sp-net.in",
     answer:
-      "Email is the best way to reach me directly. You can also use the contact form above — every message goes straight to my inbox. For faster responses, Telegram is a great option.",
+      "The Personal Communication Assistant (PCA) via Telegram at https://t.me/SAVANPATELSP_BOT is the fastest way to get answers. For direct email, use savan@sp-net.in. The contact form above also goes straight to my inbox. The PCA provides instant responses 24/7.",
   },
   {
     question: "How quickly do you respond?",
     answer:
-      "I personally review every message and aim to respond within 24–48 hours. For urgent matters, reaching out via Telegram usually gets a faster response.",
+      "The PCA provides instant responses anytime. For email, I personally review every message and aim to respond within 24–48 hours. For urgent matters, the PCA or Telegram usually gets a faster response.",
   },
   {
     question: "Are you available for freelance work?",
     answer:
-      "I am primarily focused on building SP NET INC products, but I am always open to discussing interesting collaborations and projects. Reach out with specifics and we can talk.",
+      "I am primarily focused on building SP NET INC products. I am not available for freelance work at this time. For collaboration opportunities, reach out through the PCA or email with specifics.",
   },
   {
     question: "Can I suggest a feature or improvement?",
     answer:
-      "Absolutely. I value feedback from users and fellow engineers. Send your suggestions via email or the contact form — every idea is reviewed personally.",
+      "Absolutely. I value feedback from users and fellow engineers. Send your suggestions through the PCA, via email, or the contact form — every idea is reviewed personally.",
   },
   {
     question: "Do you offer mentorship or guidance?",
     answer:
-      "I am passionate about helping others learn and grow. If you have specific questions about software engineering, product building, or the technical journey, feel free to reach out.",
+      "I am passionate about helping others learn and grow. If you have specific questions about software engineering, product building, or the technical journey, feel free to reach out through the PCA or email.",
   },
 ];
 

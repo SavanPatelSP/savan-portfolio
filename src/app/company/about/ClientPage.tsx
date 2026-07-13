@@ -85,7 +85,7 @@ const faqItems = [
   },
   {
     question: "What products does SP NET INC build?",
-    answer: "SP NET INC builds three core products: SP NET GRAM (a next-generation messaging platform), SP NET ADMIN OS (a comprehensive enterprise administration platform), and SP NET AI (an AI research initiative powering intelligent experiences across the ecosystem). All products are designed to work together as part of the unified SP NET ecosystem.",
+    answer: "SP NET INC is building three core products: SP NET GRAM (a next-generation messaging platform), SP NET ADMIN OS (a comprehensive enterprise administration platform), and SP NET AI (an AI research initiative powering intelligent experiences across the ecosystem). All products are in active development and are not yet publicly available. They are designed to work together as part of the unified SP NET ecosystem.",
   },
   {
     question: "Who is the founder of SP NET INC?",
@@ -98,6 +98,10 @@ const faqItems = [
   {
     question: "Where is SP NET INC based?",
     answer: "SP NET INC is based in India. The company operates as a lean, founder-led organization with a distributed-first approach. This enables access to global talent and ensures that great work can happen from anywhere, unconstrained by geography.",
+  },
+  {
+    question: "How can I contact SP NET INC?",
+    answer: "The recommended first point of contact is PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT. For specific needs, you can also email the appropriate department: hello@sp-net.in (general), business@sp-net.in (business), contact@sp-net.in (inquiries), media@sp-net.in (media), security@sp-net.in (security), or careers@sp-net.in (careers). You can also schedule a meeting at cal.com/savanpatel.",
   },
 ];
 

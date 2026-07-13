@@ -172,7 +172,7 @@ const faqItems = [
   {
     question: "Can I participate in your experiments?",
     answer:
-      "As experiments move from internal research to user-facing features, I invite beta testers and community members to provide feedback. Join the Telegram community to hear about upcoming opportunities.",
+      "As experiments move from internal research to user-facing features, I invite beta testers and community members to provide feedback. The recommended first point of contact is PCA at https://t.me/SAVANPATELSP_BOT — reach out to hear about upcoming opportunities.",
   },
   {
     question: "How do you keep AI innovation ethical?",

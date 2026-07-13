@@ -92,7 +92,7 @@ const faqItems = [
   {
     question: "Do you open-source all your projects?",
     answer:
-      "Not all of them, but many of them. Projects like the tools and utilities I build are often open source. Some projects, like SP NET GRAM, have proprietary components for security reasons, but I share the architecture and design decisions publicly. I believe in the open-source spirit even when the code itself is not public.",
+      "My open source projects are currently private. Not all projects will be open sourced, but I believe in the open-source spirit — sharing architecture, design decisions, and lessons learned publicly even when the code itself is not yet public.",
   },
   {
     question: "How do you handle criticism of your work?",

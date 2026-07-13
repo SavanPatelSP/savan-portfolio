@@ -80,7 +80,7 @@ export default function FAQsPage() {
         label="Resources"
         title="FAQs"
         titleAccent="Frequently asked questions"
-        description="Answers to the most common questions about Savan Patel, SP NET INC, our products, and what we are building."
+        description="The complete knowledge base for everything about Savan Patel, SP NET INC, products, research, privacy, communication, and career opportunities."
         icon={<HelpCircle className="h-4 w-4" />}
       />
 
@@ -101,17 +101,16 @@ export default function FAQsPage() {
             <FadeIn delay={0.1}>
               <div className="space-y-5 text-sm sm:text-base text-white/35 leading-relaxed">
                 <p>
-                  This page collects the questions we hear most often from
-                  visitors, developers, recruiters, media, and collaborators.
-                  Whether you are learning about SP NET INC for the first time,
-                  evaluating our products, or looking for ways to get involved,
-                  you will find concise answers here.
+                  This page is the complete knowledge base for Savan Patel and
+                  SP NET INC. It covers everything from products and research to
+                  privacy practices, communication channels, and career
+                  opportunities.
                 </p>
                 <p>
                   Browse by category, search for specific topics, or expand all
-                  questions to explore everything at once. If your question is
-                  not covered below, reach out directly — we read and respond to
-                  every inquiry personally.
+                  questions to explore everything at once. The Personal
+                  Communication Assistant (PCA) is also available via Telegram
+                  for instant answers to any question not covered here.
                 </p>
               </div>
             </FadeIn>
@@ -124,7 +123,7 @@ export default function FAQsPage() {
           <SectionTitle
             label="FAQ"
             title="Frequently asked questions"
-            subtitle="Browse by category or search for specific topics. Every answer is detailed, honest, and up to date."
+            subtitle="Browse by category or search for specific topics. The complete knowledge base covering all aspects of Savan Patel, SP NET INC, and the products being built."
           />
 
           <FAQPage categories={faqCategories} items={faqItems} />
@@ -162,29 +161,30 @@ export default function FAQsPage() {
           <SectionTitle
             label="Still have questions?"
             title="Reach out"
-            subtitle="We respond to every inquiry personally. No ticketing systems, no automated replies."
+            subtitle="Use the PCA for instant answers, or email us for formal inquiries. We respond to every inquiry personally."
           />
 
           <FadeIn delay={0.1}>
             <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-8 sm:p-10 text-center">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.04] border border-white/[0.06] mx-auto mb-6">
-                <Mail className="h-6 w-6 text-white/30" />
+                <MessageSquare className="h-6 w-6 text-white/30" />
               </div>
               <h3 className="text-lg font-semibold text-white/70 mb-2">
-                Email us directly
+                Use the Personal Communication Assistant
               </h3>
               <p className="text-sm text-white/30 leading-relaxed max-w-md mx-auto mb-6">
-                Send your question to{" "}
-                <span className="text-blue-400/60">savan@sp-net.in</span> and
-                we will get back to you within 48 hours.
+                Get instant answers to any question via Telegram. The PCA is
+                available 24/7 and can help with anything not covered in these FAQs.
               </p>
               <motion.a
-                href="mailto:savan@sp-net.in"
+                href="https://t.me/SAVANPATELSP_BOT"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors duration-200"
                 whileHover={{ y: -2, scale: 1.02 }}
               >
-                <Mail className="h-4 w-4" />
-                Send an email
+                <MessageSquare className="h-4 w-4" />
+                Open PCA on Telegram
               </motion.a>
             </div>
           </FadeIn>

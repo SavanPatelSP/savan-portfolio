@@ -99,7 +99,11 @@ const faqItems = [
   },
   {
     question: "What are SP NET INC's technology goals?",
-    answer: "SP NET INC has four primary technology goals: unified communication (private, productive messaging), intelligent enterprise (tools that anticipate needs), privacy-first AI (intelligent experiences that respect privacy), and an open ecosystem (a platform others can extend). These goals guide the product roadmap and engineering priorities.",
+    answer: "SP NET INC has four primary technology goals: unified communication (private, productive messaging), intelligent enterprise (tools that anticipate needs), privacy-first AI (intelligent experiences that respect privacy), and an open ecosystem (a platform others can extend). These goals guide the product roadmap and engineering priorities. Note that all SP NET products are currently in active development and not yet publicly available.",
+  },
+  {
+    question: "How can I contact SP NET INC?",
+    answer: "The recommended first point of contact is PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT. For specific needs, you can also email the appropriate department: hello@sp-net.in (general), business@sp-net.in (business), contact@sp-net.in (inquiries), media@sp-net.in (media), security@sp-net.in (security), or careers@sp-net.in (careers). You can also schedule a meeting at cal.com/savanpatel.",
   },
 ];
 

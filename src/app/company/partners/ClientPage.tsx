@@ -145,7 +145,7 @@ const faqItems = [
   {
     question: "How can my company become a partner?",
     answer:
-      "We evaluate potential partnerships based on alignment with our mission, technical complementarity, and mutual value creation. Reach out to savan@sp-net.in with your partnership proposal and we'll review it promptly.",
+      "We evaluate potential partnerships based on alignment with our mission, technical complementarity, and mutual value creation. Reach out via PCA at https://t.me/SAVANPATELSP_BOT or email business@sp-net.in with your partnership proposal and we'll review it promptly.",
   },
   {
     question: "What types of partnerships does SP NET INC pursue?",
@@ -160,12 +160,17 @@ const faqItems = [
   {
     question: "Do you offer integration APIs for partners?",
     answer:
-      "Yes. SP NET products are built with API-first architecture, making integration straightforward for partners. Technical documentation and SDK access are provided to all approved partners.",
+      "Yes. SP NET products are built with API-first architecture, making integration straightforward for partners. Technical documentation and SDK access are provided to all approved partners. Note that all SP NET products are currently in active development and not yet publicly available.",
   },
   {
     question: "What security requirements do partners need to meet?",
     answer:
       "All partners must meet our security standards including data encryption, access controls, and compliance with applicable privacy regulations. We conduct security reviews as part of the partnership onboarding process.",
+  },
+  {
+    question: "How can I contact SP NET INC?",
+    answer:
+      "The recommended first point of contact is PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT. For specific needs, you can also email the appropriate department: hello@sp-net.in (general), business@sp-net.in (business), contact@sp-net.in (inquiries), media@sp-net.in (media), security@sp-net.in (security), or careers@sp-net.in (careers). You can also schedule a meeting at cal.com/savanpatel.",
   },
 ];
 

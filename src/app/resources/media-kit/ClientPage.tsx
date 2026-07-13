@@ -181,17 +181,17 @@ const faqItems = [
   {
     question: "Are product screenshots available for editorial use?",
     answer:
-      "High-resolution product screenshots will be available for download once the media kit assets section launches. Until then, contact us directly and we will provide approved screenshots for your publication.",
+      "SP NET products (GRAM, ADMIN OS, AI) are currently in active development and not yet publicly available. Once assets are released, high-resolution screenshots will be available here. In the meantime, contact us via PCA at https://t.me/SAVANPATELSP_BOT or media@sp-net.in for approved screenshots.",
   },
   {
     question: "Who should I contact for press inquiries?",
     answer:
-      "For all press and media inquiries, email savan@sp-net.in with the subject line 'Press Inquiry.' Include your publication name, the nature of the story, and your deadline. We aim to respond within 24 hours.",
+      "Start with PCA at https://t.me/SAVANPATELSP_BOT — it is the recommended first point of contact for all inquiries. For press-specific needs, you can also email media@sp-net.in with your publication name, the nature of the story, and your deadline.",
   },
   {
     question: "Can I request an interview with the founder?",
     answer:
-      "Yes. Savan Patel is available for interviews related to product development, technology, entrepreneurship, and the SP NET ecosystem. Email us with your publication details, interview format, and preferred timeline.",
+      "Yes. Savan Patel is available for interviews related to product development, technology, entrepreneurship, and the SP NET ecosystem. Start with PCA at https://t.me/SAVANPATELSP_BOT or email media@sp-net.in with your publication details, interview format, and preferred timeline.",
   },
 ];
 

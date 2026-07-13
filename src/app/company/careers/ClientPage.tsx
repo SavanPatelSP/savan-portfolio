@@ -163,7 +163,7 @@ const stats = [
 const faqItems = [
   {
     question: "Is SP NET INC hiring right now?",
-    answer: "SP NET INC is currently in its building phase — focused on shipping products and establishing the ecosystem. We are not actively hiring for full-time roles at this moment, but we are building toward it. The roles listed on this page represent the positions that will open as the company scales. Internship opportunities may become available sooner.",
+    answer: "SP NET INC is currently in its building phase — focused on shipping products and establishing the ecosystem. We are not actively hiring for full-time roles at this moment, but we are building toward it. The roles listed on this page represent the positions that will open as the company scales.",
   },
   {
     question: "What is the culture like at SP NET INC?",

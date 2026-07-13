@@ -52,7 +52,7 @@ const departments = [
   },
   {
     title: "Media & Press",
-    email: "press@sp-net.in",
+    email: "media@sp-net.in",
     description:
       "For press inquiries, interview requests, media kit access, and coverage related to SP NET INC.",
     icon: Newspaper,
@@ -76,15 +76,6 @@ const departments = [
     icon: Shield,
     color: "text-red-400/70",
     borderColor: "border-red-400/10",
-  },
-  {
-    title: "Support",
-    email: "support@sp-net.in",
-    description:
-      "For product support, technical issues, bug reports, and general help with SP NET INC products.",
-    icon: HelpCircle,
-    color: "text-cyan-400/70",
-    borderColor: "border-cyan-400/10",
   },
   {
     title: "Hello",
@@ -119,7 +110,7 @@ const faqItems = [
   {
     question: "How can I contact SP NET INC?",
     answer:
-      "You can reach us by emailing the appropriate department above. For general inquiries, use contact@sp-net.in. For specific needs, use the relevant department email. We aim to respond within 48 hours.",
+      "The recommended first point of contact is PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT. For specific needs, you can also email the appropriate department: hello@sp-net.in (general), business@sp-net.in (business), contact@sp-net.in (inquiries), media@sp-net.in (media), security@sp-net.in (security), or careers@sp-net.in (careers). You can also schedule a meeting at cal.com/savanpatel.",
   },
   {
     question: "Where is SP NET INC based?",
@@ -297,7 +288,7 @@ export default function CompanyContactClientPage() {
             <FadeIn delay={0.1}>
               <div className="space-y-5 text-sm sm:text-base text-white/35 leading-relaxed">
                 <p>
-                  Members of the press can reach us at press@sp-net.in for
+                  Members of the press can reach us at media@sp-net.in for
                   interview requests, media kit access, and coverage inquiries.
                   We respond to all press requests promptly.
                 </p>

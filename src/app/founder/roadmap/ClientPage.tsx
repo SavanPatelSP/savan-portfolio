@@ -130,7 +130,7 @@ const shortTermGoals = [
       "Ship SP NET GRAM core messaging with real-time sync",
       "Launch SP NET ADMIN OS audit logging and compliance module",
       "Begin AI research with focus on on-device inference",
-      "Publish three open source packages from shared infrastructure",
+      "Continue internal development of shared infrastructure for future open source release",
     ],
   },
   {

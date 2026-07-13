@@ -100,7 +100,7 @@ const faqItems = [
   },
   {
     question: "How can I get in touch with Savan?",
-    answer: "You can reach Savan at savan@sp-net.in, or connect with him on GitHub (savanpatelssp), Telegram (@ABOUTME_SP), or Instagram (savanpatelssp). X and LinkedIn profiles are coming soon. He is always open to conversations about technology, product design, and building the future.",
+    answer: "The recommended first point of contact is the PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT — it handles inquiries efficiently and connects you with the right channel. You can also email hello@sp-net.in (general), business@sp-net.in (partnerships), contact@sp-net.in (general inquiries), media@sp-net.in (press), or savan@sp-net.in (personal). For scheduling, visit cal.com/savanpatel. X and LinkedIn profiles are coming soon. Connect with him on GitHub (savanpatelssp), Telegram (@ABOUTME_SP), or Instagram (savanpatelssp).",
   },
 ];
 

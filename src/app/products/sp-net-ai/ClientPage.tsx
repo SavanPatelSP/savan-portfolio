@@ -112,6 +112,11 @@ const faqItems = [
     answer:
       "SP NET AI is being built with a hybrid approach — leveraging both carefully fine-tuned open-source models and purpose-built inference pipelines. The goal is to balance performance, cost efficiency, and privacy, with the flexibility to run models locally or in the cloud depending on the task.",
   },
+  {
+    question: "How can I get in touch or learn more?",
+    answer:
+      "For any inquiries about SP NET AI, reach out to our Personal Communication Assistant (PCA) at https://t.me/SAVANPATELSP_BOT — it is the recommended first point of contact for questions, feedback, and support. You can also email us at hello@sp-net.in or business@sp-net.in. For scheduling a meeting, visit cal.com/savanpatel.",
+  },
 ];
 
 const relatedPages = [

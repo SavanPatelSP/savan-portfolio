@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Search, ChevronsUpDown, X } from "lucide-react";
+import { ChevronDown, Search, ChevronsUpDown, X, ArrowUpRight, Link2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FAST, NORMAL, ease, spring } from "@/lib/motion";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
@@ -13,10 +13,17 @@ export interface FAQCategory {
   icon: React.ReactNode;
 }
 
+export interface FAQLink {
+  label: string;
+  href: string;
+}
+
 export interface FAQItem {
   question: string;
   answer: string;
   category: string;
+  links?: FAQLink[];
+  related?: string[];
 }
 
 function FAQAccordionItem({
@@ -24,13 +31,25 @@ function FAQAccordionItem({
   index,
   open,
   onToggle,
+  onRelatedClick,
+  allItems,
 }: {
   item: FAQItem;
   index: number;
   open: boolean;
   onToggle: () => void;
+  onRelatedClick: (question: string) => void;
+  allItems: FAQItem[];
 }) {
   const contentRef = useRef<HTMLDivElement>(null);
+
+  const relatedItems = useMemo(() => {
+    if (!item.related || item.related.length === 0) return [];
+    return item.related
+      .map((q) => allItems.find((i) => i.question === q))
+      .filter(Boolean)
+      .slice(0, 3);
+  }, [item.related, allItems]);
 
   return (
     <motion.div
@@ -65,10 +84,47 @@ function FAQAccordionItem({
             transition={{ duration: 0.25, ease: ease.out }}
             className="overflow-hidden"
           >
-            <div ref={contentRef} className="pb-5 sm:pb-6">
+            <div ref={contentRef} className="pb-5 sm:pb-6 space-y-4">
               <p className="text-sm text-white/30 leading-relaxed">
                 {item.answer}
               </p>
+
+              {/* Page links */}
+              {item.links && item.links.length > 0 && (
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {item.links.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      className="inline-flex items-center gap-1.5 rounded-md border border-white/[0.06] bg-white/[0.02] px-2.5 py-1.5 text-[11px] text-white/35 hover:text-white/55 hover:bg-white/[0.04] hover:border-white/[0.10] transition-all duration-200"
+                    >
+                      <Link2 className="h-3 w-3" />
+                      {link.label}
+                      <ArrowUpRight className="h-3 w-3 opacity-50" />
+                    </a>
+                  ))}
+                </div>
+              )}
+
+              {/* Related questions */}
+              {relatedItems.length > 0 && (
+                <div className="pt-2 border-t border-white/[0.03]">
+                  <p className="text-[11px] text-white/20 uppercase tracking-wider mb-2">
+                    Related questions
+                  </p>
+                  <div className="space-y-1">
+                    {relatedItems.map((related) => (
+                      <button
+                        key={related!.question}
+                        onClick={() => onRelatedClick(related!.question)}
+                        className="block w-full text-left text-xs text-blue-400/40 hover:text-blue-400/60 transition-colors duration-200 py-0.5"
+                      >
+                        {related!.question}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
         )}
@@ -156,6 +212,28 @@ export function FAQPage({
     setSearchQuery("");
     inputRef.current?.focus();
   }, []);
+
+  const handleRelatedClick = useCallback(
+    (question: string) => {
+      // Find the question in the full items list
+      const globalIndex = items.findIndex((i) => i.question === question);
+      if (globalIndex === -1) return;
+
+      // Reset filters to show all
+      setActiveCategory("all");
+      setSearchQuery("");
+      setAllOpen(false);
+
+      // Open the related item
+      setOpenItems(new Set([globalIndex]));
+
+      // Scroll to top of FAQ list after a short delay
+      setTimeout(() => {
+        inputRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+    },
+    [items]
+  );
 
   return (
     <div className={cn("w-full", className)}>
@@ -285,6 +363,8 @@ export function FAQPage({
                   index={i}
                   open={openItems.has(i)}
                   onToggle={() => toggleItem(i)}
+                  onRelatedClick={handleRelatedClick}
+                  allItems={items}
                 />
               ))}
             </motion.div>

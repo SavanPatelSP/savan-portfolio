@@ -183,7 +183,7 @@ const faqItems = [
   {
     question: "Can I use the SP NET INC logo on my website?",
     answer:
-      "Yes, provided you follow our brand guidelines. Download approved logo files from our media kit and use them in accordance with our usage rules. For any non-standard use cases, contact savan@sp-net.in for approval.",
+      "Yes, provided you follow our brand guidelines. Download approved logo files from our media kit and use them in accordance with our usage rules. For any non-standard use cases, reach out via PCA at https://t.me/SAVANPATELSP_BOT or email hello@sp-net.in for approval.",
   },
   {
     question: "What are the official SP NET INC brand colors?",
@@ -203,7 +203,12 @@ const faqItems = [
   {
     question: "Where can I download official brand assets?",
     answer:
-      "Official brand assets including logos, colors, and typography specifications are available in our media kit. Visit /resources/media-kit for downloads, or contact us for custom asset requests.",
+      "Official brand assets including logos, colors, and typography specifications are available in our media kit. Visit /resources/media-kit for downloads, or reach out via PCA at https://t.me/SAVANPATELSP_BOT for custom asset requests.",
+  },
+  {
+    question: "How can I contact SP NET INC?",
+    answer:
+      "The recommended first point of contact is PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT. For specific needs, you can also email the appropriate department: hello@sp-net.in (general), business@sp-net.in (business), contact@sp-net.in (inquiries), media@sp-net.in (media), security@sp-net.in (security), or careers@sp-net.in (careers). You can also schedule a meeting at cal.com/savanpatel.",
   },
 ];
 

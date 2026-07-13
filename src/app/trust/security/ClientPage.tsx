@@ -115,17 +115,17 @@ const faqItems = [
   {
     question: "How do I report a security vulnerability?",
     answer:
-      "Email me directly at savan@sp-net.in with details about the vulnerability. Include steps to reproduce and any relevant screenshots. I will acknowledge your report within 48 hours and work on a fix. I take every report seriously, no matter how small.",
+      "The recommended way is to reach out via PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT. You can also email me directly at savan@sp-net.in with details about the vulnerability. Include steps to reproduce and any relevant screenshots. I will acknowledge your report within 48 hours and work on a fix. I take every report seriously, no matter how small.",
   },
   {
     question: "Does SP NET GRAM use end-to-end encryption?",
     answer:
-      "Yes. SP NET GRAM is designed with end-to-end encryption for messages and files. The encryption keys are generated and stored on the user's device, meaning the server never has access to the plaintext content of communications.",
+      "SP NET GRAM is currently in active development and not yet publicly available. It is being designed with end-to-end encryption for messages and files as a core principle. The encryption keys will be generated and stored on the user's device, meaning the server will never have access to the plaintext content of communications.",
   },
   {
     question: "How do you handle security in your personal projects?",
     answer:
-      "I follow secure coding practices from the start — input validation, parameterized queries, proper authentication, and encrypted data storage. I audit dependencies regularly and keep everything updated. For projects like SP NET GRAM, security is the foundational design principle, not a feature.",
+      "I follow secure coding practices from the start — input validation, parameterized queries, proper authentication, and encrypted data storage. I audit dependencies regularly and keep everything updated. For projects like SP NET GRAM (currently in active development), security is the foundational design principle, not a feature.",
   },
   {
     question: "Will you pursue legal action for good-faith reporting?",

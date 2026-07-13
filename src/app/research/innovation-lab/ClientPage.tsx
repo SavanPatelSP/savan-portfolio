@@ -103,6 +103,26 @@ const faqItems = [
     answer:
       "It varies. Some weeks it's zero — I'm heads-down on production work. Other weeks I'll lose an entire weekend to a voice interface prototype. I try to keep at least one active experiment running at all times, even if it's just a few hours a week.",
   },
+  {
+    question: "Are the Innovation Lab experiments or code available publicly?",
+    answer:
+      "Not yet. My open source projects are currently private as they're still evolving rapidly. I plan to open-source selected projects at the right time.",
+  },
+  {
+    question: "Are SP NET products like GRAM and ADMIN OS available?",
+    answer:
+      "Not yet. GRAM, ADMIN OS, and SP NET AI are all in active development. The Innovation Lab feeds ideas into these products, but they won't be publicly available until they're ready.",
+  },
+  {
+    question: "How can I collaborate or suggest an experiment?",
+    answer:
+      "PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT is the recommended first point of contact for any inquiry, including collaboration ideas. You can also email hello@sp-net.in or schedule a call at cal.com/savanpatel.",
+  },
+  {
+    question: "Where can I follow your work on social media?",
+    answer:
+      "X (Twitter) and LinkedIn profiles are coming soon. For now, the best way to stay updated is through PCA at https://t.me/SAVANPATELSP_BOT or by reaching out via email.",
+  },
 ];
 
 const relatedPages = [

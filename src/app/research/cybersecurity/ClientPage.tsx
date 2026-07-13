@@ -88,12 +88,27 @@ const faqItems = [
   {
     question: "Do you do bug bounties?",
     answer:
-      "I haven't run a formal bug bounty program yet, but I actively practice responsible disclosure. If I find a vulnerability in a service I use, I report it to the vendor privately with details and give them time to fix it before saying anything public.",
+      "I haven't run a formal bug bounty program yet, but I actively practice responsible disclosure. If you discover a security vulnerability, please report it to security@sp-net.in. If I find a vulnerability in a service I use, I report it to the vendor privately with details and give them time to fix it before saying anything public.",
   },
   {
     question: "How do you balance security and usability?",
     answer:
       "Security that users bypass isn't security at all. I constantly ask myself: is this security measure adding real protection, or is it just adding friction? The best security is invisible — it works in the background without requiring users to think about it.",
+  },
+  {
+    question: "Is SP NET GRAM publicly available?",
+    answer:
+      "Not yet. SP NET GRAM, along with ADMIN OS and SP NET AI, is in active development. I'm building it with security as the foundation and won't release it until it meets rigorous standards.",
+  },
+  {
+    question: "How can I report a security concern or get in touch?",
+    answer:
+      "For security-related concerns, email security@sp-net.in directly. For any other inquiry, PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT is the recommended first point of contact. You can also reach me at hello@sp-net.in or schedule a call at cal.com/savanpatel.",
+  },
+  {
+    question: "Where can I follow your work on social media?",
+    answer:
+      "X (Twitter) and LinkedIn profiles are coming soon. For now, the best way to stay updated is through PCA at https://t.me/SAVANPATELSP_BOT or by reaching out via email.",
   },
 ];
 

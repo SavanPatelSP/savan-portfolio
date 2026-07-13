@@ -94,6 +94,26 @@ const faqItems = [
     answer:
       "Privacy is non-negotiable. I default to on-device inference for anything sensitive, and I never store raw user data beyond active sessions. The architecture supports zero data retention by default — users have to explicitly opt into cloud-enhanced features.",
   },
+  {
+    question: "Is SP NET GRAM or ADMIN OS publicly available?",
+    answer:
+      "Not yet. GRAM, ADMIN OS, and SP NET AI are all in active development. I'm building them carefully and won't release them until they meet the quality and security standards I hold myself to.",
+  },
+  {
+    question: "Are your open source projects available to the public?",
+    answer:
+      "My open source projects are currently private. I plan to open-source selected projects at the right time, but for now they remain internal as they're still evolving rapidly.",
+  },
+  {
+    question: "How can I get involved or contribute?",
+    answer:
+      "For any inquiry — collaboration, questions, or just connecting — PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT is the recommended first point of contact. You can also reach me by email at hello@sp-net.in or schedule a call at cal.com/savanpatel.",
+  },
+  {
+    question: "Where can I follow your work on social media?",
+    answer:
+      "X (Twitter) and LinkedIn profiles are coming soon. For now, the best way to stay updated is through PCA at https://t.me/SAVANPATELSP_BOT or by reaching out via email.",
+  },
 ];
 
 const relatedPages = [

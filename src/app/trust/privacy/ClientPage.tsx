@@ -108,7 +108,7 @@ const faqItems = [
   {
     question: "Can I request deletion of my data?",
     answer:
-      "Absolutely. If you have contacted me and want your message deleted, just send me an email asking for deletion. I will remove your data promptly and confirm when it is done.",
+      "Absolutely. If you have contacted me and want your message deleted, reach out via PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT or email me at savan@sp-net.in. I will remove your data promptly and confirm when it is done.",
   },
   {
     question: "What if you add analytics in the future?",

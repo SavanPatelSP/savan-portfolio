@@ -89,7 +89,7 @@ const faqItems = [
   {
     question: "Do you use AI in your projects?",
     answer:
-      "Yes, I use AI as a development tool — for code assistance, research, and learning. I also build AI-powered features in projects like SP NET AI. But I always maintain human oversight and am transparent about where AI is involved.",
+      "Yes, I use AI as a development tool — for code assistance, research, and learning. I am also building AI-powered features in SP NET AI, which is currently in active development and not yet publicly available. I always maintain human oversight and am transparent about where AI is involved.",
   },
   {
     question: "How do you ensure AI is used ethically?",

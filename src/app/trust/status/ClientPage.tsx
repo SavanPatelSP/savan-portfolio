@@ -120,12 +120,12 @@ const faqItems = [
   {
     question: "Can I contribute to your open source projects?",
     answer:
-      "Absolutely. My GitHub repositories are public, and I welcome contributions. Check out my GitHub at github.com/savanpatelssp to see what is available. If you find a bug, have a feature idea, or want to improve something, feel free to open an issue or submit a pull request.",
+      "My open source projects are currently private and not yet publicly available. I plan to share them when they are ready. In the meantime, you can follow progress on my GitHub at github.com/savanpatelssp.",
   },
   {
     question: "How can I get in touch?",
     answer:
-      "The easiest way is email — send me a message at savan@sp-net.in. You can also reach me on Telegram at t.me/ABOUTME_SP. I try to respond to messages within a day or two.",
+      "The recommended first point of contact is PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT. You can also reach me via email at hello@sp-net.in or savan@sp-net.in. I try to respond to messages within a day or two.",
   },
   {
     question: "What is the status of SP NET GRAM?",

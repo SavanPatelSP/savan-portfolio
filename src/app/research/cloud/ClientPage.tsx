@@ -78,7 +78,7 @@ const faqItems = [
   {
     question: "What cloud providers do you use?",
     answer:
-      "I keep things provider-agnostic where possible. My main deployments use a mix of traditional VPS providers and edge platforms like Cloudflare. I prefer not to lock myself into any single ecosystem — it keeps costs honest and makes迁移 easier if needed.",
+      "I keep things provider-agnostic where possible. My main deployments use a mix of traditional VPS providers and edge platforms like Cloudflare. I prefer not to lock myself into any single ecosystem — it keeps costs honest and makes migration easier if needed.",
   },
   {
     question: "Do you actually use Kubernetes in production?",
@@ -94,6 +94,21 @@ const faqItems = [
     question: "What's your biggest cloud lesson so far?",
     answer:
       "Backups. I lost data once because I assumed a managed database was handling backups properly. It wasn't. Now I automate backups, test restores regularly, and never trust a provider's defaults without verifying.",
+  },
+  {
+    question: "Are SP NET products publicly available?",
+    answer:
+      "SP NET products — GRAM, ADMIN OS, and SP NET AI — are currently in active development and not yet publicly available. I'm focused on building them right before releasing them.",
+  },
+  {
+    question: "How can I get in touch or learn more?",
+    answer:
+      "PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT is the recommended first point of contact for any inquiry. You can also email hello@sp-net.in or schedule a call at cal.com/savanpatel.",
+  },
+  {
+    question: "Where can I follow your work on social media?",
+    answer:
+      "X (Twitter) and LinkedIn profiles are coming soon. For now, the best way to stay updated is through PCA at https://t.me/SAVANPATELSP_BOT or by reaching out via email.",
   },
 ];
 

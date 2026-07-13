@@ -104,6 +104,21 @@ const faqItems = [
     answer:
       "Probably not. Some will turn out to be hype. Some will mature at the wrong time. Some will be brilliant but impractical for my use case. The point of exploring now is to be ready when the right technology meets the right moment. I'd rather be early and informed than late and scrambling.",
   },
+  {
+    question: "Are SP NET products publicly available yet?",
+    answer:
+      "Not yet. GRAM, ADMIN OS, and SP NET AI are all in active development. I'm exploring these future technologies to be ready when the right moment arrives to integrate them into the ecosystem.",
+  },
+  {
+    question: "How can I learn more or get involved?",
+    answer:
+      "PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT is the recommended first point of contact for any inquiry. You can also email hello@sp-net.in or schedule a call at cal.com/savanpatel.",
+  },
+  {
+    question: "Where can I follow your work on social media?",
+    answer:
+      "X (Twitter) and LinkedIn profiles are coming soon. For now, the best way to stay updated is through PCA at https://t.me/SAVANPATELSP_BOT or by reaching out via email.",
+  },
 ];
 
 const relatedPages = [

@@ -156,6 +156,16 @@ const faqItems = [
     answer:
       "SP NET ADMIN OS combines automated and human moderation. Automated systems use content classification, behavioral analysis, and trust scoring to flag or action suspicious activity in real time. Escalation workflows route complex cases to human moderators with full context. Ban, mute, and restriction tools give moderators precise control, and an appeal process ensures fair outcomes for users.",
   },
+  {
+    question: "When will SP NET ADMIN OS be available?",
+    answer:
+      "SP NET ADMIN OS is currently in active development. We are building out the core administration modules — organizations, permissions, economy, analytics, and moderation. Join the waitlist to get early access when we launch our beta program.",
+  },
+  {
+    question: "How can I get in touch or learn more?",
+    answer:
+      "For any inquiries about SP NET ADMIN OS, reach out to our Personal Communication Assistant (PCA) at https://t.me/SAVANPATELSP_BOT — it is the recommended first point of contact for questions, feedback, and support. You can also email us at hello@sp-net.in or business@sp-net.in. For scheduling a meeting, visit cal.com/savanpatel.",
+  },
 ];
 
 const relatedPages = [

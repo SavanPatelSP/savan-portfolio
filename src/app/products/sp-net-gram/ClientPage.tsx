@@ -136,6 +136,11 @@ const faqItems = [
     answer:
       "SP NET GRAM is currently in active development. We are building the core messaging infrastructure, encryption protocol, and cross-platform clients. Join the waitlist to get early access when we launch our beta program.",
   },
+  {
+    question: "How can I get in touch or learn more?",
+    answer:
+      "For any inquiries about SP NET GRAM, reach out to our Personal Communication Assistant (PCA) at https://t.me/SAVANPATELSP_BOT — it is the recommended first point of contact for questions, feedback, and support. You can also email us at hello@sp-net.in or business@sp-net.in. For scheduling a meeting, visit cal.com/savanpatel.",
+  },
 ];
 
 const relatedPages = [
