@@ -243,7 +243,7 @@ function FounderCard() {
 
 export function AboutSection() {
   return (
-    <SectionContainer id="founder" className="bg-black relative">
+    <SectionContainer id="founder" className="bg-black relative overflow-hidden">
       <div className="pointer-events-none absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.04] to-transparent" aria-hidden="true" />
 
       <SectionTitle

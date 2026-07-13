@@ -132,7 +132,7 @@ export function ProjectsSection() {
   const achInView = useInView(achRef, { once: true, amount: 0.1 });
 
   return (
-    <SectionContainer id="roadmap" className="bg-black relative">
+    <SectionContainer id="roadmap" className="bg-black relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/[0.01] to-transparent" aria-hidden="true" />
 
       <SectionTitle

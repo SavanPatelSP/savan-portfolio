@@ -17,7 +17,7 @@ export function TechGridSection() {
   };
 
   return (
-    <SectionContainer id="technologies" className="bg-black relative">
+    <SectionContainer id="technologies" className="bg-black relative overflow-hidden">
       <div className="pointer-events-none absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.04] to-transparent" aria-hidden="true" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/[0.01] to-transparent" aria-hidden="true" />
 

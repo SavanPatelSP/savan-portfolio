@@ -1,13 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { ArrowUpRight, Building2, ChevronDown, Code, Cpu, ExternalLink, Mail, MessageSquare, Rocket, Settings, Terminal, Zap } from "lucide-react";
+import { ArrowUpRight, Building2, ChevronDown, Code, Cpu, ExternalLink, MessageSquare, Rocket, Settings, Terminal, Zap } from "lucide-react";
 import Image from "next/image";
-import { GithubIcon, LinkedinIcon, TelegramIcon, InstagramIcon } from "@/components/ui/Icons";
-import { SocialModal } from "@/components/ui/SocialModal";
 import { personal } from "@/data/personal";
-import { products, futureProducts } from "@/data/products";
+
 import { cn } from "@/lib/utils";
 import { ease, spring, SLOW, NORMAL, FAST } from "@/lib/motion";
 
@@ -15,48 +13,86 @@ import { ease, spring, SLOW, NORMAL, FAST } from "@/lib/motion";
 
 const navGroups = [
   {
+    title: "Company",
+    links: [
+      { label: "About SP NET INC", href: "/company/about" },
+      { label: "Mission & Vision", href: "/company/mission" },
+      { label: "Leadership", href: "/company/leadership" },
+      { label: "Partners", href: "/company/partners" },
+      { label: "Careers", href: "/company/careers" },
+      { label: "Newsroom", href: "/company/newsroom" },
+      { label: "Contact", href: "/company/contact" },
+    ],
+  },
+  {
     title: "Products",
     links: [
-      ...products.map((p) => ({ label: p.name, href: "#products" })),
-      ...futureProducts.slice(0, 1).map((p) => ({ label: `${p.name} (Soon)`, href: "#products" })),
+      { label: "SP NET GRAM", href: "/products/sp-net-gram" },
+      { label: "SP NET ADMIN OS", href: "/products/sp-net-admin-os" },
+      { label: "SP NET AI", href: "/products/sp-net-ai" },
+      { label: "SP NET Ecosystem", href: "/products/sp-net-ecosystem" },
     ],
   },
   {
-    title: "Founder",
+    title: "Research",
     links: [
-      { label: "About", href: "#founder" },
-      { label: "Journey", href: "#journey" },
-      { label: "Engineering Philosophy", href: "#expertise" },
-      { label: "Roadmap", href: "#roadmap" },
+      { label: "Artificial Intelligence", href: "/research/ai" },
+      { label: "Cloud Computing", href: "/research/cloud" },
+      { label: "Cybersecurity", href: "/research/cybersecurity" },
+      { label: "Innovation Lab", href: "/research/innovation-lab" },
+      { label: "Future Technologies", href: "/research/future-tech" },
     ],
   },
   {
-    title: "Platform",
+    title: "Trust",
     links: [
-      { label: "Organization", href: "#organization" },
-      { label: "Expertise", href: "#technologies" },
-      { label: "Technologies", href: "#technologies" },
-      { label: "Development", href: "#roadmap" },
+      { label: "Privacy", href: "/trust/privacy" },
+      { label: "Security", href: "/trust/security" },
+      { label: "Transparency", href: "/trust/transparency" },
+      { label: "Responsible AI", href: "/trust/responsible-ai" },
+      { label: "System Status", href: "/trust/status" },
+    ],
+  },
+  {
+    title: "Explore",
+    links: [
+      { label: "Products", href: "/explore/products" },
+      { label: "Innovation", href: "/explore/innovation" },
+      { label: "Technology", href: "/explore/technology" },
+      { label: "Future Vision", href: "/explore/vision" },
+      { label: "Learning Resources", href: "/explore/learning" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "GitHub", href: personal.social.github },
-      { label: "Open Source", href: personal.social.github },
-      { label: "Blog (Coming Soon)", href: "#" },
-      { label: "Media Kit (Coming Soon)", href: "#" },
+      { label: "Documentation", href: "/resources/documentation" },
+      { label: "FAQs", href: "/resources/faqs" },
+      { label: "Blog", href: "/resources/blog" },
+      { label: "Open Source", href: "/resources/open-source" },
+      { label: "Media Kit", href: "/resources/media-kit" },
+      { label: "Press Releases", href: "/resources/press-releases" },
+      { label: "Press Contact", href: "/resources/press-contact" },
+    ],
+  },
+  {
+    title: "Founder",
+    links: [
+      { label: "About Savan", href: "/founder/about" },
+      { label: "Journey", href: "/founder/journey" },
+      { label: "Philosophy", href: "/founder/philosophy" },
+      { label: "Roadmap", href: "/founder/roadmap" },
     ],
   },
   {
     title: "Connect",
     links: [
-      { label: "Email", href: `mailto:${personal.email}` },
-      { label: "Telegram", href: personal.social.telegram },
-      { label: "Instagram", href: personal.social.instagram },
-      { label: "LinkedIn", href: personal.social.linkedin, modal: true as const },
-      { label: "GitHub", href: personal.social.github },
-      { label: "Contact", href: "#contact" },
+      { label: "Get in Touch", href: "/get-in-touch" },
+      { label: "Contact", href: "/contact" },
+      { label: "Socials", href: "/company/socials" },
+      { label: "Support", href: "/company/support" },
+      { label: "Updates", href: "/company/updates" },
+      { label: "Newsletter", href: "/company/newsletter" },
     ],
   },
 ];
@@ -82,14 +118,6 @@ const techBadges = [
   "Framer Motion", "Node.js", "PostgreSQL", "Prisma",
 ];
 
-const socialCards = [
-  { icon: TelegramIcon, label: "Telegram", href: personal.social.telegram, desc: "Direct messaging" },
-  { icon: GithubIcon, label: "GitHub", href: personal.social.github, desc: "Open source & code" },
-  { icon: InstagramIcon, label: "Instagram", href: personal.social.instagram, desc: "Visual updates" },
-  { icon: LinkedinIcon, label: "LinkedIn", href: personal.social.linkedin, desc: "Professional network", modal: true as const },
-  { icon: Mail, label: "Email", href: `mailto:${personal.email}`, desc: "Get in touch" },
-];
-
 /* ─── FADE IN ───────────────────────────────────────────────── */
 
 function FadeSection({ children, delay = 0, className }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -111,10 +139,8 @@ function FadeSection({ children, delay = 0, className }: { children: React.React
 /* ─── MAIN ──────────────────────────────────────────────────── */
 
 export function Footer() {
-  const [modalOpen, setModalOpen] = useState(false);
   return (
     <footer className="relative overflow-hidden" style={{ backgroundColor: "#050505" }}>
-      <SocialModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%)" }} />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 h-48 w-96 opacity-[0.04] blur-[80px]" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.5) 0%, transparent 70%)" }} />
@@ -151,7 +177,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: NORMAL, delay: 0.3, ease: ease.out }}
           >
-            <motion.a href="#contact" className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.04] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/70 hover:bg-white/[0.06] hover:border-white/20 transition-all duration-300"
+            <motion.a href="/get-in-touch" className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.04] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/70 hover:bg-white/[0.06] hover:border-white/20 transition-all duration-300"
               whileHover={{ y: -2, scale: 1.01 }}
               whileTap={{ scale: 0.97 }}
               transition={spring.gentle}
@@ -159,7 +185,7 @@ export function Footer() {
               Get In Touch
               <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
             </motion.a>
-            <motion.a href="#products" className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.06] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/30 hover:text-white/50 hover:border-white/12 transition-all duration-300"
+            <motion.a href="/products/sp-net-ecosystem" className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.06] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/30 hover:text-white/50 hover:border-white/12 transition-all duration-300"
               whileHover={{ y: -2, scale: 1.01 }}
               whileTap={{ scale: 0.97 }}
               transition={spring.gentle}
@@ -201,52 +227,30 @@ export function Footer() {
                   <span className="text-[10px] text-white/10">Founder, {personal.company}</span>
                 </div>
               </div>
-              <div className="mt-5 sm:mt-6 flex gap-2.5 justify-center sm:justify-start">
-                {socialCards.slice(0, 3).map((s) => {
-                  const Icon = s.icon;
-                  const isModal = "modal" in s;
-                  return (
-                    <motion.a key={s.label} href={isModal ? "#" : s.href} target={isModal ? undefined : "_blank"} rel={isModal ? undefined : "noopener noreferrer"}
-                      onClick={isModal ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
-                      className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.06] text-white/25 hover:text-white/60 hover:border-white/12 transition-all duration-200"
-                      whileHover={{ y: -2, scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={spring.gentle}
-                      aria-label={s.label}
-                    >
-                      <Icon className="h-3.5 w-3.5" />
-                    </motion.a>
-                  );
-                })}
-              </div>
             </FadeSection>
           </div>
 
           {/* ─── NAVIGATION ─── */}
           <FadeSection delay={0.3} className="flex-1">
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 sm:gap-10 text-center sm:text-left">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 sm:gap-8 text-center sm:text-left">
               {navGroups.map((group) => (
                 <div key={group.title}>
                   <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-4">{group.title}</h4>
                   <ul className="list-none p-0 m-0 space-y-2.5">
-                    {group.links.map((link) => {
-                      const navIsModal = "modal" in link;
-                      return (
+                    {group.links.map((link) => (
                       <li key={link.label}>
                         <a
-                          href={navIsModal ? "#" : link.href}
-                          target={navIsModal ? undefined : (link.href.startsWith("http") ? "_blank" : undefined)}
-                          rel={navIsModal ? undefined : (link.href.startsWith("http") ? "noopener noreferrer" : undefined)}
-                          onClick={navIsModal ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
+                          href={link.href}
+                          target={link.href.startsWith("http") ? "_blank" : undefined}
+                          rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                           className="group/link inline-flex items-center gap-1.5 text-sm text-white/35 hover:text-white/70 transition-colors duration-200"
                         >
                           <span className="h-px w-0 group-hover/link:w-2 bg-white/30 transition-all duration-300" />
                           {link.label}
-                          {link.href.startsWith("http") && !navIsModal && <ExternalLink className="h-3 w-3 opacity-0 group-hover/link:opacity-60 transition-opacity duration-200" />}
+                          {link.href.startsWith("http") && <ExternalLink className="h-3 w-3 opacity-0 group-hover/link:opacity-60 transition-opacity duration-200" />}
                         </a>
                       </li>
-                    );
-                    })}
+                    ))}
                   </ul>
                 </div>
               ))}
@@ -301,44 +305,29 @@ export function Footer() {
           </div>
         </FadeSection>
 
-        {/* ═══ NEWSLETTER + SOCIAL CARDS ═══ */}
-        <div className="py-16 sm:py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 border-t border-white/[0.04]">
+        {/* ═══ CONNECT LINKS ═══ */}
+        <div className="py-16 sm:py-20 lg:py-24 border-t border-white/[0.04]">
           <FadeSection delay={0.1}>
-            <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-3" id="newsletter-heading">Future Updates</h4>
-            <p className="text-sm text-white/30 mb-5">Launching Soon</p>
-            <div className="flex items-center gap-2">
-              <input type="email" placeholder="your@email.com" disabled aria-labelledby="newsletter-heading"
-                className="flex-1 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-2.5 text-sm text-white/30 placeholder-white/10 focus:outline-none focus:border-white/15 focus:ring-1 focus:ring-white/5 transition-all duration-300 backdrop-blur-sm"
-              />
-              <span className="inline-flex items-center gap-1.5 rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-2.5 text-xs font-medium text-white/20 backdrop-blur-sm">
-                Notify Me
-              </span>
-            </div>
-            <p className="text-[11px] text-white/10 mt-2 font-mono">Coming Soon</p>
-          </FadeSection>
-
-          <FadeSection delay={0.2}>
-            <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-4">Connect</h4>
-            <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-3 gap-2 sm:gap-3">
-              {socialCards.map((s) => {
-                const Icon = s.icon;
-                const isModal = "modal" in s;
-                return (
-                  <motion.a key={s.label} href={isModal ? "#" : s.href} target={isModal ? undefined : "_blank"} rel={isModal ? undefined : "noopener noreferrer"}
-                    onClick={isModal ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
-                    className="group/social rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 text-center transition-all duration-300 backdrop-blur-sm hover:border-white/10 hover:bg-white/[0.03]"
-                    whileHover={{ y: -3, scale: 1.02 }}
-                    whileTap={{ scale: 0.97 }}
-                    transition={spring.gentle}
-                  >
-                    <Icon className="h-5 w-5 mx-auto text-white/20 group-hover/social:text-white/50 transition-all duration-300" />
-                    <div className="flex items-center justify-center gap-1.5 mt-2">
-                      <p className="text-xs font-medium text-white/30 group-hover/social:text-white/50 transition-colors duration-300">{s.label}</p>
-                    </div>
-                    <p className="text-[9px] text-white/10 mt-0.5">{s.desc}</p>
-                  </motion.a>
-                );
-              })}
+            <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-6">Connect</h4>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+              {[
+                { label: "Get in Touch", description: "Choose how to connect", href: "/get-in-touch" },
+                { label: "Contact", description: "Direct contact form", href: "/contact" },
+                { label: "Socials", description: "Follow on social platforms", href: "/company/socials" },
+                { label: "Support", description: "Help and resources", href: "/company/support" },
+                { label: "Updates", description: "News and announcements", href: "/company/updates" },
+              ].map((item) => (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  className="group rounded-xl border border-white/[0.04] bg-white/[0.01] p-5 text-center hover:border-white/[0.08] hover:bg-white/[0.02] transition-all duration-300"
+                  whileHover={{ y: -3, scale: 1.02 }}
+                  transition={spring.gentle}
+                >
+                  <p className="text-sm font-medium text-white/50 group-hover:text-white/70 transition-colors duration-200">{item.label}</p>
+                  <p className="text-[11px] text-white/15 mt-1">{item.description}</p>
+                </motion.a>
+              ))}
             </div>
           </FadeSection>
         </div>

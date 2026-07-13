@@ -324,7 +324,7 @@ function FutureProductCard({
 export function ProductsSection() {
   return (
     <ParallaxContainer speed={0.03}>
-      <SectionContainer id="products" className="bg-black relative">
+      <SectionContainer id="products" className="bg-black relative overflow-hidden">
         <div className="pointer-events-none absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.04] to-transparent" aria-hidden="true" />
 
         <SectionTitle

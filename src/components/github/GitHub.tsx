@@ -30,7 +30,7 @@ export function GitHubSection() {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <SectionContainer id="github" className="bg-black relative">
+    <SectionContainer id="github" className="bg-black relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/[0.01] to-transparent" aria-hidden="true" />
 
       <SectionTitle

@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Link2 } from "lucide-react";
-import { TelegramIcon } from "@/components/ui/Icons";
+import { X, Sparkles, Send, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 interface SocialModalProps {
@@ -96,37 +95,38 @@ export function SocialModal({ isOpen, onClose }: SocialModalProps) {
             </button>
 
             <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.02]">
-              <Link2 className="h-5 w-5 text-white/40" />
+              <Sparkles className="h-5 w-5 text-white/40" />
             </div>
 
             <h2 className="text-2xl font-semibold tracking-tight text-white/90">
-              🔗 Social Profile Coming Soon
+              Coming Soon
             </h2>
 
             <div className="mt-4 space-y-3 text-sm text-white/35 leading-relaxed">
-              <p>Thank you for your interest.</p>
               <p>
-                My public X (Twitter) and LinkedIn profiles are currently being carefully prepared and refined.
+                My official X and LinkedIn profiles are currently being prepared.
               </p>
               <p>
-                As I begin my academic journey and continue building the SP NET Ecosystem, I&apos;m taking the time to establish a professional online presence that reflects my work, projects, and long-term vision.
+                I&apos;m taking the time to build a professional presence that
+                reflects my work, projects, and long-term vision. These profiles
+                will become publicly available soon.
               </p>
               <p>
-                Once they&apos;re ready, these profiles will feature development updates, technical insights, project announcements, professional milestones, and content documenting my journey as a student, developer, and founder.
-              </p>
-              <p>
-                In the meantime, you&apos;re welcome to follow my official Telegram Channel to stay up to date with the latest announcements, project updates, and everything I&apos;m building.
+                In the meantime, you&apos;re welcome to connect with me through
+                my Personal Communication Assistant, which is the fastest and
+                recommended way to reach me.
               </p>
             </div>
 
             <div className="mt-8 flex flex-col gap-3">
               <Button
                 variant="primary"
-                href="https://t.me/ABOUTME_SP"
+                href="https://t.me/SAVANPATELSP_BOT"
                 external
               >
-                <TelegramIcon className="h-4 w-4" />
-                Visit Telegram Channel
+                <Send className="h-4 w-4" />
+                Open Personal Communication Assistant
+                <ArrowUpRight className="h-3.5 w-3.5 opacity-50" />
               </Button>
               <Button variant="secondary" onClick={onClose}>
                 Close
