@@ -276,7 +276,6 @@ export default function GetInTouchClientPage() {
 
       {/* ═══ INTRODUCTION ════════════════════════════════════════ */}
       <SectionContainer id="assistant" className="pt-0 sm:pt-0">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -313,12 +312,10 @@ export default function GetInTouchClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ═══ WHY CHOOSE ══════════════════════════════════════════ */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Benefits"
             title="Why choose the personal communication assistant?"
@@ -358,12 +355,10 @@ export default function GetInTouchClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ═══ WHAT CAN WE TALK ABOUT ══════════════════════════════ */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Topics"
             title="What can we talk about?"
@@ -383,12 +378,10 @@ export default function GetInTouchClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ═══ PRIMARY CTA ═════════════════════════════════════════ */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <FadeIn>
             <div className="max-w-3xl mx-auto text-center">
               <div className="relative rounded-2xl border border-emerald-500/10 bg-gradient-to-b from-emerald-500/[0.04] to-transparent p-10 sm:p-14 overflow-hidden">
@@ -421,12 +414,10 @@ export default function GetInTouchClientPage() {
               </div>
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ═══ COMMUNICATION FLOW ══════════════════════════════════ */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="How it works"
             title="Communication flow"
@@ -434,12 +425,10 @@ export default function GetInTouchClientPage() {
           />
 
           <FlowTimeline />
-        </SectionContainer>
       </SectionContainer>
 
       {/* ═══ OTHER WAYS TO REACH ME ══════════════════════════════ */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start mb-16">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -563,7 +552,6 @@ export default function GetInTouchClientPage() {
               </motion.a>
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ═══ RELATED PAGES ═══════════════════════════════════════ */}

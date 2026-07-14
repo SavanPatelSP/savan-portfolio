@@ -84,7 +84,6 @@ export default function FAQsPage() {
         icon={<HelpCircle className="h-4 w-4" />}
       />
 
-      <SectionContainer>
         <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
@@ -116,10 +115,8 @@ export default function FAQsPage() {
             </FadeIn>
           </div>
         </SectionContainer>
-      </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="FAQ"
             title="Frequently asked questions"
@@ -127,11 +124,9 @@ export default function FAQsPage() {
           />
 
           <FAQPage categories={faqCategories} items={faqItems} />
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="By the Numbers"
             title="SP NET INC at a glance"
@@ -153,11 +148,9 @@ export default function FAQsPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Still have questions?"
             title="Reach out"
@@ -188,7 +181,6 @@ export default function FAQsPage() {
               </motion.a>
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       <RelatedPages title="Explore More" pages={relatedPages} />

@@ -109,7 +109,6 @@ export default function PressContactPage() {
       />
 
       <SectionContainer id="introduction">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -139,11 +138,9 @@ export default function PressContactPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Press Contacts"
             title="Reach our press team"
@@ -186,11 +183,9 @@ export default function PressContactPage() {
               </FadeIn>
             ))}
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Response Times"
             title="What to expect"
@@ -226,7 +221,7 @@ export default function PressContactPage() {
                     <p className="text-sm font-medium text-white/60 sm:hidden mb-1">
                       {item.category}
                     </p>
-                    <p className="text-sm text-white/50 hidden sm:block">
+                    <p className="text-sm text-white/50">
                       {item.category}
                     </p>
                   </div>
@@ -255,18 +250,16 @@ export default function PressContactPage() {
                       {item.priority}
                     </span>
                   </div>
-                  <p className="text-xs text-white/25 leading-relaxed hidden sm:block">
+                  <p className="text-xs text-white/25 leading-relaxed sm:col-span-1">
                     {item.description}
                   </p>
                 </div>
               </FadeIn>
             ))}
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Media Kit"
             title="Brand assets"
@@ -293,11 +286,9 @@ export default function PressContactPage() {
               </Link>
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="By the Numbers"
             title="Press coverage at a glance"
@@ -324,7 +315,6 @@ export default function PressContactPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <RelatedPages title="Related Pages" pages={relatedPages} />

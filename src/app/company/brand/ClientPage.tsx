@@ -100,19 +100,19 @@ const colors = [
     name: "Background",
     hex: "#0a0a0a",
     usage: "Page backgrounds, primary surface",
-    swatch: "bg-[#0a0a0a] border border-white/10",
+    swatch: "bg-[#0a0a0a] ring-1 ring-white/10",
   },
   {
     name: "Surface",
     hex: "#111111",
     usage: "Cards, elevated surfaces, panels",
-    swatch: "bg-[#111111] border border-white/10",
+    swatch: "bg-[#111111] ring-1 ring-white/10",
   },
   {
     name: "Border",
     hex: "rgba(255,255,255,0.04)",
     usage: "Dividers, card borders, subtle separation",
-    swatch: "bg-white/[0.04]",
+    swatch: "bg-white/[0.08] ring-1 ring-white/10",
   },
   {
     name: "Text Primary",
@@ -229,7 +229,6 @@ export default function BrandClientPage() {
       />
 
       <SectionContainer id="introduction">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -259,11 +258,9 @@ export default function BrandClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Brand Assets"
             title="Logo and identity"
@@ -299,11 +296,9 @@ export default function BrandClientPage() {
               </FadeIn>
             ))}
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Logo Usage"
             title="Do's and don'ts"
@@ -357,11 +352,9 @@ export default function BrandClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Typography"
             title="Geist typeface family"
@@ -394,11 +387,9 @@ export default function BrandClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Colors"
             title="Color palette"
@@ -425,11 +416,9 @@ export default function BrandClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Brand Voice"
             title="How we communicate"
@@ -453,11 +442,9 @@ export default function BrandClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Brand Personality"
             title="What we stand for"
@@ -481,11 +468,9 @@ export default function BrandClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Download"
             title="Brand assets"
@@ -505,11 +490,9 @@ export default function BrandClientPage() {
               </p>
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="By the Numbers"
             title="Brand at a glance"
@@ -528,7 +511,6 @@ export default function BrandClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <FAQ title="Brand FAQ" items={faqItems} />

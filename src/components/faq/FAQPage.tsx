@@ -296,6 +296,7 @@ export function FAQPage({
               ref={inputRef}
               type="text"
               placeholder="Search questions..."
+              aria-label="Search frequently asked questions"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full rounded-lg border border-white/[0.06] bg-white/[0.02] pl-10 pr-10 py-3 text-sm text-white/60 placeholder:text-white/20 focus:outline-none focus:border-white/[0.12] focus:bg-white/[0.03] transition-all duration-200"

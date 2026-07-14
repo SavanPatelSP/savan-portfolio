@@ -34,7 +34,7 @@ export function Breadcrumbs({
       </Link>
       {items.map((item, i) => (
         <span key={i} className="flex items-center gap-1.5">
-          <ChevronRight className="h-3 w-3 text-white/15" />
+          <ChevronRight className="h-3 w-3 text-white/15" aria-hidden="true" />
           {item.href ? (
             <Link
               href={item.href}

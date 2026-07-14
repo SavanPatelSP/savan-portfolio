@@ -161,8 +161,8 @@ export default function ClientPage() {
         title="Curious about"
         titleAccent="our products?"
         description="Each product has its own page with details on features, status, and the story behind why it exists."
-        primaryAction={{ label: "View all products", href: "/products" }}
-        secondaryAction={{ label: "About SP NET INC", href: "/company" }}
+        primaryAction={{ label: "About SP NET INC", href: "/company/about" }}
+        secondaryAction={{ label: "Get in touch", href: "/get-in-touch" }}
       />
     </>
   );

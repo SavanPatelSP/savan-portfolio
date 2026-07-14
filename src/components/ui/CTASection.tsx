@@ -8,6 +8,30 @@ import { cn } from "@/lib/utils";
 import { SLOW, NORMAL, ease, spring } from "@/lib/motion";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
 
+function CTALink({
+  href,
+  className,
+  children,
+}: {
+  href: string;
+  className?: string;
+  children: ReactNode;
+}) {
+  const isInternal = href.startsWith("/") && !href.startsWith("//");
+  if (isInternal) {
+    return (
+      <Link href={href} className={className}>
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <a href={href} className={className}>
+      {children}
+    </a>
+  );
+}
+
 export function CTASection({
   title,
   titleAccent,
@@ -60,26 +84,20 @@ export function CTASection({
 
         <FadeIn delay={0.2}>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <motion.a
+            <CTALink
               href={primaryAction.href}
               className="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors duration-200"
-              whileHover={{ y: -2, scale: 1.02 }}
-              whileTap={{ scale: 0.97 }}
-              transition={spring.gentle}
             >
               {primaryAction.label}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform duration-200" />
-            </motion.a>
+            </CTALink>
             {secondaryAction && (
-              <motion.a
+              <CTALink
                 href={secondaryAction.href}
                 className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.08] px-6 py-3 text-sm font-medium text-white/40 hover:text-white/60 hover:border-white/15 transition-all duration-200"
-                whileHover={{ y: -2, scale: 1.02 }}
-                whileTap={{ scale: 0.97 }}
-                transition={spring.gentle}
               >
                 {secondaryAction.label}
-              </motion.a>
+              </CTALink>
             )}
           </div>
         </FadeIn>

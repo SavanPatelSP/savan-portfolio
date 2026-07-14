@@ -107,16 +107,13 @@ export function ComingSoon({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: NORMAL, delay: 0.4, ease: ease.out }}
         >
-          <motion.a
-            href="#contact"
+          <Link
+            href="/contact"
             className="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors duration-200"
-            whileHover={{ y: -2, scale: 1.02 }}
-            whileTap={{ scale: 0.97 }}
-            transition={spring.gentle}
           >
             <Rocket className="h-4 w-4" />
             Get Notified
-          </motion.a>
+          </Link>
           <Link
             href="/"
             className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.08] px-6 py-3 text-sm font-medium text-white/40 hover:text-white/60 hover:border-white/15 transition-all duration-200"

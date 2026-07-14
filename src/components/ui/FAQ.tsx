@@ -14,6 +14,8 @@ interface FAQItem {
 
 function FAQAccordion({ item, index }: { item: FAQItem; index: number }) {
   const [open, setOpen] = useState(false);
+  const panelId = `faq-panel-${index}`;
+  const buttonId = `faq-button-${index}`;
 
   return (
     <motion.div
@@ -24,9 +26,11 @@ function FAQAccordion({ item, index }: { item: FAQItem; index: number }) {
       transition={{ duration: FAST, delay: index * 0.05, ease: ease.out }}
     >
       <button
+        id={buttonId}
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between py-5 sm:py-6 text-left group"
         aria-expanded={open}
+        aria-controls={panelId}
       >
         <span className="text-sm sm:text-base text-white/60 group-hover:text-white/80 transition-colors duration-200 pr-4">
           {item.question}
@@ -42,6 +46,9 @@ function FAQAccordion({ item, index }: { item: FAQItem; index: number }) {
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
+            id={panelId}
+            role="region"
+            aria-labelledby={buttonId}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}

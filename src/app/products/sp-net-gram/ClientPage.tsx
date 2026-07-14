@@ -91,7 +91,6 @@ const highlights = [
   },
   {
     icon: Settings,
-    title: "Productivity Tools",
     label: "Productivity Tools",
     description:
       "Pinned messages, saved items, search across all conversations, message scheduling, and reminders keep your communication organized.",

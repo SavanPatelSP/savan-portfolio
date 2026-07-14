@@ -159,7 +159,6 @@ export default function ClientPage() {
       />
 
       <SectionContainer id="introduction">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -195,11 +194,9 @@ export default function ClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Founder"
             title="Savan Patel"
@@ -283,11 +280,9 @@ export default function ClientPage() {
               </div>
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Leadership Philosophy"
             title="How we lead"
@@ -310,11 +305,9 @@ export default function ClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Management Style"
             title="How we operate day to day"
@@ -331,11 +324,9 @@ export default function ClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Future Leadership"
             title="Building the leadership team"
@@ -360,11 +351,9 @@ export default function ClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Organizational Growth"
             title="How we scale leadership"
@@ -430,11 +419,9 @@ export default function ClientPage() {
               ))}
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="By the Numbers"
             title="Leadership at a glance"
@@ -451,7 +438,6 @@ export default function ClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <FAQ title="Leadership" items={faqItems} />
@@ -480,9 +466,9 @@ export default function ClientPage() {
             href: "/company/careers",
           },
           {
-            title: "Organization",
-            description: "How SP NET INC is structured and the departments behind the products.",
-            href: "/company/about",
+            title: "Mission & Values",
+            description: "The purpose and direction driving every product at SP NET INC.",
+            href: "/company/mission",
           },
         ]}
       />

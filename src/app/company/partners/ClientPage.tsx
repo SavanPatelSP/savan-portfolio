@@ -191,7 +191,6 @@ export default function PartnersClientPage() {
       />
 
       <SectionContainer id="introduction">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -222,11 +221,9 @@ export default function PartnersClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Technology Partners"
             title="Powering the ecosystem"
@@ -260,11 +257,9 @@ export default function PartnersClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Future Partnerships"
             title="Where we're headed"
@@ -285,11 +280,9 @@ export default function PartnersClientPage() {
               </FadeIn>
             ))}
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Collaboration Philosophy"
             title="How we partner"
@@ -313,11 +306,9 @@ export default function PartnersClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Partnership Benefits"
             title="What partners receive"
@@ -343,11 +334,9 @@ export default function PartnersClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="By the Numbers"
             title="Partnership at a glance"
@@ -366,7 +355,6 @@ export default function PartnersClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <FAQ title="Partnership FAQ" items={faqItems} />

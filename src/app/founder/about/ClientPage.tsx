@@ -122,7 +122,6 @@ export default function AboutClientPage() {
       />
 
       <SectionContainer id="about">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -152,11 +151,9 @@ export default function AboutClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Background"
             title="From curiosity to creation"
@@ -207,11 +204,9 @@ export default function AboutClientPage() {
               </p>
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="What Drives Me"
             title="Obsessed with the details"
@@ -246,11 +241,9 @@ export default function AboutClientPage() {
               </p>
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Expertise"
             title="Built to build"
@@ -284,11 +277,9 @@ export default function AboutClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Values & Approach"
             title="How I think about building"
@@ -308,11 +299,9 @@ export default function AboutClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Connect"
             title="Find me online"
@@ -340,7 +329,6 @@ export default function AboutClientPage() {
             ))}
           </StaggerFade>
           <SocialModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-        </SectionContainer>
       </SectionContainer>
 
       <FAQ

@@ -419,7 +419,7 @@ export default function MediaKitPage() {
                   transition={spring.gentle}
                 >
                   <div
-                    className="h-20 w-full"
+                    className="h-20 w-full ring-1 ring-white/10"
                     style={{ backgroundColor: color.hex }}
                   />
                   <div className="p-4">

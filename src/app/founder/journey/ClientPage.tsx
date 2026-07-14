@@ -176,7 +176,6 @@ export default function JourneyClientPage() {
       />
 
       <SectionContainer id="timeline">
-        <SectionContainer>
           <SectionTitle
             label="Timeline"
             title="The full story"
@@ -212,11 +211,9 @@ export default function JourneyClientPage() {
               ))}
             </div>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Milestones"
             title="Defining moments"
@@ -242,11 +239,9 @@ export default function JourneyClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Key Moments"
             title="What shaped the path"
@@ -267,11 +262,9 @@ export default function JourneyClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Lessons Learned"
             title="What the journey taught"
@@ -295,7 +288,6 @@ export default function JourneyClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <FAQ

@@ -199,7 +199,6 @@ export default function ClientPage() {
       />
 
       <SectionContainer id="introduction">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -234,11 +233,9 @@ export default function ClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Working at SP NET INC"
             title="What it is like"
@@ -268,11 +265,9 @@ export default function ClientPage() {
               </p>
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Culture"
             title="What we stand for"
@@ -295,11 +290,9 @@ export default function ClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Benefits"
             title="What we offer"
@@ -319,11 +312,9 @@ export default function ClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Engineering Roles"
             title="Build the infrastructure"
@@ -358,11 +349,9 @@ export default function ClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Design Roles"
             title="Shape the experience"
@@ -397,11 +386,9 @@ export default function ClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Internships"
             title="Start your journey"
@@ -426,11 +413,9 @@ export default function ClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Future Openings"
             title="What is coming"
@@ -478,11 +463,9 @@ export default function ClientPage() {
               ))}
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Hiring Philosophy"
             title="How we hire"
@@ -505,11 +488,9 @@ export default function ClientPage() {
               </p>
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="By the Numbers"
             title="Careers at a glance"
@@ -526,7 +507,6 @@ export default function ClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <FAQ title="Careers" items={faqItems} />
@@ -545,9 +525,9 @@ export default function ClientPage() {
             href: "/company/leadership",
           },
           {
-            title: "Organization",
-            description: "How SP NET INC is structured and the departments behind the products.",
-            href: "/company/about",
+            title: "Brand & Identity",
+            description: "The visual identity, brand colors, and voice guidelines of SP NET INC.",
+            href: "/company/brand",
           },
           {
             title: "Mission & Vision",

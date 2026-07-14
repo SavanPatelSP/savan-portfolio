@@ -147,7 +147,6 @@ export default function NewsletterClientPage() {
 
       {/* ─── PLANNED TOPICS ───────────────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="What to expect"
             title="Planned newsletter topics"
@@ -174,12 +173,10 @@ export default function NewsletterClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── WHY SUBSCRIBE ────────────────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -210,12 +207,10 @@ export default function NewsletterClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── ALTERNATIVE WAYS TO STAY UPDATED ──────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <div className="relative rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.03] to-transparent p-8 sm:p-12 lg:p-16 overflow-hidden">
             <div
               className="absolute inset-0 pointer-events-none"
@@ -275,7 +270,6 @@ export default function NewsletterClientPage() {
               </FadeIn>
             </div>
           </div>
-        </SectionContainer>
       </SectionContainer>
     </>
   );

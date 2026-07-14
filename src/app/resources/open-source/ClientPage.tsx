@@ -281,7 +281,6 @@ export default function OpenSourceClientPage() {
       />
 
       {/* ─── Status Indicator ───────────────────────────────── */}
-      <SectionContainer>
         <SectionContainer>
           <FadeIn>
             <div className="max-w-2xl">
@@ -313,11 +312,9 @@ export default function OpenSourceClientPage() {
             </div>
           </FadeIn>
         </SectionContainer>
-      </SectionContainer>
 
       {/* ─── Why the Projects Are Private ───────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -354,11 +351,9 @@ export default function OpenSourceClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Reasons"
             title="The principles behind the decision"
@@ -385,12 +380,10 @@ export default function OpenSourceClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── Open Source Philosophy ──────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -422,11 +415,9 @@ export default function OpenSourceClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Core Beliefs"
             title="What drives the commitment"
@@ -453,12 +444,10 @@ export default function OpenSourceClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── What Will Become Open Source ────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Future Releases"
             title="What will become open source"
@@ -491,12 +480,10 @@ export default function OpenSourceClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── Release Prerequisites ───────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Standards"
             title="Prerequisites before public release"
@@ -525,12 +512,10 @@ export default function OpenSourceClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── Future Release Roadmap ──────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Roadmap"
             title="Future release roadmap"
@@ -582,12 +567,10 @@ export default function OpenSourceClientPage() {
               </motion.div>
             ))}
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── How to Stay Updated ─────────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Stay Updated"
             title="How to stay updated"
@@ -690,12 +673,10 @@ export default function OpenSourceClientPage() {
               </motion.a>
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── Coming in the Future ────────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <div className="relative rounded-2xl border border-white/[0.06] bg-gradient-to-b from-white/[0.03] to-transparent p-8 sm:p-12 lg:p-16 overflow-hidden">
             <div
               className="absolute inset-0 pointer-events-none"
@@ -759,12 +740,10 @@ export default function OpenSourceClientPage() {
               </FadeIn>
             </div>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── FAQ ─────────────────────────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Questions"
             title="Frequently asked questions"
@@ -774,7 +753,6 @@ export default function OpenSourceClientPage() {
           <div className="mx-auto max-w-2xl">
             <FAQ title="" items={faqItems} />
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <RelatedPages title="Explore More" pages={relatedPages} />

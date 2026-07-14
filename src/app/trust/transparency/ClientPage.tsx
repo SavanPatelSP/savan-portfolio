@@ -122,7 +122,6 @@ export default function ClientPage() {
       />
 
       <SectionContainer id="introduction">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -156,11 +155,9 @@ export default function ClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Principles"
             title="How I practice transparency"
@@ -183,11 +180,9 @@ export default function ClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="In Practice"
             title="What I actually share"
@@ -214,11 +209,9 @@ export default function ClientPage() {
               </motion.div>
             ))}
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Promises"
             title="What I commit to"
@@ -242,11 +235,9 @@ export default function ClientPage() {
               ))}
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Open Source"
             title="My open-source mindset"
@@ -285,7 +276,6 @@ export default function ClientPage() {
               </div>
             </div>
           </FadeIn>
-        </SectionContainer>
       </SectionContainer>
 
       <FAQ title="Transparency FAQ" items={faqItems} />

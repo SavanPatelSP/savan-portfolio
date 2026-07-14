@@ -105,7 +105,6 @@ export default function SocialsClientPage() {
       />
 
       <SectionContainer id="platforms">
-        <SectionContainer>
           <SectionTitle
             label="Platforms"
             title="Where to find us"
@@ -160,11 +159,9 @@ export default function SocialsClientPage() {
             ))}
           </StaggerFade>
           <SocialModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-        </SectionContainer>
       </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -194,7 +191,6 @@ export default function SocialsClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       <RelatedPages

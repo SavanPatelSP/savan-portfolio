@@ -420,6 +420,9 @@ function ContactForm() {
               Something went wrong. Please try again or email me directly.
             </p>
           )}
+          <div className="sr-only" role="status" aria-live="polite">
+            {sent && "Message sent successfully. I will get back to you soon."}
+          </div>
         </div>
       </form>
     </div>
@@ -491,7 +494,6 @@ export default function ContactClientPage() {
 
       {/* ─── PERSONAL COMMUNICATION ASSISTANT ─────────────────── */}
       <SectionContainer id="assistant" className="!pt-16 sm:!pt-20">
-        <SectionContainer>
           {/* ─── HERO CARD ────────────────────────────────────── */}
           <FadeIn>
             <div className="relative rounded-2xl border border-emerald-500/10 bg-gradient-to-b from-emerald-500/[0.04] to-transparent p-8 sm:p-10 lg:p-14 overflow-hidden">
@@ -711,12 +713,10 @@ export default function ContactClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── ABOUT CONTACTING ME ──────────────────────────────── */}
       <SectionContainer id="about" className="border-t border-white/[0.04]">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -746,12 +746,10 @@ export default function ContactClientPage() {
               </div>
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── PRIMARY CONTACT ──────────────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Contact"
             title="Reach me directly"
@@ -844,12 +842,10 @@ export default function ContactClientPage() {
               </motion.a>
             </StaggerItem>
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── PROFESSIONAL PROFILES ────────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Profiles"
             title="Find me online"
@@ -898,12 +894,10 @@ export default function ContactClientPage() {
             ))}
           </StaggerFade>
           <SocialModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── CONTACT FORM ─────────────────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]" id="contact">
-        <SectionContainer>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
@@ -933,12 +927,10 @@ export default function ContactClientPage() {
               <ContactForm />
             </FadeIn>
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── AVAILABILITY ─────────────────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Availability"
             title="Current status"
@@ -967,12 +959,10 @@ export default function ContactClientPage() {
               </StaggerItem>
             ))}
           </StaggerFade>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── FAQ ──────────────────────────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]">
-        <SectionContainer>
           <SectionTitle
             label="Questions"
             title="Frequently asked questions"
@@ -982,7 +972,6 @@ export default function ContactClientPage() {
           <div className="mx-auto max-w-2xl">
             <FAQ title="" items={faqItems} />
           </div>
-        </SectionContainer>
       </SectionContainer>
 
       {/* ─── RELATED PAGES ────────────────────────────────────── */}
