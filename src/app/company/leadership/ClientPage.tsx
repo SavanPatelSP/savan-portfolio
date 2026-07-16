@@ -244,7 +244,7 @@ export default function ClientPage() {
                   <div className="flex flex-wrap gap-2">
                     <Link
                       href="/founder/about"
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-xs text-white/35 hover:text-white/50 hover:border-white/[0.10] transition-all duration-200"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3.5 py-2.5 text-xs text-white/35 hover:text-white/50 hover:border-white/[0.10] transition-all duration-200 min-h-[44px]"
                     >
                       About
                       <ArrowRight className="h-3 w-3" />
@@ -253,7 +253,7 @@ export default function ClientPage() {
                       href={personal.social.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-xs text-white/35 hover:text-white/50 hover:border-white/[0.10] transition-all duration-200"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3.5 py-2.5 text-xs text-white/35 hover:text-white/50 hover:border-white/[0.10] transition-all duration-200 min-h-[44px]"
                     >
                       GitHub
                       <ArrowRight className="h-3 w-3" />
@@ -261,7 +261,7 @@ export default function ClientPage() {
                     <button
                       type="button"
                       onClick={() => setModalOpen(true)}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-xs text-white/35 hover:text-white/50 hover:border-white/[0.10] transition-all duration-200"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3.5 py-2.5 text-xs text-white/35 hover:text-white/50 hover:border-white/[0.10] transition-all duration-200 min-h-[44px]"
                     >
                       LinkedIn
                       <ArrowRight className="h-3 w-3" />
@@ -269,7 +269,7 @@ export default function ClientPage() {
                     <button
                       type="button"
                       onClick={() => setModalOpen(true)}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-xs text-white/35 hover:text-white/50 hover:border-white/[0.10] transition-all duration-200"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3.5 py-2.5 text-xs text-white/35 hover:text-white/50 hover:border-white/[0.10] transition-all duration-200 min-h-[44px]"
                     >
                       X
                       <ArrowRight className="h-3 w-3" />
@@ -466,9 +466,9 @@ export default function ClientPage() {
             href: "/company/careers",
           },
           {
-            title: "Mission & Values",
-            description: "The purpose and direction driving every product at SP NET INC.",
-            href: "/company/mission",
+            title: "Partners",
+            description: "The organizations and collaborators working with SP NET INC.",
+            href: "/company/partners",
           },
         ]}
       />

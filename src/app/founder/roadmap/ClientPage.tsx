@@ -338,15 +338,17 @@ export default function RoadmapPage() {
             {products.map((product, productIdx) => (
               <FadeIn key={product.id} delay={productIdx * 0.1}>
                 <div>
-                  <div className="flex items-center gap-3 mb-8">
-                    <div
-                      className="h-3 w-3 rounded-full"
-                      style={{ backgroundColor: product.color + "40" }}
-                    />
-                    <h3 className="text-lg font-semibold text-white/70">
-                      {product.name}
-                    </h3>
-                    <span className="text-xs text-white/25 border border-white/[0.06] rounded-full px-2.5 py-0.5">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-8">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="h-3 w-3 rounded-full shrink-0"
+                        style={{ backgroundColor: product.color + "40" }}
+                      />
+                      <h3 className="text-lg font-semibold text-white/70">
+                        {product.name}
+                      </h3>
+                    </div>
+                    <span className="text-xs text-white/25 border border-white/[0.06] rounded-full px-2.5 py-0.5 shrink-0">
                       {product.status}
                     </span>
                   </div>
@@ -572,7 +574,7 @@ export default function RoadmapPage() {
                 <h3 className="text-sm font-medium text-white/60 mb-2">
                   Shared libraries
                 </h3>
-                <p className="text-xs text-white/25 leading-relaxed">
+                <p className="text-sm text-white/35 leading-relaxed">
                   Design tokens, UI primitives, animation utilities, and helper functions. The
                   building blocks that make SP NET products consistent and maintainable.
                 </p>
@@ -583,7 +585,7 @@ export default function RoadmapPage() {
                 <h3 className="text-sm font-medium text-white/60 mb-2">
                   Contributor program
                 </h3>
-                <p className="text-xs text-white/25 leading-relaxed">
+                <p className="text-sm text-white/35 leading-relaxed">
                   Structured onboarding, mentorship, and recognition for open source contributors.
                   Making it easy for anyone to get involved and feel valued.
                 </p>
@@ -605,10 +607,10 @@ export default function RoadmapPage() {
 
       <CTASection
         title="Want to influence the roadmap?"
-        titleAccent="Your feedback shapes what we build next."
-        description="We build for our users. If you have ideas, feature requests, or just want to share how you would use SP NET products — we are listening."
+        titleAccent="Your feedback shapes what I build next."
+        description="If you have ideas, feature requests, or just want to share how you would use SP NET products — I am listening."
         primaryAction={{ label: "Get in touch", href: "/get-in-touch" }}
-        secondaryAction={{ label: "Read our philosophy", href: "/founder/philosophy" }}
+        secondaryAction={{ label: "Read my philosophy", href: "/founder/philosophy" }}
       />
     </>
   );

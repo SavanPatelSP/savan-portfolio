@@ -137,8 +137,8 @@ const benefits = [
 const stats = [
   { label: "Technology Partners", value: "Growing", icon: Cloud },
   { label: "Focus Areas", value: "4", icon: Target },
-  { label: "Partner Satisfaction", value: "100%", icon: Heart },
-  { label: "Integration Uptime", value: "99.9%", icon: BarChart3 },
+  { label: "Community", value: "Open", icon: Heart },
+  { label: "Integration", value: "Planned", icon: BarChart3 },
 ];
 
 const faqItems = [
@@ -269,7 +269,7 @@ export default function PartnersClientPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {futurePartnerships.map((item, i) => (
               <FadeIn key={item.title} delay={i * 0.06}>
-                <div className="rounded-xl border border-dashed border-white/[0.06] bg-white/[0.01] p-6 h-full">
+                <div className="rounded-xl border border-white/[0.06] bg-white/[0.01] p-6 h-full">
                   <h3 className="text-sm font-medium text-white/50 mb-2">
                     {item.title}
                   </h3>

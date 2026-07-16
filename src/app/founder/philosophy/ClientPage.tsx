@@ -285,7 +285,7 @@ export default function PhilosophyPage() {
                 <h3 className="text-sm font-medium text-white/60 mb-2">
                   Zero-error user experience
                 </h3>
-                <p className="text-xs text-white/25 leading-relaxed">
+                <p className="text-sm text-white/35 leading-relaxed">
                   Every error state is designed, not accidental. If something can go wrong, we handle
                   it gracefully with clear messaging, recovery options, and zero data loss. Users
                   should never feel uncertain about what happened or what to do next.
@@ -297,7 +297,7 @@ export default function PhilosophyPage() {
                 <h3 className="text-sm font-medium text-white/60 mb-2">
                   Code that reads like documentation
                 </h3>
-                <p className="text-xs text-white/25 leading-relaxed">
+                <p className="text-sm text-white/35 leading-relaxed">
                   Clear, self-documenting code is a feature. If a function needs a comment to explain
                   what it does, it needs to be rewritten. We invest in naming, structure, and
                   separation of concerns so that the codebase teaches newcomers how the system works.
@@ -309,7 +309,7 @@ export default function PhilosophyPage() {
                 <h3 className="text-sm font-medium text-white/60 mb-2">
                   Security by design
                 </h3>
-                <p className="text-xs text-white/25 leading-relaxed">
+                <p className="text-sm text-white/35 leading-relaxed">
                   Security is not a feature to add later — it is embedded in every layer. End-to-end
                   encryption where possible, strict input validation, least-privilege access, and
                   regular audits. We treat user data as a sacred responsibility.
@@ -321,7 +321,7 @@ export default function PhilosophyPage() {
                 <h3 className="text-sm font-medium text-white/60 mb-2">
                   Accessible by default
                 </h3>
-                <p className="text-xs text-white/25 leading-relaxed">
+                <p className="text-sm text-white/35 leading-relaxed">
                   If it is not accessible, it is not done. Semantic HTML, keyboard navigation, screen
                   reader support, and sufficient contrast are not afterthoughts. Every interface must
                   work for everyone, regardless of ability, device, or connection speed.
@@ -365,7 +365,7 @@ export default function PhilosophyPage() {
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-5 text-center">
                 <div className="text-2xl font-semibold text-white/60 mb-1">Planned</div>
                 <div className="text-xs text-white/25">Core libraries will be open source</div>

@@ -364,7 +364,7 @@ export function SectionTitle({
         </FadeIn>
       )}
       <Reveal delay={0.1}>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[0.92] sm:leading-[0.88]">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white leading-[1.0] sm:leading-[0.92] md:leading-[0.88]">
           {title}
         </h2>
       </Reveal>

@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Target, Compass, Zap, Globe, Code, Building2, Layers, Infinity, Heart, Sparkles } from "lucide-react";
 import { SectionContainer, FadeIn, Reveal, BlurReveal, StaggerFade, StaggerItem, SectionTitle, ParallaxContainer } from "@/components/ui/AnimationPrimitives";
+import { ParticleField } from "@/components/ui/ParticleField";
 import { personal, founderMetrics, principles } from "@/data/personal";
 import { ease, spring, NORMAL } from "@/lib/motion";
 
@@ -38,92 +39,6 @@ function CircuitPattern() {
   );
 }
 
-function ConstellationParticles({ containerRef }: { containerRef: React.RefObject<HTMLDivElement | null> }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animId: number;
-    const particles: { x: number; y: number; vx: number; vy: number; alpha: number }[] = [];
-
-    const resize = () => {
-      if (!canvas) return;
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    };
-    resize();
-
-    const ro = new ResizeObserver(resize);
-    if (containerRef.current) ro.observe(containerRef.current);
-
-    for (let i = 0; i < 30; i++) {
-      particles.push({
-        x: Math.random() * (canvas.width || 600),
-        y: Math.random() * (canvas.height || 600),
-        vx: (Math.random() - 0.5) * 0.1,
-        vy: (Math.random() - 0.5) * 0.1,
-        alpha: Math.random() * 0.3 + 0.05,
-      });
-    }
-
-    const draw = () => {
-      if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, 1, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(59, 130, 246, ${p.alpha})`;
-        ctx.fill();
-      }
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 100) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${0.06 * (1 - dist / 100)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-
-      animId = requestAnimationFrame(draw);
-    };
-
-    draw();
-
-    return () => {
-      cancelAnimationFrame(animId);
-      ro.disconnect();
-    };
-  }, [containerRef]);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-[1]"
-      aria-hidden="true"
-    />
-  );
-}
-
 function FounderCard() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -142,7 +57,7 @@ function FounderCard() {
         <CircuitPattern />
 
         {/* Constellation particles */}
-        <ConstellationParticles containerRef={ref} />
+        <ParticleField count={30} connectionDistance={100} speed={0.1} />
 
         {/* Glowing border effect */}
         <div
@@ -303,7 +218,7 @@ export function AboutSection() {
                     <Icon className="h-4 w-4" />
                   </motion.div>
                   <h4 className="mt-4 text-sm font-medium text-white">{p.title}</h4>
-                  <p className="mt-2 text-sm text-white/25 leading-relaxed">{p.description}</p>
+                  <p className="mt-2 text-sm text-white/35 leading-relaxed">{p.description}</p>
                 </div>
               </StaggerItem>
             );

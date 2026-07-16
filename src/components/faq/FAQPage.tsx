@@ -240,7 +240,7 @@ export function FAQPage({
       {/* Category Navigation */}
       <FadeIn delay={0.1}>
         <div className="mb-8">
-          <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+          <div className="flex overflow-x-auto gap-2 justify-start lg:justify-start pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:flex-wrap scrollbar-none">
             <button
               onClick={() => {
                 setActiveCategory("all");
@@ -248,7 +248,7 @@ export function FAQPage({
                 setOpenItems(new Set());
               }}
               className={cn(
-                "inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-xs font-medium transition-all duration-200",
+                "inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-xs font-medium transition-all duration-200 shrink-0",
                 activeCategory === "all"
                   ? "bg-white/[0.08] text-white/80 border border-white/[0.12]"
                   : "bg-white/[0.02] text-white/35 border border-white/[0.04] hover:bg-white/[0.04] hover:text-white/50 hover:border-white/[0.08]"
@@ -268,7 +268,7 @@ export function FAQPage({
                   setOpenItems(new Set());
                 }}
                 className={cn(
-                  "inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-xs font-medium transition-all duration-200",
+                  "inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-xs font-medium transition-all duration-200 shrink-0",
                   activeCategory === cat.id
                     ? "bg-white/[0.08] text-white/80 border border-white/[0.12]"
                     : "bg-white/[0.02] text-white/35 border border-white/[0.04] hover:bg-white/[0.04] hover:text-white/50 hover:border-white/[0.08]"

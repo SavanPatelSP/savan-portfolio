@@ -28,6 +28,7 @@ import {
 import { FAST, ease, spring } from "@/lib/motion";
 import { personal } from "@/data/personal";
 import { RelatedPages } from "@/components/ui/RelatedPages";
+import { CTASection } from "@/components/ui/CTASection";
 import { GithubIcon, XIcon, LinkedinIcon, InstagramIcon, TelegramIcon } from "@/components/ui/Icons";
 import { SocialModal } from "@/components/ui/SocialModal";
 import {
@@ -276,7 +277,7 @@ export default function GetInTouchClientPage() {
 
       {/* ═══ INTRODUCTION ════════════════════════════════════════ */}
       <SectionContainer id="assistant" className="pt-0 sm:pt-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-16 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
                 Introduction
@@ -398,14 +399,15 @@ export default function GetInTouchClientPage() {
                     href="https://t.me/SAVANPATELSP_BOT"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-3 rounded-xl bg-white px-10 py-5 text-base font-medium text-black hover:bg-white/90 transition-colors duration-200"
+                    className="group inline-flex items-center gap-3 rounded-xl bg-white px-6 sm:px-10 py-4 sm:py-5 text-sm sm:text-base font-medium text-black hover:bg-white/90 transition-colors duration-200"
                     whileHover={{ y: -3, scale: 1.02 }}
                     whileTap={{ scale: 0.97 }}
                     transition={spring.gentle}
                   >
-                    <TelegramIcon className="h-5 w-5" />
-                    Open Personal Communication Assistant
-                    <ArrowUpRight className="h-5 w-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                    <TelegramIcon className="h-5 w-5 shrink-0" />
+                    <span className="hidden sm:inline">Open Personal Communication Assistant</span>
+                    <span className="sm:hidden">Open Assistant</span>
+                    <ArrowUpRight className="h-5 w-5 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
                   </motion.a>
                   <p className="mt-6 text-sm text-white/20">
                     Free · Instant · Personal
@@ -429,7 +431,7 @@ export default function GetInTouchClientPage() {
 
       {/* ═══ OTHER WAYS TO REACH ME ══════════════════════════════ */}
       <SectionContainer className="border-t border-white/[0.04]">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-16 items-start mb-16">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
                 Alternatives
@@ -555,6 +557,14 @@ export default function GetInTouchClientPage() {
       </SectionContainer>
 
       {/* ═══ RELATED PAGES ═══════════════════════════════════════ */}
+      <CTASection
+        title="Have a question first?"
+        titleAccent="Check the FAQs"
+        description="Answers to the most common questions about me, my products, and how to get involved."
+        primaryAction={{ label: "View FAQs", href: "/resources/faqs" }}
+        secondaryAction={{ label: "About me", href: "/founder/about" }}
+      />
+
       <RelatedPages
         title="Explore More"
         pages={[

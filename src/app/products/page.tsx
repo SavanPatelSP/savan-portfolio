@@ -4,11 +4,11 @@ import ClientPage from "./ClientPage";
 export const metadata: Metadata = {
   title: "Products — SP NET INC",
   description:
-    "Explore the SP NET product ecosystem — from messaging to administration to AI-powered intelligent automation.",
+    "Explore the full SP NET product ecosystem — core products, platforms, and research initiatives spanning messaging, administration, AI, and beyond.",
   openGraph: {
     title: "Products — SP NET INC",
     description:
-      "Explore the SP NET product ecosystem — from messaging to administration to AI-powered intelligent automation.",
+      "Explore the full SP NET product ecosystem — core products, platforms, and research initiatives.",
     url: "https://savan.sp-net.in/products",
     type: "website",
     siteName: "SP NET INC",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Products — SP NET INC",
     description:
-      "Explore the SP NET product ecosystem — from messaging to administration to AI-powered intelligent automation.",
+      "Explore the full SP NET product ecosystem — core products, platforms, and research initiatives.",
   },
   alternates: {
     canonical: "/products",

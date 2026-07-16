@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Cookie } from "lucide-react";
 
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -57,7 +57,8 @@ export function CookieConsent() {
             <div className="flex flex-col sm:flex-row items-start sm:items-start gap-3 sm:gap-4">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-medium text-blue-200">🍪 Cookie Notice</span>
+                  <Cookie className="h-3.5 w-3.5 text-white/40" />
+                  <span className="text-xs font-medium text-white/60">Cookie Notice</span>
                 </div>
                 <p className="text-xs text-white/40 leading-relaxed">
                   This site uses localStorage to remember your consent preferences. No cookies, tracking, or analytics are used. By continuing, you accept this use of local storage.
@@ -67,19 +68,19 @@ export function CookieConsent() {
                 <button
                   ref={acceptRef}
                   onClick={accept}
-                  className="rounded-lg bg-blue-500/20 border border-blue-500/30 px-3 sm:px-4 py-2 text-xs font-medium text-blue-200 hover:bg-blue-500/30 transition-all duration-200 whitespace-nowrap"
+                  className="rounded-lg bg-white/[0.06] border border-white/[0.10] px-4 py-2.5 text-xs font-medium text-white/70 hover:bg-white/[0.10] transition-all duration-200 whitespace-nowrap min-h-[44px]"
                 >
                   Accept
                 </button>
                 <button
                   onClick={decline}
-                  className="rounded-lg border border-white/[0.06] px-3 sm:px-4 py-2 text-xs font-medium text-white/30 hover:text-white/50 hover:border-white/10 transition-all duration-200 whitespace-nowrap"
+                  className="rounded-lg border border-white/[0.06] px-4 py-2.5 text-xs font-medium text-white/30 hover:text-white/50 hover:border-white/10 transition-all duration-200 whitespace-nowrap min-h-[44px]"
                 >
                   Decline
                 </button>
                 <button
                   onClick={decline}
-                  className="flex items-center justify-center h-8 w-8 rounded-lg text-white/20 hover:text-white/40 hover:bg-white/[0.03] transition-all duration-200"
+                  className="flex items-center justify-center h-11 w-11 rounded-lg text-white/20 hover:text-white/40 hover:bg-white/[0.03] transition-all duration-200"
                   aria-label="Close"
                 >
                   <X className="h-3.5 w-3.5" />

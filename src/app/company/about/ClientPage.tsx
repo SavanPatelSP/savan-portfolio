@@ -121,7 +121,7 @@ export default function ClientPage() {
       />
 
       <SectionContainer id="introduction">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-16 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
                 Introduction
@@ -199,7 +199,7 @@ export default function ClientPage() {
           />
 
           <FadeIn delay={0.05}>
-            <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-8 sm:p-10 max-w-3xl">
+            <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-8 sm:p-10 max-w-3xl mx-auto">
               <div className="flex items-center gap-3 mb-5">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 border border-blue-500/20">
                   <Compass className="h-5 w-5 text-blue-400/60" />
@@ -226,7 +226,7 @@ export default function ClientPage() {
           />
 
           <FadeIn delay={0.05}>
-            <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-8 sm:p-10 max-w-3xl">
+            <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-8 sm:p-10 max-w-3xl mx-auto">
               <div className="flex items-center gap-3 mb-5">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-500/10 border border-violet-500/20">
                   <Globe className="h-5 w-5 text-violet-400/60" />
@@ -279,7 +279,7 @@ export default function ClientPage() {
           />
 
           <FadeIn delay={0.1}>
-            <div className="space-y-5 text-sm sm:text-base text-white/35 leading-relaxed max-w-3xl">
+            <div className="space-y-5 text-sm sm:text-base text-white/35 leading-relaxed max-w-3xl mx-auto">
               <p>
                 At SP NET INC, engineering is not just a function — it is the culture. Every
                 decision starts with the question: &quot;What is the best technical
@@ -329,7 +329,7 @@ export default function ClientPage() {
           />
 
           <FadeIn delay={0.1}>
-            <div className="space-y-5 text-sm sm:text-base text-white/35 leading-relaxed max-w-3xl">
+            <div className="space-y-5 text-sm sm:text-base text-white/35 leading-relaxed max-w-3xl mx-auto">
               <p>
                 Innovation at SP NET INC is not about chasing trends — it is about solving
                 real problems in ways that have not been attempted before. We approach every

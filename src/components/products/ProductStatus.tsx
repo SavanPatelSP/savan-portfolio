@@ -5,10 +5,21 @@ import { cn } from "@/lib/utils";
 import { ease, NORMAL } from "@/lib/motion";
 
 interface ProductStatusProps {
+  status?: string;
   className?: string;
 }
 
-export function ProductStatus({ className }: ProductStatusProps) {
+const statusMessages: Record<string, { primary: string; secondary: string }> = {
+  building: { primary: "Active Development", secondary: "In Progress" },
+  official: { primary: "Production Ready", secondary: "Official Project" },
+  "future-initiative": { primary: "Future Initiative", secondary: "Research & Planning" },
+  future: { primary: "Future Initiative", secondary: "Research & Planning" },
+  research: { primary: "Research", secondary: "Exploration Phase" },
+  researching: { primary: "Research & Development", secondary: "In Progress" },
+};
+
+export function ProductStatus({ status = "building", className }: ProductStatusProps) {
+  const messages = statusMessages[status] || statusMessages.building;
   return (
     <motion.div
       className={cn(
@@ -45,12 +56,12 @@ export function ProductStatus({ className }: ProductStatusProps) {
         <svg className="relative h-3 w-3 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="20 6 9 17 4 12" />
         </svg>
-        <span className="relative">Production Ready</span>
+        <span className="relative">{messages.primary}</span>
       </span>
 
       {/* Secondary label */}
       <span className="hidden sm:inline-flex text-[10px] font-mono uppercase tracking-[0.15em] text-white/15 transition-colors duration-300 group-hover/status:text-white/25">
-        Official Product
+        {messages.secondary}
       </span>
     </motion.div>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   ChevronDown,
@@ -18,6 +18,7 @@ import {
   Cpu,
 } from "lucide-react";
 import { SectionContainer, SectionTitle } from "@/components/ui/AnimationPrimitives";
+import { ParticleField } from "@/components/ui/ParticleField";
 import { organizationCategories } from "@/data/organization";
 import { cn } from "@/lib/utils";
 
@@ -26,46 +27,13 @@ import { cn } from "@/lib/utils";
 function OsBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-96 w-[800px] rounded-full opacity-[0.15] blur-[120px]" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.6) 0%, transparent 70%)" }} />
-      <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full opacity-[0.12] blur-[100px]" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.4) 0%, transparent 70%)" }} />
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-96 w-[800px] rounded-full opacity-[0.08] blur-[120px]" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.6) 0%, transparent 70%)" }} />
+      <div className="absolute bottom-0 right-0 h-80 w-80 rounded-full opacity-[0.06] blur-[100px]" style={{ background: "radial-gradient(circle, rgba(59,130,246,0.4) 0%, transparent 70%)" }} />
       <div className="absolute top-1/4 left-0 h-px w-full" style={{ background: "linear-gradient(90deg, transparent, rgba(59,130,246,0.5), transparent)", animation: "light-streak 8s ease-in-out infinite" }} />
       <div className="absolute top-2/3 left-0 h-px w-full" style={{ background: "linear-gradient(90deg, transparent, rgba(59,130,246,0.35), transparent)", animation: "light-streak 12s ease-in-out 4s infinite" }} />
       <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.5) 100%)" }} />
     </div>
   );
-}
-
-function Particles() {
-  const ref = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const c = ref.current;
-    if (!c) return;
-    const ctx = c.getContext("2d");
-    if (!ctx) return;
-    let id: number;
-    const p = Array.from({ length: 45 }, () => ({ x: Math.random() * 1200, y: Math.random() * 800, vx: (Math.random() - 0.5) * 0.15, vy: (Math.random() - 0.5) * 0.15, a: Math.random() * 0.25 + 0.05 }));
-    const resize = () => { c.width = c.offsetWidth; c.height = c.offsetHeight; };
-    resize();
-    window.addEventListener("resize", resize);
-    const draw = () => {
-      ctx.clearRect(0, 0, c.width, c.height);
-      for (const pt of p) {
-        pt.x += pt.vx; pt.y += pt.vy;
-        if (pt.x < 0) pt.x = c.width; if (pt.x > c.width) pt.x = 0;
-        if (pt.y < 0) pt.y = c.height; if (pt.y > c.height) pt.y = 0;
-        ctx.beginPath(); ctx.arc(pt.x, pt.y, 2, 0, Math.PI * 2); ctx.fillStyle = `rgba(59,130,246,${pt.a})`; ctx.fill();
-      }
-      for (let i = 0; i < p.length; i++)
-        for (let j = i + 1; j < p.length; j++) {
-          const dx = p[i].x - p[j].x, dy = p[i].y - p[j].y, d = Math.sqrt(dx * dx + dy * dy);
-          if (d < 140) { ctx.beginPath(); ctx.moveTo(p[i].x, p[i].y); ctx.lineTo(p[j].x, p[j].y); ctx.strokeStyle = `rgba(59,130,246,${0.12 * (1 - d / 140)})`; ctx.lineWidth = 0.8; ctx.stroke(); }
-        }
-      id = requestAnimationFrame(draw);
-    };
-    draw();
-    return () => { cancelAnimationFrame(id); window.removeEventListener("resize", resize); };
-  }, []);
-  return <canvas ref={ref} className="pointer-events-none absolute inset-0 z-[1]" aria-hidden="true" />;
 }
 
 /* ─── TYPES & CONFIG ──────────────────────────────────────────── */
@@ -109,7 +77,7 @@ function TreeNode({ name, level, icon: Icon, children, idx, visible }: { name: s
         </div>
 
         <div className="flex-1 min-w-0 pt-0.5">
-          <button onClick={() => setOpen(!open)} className={cn("group relative w-full text-left flex items-center gap-2 sm:gap-2.5", level <= 1 ? "rounded-xl border px-3 sm:px-4 py-2 sm:py-2.5" : "py-1.5 px-1")}
+          <button onClick={() => setOpen(!open)} className={cn("group relative w-full text-left flex items-center gap-2 sm:gap-2.5", level <= 1 ? "rounded-xl border px-3 sm:px-4 py-3 sm:py-3.5" : "py-1.5 px-1")}
             style={level <= 1 ? { borderColor: "rgba(59,130,246,0.2)", backgroundColor: "rgba(59,130,246,0.04)" } : undefined}
             onMouseEnter={(e) => { if (level <= 1) { e.currentTarget.style.borderColor = `rgba(59,130,246,${level === 0 ? 0.6 : 0.4})`; e.currentTarget.style.backgroundColor = `rgba(59,130,246,${level === 0 ? 0.15 : 0.08})`; e.currentTarget.style.boxShadow = `0 0 ${level === 0 ? "40px" : "25px"} rgba(59,130,246,${level === 0 ? 0.25 : 0.12})`; } }}
             onMouseLeave={(e) => { if (level <= 1) { e.currentTarget.style.borderColor = "rgba(59,130,246,0.2)"; e.currentTarget.style.backgroundColor = "rgba(59,130,246,0.04)"; e.currentTarget.style.boxShadow = "none"; } }}
@@ -242,7 +210,7 @@ export function OrganizationSection() {
   return (
     <SectionContainer id="organization" className="bg-black relative overflow-hidden">
       <OsBackground />
-      <Particles />
+      <ParticleField count={45} connectionDistance={140} speed={0.15} />
       <div className="pointer-events-none absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent" />
 
       <div className="relative z-[2]">

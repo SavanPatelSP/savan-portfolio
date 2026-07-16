@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sparkles, ArrowLeft, Clock, Rocket } from "lucide-react";
+import { Sparkles, ArrowLeft, Check, Rocket } from "lucide-react";
 import Link from "next/link";
 import { SLOW, NORMAL, ease, spring } from "@/lib/motion";
 
@@ -93,7 +93,7 @@ export function ComingSoon({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: NORMAL, delay: 0.35 + i * 0.05, ease: ease.out }}
                 >
-                  <Clock className="h-4 w-4 text-white/20 shrink-0" />
+                  <Check className="h-4 w-4 text-white/20 shrink-0" />
                   <span className="text-sm text-white/35">{feature}</span>
                 </motion.div>
               ))}

@@ -78,7 +78,7 @@ export function SocialModal({ isOpen, onClose }: SocialModalProps) {
             ref={dialogRef}
             role="dialog"
             aria-modal="true"
-            aria-label="Social profile coming soon"
+            aria-label="Official X and LinkedIn profiles coming soon"
             className="relative w-full max-w-md rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent bg-black/90 p-6 sm:p-8 shadow-2xl backdrop-blur-xl"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -88,7 +88,7 @@ export function SocialModal({ isOpen, onClose }: SocialModalProps) {
             <button
               ref={closeRef}
               onClick={onClose}
-              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-lg border border-white/[0.06] text-white/25 hover:text-white/60 hover:border-white/12 transition-all duration-200"
+              className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-lg border border-white/[0.06] text-white/25 hover:text-white/60 hover:border-white/12 transition-all duration-200"
               aria-label="Close modal"
             >
               <X className="h-4 w-4" />
@@ -102,19 +102,26 @@ export function SocialModal({ isOpen, onClose }: SocialModalProps) {
               Coming Soon
             </h2>
 
-            <div className="mt-4 space-y-3 text-sm text-white/35 leading-relaxed">
+            <h3 className="mt-3 text-sm font-medium tracking-wide text-white/50 uppercase">
+              Official X &amp; LinkedIn Profiles
+            </h3>
+
+            <div className="mt-4 text-sm text-white/35 leading-relaxed">
               <p>
-                My official X and LinkedIn profiles are currently being prepared.
+                My official X and LinkedIn profiles are currently being prepared
+                and will be launched once they accurately reflect my work,
+                products, engineering journey, and long-term vision.
               </p>
-              <p>
-                I&apos;m taking the time to build a professional presence that
-                reflects my work, projects, and long-term vision. These profiles
-                will become publicly available soon.
+              <p className="mt-3">
+                Rather than creating social profiles early, I&apos;m taking the
+                time to build a professional presence that showcases meaningful
+                progress across the SP NET ecosystem and future innovations.
               </p>
-              <p>
-                In the meantime, you&apos;re welcome to connect with me through
-                my Personal Communication Assistant, which is the fastest and
-                recommended way to reach me.
+              <p className="mt-3">
+                Until then, my <strong className="text-white/50 font-medium">Personal Communication Assistant</strong> remains
+                the fastest, most reliable, and recommended way to connect with
+                me for collaborations, project discussions, business inquiries,
+                feedback, or simply to start a conversation.
               </p>
             </div>
 
@@ -128,7 +135,10 @@ export function SocialModal({ isOpen, onClose }: SocialModalProps) {
                 Open Personal Communication Assistant
                 <ArrowUpRight className="h-3.5 w-3.5 opacity-50" />
               </Button>
-              <Button variant="secondary" onClick={onClose}>
+              <Button
+                variant="secondary"
+                onClick={onClose}
+              >
                 Close
               </Button>
             </div>

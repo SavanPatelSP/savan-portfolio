@@ -94,7 +94,7 @@ export function CTASection({
             {secondaryAction && (
               <CTALink
                 href={secondaryAction.href}
-                className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.08] px-6 py-3 text-sm font-medium text-white/40 hover:text-white/60 hover:border-white/15 transition-all duration-200"
+                className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.10] px-6 py-3 text-sm font-medium text-white/50 hover:text-white/70 hover:border-white/[0.18] transition-all duration-200"
               >
                 {secondaryAction.label}
               </CTALink>

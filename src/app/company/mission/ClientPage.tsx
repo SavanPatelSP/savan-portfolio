@@ -62,14 +62,17 @@ const futureDirection = [
   {
     title: "Developer Platform",
     description: "Open APIs and SDKs that let developers build on top of the SP NET ecosystem, creating integrations and extensions that benefit the entire community.",
+    icon: Code2,
   },
   {
     title: "Global Scale",
     description: "Expanding the reach of SP NET products to serve users and organizations across the world, with infrastructure designed for global performance and reliability.",
+    icon: Globe,
   },
   {
     title: "Community-Driven",
     description: "Building tools and platforms that grow stronger with community input — where user feedback directly shapes the roadmap and priorities.",
+    icon: Users,
   },
 ];
 
@@ -123,7 +126,7 @@ export default function ClientPage() {
       />
 
       <SectionContainer id="introduction">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-16 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
                 Introduction
@@ -167,7 +170,7 @@ export default function ClientPage() {
           />
 
           <FadeIn delay={0.05}>
-            <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-8 sm:p-10 max-w-3xl">
+            <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-8 sm:p-10 max-w-3xl mx-auto">
               <div className="flex items-center gap-3 mb-5">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10 border border-blue-500/20">
                   <Compass className="h-5 w-5 text-blue-400/60" />
@@ -187,7 +190,7 @@ export default function ClientPage() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div className="mt-8 space-y-5 text-sm sm:text-base text-white/35 leading-relaxed max-w-3xl">
+            <div className="mt-8 space-y-5 text-sm sm:text-base text-white/35 leading-relaxed max-w-3xl mx-auto">
               <p>
                 Elevation means making people better at what they do. A messaging platform
                 that does not get in the way of conversation. An enterprise tool that
@@ -220,7 +223,7 @@ export default function ClientPage() {
           />
 
           <FadeIn delay={0.05}>
-            <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-8 sm:p-10 max-w-3xl">
+            <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-8 sm:p-10 max-w-3xl mx-auto">
               <div className="flex items-center gap-3 mb-5">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-500/10 border border-violet-500/20">
                   <Eye className="h-5 w-5 text-violet-400/60" />
@@ -239,7 +242,7 @@ export default function ClientPage() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <div className="mt-8 space-y-5 text-sm sm:text-base text-white/35 leading-relaxed max-w-3xl">
+            <div className="mt-8 space-y-5 text-sm sm:text-base text-white/35 leading-relaxed max-w-3xl mx-auto">
               <p>
                 Invisible technology does not mean hidden technology. It means technology
                 that is so well-designed, so thoughtfully integrated, that it disappears
@@ -297,7 +300,7 @@ export default function ClientPage() {
             {futureDirection.map((item) => (
               <StaggerItem key={item.title}>
                 <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-6 h-full">
-                  <Rocket className="h-4 w-4 text-amber-400/50 mb-3" />
+                  <item.icon className="h-4 w-4 text-amber-400/50 mb-3" />
                   <h3 className="text-sm font-medium text-white/70 mb-2">{item.title}</h3>
                   <p className="text-xs text-white/30 leading-relaxed">{item.description}</p>
                 </div>
@@ -338,7 +341,7 @@ export default function ClientPage() {
           />
 
           <FadeIn delay={0.1}>
-            <div className="space-y-5 text-sm sm:text-base text-white/35 leading-relaxed max-w-3xl">
+            <div className="space-y-5 text-sm sm:text-base text-white/35 leading-relaxed max-w-3xl mx-auto">
               <p>
                 Though based in India, SP NET INC builds for a global audience. The
                 products being developed — SP NET GRAM, SP NET ADMIN OS, and SP NET AI —

@@ -30,7 +30,9 @@ const navGroups = [
       { label: "SP NET GRAM", href: "/products/sp-net-gram" },
       { label: "SP NET ADMIN OS", href: "/products/sp-net-admin-os" },
       { label: "SP NET AI", href: "/products/sp-net-ai" },
-      { label: "SP NET Ecosystem", href: "/products/sp-net-ecosystem" },
+      { label: "Savan's Portfolio", href: "/" },
+      { label: "SP NET API", href: "/products/sp-net-api" },
+      { label: "View All Products →", href: "/products" },
     ],
   },
   {
@@ -162,7 +164,7 @@ export function Footer() {
             <span className="text-white/60">Future Together?</span>
           </motion.h2>
           <motion.p
-            className="mt-6 mx-auto max-w-lg text-base text-white/20 leading-relaxed"
+            className="mt-6 mx-auto max-w-lg text-base text-white/35 leading-relaxed"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -177,7 +179,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: NORMAL, delay: 0.3, ease: ease.out }}
           >
-            <motion.a href="/get-in-touch" className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.12] bg-white/[0.04] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/70 hover:bg-white/[0.06] hover:border-white/20 transition-all duration-300"
+            <motion.a href="/get-in-touch" className="group inline-flex items-center gap-2 rounded-xl bg-white/[0.08] border border-white/[0.10] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/80 hover:bg-white/[0.12] hover:border-white/20 transition-all duration-300"
               whileHover={{ y: -2, scale: 1.01 }}
               whileTap={{ scale: 0.97 }}
               transition={spring.gentle}
@@ -185,7 +187,7 @@ export function Footer() {
               Get In Touch
               <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
             </motion.a>
-            <motion.a href="/products/sp-net-ecosystem" className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.06] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/30 hover:text-white/50 hover:border-white/12 transition-all duration-300"
+            <motion.a href="/products/sp-net-ecosystem" className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.08] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/45 hover:text-white/65 hover:border-white/[0.14] transition-all duration-300"
               whileHover={{ y: -2, scale: 1.01 }}
               whileTap={{ scale: 0.97 }}
               transition={spring.gentle}
@@ -221,7 +223,7 @@ export function Footer() {
                 Founder of {personal.company}. Creating products that connect people, empower communities, and inspire what&apos;s next.
               </p>
               <div className="mt-6 sm:mt-8 border-l border-white/[0.06] pl-4 text-left">
-                <p className="text-sm text-white/15 italic leading-relaxed">&ldquo;{personal.mission}&rdquo;</p>
+                <p className="text-sm text-white/20 italic leading-relaxed">&ldquo;{personal.mission}&rdquo;</p>
                 <div className="mt-3 flex items-center gap-2">
                   <span className="text-xs text-white/20 font-medium">&mdash; {personal.name}</span>
                   <span className="text-[10px] text-white/10">Founder, {personal.company}</span>
@@ -291,14 +293,14 @@ export function Footer() {
             {techBadges.map((badge, i) => (
               <motion.span
                 key={badge}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/[0.04] text-[11px] text-white/15 font-mono"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/[0.06] text-[11px] text-white/25 font-mono"
                 initial={{ opacity: 0, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.04, duration: FAST }}
                 whileHover={{ borderColor: "rgba(255,255,255,0.10)", color: "rgba(255,255,255,0.3)" }}
               >
-                <Code className="h-2.5 w-2.5 text-white/15" />
+                <Code className="h-2.5 w-2.5 text-white/20" />
                 {badge}
               </motion.span>
             ))}
@@ -336,34 +338,29 @@ export function Footer() {
         <FadeSection delay={0.1} className="py-12 sm:py-16 lg:py-20 text-center border-t border-white/[0.04]">
           <div className="flex items-center justify-center gap-4 mb-8">
             <div className="h-px w-8 bg-white/[0.04]" />
-            <span className="text-[9px] font-mono tracking-[0.3em] text-white/10 uppercase">{personal.tagline}</span>
+            <span className="text-[9px] font-mono tracking-[0.3em] text-white/15 uppercase">{personal.tagline}</span>
             <div className="h-px w-8 bg-white/[0.04]" />
           </div>
 
-          <p className="text-xs text-white/15 mb-4">Designed and engineered by</p>
           <h3 className="text-2xl sm:text-3xl font-semibold tracking-tight text-white/80">
             {personal.name}
           </h3>
           <p className="text-sm text-white/25 mt-1">Founder of {personal.company}</p>
 
-          <p className="text-sm text-white/20 mt-6 italic font-light max-w-sm mx-auto">
-            &ldquo;Creating technology that empowers people, strengthens communities, and shapes tomorrow.&rdquo;
-          </p>
-
           <div className="mt-8 max-w-md mx-auto">
             <div className="flex items-center justify-center gap-3">
-              <span className="text-[10px] text-white/12 font-mono tracking-wider">{personal.tagline}</span>
-              <span className="text-[10px] text-white/6">·</span>
-              <span className="text-[10px] text-white/12 font-mono tracking-wider">Made in {personal.madeIn}</span>
-              <span className="text-[10px] text-white/6">·</span>
-              <span className="text-[10px] text-white/12 font-mono tracking-wider">Since 2018</span>
+              <span className="text-[10px] text-white/18 font-mono tracking-wider">{personal.tagline}</span>
+              <span className="text-[10px] text-white/10">·</span>
+              <span className="text-[10px] text-white/18 font-mono tracking-wider">Made in {personal.madeIn}</span>
+              <span className="text-[10px] text-white/10">·</span>
+              <span className="text-[10px] text-white/18 font-mono tracking-wider">Since 2018</span>
             </div>
           </div>
 
           <div className="mt-10 flex justify-center">
             <motion.button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="group/scroll inline-flex items-center gap-2 rounded-xl border border-white/[0.04] px-5 py-3 text-xs text-white/15 hover:text-white/30 hover:border-white/10 transition-all duration-300"
+              className="group/scroll inline-flex items-center gap-2 rounded-xl border border-white/[0.06] px-5 py-3 text-xs text-white/25 hover:text-white/40 hover:border-white/10 transition-all duration-300"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.97 }}
               transition={spring.gentle}
@@ -382,14 +379,14 @@ export function Footer() {
               <p className="text-xs text-white/12 hover:text-white/20 transition-colors duration-300">
                 &copy; {new Date().getFullYear()} {personal.name}. All Rights Reserved.
               </p>
-              <div className="flex items-center gap-3 text-[10px] text-white/10">
-                <span>Designed and engineered by {personal.name}</span>
-                <span className="hidden sm:inline text-white/6">·</span>
-                <span className="hidden sm:inline">Founder of {personal.company}</span>
+              <div className="flex items-center gap-3 text-[10px] text-white/15">
+                <span>{personal.name}</span>
+                <span className="hidden sm:inline text-white/8">·</span>
+                <span className="hidden sm:inline">{personal.company}</span>
               </div>
             </div>
             <div className="mt-3 text-center">
-              <span className="text-[9px] font-mono tracking-[0.2em] text-white/8 uppercase">{personal.tagline}</span>
+              <span className="text-[9px] font-mono tracking-[0.2em] text-white/12 uppercase">{personal.tagline}</span>
             </div>
           </div>
         </FadeSection>
@@ -444,10 +441,10 @@ function PremiumTimeline({ milestones }: { milestones: typeof journeyMilestones 
                   <div className={cn("rounded-xl border border-white/[0.04] bg-white/[0.02] p-4 sm:p-5 transition-all duration-300 hover:border-white/[0.08] hover:bg-white/[0.03]", isLeft ? "sm:text-right" : "sm:text-left", "text-left")}>
                     <div className={cn("flex items-center gap-3 mb-1.5", isLeft && "sm:justify-end")}>
                       <span className="text-[10px] font-mono tracking-wider text-white/25">{m.year}</span>
-                      <span className="text-[8px] font-mono tracking-[0.15em] text-white/10 uppercase">{m.status}</span>
+                      <span className="text-[8px] font-mono tracking-[0.15em] text-white/20 uppercase">{m.status}</span>
                     </div>
                     <h4 className="text-sm text-white/50 font-medium">{m.label}</h4>
-                    <p className="text-xs text-white/20 mt-1 leading-relaxed">{m.description}</p>
+                    <p className="text-xs text-white/25 mt-1 leading-relaxed">{m.description}</p>
                   </div>
                 </motion.div>
               </div>
@@ -463,7 +460,7 @@ function PremiumTimeline({ milestones }: { milestones: typeof journeyMilestones 
         transition={{ duration: 0.8, delay: 0.8 }}
       >
         <div className="h-px max-w-xs mx-auto bg-gradient-to-r from-transparent via-white/[0.04] to-transparent mb-6" />
-        <p className="text-sm text-white/12 italic leading-relaxed max-w-md mx-auto">
+        <p className="text-sm text-white/15 italic leading-relaxed max-w-md mx-auto">
           &ldquo;Lead with purpose. Build with passion. Connect beyond limits.&rdquo;
         </p>
         <div className="mt-3">

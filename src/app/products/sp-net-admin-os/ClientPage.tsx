@@ -175,29 +175,29 @@ const relatedPages = [
     href: "/products/sp-net-gram",
   },
   {
-    title: "SP NET Ecosystem",
-    description: "The interconnected platform powering all SP NET products.",
-    href: "/products/sp-net-ecosystem",
-  },
-  {
     title: "SP NET AI",
     description: "Intelligent automation and AI-powered tools across the platform.",
     href: "/products/sp-net-ai",
   },
   {
+    title: "SP NET SECURITY",
+    description: "Threat detection, compliance, and security monitoring.",
+    href: "/products/sp-net-security",
+  },
+  {
+    title: "SP NET WORKPLACE",
+    description: "Digital workspace with project management and collaboration.",
+    href: "/products/sp-net-workplace",
+  },
+  {
+    title: "SP NET Ecosystem",
+    description: "The interconnected platform powering all SP NET products.",
+    href: "/products/sp-net-ecosystem",
+  },
+  {
     title: "About Savan Patel",
     description: "The founder and product engineer behind SP NET INC.",
     href: "/founder/about",
-  },
-  {
-    title: "Founder's Journey",
-    description: "From early experiments to building SP NET — the full story.",
-    href: "/founder/journey",
-  },
-  {
-    title: "Product Roadmap",
-    description: "What we are building next and where SP NET is headed.",
-    href: "/founder/roadmap",
   },
 ];
 

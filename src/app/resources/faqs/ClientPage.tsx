@@ -187,10 +187,10 @@ export default function FAQsPage() {
 
       <CTASection
         title="Still curious?"
-        titleAccent="we are happy to help"
-        description="Every question matters to us. Reach out and we will give you a thoughtful, personal response."
-        primaryAction={{ label: "Contact us", href: "/get-in-touch" }}
-        secondaryAction={{ label: "Learn about us", href: "/company/about" }}
+        titleAccent="I'm happy to help"
+        description="Every question matters. Reach out and I'll give you a thoughtful, personal response."
+        primaryAction={{ label: "Get in touch", href: "/get-in-touch" }}
+        secondaryAction={{ label: "About me", href: "/founder/about" }}
       />
     </>
   );

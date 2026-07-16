@@ -229,7 +229,7 @@ export default function BrandClientPage() {
       />
 
       <SectionContainer id="introduction">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-16 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
                 Introduction
@@ -379,7 +379,7 @@ export default function BrandClientPage() {
                     {font.description}
                   </p>
                   <div className="rounded-lg border border-white/[0.04] bg-white/[0.02] px-5 py-4">
-                    <p className="text-xl sm:text-2xl text-white/50 tracking-tight">
+                    <p className="text-xl sm:text-2xl text-white/65 tracking-tight">
                       {font.sample}
                     </p>
                   </div>
@@ -516,7 +516,7 @@ export default function BrandClientPage() {
       <FAQ title="Brand FAQ" items={faqItems} />
 
       <RelatedPages
-        title="Related Pages"
+        title="Explore More"
         pages={[
           {
             title: "Media Kit",

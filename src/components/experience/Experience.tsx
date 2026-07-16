@@ -36,7 +36,7 @@ function TimelineMilestone({ item, index, isInView, total }: { item: typeof jour
               {item.year}
             </span>
             <h3 className="mt-1.5 text-base font-medium text-white">{item.title}</h3>
-            <p className="mt-1.5 text-sm text-white/30 leading-relaxed max-w-sm ml-auto">
+            <p className="mt-1.5 text-sm text-white/40 leading-relaxed max-w-sm ml-auto">
               {item.description}
             </p>
           </motion.div>
@@ -95,7 +95,7 @@ function TimelineMilestone({ item, index, isInView, total }: { item: typeof jour
             {item.year}
           </span>
           <h3 className="mt-1 text-sm font-medium text-white">{item.title}</h3>
-          <p className="mt-1 text-xs text-white/30 leading-relaxed">{item.description}</p>
+          <p className="mt-1 text-xs text-white/35 leading-relaxed">{item.description}</p>
         </motion.div>
       </div>
     </div>
@@ -137,7 +137,7 @@ export function ExperienceSection() {
         {/* Future coda */}
         <FadeIn delay={0.4}>
           <div className="mt-12 text-center">
-            <div className="inline-flex items-center gap-2 text-xs text-white/15">
+            <div className="inline-flex items-center gap-2 text-xs text-white/25">
               <Sparkles className="h-3 w-3" />
               <span>The journey continues. Building tomorrow, today.</span>
             </div>

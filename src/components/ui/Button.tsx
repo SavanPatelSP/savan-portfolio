@@ -46,12 +46,12 @@ export function Button({
   };
 
   const sizes = {
-    sm: "px-4 py-1.5 text-sm",
-    md: "px-6 py-2.5 text-sm",
-    lg: "px-8 py-3 text-base",
+    sm: "px-4 py-2 text-sm min-h-[44px]",
+    md: "px-6 py-3 text-sm min-h-[44px]",
+    lg: "px-8 py-3.5 text-base min-h-[48px]",
   };
 
-  const cls = cn(base, variants[variant], sizes[size], className);
+  const cls = cn(base, "group", variants[variant], sizes[size], className);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!ref.current) return;

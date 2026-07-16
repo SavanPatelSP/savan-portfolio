@@ -649,9 +649,9 @@ export default function MediaKitPage() {
 
       <CTASection
         title="Need something specific?"
-        titleAccent="We can provide custom assets and information for your publication."
-        description="If you need high-resolution assets, custom screenshots, or a specific format not included here, reach out and we will help."
-        primaryAction={{ label: "Contact us", href: `mailto:${personal.email}?subject=Media Kit Request` }}
+        titleAccent="I can provide custom assets for your publication."
+        description="If you need high-resolution assets, custom screenshots, or a specific format not included here, reach out and I'll help."
+        primaryAction={{ label: "Contact me", href: `mailto:${personal.email}?subject=Media Kit Request` }}
         secondaryAction={{ label: "View the organization", href: "/company/about" }}
       />
     </>

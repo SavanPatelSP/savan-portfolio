@@ -131,19 +131,24 @@ const relatedPages = [
     href: "/products/sp-net-admin-os",
   },
   {
+    title: "SP NET Robotics",
+    description: "Robotics research powered by the SP NET AI platform.",
+    href: "/products/sp-net-robotics",
+  },
+  {
     title: "SP NET Ecosystem",
     description: "The connected platform bringing all SP NET products together.",
     href: "/products/sp-net-ecosystem",
   },
   {
-    title: "Savan Patel",
-    description: "Founder & Product Engineer building the SP NET ecosystem.",
-    href: "/founder/about",
+    title: "SP NET Cloud",
+    description: "Cloud infrastructure for AI inference and model hosting.",
+    href: "/products/sp-net-cloud",
   },
   {
-    title: "About SP NET INC",
-    description: "The company behind the SP NET product ecosystem.",
-    href: "/company/about",
+    title: "About Savan Patel",
+    description: "Founder & Product Engineer building the SP NET ecosystem.",
+    href: "/founder/about",
   },
 ];
 

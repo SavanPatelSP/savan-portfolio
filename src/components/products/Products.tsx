@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-import { Clock, Building2, Bot } from "lucide-react";
+import { Clock, Building2, Bot, Globe, Code, Gamepad2, Cloud, Shield, Cog, Briefcase } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { products, futureProducts } from "@/data/products";
 import { SectionContainer, FadeIn, Reveal, BlurReveal, StaggerFade, StaggerItem, SectionTitle, ParallaxContainer } from "@/components/ui/AnimationPrimitives";
@@ -13,6 +14,10 @@ import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
 const statusConfig: Record<string, { label: string; variant: "success" | "warning" | "beta" }> = {
   building: { label: "Active Development", variant: "warning" },
   researching: { label: "Research & Development", variant: "warning" },
+  research: { label: "Research", variant: "beta" },
+  future: { label: "Future Initiative", variant: "beta" },
+  official: { label: "Official Project", variant: "success" },
+  "future-initiative": { label: "Future Initiative", variant: "beta" },
 };
 
 function MessageCircle(props: { className?: string }) {
@@ -27,12 +32,24 @@ const productIcons: Record<string, React.ElementType> = {
   "sp-net-gram": MessageCircle,
   "sp-net-admin-os": Building2,
   "sp-net-ai": Bot,
+  "savan-portfolio": Globe,
+  "sp-net-api": Code,
 };
 
-const productMilestones: Record<string, { phase: string; progress: number }> = {
+const productMilestones: Record<string, { phase: string; progress?: number }> = {
   "sp-net-gram": { phase: "Core Architecture Complete", progress: 65 },
   "sp-net-admin-os": { phase: "Platform Foundation", progress: 50 },
   "sp-net-ai": { phase: "Research & Prototyping", progress: 25 },
+  "savan-portfolio": { phase: "Continuously Improving" },
+  "sp-net-api": { phase: "Research & Planning", progress: 20 },
+};
+
+const futureProductIcons: Record<string, React.ElementType> = {
+  "sp-net-workplace": Briefcase,
+  "sp-net-game": Gamepad2,
+  "sp-net-cloud": Cloud,
+  "sp-net-security": Shield,
+  "sp-net-robotics": Cog,
 };
 
 function ProductShowcase({ product, index }: { product: typeof products[number]; index: number }) {
@@ -132,7 +149,7 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
 
             {/* Tagline */}
             <BlurReveal delay={0.18 + 0.05 * index}>
-              <p className="text-sm text-white/30 font-medium mt-1 tracking-wide">
+              <p className="text-sm text-white/40 font-medium mt-1 tracking-wide">
                 {product.tagline}
               </p>
             </BlurReveal>
@@ -156,7 +173,7 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
             {/* Premium product status */}
             <FadeIn delay={0.25 + 0.05 * index}>
               <div className="mt-4">
-                <ProductStatus />
+                <ProductStatus status={product.status} />
               </div>
             </FadeIn>
 
@@ -183,16 +200,20 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
                 <div className="mt-6 flex items-center gap-3 text-xs text-white/25 justify-center sm:justify-start flex-wrap">
                   <Clock className="h-3 w-3" />
                   <span>{milestone.phase}</span>
-                  <div className="flex-1 max-w-[120px] h-1 rounded-full bg-white/[0.06] overflow-hidden">
-                    <motion.div
-                      className="h-full rounded-full"
-                      style={{ backgroundColor: product.color }}
-                      initial={{ width: 0 }}
-                      animate={isInView ? { width: `${milestone.progress}%` } : {}}
-                      transition={{ duration: 1.2, delay: 0.6, ease: ease.out }}
-                    />
-                  </div>
-                  <span className="font-mono">{milestone.progress}%</span>
+                  {milestone.progress != null && (
+                    <>
+                      <div className="flex-1 max-w-[120px] h-1 rounded-full bg-white/[0.06] overflow-hidden">
+                        <motion.div
+                          className="h-full rounded-full"
+                          style={{ backgroundColor: product.color }}
+                          initial={{ width: 0 }}
+                          animate={isInView ? { width: `${milestone.progress}%` } : {}}
+                          transition={{ duration: 1.2, delay: 0.6, ease: ease.out }}
+                        />
+                      </div>
+                      <span className="font-mono">{milestone.progress}%</span>
+                    </>
+                  )}
                 </div>
               </FadeIn>
             )}
@@ -262,6 +283,9 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
           </div>
         </div>
       </div>
+      <Link href={product.url || `/products/${product.id}`} className="contents" tabIndex={-1}>
+        <span className="sr-only">View {product.name}</span>
+      </Link>
     </motion.div>
   );
 }
@@ -273,6 +297,8 @@ function FutureProductCard({
   product: typeof futureProducts[number];
   index: number;
 }) {
+  const Icon = futureProductIcons[product.id] || Clock;
+  const status = product.status === "research" ? statusConfig.research : statusConfig.future;
   return (
     <motion.div
       className="group relative rounded-2xl border border-white/[0.04] bg-white/[0.02] p-6 sm:p-8 overflow-hidden"
@@ -296,27 +322,31 @@ function FutureProductCard({
         }}
         aria-hidden="true"
       />
-      <div className="flex items-center gap-3 mb-4">
+      <div className="relative flex items-center gap-3 mb-4">
         <motion.div
-          className={cn(
-            "h-10 w-10 rounded-xl bg-gradient-to-br flex items-center justify-center",
-            product.gradient
-          )}
+          className="h-10 w-10 rounded-xl flex items-center justify-center"
+          style={{
+            background: `linear-gradient(135deg, ${product.color}22, ${product.color}11)`,
+            border: `1px solid ${product.color}33`,
+          }}
           whileHover={{ rotate: 5, y: -2 }}
           transition={spring.gentle}
         >
-          <Clock className="h-5 w-5 text-white" />
+          <Icon className="h-5 w-5" style={{ color: product.color }} />
         </motion.div>
         <div>
           <h3 className="text-sm font-medium text-white">{product.name}</h3>
-          <Badge variant="beta">Coming Soon</Badge>
+          <Badge variant={status.variant}>{status.label}</Badge>
         </div>
       </div>
-      <p className="text-sm text-white/30 leading-relaxed">{product.description}</p>
-      <div className="mt-4 flex items-center gap-2 text-[11px] text-white/15 font-mono">
+      <p className="relative text-sm text-white/30 leading-relaxed">{product.description}</p>
+      <div className="relative mt-4 flex items-center gap-2 text-[11px] text-white/25 font-mono">
         <Clock className="h-3 w-3" />
         {product.eta}
       </div>
+      <Link href={`/products/${product.id}`} className="contents" tabIndex={-1}>
+        <span className="sr-only">View {product.name}</span>
+      </Link>
     </motion.div>
   );
 }
@@ -341,7 +371,7 @@ export function ProductsSection() {
 
         <div className="mt-12 sm:mt-16">
           <Reveal delay={0.1}>
-            <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-white/20 mb-6 text-center sm:text-left">On the horizon</h3>
+            <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-white/30 mb-6 text-center sm:text-left">Future Initiatives</h3>
           </Reveal>
           <div className="grid gap-4 sm:grid-cols-2">
             {futureProducts.map((product, i) => (
@@ -349,6 +379,22 @@ export function ProductsSection() {
             ))}
           </div>
         </div>
+
+        <FadeIn delay={0.2}>
+          <div className="mt-12 sm:mt-16 text-center">
+            <div className="inline-flex flex-col items-center gap-4 rounded-2xl border border-white/[0.04] bg-white/[0.01] px-8 py-8 sm:px-12">
+              <p className="text-sm text-white/40 leading-relaxed max-w-md">
+                Explore every product, platform, and research initiative in the SP NET ecosystem.
+              </p>
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-medium text-black hover:bg-white/90 transition-colors duration-200"
+              >
+                View All Products
+              </Link>
+            </div>
+          </div>
+        </FadeIn>
       </SectionContainer>
     </ParallaxContainer>
   );

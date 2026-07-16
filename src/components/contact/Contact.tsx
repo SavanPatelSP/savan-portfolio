@@ -68,7 +68,7 @@ export function ContactSection() {
   const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -77,7 +77,7 @@ export function ContactSection() {
     const data = new FormData(form);
 
     setSending(true);
-    setError(false);
+    setError(null);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -88,15 +88,16 @@ export function ContactSection() {
           message: data.get("message"),
         }),
       });
-      if (res.ok) {
+      const body = await res.json().catch(() => null);
+      if (res.ok && body?.ok) {
         setSent(true);
         form.reset();
         setTimeout(() => setSent(false), 3000);
       } else {
-        setError(true);
+        setError(body?.error || "Something went wrong. Please try again or email me directly.");
       }
     } catch {
-      setError(true);
+      setError("Network error. Please check your connection and try again.");
     } finally {
       setSending(false);
     }
@@ -112,7 +113,7 @@ export function ContactSection() {
       if (!window.confirm("Are you sure you want to clear the form?")) return;
     }
     form.reset();
-    setError(false);
+    setError(null);
   };
 
   return (
@@ -180,7 +181,8 @@ export function ContactSection() {
               <Button variant="primary" href="https://t.me/SAVANPATELSP_BOT" external>
                 <span className="inline-flex items-center gap-1.5">
                   <TelegramIcon className="h-4 w-4" />
-                  Open Personal Communication Assistant
+                  <span className="hidden sm:inline">Open Personal Communication Assistant</span>
+                  <span className="sm:hidden">Open Assistant</span>
                 </span>
               </Button>
             </div>
@@ -299,20 +301,20 @@ export function ContactSection() {
                   <label htmlFor="name" className="block text-xs font-medium text-white/25 mb-1.5">
                     Name
                   </label>
-                  <PremiumInput id="name" name="name" required placeholder="Your name" error={error} />
+                  <PremiumInput id="name" name="name" required placeholder="Your name" error={!!error} />
                 </div>
                 <div>
                   <label htmlFor="email-c" className="block text-xs font-medium text-white/25 mb-1.5">
                     Email
                   </label>
-                  <PremiumInput id="email-c" name="email-c" type="email" required placeholder="you@example.com" error={error} />
+                  <PremiumInput id="email-c" name="email-c" type="email" required placeholder="you@example.com" error={!!error} />
                 </div>
               </div>
               <div>
                 <label htmlFor="message" className="block text-xs font-medium text-white/25 mb-1.5">
                   Message
                 </label>
-                <PremiumInput id="message" name="message" required rows={4} placeholder="Tell me about your project..." error={error} tag="textarea" />
+                <PremiumInput id="message" name="message" required rows={4} placeholder="Tell me about your project..." error={!!error} tag="textarea" />
               </div>
               <div className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap">
                 <Button type="submit" variant="primary" disabled={sending || sent}>
@@ -350,7 +352,7 @@ export function ContactSection() {
               </div>
               {error && (
                 <p id="form-error" className="text-xs text-red-400/70" role="alert">
-                  Something went wrong. Please try again or email me directly.
+                  {error}
                 </p>
               )}
               <div className="mt-10 sm:mt-14 text-center">

@@ -242,7 +242,7 @@ function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -250,7 +250,7 @@ function ContactForm() {
     const data = new FormData(form);
 
     setSending(true);
-    setError(false);
+    setError(null);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -261,15 +261,16 @@ function ContactForm() {
           message: data.get("message"),
         }),
       });
-      if (res.ok) {
+      const body = await res.json().catch(() => null);
+      if (res.ok && body?.ok) {
         setSent(true);
         form.reset();
         setTimeout(() => setSent(false), 3000);
       } else {
-        setError(true);
+        setError(body?.error || "Something went wrong. Please try again or email me directly.");
       }
     } catch {
-      setError(true);
+      setError("Network error. Please check your connection and try again.");
     } finally {
       setSending(false);
     }
@@ -285,7 +286,7 @@ function ContactForm() {
       if (!window.confirm("Are you sure you want to clear the form?")) return;
     }
     form.reset();
-    setError(false);
+    setError(null);
   };
 
   return (
@@ -417,7 +418,7 @@ function ContactForm() {
           </div>
           {error && (
             <p className="text-xs text-red-400/70" role="alert">
-              Something went wrong. Please try again or email me directly.
+              {error}
             </p>
           )}
           <div className="sr-only" role="status" aria-live="polite">
@@ -532,14 +533,15 @@ export default function ContactClientPage() {
                   href="https://t.me/SAVANPATELSP_BOT"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-3 rounded-xl bg-white px-10 py-5 text-base font-medium text-black hover:bg-white/90 transition-colors duration-200"
+                  className="group inline-flex items-center gap-3 rounded-xl bg-white px-6 sm:px-10 py-4 sm:py-5 text-sm sm:text-base font-medium text-black hover:bg-white/90 transition-colors duration-200"
                   whileHover={{ y: -3, scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
                   transition={spring.gentle}
                 >
-                  <TelegramIcon className="h-5 w-5" />
-                  Open Personal Communication Assistant
-                  <ArrowUpRight className="h-5 w-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                  <TelegramIcon className="h-5 w-5 shrink-0" />
+                  <span className="hidden sm:inline">Open Personal Communication Assistant</span>
+                  <span className="sm:hidden">Open Assistant</span>
+                  <ArrowUpRight className="h-5 w-5 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
                 </motion.a>
                 <p className="mt-5 text-xs text-white/15">
                   Free · Instant · Personal
@@ -550,7 +552,7 @@ export default function ContactClientPage() {
 
           {/* ─── INTRODUCTION ─────────────────────────────────── */}
           <div className="mt-24 sm:mt-32">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-16 items-start">
               <FadeIn>
                 <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
                   Why this exists
@@ -673,51 +675,11 @@ export default function ContactClientPage() {
 
             <FlowTimeline />
           </div>
-
-          {/* ─── PRIMARY CTA ──────────────────────────────────── */}
-          <div className="mt-24 sm:mt-32 border-t border-white/[0.04] pt-24 sm:pt-32">
-            <FadeIn>
-              <div className="max-w-3xl mx-auto text-center">
-                <div className="relative rounded-2xl border border-emerald-500/10 bg-gradient-to-b from-emerald-500/[0.04] to-transparent p-10 sm:p-14 overflow-hidden">
-                  <div
-                    className="absolute inset-0 pointer-events-none"
-                    aria-hidden="true"
-                    style={{
-                      background:
-                        "radial-gradient(ellipse at center, rgba(16,185,129,0.06) 0%, transparent 60%)",
-                    }}
-                  />
-                  <div className="relative z-10">
-                    <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/15 bg-emerald-500/[0.04] px-4 py-2 text-xs font-mono text-emerald-400/60 mb-8">
-                      <Sparkles className="h-3.5 w-3.5" />
-                      Ready to connect?
-                    </div>
-                    <motion.a
-                      href="https://t.me/SAVANPATELSP_BOT"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-3 rounded-xl bg-white px-10 py-5 text-base font-medium text-black hover:bg-white/90 transition-colors duration-200"
-                      whileHover={{ y: -3, scale: 1.02 }}
-                      whileTap={{ scale: 0.97 }}
-                      transition={spring.gentle}
-                    >
-                      <TelegramIcon className="h-5 w-5" />
-                      Open Personal Communication Assistant
-                      <ArrowUpRight className="h-5 w-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
-                    </motion.a>
-                    <p className="mt-6 text-sm text-white/20">
-                      Available now on Telegram
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </FadeIn>
-          </div>
       </SectionContainer>
 
       {/* ─── ABOUT CONTACTING ME ──────────────────────────────── */}
       <SectionContainer id="about" className="border-t border-white/[0.04]">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-16 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
                 Introduction
@@ -898,7 +860,7 @@ export default function ContactClientPage() {
 
       {/* ─── CONTACT FORM ─────────────────────────────────────── */}
       <SectionContainer className="border-t border-white/[0.04]" id="contact">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-16 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
                 Message

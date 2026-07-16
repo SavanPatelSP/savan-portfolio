@@ -31,7 +31,13 @@ const pages: PageConfig[] = [
   { route: "/products/sp-net-gram", priority: 0.9, changeFrequency: "monthly" },
   { route: "/products/sp-net-admin-os", priority: 0.9, changeFrequency: "monthly" },
   { route: "/products/sp-net-ai", priority: 0.9, changeFrequency: "monthly" },
+  { route: "/products/sp-net-workplace", priority: 0.7, changeFrequency: "monthly" },
+  { route: "/products/sp-net-game", priority: 0.7, changeFrequency: "monthly" },
+  { route: "/products/sp-net-cloud", priority: 0.7, changeFrequency: "monthly" },
+  { route: "/products/sp-net-security", priority: 0.7, changeFrequency: "monthly" },
+  { route: "/products/sp-net-robotics", priority: 0.7, changeFrequency: "monthly" },
   { route: "/products/sp-net-ecosystem", priority: 0.7, changeFrequency: "monthly" },
+  { route: "/products/sp-net-api", priority: 0.7, changeFrequency: "monthly" },
 
   { route: "/research", priority: 0.8, changeFrequency: "monthly" },
   { route: "/research/ai", priority: 0.8, changeFrequency: "monthly" },

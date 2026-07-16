@@ -151,7 +151,7 @@ export default function ClientPage() {
       />
 
       <SectionContainer id="introduction">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
                 What This Is
@@ -281,7 +281,7 @@ export default function ClientPage() {
                   </div>
                   <h3 className="text-sm font-medium text-white/60">{item.title}</h3>
                 </div>
-                <p className="text-xs text-white/30 leading-relaxed">{item.description}</p>
+                <p className="text-sm text-white/35 leading-relaxed">{item.description}</p>
               </motion.div>
             ))}
           </div>
@@ -296,7 +296,7 @@ export default function ClientPage() {
           <StaggerFade className="grid grid-cols-2 sm:grid-cols-4 gap-4" staggerDelay={0.06}>
             {[
               { value: "5", label: "Projects", icon: Briefcase },
-              { value: "2", label: "In Development", icon: Clock },
+              { value: "3", label: "In Development", icon: Clock },
               { value: "Active", label: "Open Source", icon: Code2 },
               { value: "Open", label: "For Collaboration", icon: Users },
             ].map((stat) => (
@@ -304,7 +304,7 @@ export default function ClientPage() {
                 <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-6 text-center">
                   <stat.icon className="h-4 w-4 text-white/20 mx-auto mb-3" />
                   <p className="text-2xl font-semibold text-white/60 mb-1">{stat.value}</p>
-                  <p className="text-[11px] text-white/25">{stat.label}</p>
+                  <p className="text-[11px] text-white/35">{stat.label}</p>
                 </div>
               </StaggerItem>
             ))}

@@ -21,14 +21,14 @@ export function Breadcrumbs({
   return (
     <motion.nav
       aria-label="Breadcrumb"
-      className={cn("flex items-center gap-1.5 text-xs", className)}
+      className={cn("flex flex-wrap items-center gap-1.5 text-xs", className)}
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: FAST, ease: ease.out }}
     >
       <Link
         href="/"
-        className="text-white/25 hover:text-white/50 transition-colors duration-200"
+        className="text-white/25 hover:text-white/50 transition-colors duration-200 py-2 px-1"
       >
         Home
       </Link>
@@ -38,12 +38,12 @@ export function Breadcrumbs({
           {item.href ? (
             <Link
               href={item.href}
-              className="text-white/25 hover:text-white/50 transition-colors duration-200"
+              className="text-white/25 hover:text-white/50 transition-colors duration-200 py-2 px-1"
             >
               {item.label}
             </Link>
           ) : (
-            <span className="text-white/50">{item.label}</span>
+            <span className="text-white/50 py-2 px-1">{item.label}</span>
           )}
         </span>
       ))}

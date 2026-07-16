@@ -221,7 +221,7 @@ export default function PressContactPage() {
                     <p className="text-sm font-medium text-white/60 sm:hidden mb-1">
                       {item.category}
                     </p>
-                    <p className="text-sm text-white/50">
+                    <p className="text-sm text-white/50 hidden sm:block">
                       {item.category}
                     </p>
                   </div>

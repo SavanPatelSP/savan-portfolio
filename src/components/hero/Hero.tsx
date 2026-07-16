@@ -6,7 +6,8 @@ import { ArrowDown, Sparkles, Terminal } from "lucide-react";
 import { personal } from "@/data/personal";
 import { products } from "@/data/products";
 import { cn } from "@/lib/utils";
-import { ease, spring, SLOW, NORMAL, FAST } from "@/lib/motion";
+import { ease, spring, NORMAL, FAST } from "@/lib/motion";
+import { ParticleField } from "@/components/ui/ParticleField";
 
 function useMousePosition() {
   const pos = useRef({ x: 0.5, y: 0.5 });
@@ -18,91 +19,6 @@ function useMousePosition() {
     return () => window.removeEventListener("mousemove", handler);
   }, []);
   return pos;
-}
-
-function Particles({ count = 100 }: { count?: number }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animId: number;
-    const particles: { x: number; y: number; vx: number; vy: number; size: number; alpha: number }[] = [];
-
-    const resize = () => {
-      if (!canvas) return;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.15,
-        vy: (Math.random() - 0.5) * 0.15,
-        size: Math.random() * 1 + 0.3,
-        alpha: Math.random() * 0.25 + 0.03,
-      });
-    }
-
-    const draw = () => {
-      if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(59, 130, 246, ${p.alpha})`;
-        ctx.fill();
-      }
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${0.04 * (1 - dist / 120)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      }
-
-      animId = requestAnimationFrame(draw);
-    };
-
-    draw();
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", resize);
-    };
-  }, [count]);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-[1]"
-      aria-hidden="true"
-    />
-  );
 }
 
 function CursorBlink() {
@@ -213,7 +129,7 @@ export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const mouse = useMousePosition();
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const ambientRef = useRef<HTMLDivElement>(null);
   const [magneticPos, setMagneticPos] = useState({ x: 0, y: 0 });
   const [magneticPos2, setMagneticPos2] = useState({ x: 0, y: 0 });
   const btnRef = useRef<HTMLDivElement>(null);
@@ -221,7 +137,9 @@ export function Hero() {
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
+      if (ambientRef.current) {
+        ambientRef.current.style.background = `radial-gradient(900px circle at ${e.clientX}px ${e.clientY}px, rgba(59,130,246,0.08) 0%, transparent 50%)`;
+      }
     };
     window.addEventListener("mousemove", handler, { passive: true });
     return () => window.removeEventListener("mousemove", handler);
@@ -274,14 +192,12 @@ export function Hero() {
       </div>
 
       {/* Particles with connections */}
-      <Particles count={100} />
+      <ParticleField count={100} connectionDistance={120} speed={0.15} />
 
       {/* Ambient glow follow mouse */}
       <div
+        ref={ambientRef}
         className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-1000"
-        style={{
-          background: `radial-gradient(900px circle at ${mousePos.x}px ${mousePos.y}px, rgba(59,130,246,0.08) 0%, transparent 50%)`,
-        }}
         aria-hidden="true"
       />
 
@@ -344,7 +260,7 @@ export function Hero() {
         {/* Gigantic name — mask reveal */}
         <div className="overflow-hidden">
           <motion.h1
-            className="text-5xl sm:text-7xl md:text-8xl lg:text-[10rem] xl:text-[11rem] font-bold tracking-tight text-white leading-[0.85]"
+            className="text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl xl:text-[10rem] 2xl:text-[11rem] font-bold tracking-tight text-white leading-[0.85]"
             initial={{ y: "120%", filter: "blur(8px)" }}
             animate={isInView ? { y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
@@ -367,7 +283,7 @@ export function Hero() {
 
         {/* Founder statement — fades after heading */}
         <motion.p
-          className="mx-auto mt-5 sm:mt-6 max-w-2xl text-xs sm:text-sm md:text-base text-white/25 leading-relaxed font-light px-2 sm:px-0"
+          className="mx-auto mt-5 sm:mt-6 max-w-2xl text-xs sm:text-sm md:text-base text-white/40 leading-relaxed font-light px-2 sm:px-0"
           initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
           animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
           transition={{ duration: NORMAL, delay: 0.55, ease: ease.out }}
@@ -430,14 +346,14 @@ export function Hero() {
       </div>
 
       {/* Scroll indicator — continuous bounce */}
-      <motion.button
-        onClick={scrollNext}
-        className="absolute bottom-8 left-1/2 z-[3] -translate-x-1/2 text-white/10 hover:text-white/30 transition-colors"
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ delay: 1.6, duration: 0.6 }}
-        aria-label="Scroll to content"
-      >
+        <motion.button
+          onClick={scrollNext}
+          className="absolute bottom-8 left-1/2 z-[3] -translate-x-1/2 p-4 text-white/25 hover:text-white/40 transition-colors"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 1.6, duration: 0.6 }}
+          aria-label="Scroll to content"
+        >
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
