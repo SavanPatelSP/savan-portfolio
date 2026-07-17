@@ -9,7 +9,6 @@ import {
   ArrowUpRight,
   Clock,
   CheckCircle,
-  Check,
   RotateCcw,
   Sparkles,
   MapPin,
@@ -40,6 +39,7 @@ import { RelatedPages } from "@/components/ui/RelatedPages";
 import { Button } from "@/components/ui/Button";
 import { GithubIcon, XIcon, LinkedinIcon, InstagramIcon, TelegramIcon } from "@/components/ui/Icons";
 import { SocialModal } from "@/components/ui/SocialModal";
+import { SuccessModal } from "@/components/ui/SuccessModal";
 import {
   FadeIn,
   SectionContainer,
@@ -243,6 +243,7 @@ function ContactForm() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [successModalOpen, setSuccessModalOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -265,7 +266,7 @@ function ContactForm() {
       if (res.ok && body?.ok) {
         setSent(true);
         form.reset();
-        setTimeout(() => setSent(false), 3000);
+        setSuccessModalOpen(true);
       } else {
         setError(body?.error || "Something went wrong. Please try again or email me directly.");
       }
@@ -379,17 +380,6 @@ function ContactForm() {
                         }}
                       />
                     </motion.span>
-                  ) : sent ? (
-                    <motion.span
-                      key="sent"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="inline-flex items-center gap-1.5 text-emerald-400"
-                    >
-                      <Check className="h-3.5 w-3.5" />
-                      Sent!
-                    </motion.span>
                   ) : (
                     <motion.span
                       key="idle"
@@ -426,6 +416,16 @@ function ContactForm() {
           </div>
         </div>
       </form>
+      <SuccessModal
+        isOpen={successModalOpen}
+        onClose={() => {
+          setSuccessModalOpen(false);
+          setSent(false);
+        }}
+        onSendAnother={() => {
+          setSent(false);
+        }}
+      />
     </div>
   );
 }

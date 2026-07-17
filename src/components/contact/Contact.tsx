@@ -7,6 +7,7 @@ import { SectionContainer, FadeIn, SectionTitle, BlurReveal } from "@/components
 import { Button } from "@/components/ui/Button";
 import { GithubIcon, XIcon, LinkedinIcon, TelegramIcon, InstagramIcon } from "@/components/ui/Icons";
 import { SocialModal } from "@/components/ui/SocialModal";
+import { SuccessModal } from "@/components/ui/SuccessModal";
 import { personal } from "@/data/personal";
 import { ease, spring, NORMAL, SLOW } from "@/lib/motion";
 
@@ -70,6 +71,7 @@ export function ContactSection() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [successModalOpen, setSuccessModalOpen] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -92,7 +94,7 @@ export function ContactSection() {
       if (res.ok && body?.ok) {
         setSent(true);
         form.reset();
-        setTimeout(() => setSent(false), 3000);
+        setSuccessModalOpen(true);
       } else {
         setError(body?.error || "Something went wrong. Please try again or email me directly.");
       }
@@ -329,11 +331,6 @@ export function ContactSection() {
                             transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
                           />
                         </motion.span>
-                      ) : sent ? (
-                        <motion.span key="sent" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="inline-flex items-center gap-1.5 text-emerald-400">
-                          <Check className="h-3.5 w-3.5" />
-                          Sent!
-                        </motion.span>
                       ) : (
                         <motion.span key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="inline-flex items-center gap-1.5">
                           Send message
@@ -376,6 +373,17 @@ export function ContactSection() {
           </div>
         </BlurReveal>
       </div>
+
+      <SuccessModal
+        isOpen={successModalOpen}
+        onClose={() => {
+          setSuccessModalOpen(false);
+          setSent(false);
+        }}
+        onSendAnother={() => {
+          setSent(false);
+        }}
+      />
     </SectionContainer>
   );
 }
