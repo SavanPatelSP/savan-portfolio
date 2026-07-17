@@ -81,6 +81,7 @@ const pages: PageConfig[] = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const now = new Date();
   const LAST_MODIFIED = new Date("2026-07-16T16:29:06.460Z");
 
   return pages.map(({ route, priority, changeFrequency }) => ({
