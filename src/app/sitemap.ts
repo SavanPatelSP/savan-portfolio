@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+export const revalidate = 86400;
+
 const BASE_URL = "https://savan.sp-net.in";
 
 type PageConfig = {
@@ -78,10 +81,10 @@ const pages: PageConfig[] = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  const LAST_MODIFIED = new Date("2026-07-16T16:29:06.460Z");
 
   return pages.map(({ route, priority, changeFrequency }) => ({
-    url: `${BASE_URL}${route}`,
+    url: new URL(route, BASE_URL).toString(),
     lastModified: now,
     changeFrequency,
     priority,
