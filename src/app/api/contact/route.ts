@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { render } from "@react-email/render";
+import ContactEmail from "@/emails/contact-email";
 
 const TAG = "[contact]";
 const RATE_LIMIT_WINDOW = 60_000;
@@ -106,6 +108,24 @@ export async function POST(req: Request) {
       );
     }
 
+    const now = new Date();
+    const date = now.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    const time = now.toLocaleTimeString("en-US", {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    });
+
+    const html = render(
+      ContactEmail({ name, email, message, date, time }),
+    );
+
+    const text = `New website enquiry received\n\nVisitor\nName: ${name}\nEmail: ${email}\n\nSubmission\nDate: ${date}\nTime: ${time}\n\nMessage\n${message}\n\n---\nThis message was generated automatically by the SP NET Portfolio contact form.\n© SP NET INC`;
+
     log("info", "Sending email via Resend", { from: fromAddress, to: toAddress, subject: `New message from ${name}` });
 
     let res: Response;
@@ -121,7 +141,8 @@ export async function POST(req: Request) {
           to: [toAddress],
           subject: `New message from ${name}`,
           replyTo: email,
-          text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+          html,
+          text,
         }),
       });
     } catch (fetchErr) {
