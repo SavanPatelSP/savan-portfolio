@@ -120,13 +120,37 @@ export async function POST(req: Request) {
       hour12: true,
     });
 
-    const html = render(
-      ContactEmail({ name, email, message, date, time }),
-    );
+    let html: string;
+    try {
+      html = await render(
+        ContactEmail({ name, email, message, date, time }),
+      );
+    } catch (renderErr) {
+      log("error", "Failed to render email template, falling back to plain text", { error: String(renderErr) });
+      html = "";
+    }
+
+    if (!html || html.length === 0) {
+      log("info", "HTML email empty, sending plain text only");
+    }
+
+    log("info", "HTML rendered", { htmlLength: html.length });
 
     const text = `New website enquiry received\n\nVisitor\nName: ${name}\nEmail: ${email}\n\nSubmission\nDate: ${date}\nTime: ${time}\n\nMessage\n${message}\n\n---\nThis message was generated automatically by the SP NET Portfolio contact form.\n© SP NET INC`;
 
-    log("info", "Sending email via Resend", { from: fromAddress, to: toAddress, subject: `New message from ${name}` });
+    const payload: Record<string, unknown> = {
+      from: `Contact <${fromAddress}>`,
+      to: [toAddress],
+      subject: `New message from ${name}`,
+      replyTo: email,
+      text,
+    };
+
+    if (html && html.length > 0) {
+      payload.html = html;
+    }
+
+    log("info", "Sending email via Resend", { from: fromAddress, to: toAddress, subject: `New message from ${name}`, htmlLength: html.length });
 
     let res: Response;
     try {
@@ -136,14 +160,7 @@ export async function POST(req: Request) {
           "Content-Type": "application/json",
           Authorization: `Bearer ${apiKey}`,
         },
-        body: JSON.stringify({
-          from: `Contact <${fromAddress}>`,
-          to: [toAddress],
-          subject: `New message from ${name}`,
-          replyTo: email,
-          html,
-          text,
-        }),
+        body: JSON.stringify(payload),
       });
     } catch (fetchErr) {
       log("error", "Network error contacting Resend", { error: String(fetchErr) });
