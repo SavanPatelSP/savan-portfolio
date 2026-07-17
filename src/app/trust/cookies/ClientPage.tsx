@@ -1,27 +1,69 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronRight,
   HardDrive,
   Cookie,
-  Monitor,
-  Database,
   Shield,
-  Search,
   Globe,
   Settings,
+  RefreshCw,
+  Copy,
+  Trash2,
+  Check,
+  ArrowRight,
+  Activity,
+  Lock,
+  Eye,
   X,
 } from "lucide-react";
 import { PageHero } from "@/components/ui/PageHero";
-import { FAQ } from "@/components/ui/FAQ";
 import { RelatedPages } from "@/components/ui/RelatedPages";
 import { CTASection } from "@/components/ui/CTASection";
 import { cn } from "@/lib/utils";
+import { FAST, ease, spring } from "@/lib/motion";
 import type { FAQItem } from "@/data/faqs";
 
 type LocalFAQItem = Omit<FAQItem, "category" | "links" | "related">;
+
+const STORAGE_KEY = "cookie-consent";
+
+const statusCards = [
+  { icon: Cookie, label: "No Advertising Cookies", color: "text-emerald-400/70" },
+  { icon: Globe, label: "No Cross-site Tracking", color: "text-emerald-400/70" },
+  { icon: Lock, label: "Browser-only Storage", color: "text-emerald-400/70" },
+  { icon: Eye, label: "User Controlled", color: "text-emerald-400/70" },
+] as const;
+
+const flowSteps = [
+  { icon: Globe, label: "Browser" },
+  { icon: HardDrive, label: "localStorage" },
+  { icon: Shield, label: "Saved" },
+  { icon: Check, label: "Remembered" },
+] as const;
+
+const comparisonItems = [
+  {
+    title: "Cookies",
+    features: [
+      { label: "Sent to server", value: true },
+      { label: "Can be used for tracking", value: true },
+      { label: "Set by third parties", value: true },
+      { label: "Used by this site", value: false },
+    ],
+  },
+  {
+    title: "localStorage",
+    features: [
+      { label: "Stays on your device", value: true },
+      { label: "Never sent to server", value: true },
+      { label: "No third-party access", value: true },
+      { label: "Used by this site", value: true },
+    ],
+  },
+] as const;
 
 const faqItems: LocalFAQItem[] = [
   {
@@ -72,6 +114,151 @@ const breadcrumbItems = [
   { label: "Cookies & Local Storage" },
 ];
 
+/* ═══════════════════════════════════════════════════════════════
+   STORAGE INSPECTOR COMPONENT
+   ═══════════════════════════════════════════════════════════════ */
+
+function StorageInspector() {
+  const [storageData, setStorageData] = useState<{
+    key: string;
+    value: string;
+    size: number;
+    exists: boolean;
+  }>({ key: STORAGE_KEY, value: "", size: 0, exists: false });
+  const [copied, setCopied] = useState(false);
+
+  const refresh = useCallback(() => {
+    if (typeof window === "undefined") return;
+    const value = localStorage.getItem(STORAGE_KEY) ?? "";
+    const exists = value.length > 0;
+    const encoder = new TextEncoder();
+    const size = encoder.encode(STORAGE_KEY + value).length;
+    setStorageData({ key: STORAGE_KEY, value: exists ? value : "(not set)", size, exists });
+  }, []);
+
+  useEffect(() => {
+    refresh();
+  }, [refresh]);
+
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText(`${storageData.key}=${storageData.value}`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  }, [storageData.key, storageData.value]);
+
+  const handleReset = useCallback(() => {
+    localStorage.removeItem(STORAGE_KEY);
+    refresh();
+  }, [refresh]);
+
+  return (
+    <div className="rounded-2xl overflow-hidden" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <div className="px-5 pt-4 pb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <HardDrive className="h-3.5 w-3.5 text-white/25" />
+          <span className="text-[10px] font-mono uppercase tracking-[0.12em] text-white/25">Storage Inspector</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <motion.button
+            onClick={refresh}
+            className="flex h-7 w-7 items-center justify-center rounded-lg text-white/25 hover:text-white/50 hover:bg-white/[0.04] transition-colors"
+            whileTap={{ scale: 0.9, rotate: 180 }}
+            transition={spring.snappy}
+            aria-label="Refresh"
+          >
+            <RefreshCw className="h-3.5 w-3.5" />
+          </motion.button>
+          <motion.button
+            onClick={handleReset}
+            className="flex h-7 w-7 items-center justify-center rounded-lg text-white/25 hover:text-red-400/50 hover:bg-red-500/[0.04] transition-colors"
+            whileTap={{ scale: 0.9 }}
+            transition={spring.snappy}
+            aria-label="Clear stored preference"
+          >
+            <Trash2 className="h-3.5 w-3.5" />
+          </motion.button>
+        </div>
+      </div>
+
+      <div className="px-5 pb-3 space-y-2">
+        {[
+          { label: "Location", value: "Browser localStorage", mono: false },
+          { label: "Key", value: storageData.key, mono: true },
+          { label: "Value", value: storageData.value, mono: true },
+          { label: "Size", value: `${storageData.size} bytes`, mono: true },
+        ].map((row) => (
+          <div key={row.label} className="flex items-center justify-between py-1.5">
+            <span className="text-xs text-white/25">{row.label}</span>
+            <span className={cn("text-xs text-white/45", row.mono && "font-mono")}>{row.value}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="px-5 pb-4 flex items-center gap-2">
+        <motion.button
+          onClick={handleCopy}
+          className="flex-1 flex items-center justify-center gap-1.5 rounded-xl py-2.5 text-xs font-medium text-white/35 hover:text-white/55 transition-colors"
+          style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.04)" }}
+          whileTap={{ scale: 0.97 }}
+        >
+          {copied ? <Check className="h-3.5 w-3.5 text-emerald-400/60" /> : <Copy className="h-3.5 w-3.5" />}
+          {copied ? "Copied" : "Copy to Clipboard"}
+        </motion.button>
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FLOW DIAGRAM COMPONENT
+   ═══════════════════════════════════════════════════════════════ */
+
+function FlowDiagram() {
+  return (
+    <div className="rounded-2xl p-5" style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.06)" }}>
+      <div className="flex items-center gap-1">
+        {flowSteps.map((step, i) => {
+          const Icon = step.icon;
+          return (
+            <div key={step.label} className="flex items-center flex-1">
+              <motion.div
+                className="flex flex-col items-center gap-2 flex-1 min-w-0"
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: FAST, delay: i * 0.1, ease: ease.out }}
+              >
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-xl shrink-0"
+                  style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
+                >
+                  <Icon className="h-4 w-4 text-white/40" />
+                </div>
+                <span className="text-[10px] text-white/30 text-center leading-tight whitespace-nowrap">{step.label}</span>
+              </motion.div>
+              {i < flowSteps.length - 1 && (
+                <motion.div
+                  initial={{ opacity: 0, scaleX: 0 }}
+                  whileInView={{ opacity: 1, scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: FAST, delay: 0.15 + i * 0.1, ease: ease.out }}
+                  className="origin-left shrink-0 -mx-1"
+                >
+                  <ArrowRight className="h-3 w-3 text-white/15" />
+                </motion.div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN CLIENT PAGE
+   ═══════════════════════════════════════════════════════════════ */
+
 export default function ClientPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
@@ -86,9 +273,147 @@ export default function ClientPage() {
         icon={<Cookie className="h-4 w-4" />}
       />
 
+      {/* ═══ PRIVACY DASHBOARD ═══ */}
       <section className="px-6 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl">
-          <div className="space-y-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="mb-4 font-['Inter'] text-lg font-medium text-white">
+              Privacy Dashboard
+            </h2>
+            <p className="mb-8 text-sm text-white/40 font-['Inter']">
+              Real-time status of your privacy protections on this site.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 gap-3">
+            {statusCards.map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={item.label}
+                  className="flex items-center gap-3 rounded-2xl px-4 py-4"
+                  style={{
+                    background: "rgba(255,255,255,0.02)",
+                    border: "1px solid rgba(255,255,255,0.06)",
+                  }}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: FAST, delay: i * 0.08, ease: ease.out }}
+                  whileHover={{ borderColor: "rgba(59,130,246,0.15)", backgroundColor: "rgba(59,130,246,0.03)" }}
+                >
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10">
+                    <Check className="h-4 w-4 text-emerald-400/70" />
+                  </div>
+                  <span className="text-xs font-medium text-white/50 leading-tight">{item.label}</span>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ HOW IT WORKS - FLOW DIAGRAM ═══ */}
+      <section className="px-6 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-16">
+        <div className="mx-auto max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="mb-4 font-['Inter'] text-lg font-medium text-white">
+              How It Works
+            </h2>
+            <p className="mb-8 text-sm text-white/40 font-['Inter']">
+              Your preference flows directly from your browser to local storage — never leaving your device.
+            </p>
+          </motion.div>
+
+          <FlowDiagram />
+        </div>
+      </section>
+
+      {/* ═══ STORAGE INSPECTOR ═══ */}
+      <section className="px-6 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-16">
+        <div className="mx-auto max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="mb-4 font-['Inter'] text-lg font-medium text-white">
+              Storage Inspector
+            </h2>
+            <p className="mb-8 text-sm text-white/40 font-['Inter']">
+              View and manage the single localStorage entry this site uses.
+            </p>
+          </motion.div>
+
+          <StorageInspector />
+        </div>
+      </section>
+
+      {/* ═══ COOKIES VS LOCALSTORAGE ═══ */}
+      <section className="px-6 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-16">
+        <div className="mx-auto max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <h2 className="mb-4 font-['Inter'] text-lg font-medium text-white">
+              Cookies vs localStorage
+            </h2>
+            <p className="mb-8 text-sm text-white/40 font-['Inter']">
+              Understanding the key differences between these two storage mechanisms.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {comparisonItems.map((item, i) => (
+              <motion.div
+                key={item.title}
+                className="rounded-2xl p-5"
+                style={{
+                  background: "rgba(255,255,255,0.02)",
+                  border: "1px solid rgba(255,255,255,0.06)",
+                }}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <h3 className="text-sm font-medium text-white/70 mb-4">{item.title}</h3>
+                <div className="space-y-3">
+                  {item.features.map((feature) => (
+                    <div key={feature.label} className="flex items-center justify-between">
+                      <span className="text-xs text-white/40">{feature.label}</span>
+                      {feature.value ? (
+                        <Check className="h-3.5 w-3.5 text-emerald-400/60" />
+                      ) : (
+                        <X className="h-3.5 w-3.5 text-white/15" />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ CONTENT SECTIONS ═══ */}
+      <section className="px-6 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-16">
+        <div className="mx-auto max-w-4xl">
+          <div className="space-y-4">
             {[
               {
                 icon: Cookie,
@@ -109,7 +434,7 @@ export default function ClientPage() {
                   "localStorage is a browser-native storage mechanism that lets websites save small amounts of data locally on your device. Unlike cookies, localStorage data is never sent to any server. SP NET INC uses localStorage to store a single preference: whether you accepted or declined the Website Preferences notice.",
               },
               {
-                icon: Database,
+                icon: Settings,
                 title: "Why Preferences Are Stored Locally",
                 description:
                   "The Website Preferences notice is stored in localStorage so you do not need to see it on every page load. Without localStorage, the notice would reappear every time you visit the site. The stored value is a simple string: 'accepted' or 'declined'. No personal information is stored.",
@@ -121,7 +446,7 @@ export default function ClientPage() {
                   "SP NET INC uses Resend for email delivery and Vercel for hosting. Resend processes form submissions to deliver emails directly to the site operator. Vercel provides infrastructure hosting. Neither service sets tracking cookies through this site. For details, see the Privacy Policy.",
               },
               {
-                icon: Search,
+                icon: Activity,
                 title: "Analytics",
                 description:
                   "SP NET INC does not use any analytics service. There is no Google Analytics, no Plausible, no Hotjar, no tracking pixels, no session recording. The site operator does not monitor page views, session duration, or user behavior in any way.",
@@ -167,6 +492,7 @@ export default function ClientPage() {
         </div>
       </section>
 
+      {/* ═══ FAQ ═══ */}
       <section className="px-6 sm:px-8 md:px-12 lg:px-16 py-12 sm:py-16">
         <div className="mx-auto max-w-4xl">
           <motion.div
