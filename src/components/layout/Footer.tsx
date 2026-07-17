@@ -180,17 +180,17 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: NORMAL, delay: 0.3, ease: ease.out }}
           >
-            <motion.a href="/get-in-touch" className="group inline-flex items-center gap-2 rounded-xl bg-white/[0.08] border border-white/[0.10] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/80 hover:bg-white/[0.12] hover:border-white/20 transition-all duration-300"
+            <motion.a href="/get-in-touch" className="group inline-flex items-center gap-2 rounded-xl bg-white/[0.08] border border-white/[0.10] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/80 hover:bg-white/[0.12] hover:border-white/20 transition-all duration-200 hover:shadow-[0_4px_20px_-4px_rgba(255,255,255,0.08)]"
               whileHover={{ y: -2, scale: 1.01 }}
-              whileTap={{ scale: 0.97 }}
+              whileTap={{ scale: 0.98 }}
               transition={spring.gentle}
             >
               Get In Touch
               <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
             </motion.a>
-            <motion.a href="/products/sp-net-ecosystem" className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.08] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/45 hover:text-white/65 hover:border-white/[0.14] transition-all duration-300"
+            <motion.a href="/products/sp-net-ecosystem" className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.08] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/45 hover:text-white/65 hover:border-white/[0.14] transition-all duration-200 hover:-translate-y-0.5"
               whileHover={{ y: -2, scale: 1.01 }}
-              whileTap={{ scale: 0.97 }}
+              whileTap={{ scale: 0.98 }}
               transition={spring.gentle}
             >
               Explore My Work
@@ -323,7 +323,7 @@ export function Footer() {
                 <motion.a
                   key={item.label}
                   href={item.href}
-                  className="group rounded-xl border border-white/[0.04] bg-white/[0.01] p-5 text-center hover:border-white/[0.08] hover:bg-white/[0.02] transition-all duration-300"
+                  className="group rounded-xl border border-white/[0.04] bg-white/[0.01] p-5 text-center hover:border-white/[0.08] hover:bg-white/[0.02] transition-all duration-200 hover:-translate-y-0.5"
                   whileHover={{ y: -3, scale: 1.02 }}
                   transition={spring.gentle}
                 >
@@ -361,9 +361,9 @@ export function Footer() {
           <div className="mt-10 flex justify-center">
             <motion.button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="group/scroll inline-flex items-center gap-2 rounded-xl border border-white/[0.06] px-5 py-3 text-xs text-white/25 hover:text-white/40 hover:border-white/10 transition-all duration-300"
+              className="group/scroll inline-flex items-center gap-2 rounded-xl border border-white/[0.06] px-5 py-3 text-xs text-white/25 hover:text-white/40 hover:border-white/10 transition-all duration-200 hover:-translate-y-0.5"
               whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.97 }}
+              whileTap={{ scale: 0.98 }}
               transition={spring.gentle}
             >
               <Zap className="h-3 w-3" />

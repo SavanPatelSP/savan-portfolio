@@ -111,8 +111,8 @@ export function Header() {
       )}
     >
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
-        <a href="#home" className="group flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors">
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-blue-500/30 to-blue-600/20 ring-1 ring-blue-500/25 overflow-hidden transition-shadow duration-300 group-hover:shadow-[0_0_12px_rgba(59,130,246,0.2)]">
+        <a href="#home" className="group flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors duration-200">
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-blue-500/30 to-blue-600/20 ring-1 ring-blue-500/25 overflow-hidden transition-shadow duration-200 group-hover:shadow-[0_0_12px_rgba(59,130,246,0.2)]">
             <Image src="/logo.jpg" alt={personal.company} width={28} height={28} className="object-cover w-full h-full" priority />
           </span>
           {personal.name}
@@ -124,9 +124,9 @@ export function Header() {
           ))}
           <motion.a
             href={contactHref}
-            className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90 transition-colors duration-300"
+            className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90 transition-all duration-200 hover:shadow-[0_4px_16px_-4px_rgba(255,255,255,0.15)]"
             whileHover={{ scale: 1.02, y: -1 }}
-            whileTap={{ scale: 0.97 }}
+            whileTap={{ scale: 0.98 }}
             transition={spring.gentle}
           >
             Get in touch

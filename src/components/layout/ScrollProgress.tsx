@@ -23,7 +23,7 @@ export function ScrollProgress() {
       />
       <motion.button
         onClick={handleScrollToTop}
-        className="fixed bottom-6 right-6 z-[100] flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/[0.08] bg-black/70 backdrop-blur-md shadow-lg shadow-black/20"
+        className="fixed bottom-6 right-6 z-[100] flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/[0.08] bg-black/70 backdrop-blur-md shadow-lg shadow-black/20 hover:border-white/[0.15] transition-all duration-200"
         style={{ opacity: showBtn, scale: btnScale }}
         whileHover={{ scale: 1.1, y: -2 }}
         whileTap={{ scale: 0.95 }}

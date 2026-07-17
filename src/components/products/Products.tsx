@@ -68,13 +68,13 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.12, duration: SLOW, ease: ease.out }}
-      whileHover={{ y: -6, scale: 1.005 }}
+      whileHover={{ y: -4, scale: 1.003 }}
     >
       {/* Animated border glow on hover */}
       <motion.div
         className="absolute inset-0 rounded-3xl pointer-events-none"
         animate={isHovered ? {
-          boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.10), 0 20px 60px -15px rgba(0,0,0,0.4), 0 0 40px -20px ${product.color}15`,
+          boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.08), 0 16px 48px -12px rgba(0,0,0,0.35), 0 0 32px -16px ${product.color}10`,
         } : {
           boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.04), 0 1px 2px rgba(0,0,0,0.1)`,
         }}
@@ -306,13 +306,13 @@ function FutureProductCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ delay: index * 0.1, duration: NORMAL, ease: ease.out }}
-      whileHover={{ y: -4, scale: 1.01 }}
+      whileHover={{ y: -3, scale: 1.005 }}
     >
       {/* Animated border glow */}
       <motion.div
         className="absolute inset-0 rounded-2xl pointer-events-none"
         initial={{ boxShadow: "inset 0 0 0 1px rgba(255,255,255,0.04)" }}
-        whileHover={{ boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.10), 0 8px 40px -12px ${product.color}15` }}
+        whileHover={{ boxShadow: `inset 0 0 0 1px rgba(255,255,255,0.08), 0 8px 32px -10px ${product.color}10` }}
         transition={{ duration: 0.3 }}
       />
       <div
@@ -388,7 +388,7 @@ export function ProductsSection() {
               </p>
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-medium text-black hover:bg-white/90 transition-colors duration-200"
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-medium text-black hover:bg-white/90 transition-all duration-200 hover:shadow-[0_4px_16px_-4px_rgba(255,255,255,0.15)] hover:-translate-y-0.5 active:scale-[0.98]"
               >
                 View All Products
               </Link>

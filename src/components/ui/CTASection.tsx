@@ -86,7 +86,7 @@ export function CTASection({
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <CTALink
               href={primaryAction.href}
-              className="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors duration-200"
+              className="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-all duration-200 hover:shadow-[0_4px_20px_-4px_rgba(255,255,255,0.15)] hover:-translate-y-0.5 active:scale-[0.98]"
             >
               {primaryAction.label}
               <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform duration-200" />
@@ -94,7 +94,7 @@ export function CTASection({
             {secondaryAction && (
               <CTALink
                 href={secondaryAction.href}
-                className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.10] px-6 py-3 text-sm font-medium text-white/50 hover:text-white/70 hover:border-white/[0.18] transition-all duration-200"
+                className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.10] px-6 py-3 text-sm font-medium text-white/50 hover:text-white/70 hover:border-white/[0.18] transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.98]"
               >
                 {secondaryAction.label}
               </CTALink>

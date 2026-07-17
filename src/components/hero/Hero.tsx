@@ -23,9 +23,11 @@ function useMousePosition() {
 
 function CursorBlink() {
   return (
-    <span
-      className="inline-block w-[2px] h-[1em] bg-blue-400/60 align-middle ml-0.5 motion-safe:animate-cursor-blink"
+    <motion.span
+      className="inline-block w-[2px] h-[1em] bg-blue-400/60 align-middle ml-0.5"
       aria-hidden="true"
+      animate={{ opacity: [1, 1, 0, 0, 1] }}
+      transition={{ duration: 1.06, repeat: Infinity, ease: "linear", times: [0, 0.4, 0.5, 0.9, 1] }}
     />
   );
 }
@@ -198,6 +200,7 @@ export function Hero() {
       <div
         ref={ambientRef}
         className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-1000"
+        style={{ willChange: "background" }}
         aria-hidden="true"
       />
 
@@ -315,11 +318,11 @@ export function Hero() {
           >
             <motion.a
               href="#products"
-              className="group relative inline-flex items-center gap-2.5 rounded-xl bg-white px-7 py-3.5 text-sm font-medium text-black hover:bg-white/90 transition-colors overflow-hidden shadow-2xl shadow-blue-500/10"
+              className="group relative inline-flex items-center gap-2.5 rounded-xl bg-white px-7 py-3.5 text-sm font-medium text-black hover:bg-white/90 transition-colors overflow-hidden"
               animate={{ x: magneticPos.x, y: magneticPos.y }}
               transition={spring.gentle}
-              whileHover={{ scale: 1.02, y: -1 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={{ scale: 1.02, y: -1, boxShadow: "0 8px 30px -8px rgba(255,255,255,0.15), 0 0 20px -6px rgba(59,130,246,0.1)" }}
+              whileTap={{ scale: 0.98 }}
             >
               <span className="relative z-[1]">Explore products</span>
               <ArrowDown className="relative z-[1] h-3.5 w-3.5 group-hover:translate-y-0.5 transition-transform" />
@@ -335,8 +338,8 @@ export function Hero() {
               className="group relative inline-flex items-center gap-2.5 rounded-xl border border-white/10 px-7 py-3.5 text-sm font-medium text-white/50 hover:text-white hover:border-white/20 transition-all overflow-hidden"
               animate={{ x: magneticPos2.x, y: magneticPos2.y }}
               transition={spring.gentle}
-              whileHover={{ scale: 1.02, y: -1 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={{ scale: 1.02, y: -1, boxShadow: "0 4px 20px -4px rgba(0,0,0,0.3)" }}
+              whileTap={{ scale: 0.98 }}
             >
               <span className="relative z-[1]">Get in touch</span>
               <Sparkles className="relative z-[1] h-3.5 w-3.5 group-hover:rotate-12 transition-transform" />
@@ -345,21 +348,22 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator — continuous bounce */}
+      {/* Scroll indicator — smooth pulse */}
         <motion.button
           onClick={scrollNext}
-          className="absolute bottom-8 left-1/2 z-[3] -translate-x-1/2 p-4 text-white/25 hover:text-white/40 transition-colors"
+          className="absolute bottom-8 left-1/2 z-[3] -translate-x-1/2 flex flex-col items-center gap-2 text-white/20 hover:text-white/35 transition-colors"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 1.6, duration: 0.6 }}
+          transition={{ delay: 1.6, duration: 0.8 }}
           aria-label="Scroll to content"
         >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: [0.33, 0, 0.67, 1] }}
         >
           <ArrowDown className="h-4 w-4" />
         </motion.div>
+        <span className="text-[9px] font-mono uppercase tracking-[0.2em] opacity-50">Scroll</span>
       </motion.button>
     </section>
   );
