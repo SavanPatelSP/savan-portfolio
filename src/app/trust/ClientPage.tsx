@@ -9,6 +9,7 @@ import {
   Bot,
   Activity,
   ArrowUpRight,
+  HardDrive,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
@@ -27,7 +28,7 @@ import {
 const childLinks = [
   {
     title: "Privacy",
-    description: "No tracking, no ads, no cookies — privacy by default",
+    description: "No tracking, no ads, no advertising cookies — privacy by default",
     href: "/trust/privacy",
     icon: Eye,
   },
@@ -48,6 +49,12 @@ const childLinks = [
     description: "Human-first AI principles, ethical boundaries, and transparency",
     href: "/trust/responsible-ai",
     icon: Bot,
+  },
+  {
+    title: "Cookies & Local Storage",
+    description: "How browser preferences are stored and what data is used",
+    href: "/trust/cookies",
+    icon: HardDrive,
   },
   {
     title: "System Status",

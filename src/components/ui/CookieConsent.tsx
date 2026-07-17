@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Cookie } from "lucide-react";
+import { X, Shield } from "lucide-react";
 
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
@@ -44,7 +44,7 @@ export function CookieConsent() {
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           role="dialog"
-          aria-label="Cookie notice"
+          aria-label="Privacy preferences"
         >
           <div
             className="mx-auto max-w-3xl rounded-2xl border p-4 sm:p-5 backdrop-blur-xl"
@@ -57,11 +57,15 @@ export function CookieConsent() {
             <div className="flex flex-col sm:flex-row items-start sm:items-start gap-3 sm:gap-4">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <Cookie className="h-3.5 w-3.5 text-white/40" />
-                  <span className="text-xs font-medium text-white/60">Cookie Notice</span>
+                  <Shield className="h-3.5 w-3.5 text-white/40" />
+                  <span className="text-xs font-medium text-white/60">Website Preferences</span>
                 </div>
                 <p className="text-xs text-white/40 leading-relaxed">
-                  This site uses localStorage to remember your consent preferences. No cookies, tracking, or analytics are used. By continuing, you accept this use of local storage.
+                  This site does not use advertising cookies or tracking. Your preference (accepted or declined) is stored locally in your browser using localStorage so the notice does not reappear. No personal information is stored. See the{" "}
+                  <a href="/trust/cookies" className="underline underline-offset-2 hover:text-white/60 transition-colors">
+                    Cookies &amp; Local Storage
+                  </a>{" "}
+                  page for full details.
                 </p>
               </div>
               <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">

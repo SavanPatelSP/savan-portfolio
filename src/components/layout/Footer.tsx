@@ -52,6 +52,7 @@ const navGroups = [
       { label: "Security", href: "/trust/security" },
       { label: "Transparency", href: "/trust/transparency" },
       { label: "Responsible AI", href: "/trust/responsible-ai" },
+      { label: "Cookies & Storage", href: "/trust/cookies" },
       { label: "System Status", href: "/trust/status" },
     ],
   },

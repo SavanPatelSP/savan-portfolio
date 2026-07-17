@@ -54,6 +54,7 @@ const pages: PageConfig[] = [
   { route: "/trust/security", priority: 0.8, changeFrequency: "monthly" },
   { route: "/trust/transparency", priority: 0.7, changeFrequency: "monthly" },
   { route: "/trust/responsible-ai", priority: 0.7, changeFrequency: "monthly" },
+  { route: "/trust/cookies", priority: 0.7, changeFrequency: "monthly" },
   { route: "/trust/status", priority: 0.9, changeFrequency: "daily" },
 
   { route: "/explore", priority: 0.8, changeFrequency: "monthly" },
@@ -82,7 +83,7 @@ const pages: PageConfig[] = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const LAST_MODIFIED = new Date("2026-07-16T16:29:06.460Z");
+  const LAST_MODIFIED = new Date("2026-07-17T00:00:00.000Z");
 
   return pages.map(({ route, priority, changeFrequency }) => ({
     url: new URL(route, BASE_URL).toString(),

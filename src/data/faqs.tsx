@@ -1054,6 +1054,89 @@ export const faqItems: FAQItem[] = [
     related: ["How does SP NET handle privacy?", "Does SP NET sell user data?"],
   },
 
+  {
+    question: "Does this website use cookies?",
+    answer:
+      "No. SP NET INC does not use advertising cookies, tracking cookies, or analytics cookies. A Website Preferences notice may appear once to remember whether you accepted or declined it. That preference is stored locally in your browser using localStorage — a local-only storage mechanism. No personal data is collected or transmitted through this mechanism.",
+    category: "privacy",
+    links: [
+      { label: "Cookies & Local Storage", href: "/trust/cookies" },
+      { label: "Privacy Policy", href: "/trust/privacy" },
+    ],
+    related: ["What is browser localStorage?", "Does this website use tracking?"],
+  },
+  {
+    question: "What is browser localStorage?",
+    answer:
+      "localStorage is a browser-native storage mechanism that lets websites save small amounts of data locally on your device. Unlike cookies, localStorage data is never sent to any server — it is entirely local to your browser. SP NET INC uses it only to remember your preference about the Website Preferences notice. You can clear it through your browser settings or developer tools.",
+    category: "privacy",
+    links: [
+      { label: "Cookies & Local Storage", href: "/trust/cookies" },
+    ],
+    related: ["Does this website use cookies?", "What does the Website Preferences notice store?"],
+  },
+  {
+    question: "What does the Website Preferences notice store?",
+    answer:
+      "The notice stores a single value: whether you accepted or declined the preference notice. This is stored under the key 'cookie-consent' with a value of either 'accepted' or 'declined'. No names, email addresses, or any other personal information is stored. Clearing this value from localStorage will cause the notice to reappear.",
+    category: "privacy",
+    links: [
+      { label: "Cookies & Local Storage", href: "/trust/cookies" },
+    ],
+    related: ["What is browser localStorage?", "Can I clear my browser preferences?"],
+  },
+  {
+    question: "Can I clear my browser preferences?",
+    answer:
+      "Yes. You can clear localStorage through your browser's developer tools (Application tab → Local Storage) or through your browser settings. Clearing it will cause the Website Preferences notice to reappear the next time you visit the site. You can also block localStorage entirely through your browser settings, though this may affect other websites.",
+    category: "privacy",
+    links: [
+      { label: "Cookies & Local Storage", href: "/trust/cookies" },
+    ],
+    related: ["What is browser localStorage?", "What does the Website Preferences notice store?"],
+  },
+  {
+    question: "What third-party services does this site use?",
+    answer:
+      "SP NET INC uses two third-party services: Resend for email delivery (processes form submissions to deliver emails to the site operator) and Vercel for hosting (provides infrastructure and edge deployment). Neither service sets tracking cookies through this site. Resend only processes emails when you submit the contact form. Vercel provides static hosting and serverless functions. For details, see the Privacy Policy.",
+    category: "privacy",
+    links: [
+      { label: "Privacy Policy", href: "/trust/privacy" },
+    ],
+    related: ["Does this site use Google Analytics?", "Does this website use cookies?"],
+  },
+  {
+    question: "Does this site use Google Analytics or any tracking?",
+    answer:
+      "No. SP NET INC does not use Google Analytics, Plausible, Hotjar, or any other analytics or tracking service. There are no third-party scripts that monitor your behavior on this site. The site operator does not track page views, session duration, or user behavior in any way.",
+    category: "privacy",
+    links: [
+      { label: "Privacy Policy", href: "/trust/privacy" },
+    ],
+    related: ["Does this website use tracking?", "What third-party services does this site use?"],
+  },
+  {
+    question: "What is the difference between cookies and localStorage?",
+    answer:
+      "Cookies are small text files that websites can set on your browser. Cookies are sent to the server with every HTTP request, which is why they can be used for tracking. localStorage is a browser-only storage mechanism that stays on your device and is never transmitted to any server. SP NET INC uses localStorage, not cookies, for preference storage.",
+    category: "privacy",
+    links: [
+      { label: "Cookies & Local Storage", href: "/trust/cookies" },
+    ],
+    related: ["Does this website use cookies?", "What is browser localStorage?"],
+  },
+  {
+    question: "Can I contact you about data privacy?",
+    answer:
+      "Yes. If you have any questions about data privacy, you can reach out via the PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT or email at savan@sp-net.in. For full privacy details, visit the Privacy Policy page.",
+    category: "privacy",
+    links: [
+      { label: "Privacy Policy", href: "/trust/privacy" },
+      { label: "Get in Touch", href: "/get-in-touch" },
+    ],
+    related: ["Can I request my data be deleted?", "What data does this website collect?"],
+  },
+
   // ─── Security ────────────────────────────────────────────
   {
     question: "How can I report a security vulnerability?",

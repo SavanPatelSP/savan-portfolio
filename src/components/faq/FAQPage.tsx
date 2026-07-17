@@ -6,25 +6,7 @@ import { ChevronDown, Search, ChevronsUpDown, X, ArrowUpRight, Link2 } from "luc
 import { cn } from "@/lib/utils";
 import { FAST, NORMAL, ease, spring } from "@/lib/motion";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
-
-export interface FAQCategory {
-  id: string;
-  label: string;
-  icon: React.ReactNode;
-}
-
-export interface FAQLink {
-  label: string;
-  href: string;
-}
-
-export interface FAQItem {
-  question: string;
-  answer: string;
-  category: string;
-  links?: FAQLink[];
-  related?: string[];
-}
+import type { FAQCategory, FAQLink, FAQItem } from "@/data/faqs";
 
 function FAQAccordionItem({
   item,

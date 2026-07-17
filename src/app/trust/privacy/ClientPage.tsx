@@ -42,7 +42,7 @@ const principles = [
   {
     title: "No Cookies",
     description:
-      "I do not use cookies. There are no consent banners because there is nothing to consent to. The only cookie is the one you probably want with coffee.",
+      "This site does not use advertising or tracking cookies. A one-time Website Preferences notice may appear to remember your choice using browser localStorage — a local-only preference store. No personal data is collected or transmitted.",
     icon: Trash2,
   },
   {
@@ -88,7 +88,7 @@ const faqItems = [
   {
     question: "Does this site use cookies?",
     answer:
-      "No. There are no cookies, no localStorage tracking, no fingerprinting. The site works without any of that. The only cookies that might exist are session cookies set by the hosting platform for technical purposes, which I do not control or access.",
+      "No. This site does not use advertising cookies, tracking cookies, or analytics cookies. A Website Preferences notice may appear once to remember whether you accepted or declined the notice. That preference is stored locally in your browser using localStorage — a browser-native storage mechanism that does not transmit data to any server. No third-party cookies are set. See the Cookies & Local Storage page at /trust/cookies for full details.",
   },
   {
     question: "Do you use Google Analytics or any analytics?",
