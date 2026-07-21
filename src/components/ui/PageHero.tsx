@@ -71,7 +71,7 @@ export function PageHero({
           )}
 
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white leading-[0.92]"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white leading-[0.92]"
             initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: SLOW, delay: 0.1, ease: ease.out }}

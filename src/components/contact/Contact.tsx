@@ -88,6 +88,7 @@ export function ContactSection() {
           name: data.get("name"),
           email: data.get("email-c"),
           message: data.get("message"),
+          website: data.get("website") || undefined,
         }),
       });
       const body = await res.json().catch(() => null);
@@ -298,6 +299,16 @@ export function ContactSection() {
             onSubmit={handleSubmit}
           >
               <div className="space-y-5">
+              <div className="absolute opacity-0 pointer-events-none absolute -left-[9999px]" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  type="text"
+                  name="website"
+                  id="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="block text-xs font-medium text-white/25 mb-1.5">

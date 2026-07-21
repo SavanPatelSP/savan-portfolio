@@ -5,13 +5,34 @@ import { motion, useInView } from "framer-motion";
 import { ArrowUpRight, Building2, ChevronDown, Code, Cpu, ExternalLink, MessageSquare, Rocket, Settings, Terminal, Zap } from "lucide-react";
 import Image from "next/image";
 import { personal } from "@/data/personal";
+import { VerifiedBadge } from "@/components/ui/VerifiedBadge";
 
 import { cn } from "@/lib/utils";
 import { ease, spring, SLOW, NORMAL, FAST } from "@/lib/motion";
+import { Timeline, TimelineItem } from "@/components/timeline";
 
 /* ─── DATA ───────────────────────────────────────────────────── */
 
 const navGroups = [
+  {
+    title: "Install",
+    links: [
+      { label: "Install Guide", href: "/downloads" },
+      { label: "Portfolio App", href: "/downloads/portfolio-app" },
+    ],
+  },
+  {
+    title: "Portfolio App",
+    links: [
+      { label: "Overview", href: "/portfolio-app" },
+      { label: "Installation Guide", href: "/portfolio-app/install" },
+      { label: "Platform Support", href: "/portfolio-app/platform-support" },
+      { label: "Offline Experience", href: "/portfolio-app/offline" },
+      { label: "Release Notes", href: "/portfolio-app/release-notes" },
+      { label: "Privacy", href: "/portfolio-app/privacy" },
+      { label: "FAQ", href: "/portfolio-app/faq" },
+    ],
+  },
   {
     title: "Company",
     links: [
@@ -69,7 +90,7 @@ const navGroups = [
   {
     title: "Resources",
     links: [
-      { label: "Documentation", href: "/resources/documentation" },
+      { label: "Documentation", href: "/docs" },
       { label: "FAQs", href: "/resources/faqs" },
       { label: "Blog", href: "/resources/blog" },
       { label: "Open Source", href: "/resources/open-source" },
@@ -180,7 +201,7 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: NORMAL, delay: 0.3, ease: ease.out }}
           >
-            <motion.a href="/get-in-touch" className="group inline-flex items-center gap-2 rounded-xl bg-white/[0.08] border border-white/[0.10] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/80 hover:bg-white/[0.12] hover:border-white/20 transition-all duration-200 hover:shadow-[0_4px_20px_-4px_rgba(255,255,255,0.08)]"
+            <motion.a href="/get-in-touch" className="group inline-flex items-center gap-2 rounded-xl bg-white/[0.08] border border-white/[0.10] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/80 hover:bg-white/[0.12] hover:border-white/20 transition-all duration-200 hover:shadow-[0_4px_20px_-4px_rgba(255,255,255,0.08)] min-h-[48px]"
               whileHover={{ y: -2, scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
               transition={spring.gentle}
@@ -188,7 +209,7 @@ export function Footer() {
               Get In Touch
               <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
             </motion.a>
-            <motion.a href="/products/sp-net-ecosystem" className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.08] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/45 hover:text-white/65 hover:border-white/[0.14] transition-all duration-200 hover:-translate-y-0.5"
+            <motion.a href="/products/sp-net-ecosystem" className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.08] px-5 sm:px-6 py-3 sm:py-3.5 text-sm font-medium text-white/45 hover:text-white/65 hover:border-white/[0.14] transition-all duration-200 hover:-translate-y-0.5 min-h-[48px]"
               whileHover={{ y: -2, scale: 1.01 }}
               whileTap={{ scale: 0.98 }}
               transition={spring.gentle}
@@ -235,18 +256,18 @@ export function Footer() {
 
           {/* ─── NAVIGATION ─── */}
           <FadeSection delay={0.3} className="flex-1">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 sm:gap-8 text-center sm:text-left">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-8 text-center sm:text-left">
               {navGroups.map((group) => (
                 <div key={group.title}>
                   <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-4">{group.title}</h4>
-                  <ul className="list-none p-0 m-0 space-y-2.5">
+                  <ul className="list-none p-0 m-0 space-y-1">
                     {group.links.map((link) => (
                       <li key={link.label}>
                         <a
                           href={link.href}
                           target={link.href.startsWith("http") ? "_blank" : undefined}
                           rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="group/link inline-flex items-center gap-1.5 text-sm text-white/35 hover:text-white/70 transition-colors duration-200"
+                          className="group/link inline-flex items-center gap-1.5 text-sm text-white/35 hover:text-white/70 transition-colors duration-200 min-h-[36px] py-1"
                         >
                           <span className="h-px w-0 group-hover/link:w-2 bg-white/30 transition-all duration-300" />
                           {link.label}
@@ -290,11 +311,11 @@ export function Footer() {
               </div>
             ))}
           </div>
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2">
             {techBadges.map((badge, i) => (
               <motion.span
                 key={badge}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-white/[0.06] text-[11px] text-white/25 font-mono"
+                className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg border border-white/[0.06] text-[10px] sm:text-[11px] text-white/25 font-mono"
                 initial={{ opacity: 0, y: 8 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -312,7 +333,7 @@ export function Footer() {
         <div className="py-16 sm:py-20 lg:py-24 border-t border-white/[0.04]">
           <FadeSection delay={0.1}>
             <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-6">Connect</h4>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
               {[
                 { label: "Get in Touch", description: "Choose how to connect", href: "/get-in-touch" },
                 { label: "Contact", description: "Direct contact form", href: "/contact" },
@@ -323,7 +344,7 @@ export function Footer() {
                 <motion.a
                   key={item.label}
                   href={item.href}
-                  className="group rounded-xl border border-white/[0.04] bg-white/[0.01] p-5 text-center hover:border-white/[0.08] hover:bg-white/[0.02] transition-all duration-200 hover:-translate-y-0.5"
+                  className="group rounded-xl border border-white/[0.04] bg-white/[0.01] p-4 sm:p-5 text-center hover:border-white/[0.08] hover:bg-white/[0.02] transition-all duration-200 hover:-translate-y-0.5 min-h-[48px]"
                   whileHover={{ y: -3, scale: 1.02 }}
                   transition={spring.gentle}
                 >
@@ -361,7 +382,7 @@ export function Footer() {
           <div className="mt-10 flex justify-center">
             <motion.button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="group/scroll inline-flex items-center gap-2 rounded-xl border border-white/[0.06] px-5 py-3 text-xs text-white/25 hover:text-white/40 hover:border-white/10 transition-all duration-200 hover:-translate-y-0.5"
+              className="group/scroll inline-flex items-center gap-2 rounded-xl border border-white/[0.06] px-5 py-3 text-xs text-white/25 hover:text-white/40 hover:border-white/10 transition-all duration-200 hover:-translate-y-0.5 min-h-[48px]"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
               transition={spring.gentle}
@@ -378,12 +399,12 @@ export function Footer() {
           <div className="border-t border-white/[0.03] py-5 sm:py-6 lg:py-8 mt-0">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
               <p className="text-xs text-white/12 hover:text-white/20 transition-colors duration-300">
-                &copy; {new Date().getFullYear()} {personal.name}. All Rights Reserved.
+                &copy; {new Date().getFullYear()} {personal.name} <VerifiedBadge size="1.15em" />. All Rights Reserved.
               </p>
               <div className="flex items-center gap-3 text-[10px] text-white/15">
                 <span>{personal.name}</span>
-                <span className="hidden sm:inline text-white/8">·</span>
-                <span className="hidden sm:inline">{personal.company}</span>
+                <span className="text-white/8">·</span>
+                <span>{personal.company}</span>
               </div>
             </div>
             <div className="mt-3 text-center">
@@ -404,55 +425,34 @@ function PremiumTimeline({ milestones }: { milestones: typeof journeyMilestones 
 
   return (
     <div ref={ref} className="relative max-w-3xl mx-auto">
-      {/* Timeline line with progressive fill */}
-      <div className="hidden sm:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2" aria-hidden="true">
-        <div className="absolute inset-0 bg-gradient-to-b from-white/[0.06] via-white/[0.03] to-transparent" />
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-b from-white/[0.12] via-white/[0.06] to-transparent origin-top"
-          initial={{ scaleY: 0 }}
-          animate={vis ? { scaleY: 1 } : {}}
-          transition={{ duration: 1.5, delay: 0.2, ease: ease.out }}
-        />
-      </div>
-
-      <div className="relative z-[1]">
+      <Timeline layout="centered">
         {milestones.map((m, i) => {
           const Icon = m.icon;
           const isLeft = i % 2 === 0;
           return (
-            <div key={m.year} className="relative pb-12 last:pb-0">
-              <div className="flex items-start gap-5 sm:block">
-                {/* Mobile: node + content side by side. Desktop: absolute centered node. */}
-                <div className="shrink-0 sm:absolute sm:left-1/2 sm:-translate-x-1/2 sm:top-0">
-                  <motion.div
-                    className="flex items-center justify-center h-8 w-8 rounded-full border border-white/[0.08] bg-white/[0.02]"
-                    initial={{ scale: 0 }}
-                    animate={vis ? { scale: 1 } : {}}
-                    transition={{ type: "spring", stiffness: 200, damping: 16, delay: i * 0.1 }}
-                  >
-                    <Icon className="h-3.5 w-3.5 text-white/30" />
-                  </motion.div>
+            <TimelineItem
+              key={m.year}
+              icon={Icon}
+              index={i}
+              total={milestones.length}
+              isLast={i === milestones.length - 1}
+              layout="centered"
+            >
+              <div className={cn(
+                "rounded-xl border border-white/[0.04] bg-white/[0.02] p-4 sm:p-5 transition-all duration-300 hover:border-white/[0.08] hover:bg-white/[0.03]",
+                isLeft ? "sm:text-right text-left" : "text-left"
+              )}>
+                <div className={cn("flex items-center gap-3 mb-1.5", isLeft && "sm:justify-end")}>
+                  <span className="text-[10px] font-mono tracking-wider text-white/25">{m.year}</span>
+                  <span className="text-[8px] font-mono tracking-[0.15em] text-white/20 uppercase">{m.status}</span>
                 </div>
-                <motion.div
-                  className={cn("min-w-0 flex-1 sm:w-1/2", isLeft ? "sm:mr-auto sm:pr-8" : "sm:ml-auto sm:pl-8")}
-                  initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
-                  animate={vis ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-                  transition={{ duration: NORMAL, delay: i * 0.1, ease: ease.out }}
-                >
-                  <div className={cn("rounded-xl border border-white/[0.04] bg-white/[0.02] p-4 sm:p-5 transition-all duration-300 hover:border-white/[0.08] hover:bg-white/[0.03]", isLeft ? "sm:text-right" : "sm:text-left", "text-left")}>
-                    <div className={cn("flex items-center gap-3 mb-1.5", isLeft && "sm:justify-end")}>
-                      <span className="text-[10px] font-mono tracking-wider text-white/25">{m.year}</span>
-                      <span className="text-[8px] font-mono tracking-[0.15em] text-white/20 uppercase">{m.status}</span>
-                    </div>
-                    <h4 className="text-sm text-white/50 font-medium">{m.label}</h4>
-                    <p className="text-xs text-white/25 mt-1 leading-relaxed">{m.description}</p>
-                  </div>
-                </motion.div>
+                <h4 className="text-sm text-white/50 font-medium">{m.label}</h4>
+                <p className="text-xs text-white/25 mt-1 leading-relaxed">{m.description}</p>
               </div>
-            </div>
+            </TimelineItem>
           );
         })}
-      </div>
+      </Timeline>
 
       <motion.div
         className="mt-14 text-center"

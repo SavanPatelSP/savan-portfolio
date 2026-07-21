@@ -85,7 +85,7 @@ export function Breadcrumbs({
                 {isLast ? (
                   <span
                     ref={activeRef}
-                    className="text-blue-400/80 font-semibold py-2 px-1"
+                    className="text-blue-400/80 font-semibold py-2.5 px-1"
                     aria-current="page"
                   >
                     {item.label}
@@ -93,13 +93,13 @@ export function Breadcrumbs({
                 ) : item.href ? (
                   <Link
                     href={item.href}
-                    className="group relative text-white/25 hover:text-white/60 py-2 px-1 transition-colors duration-200"
+                    className="group relative text-white/25 hover:text-white/60 py-2.5 px-1 transition-colors duration-200"
                   >
                     <span className="relative z-[1]">{item.label}</span>
                     <span className="absolute bottom-1.5 left-1 right-1 h-px bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left" />
                   </Link>
                 ) : (
-                  <span className="text-white/25 py-2 px-1">{item.label}</span>
+                  <span className="text-white/25 py-2.5 px-1">{item.label}</span>
                 )}
               </motion.li>
             );

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   Map,
   Rocket,
@@ -11,7 +10,6 @@ import {
   Globe,
   Calendar,
   ArrowRight,
-  CheckCircle2,
   Clock,
   Sparkles,
 } from "lucide-react";
@@ -21,6 +19,7 @@ import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";
 import { RelatedPages } from "@/components/ui/RelatedPages";
+import { Timeline, TimelineItem, TimelineNodeStatus } from "@/components/timeline";
 import {
   FadeIn,
   SectionContainer,
@@ -353,47 +352,24 @@ export default function RoadmapPage() {
                     </span>
                   </div>
 
-                  <div className="relative">
-                    <div className="absolute left-[15px] top-0 bottom-0 w-px bg-white/[0.04]" />
-
-                    <div className="space-y-0">
-                      {product.milestones.map((milestone, i) => (
-                        <motion.div
+                  <Timeline layout="left">
+                    {product.milestones.map((milestone, i) => {
+                      const nodeStatus: TimelineNodeStatus = milestone.done
+                        ? "done"
+                        : milestone.active
+                        ? "active"
+                        : "inactive";
+                      return (
+                        <TimelineItem
                           key={i}
-                          className="relative flex gap-4"
-                          initial={{ opacity: 0, x: -8 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{
-                            duration: FAST,
-                            delay: i * 0.08,
-                            ease: ease.out,
-                          }}
+                          index={i}
+                          total={product.milestones.length}
+                          isLast={i === product.milestones.length - 1}
+                          layout="left"
+                          status={nodeStatus}
+                          accentColor={product.color}
                         >
-                          <div className="relative z-10 mt-1.5 flex-shrink-0">
-                            {milestone.done ? (
-                              <CheckCircle2
-                                className="h-[30px] w-[30px]"
-                                style={{ color: product.color + "80" }}
-                              />
-                            ) : milestone.active ? (
-                              <div
-                                className="h-[30px] w-[30px] rounded-full border-2 flex items-center justify-center"
-                                style={{ borderColor: product.color + "60" }}
-                              >
-                                <div
-                                  className="h-2 w-2 rounded-full animate-pulse"
-                                  style={{ backgroundColor: product.color + "80" }}
-                                />
-                              </div>
-                            ) : (
-                              <div className="h-[30px] w-[30px] rounded-full border border-white/[0.08] flex items-center justify-center">
-                                <div className="h-1.5 w-1.5 rounded-full bg-white/15" />
-                              </div>
-                            )}
-                          </div>
-
-                          <div className="pb-8 pt-0.5 flex-1">
+                          <div className="pb-4">
                             <div className="flex items-center gap-2 mb-1">
                               <span className="text-[10px] font-mono text-white/20 uppercase tracking-wider">
                                 {milestone.quarter}
@@ -423,10 +399,10 @@ export default function RoadmapPage() {
                               {milestone.title}
                             </p>
                           </div>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
+                        </TimelineItem>
+                      );
+                    })}
+                  </Timeline>
                 </div>
               </FadeIn>
             ))}

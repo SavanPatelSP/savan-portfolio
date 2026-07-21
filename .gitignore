@@ -4,9 +4,17 @@ out/
 dist/
 .env
 .env.local
-.env.production
+.env.development.local
+.env.production.local
+.env.test
+.env.staging
 .env.development
+.env.production
 .vercel/
 .DS_Store
 coverage/
 *.log
+tsconfig.tsbuildinfo
+
+# Sentry Config File
+.env.sentry-build-plugin

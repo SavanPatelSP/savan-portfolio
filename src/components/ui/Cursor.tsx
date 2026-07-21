@@ -1,82 +1,125 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export function Cursor() {
-  const dotRef = useRef<HTMLDivElement>(null);
-  const [isHovering, setIsHovering] = useState(false);
+  const glowRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const dot = dotRef.current;
-    if (!dot) return;
+    const el = glowRef.current;
+    if (!el) return;
+    const glow = el;
 
-    let mouseX = -100;
-    let mouseY = -100;
-    let dotX = -100;
-    let dotY = -100;
-    let currentScale = 1;
-    let currentGlow = 0;
-
-    const onMouse = (e: MouseEvent) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let reducedMotion = motionQuery.matches;
+    const onMotionChange = (e: MediaQueryListEvent) => {
+      reducedMotion = e.matches;
     };
+    motionQuery.addEventListener("change", onMotionChange);
 
-    const onOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const clickable = target.closest("a, button, [role='button'], input, textarea, select, label");
-      if (clickable) {
-        setIsHovering(true);
+    let pointerX = -100;
+    let pointerY = -100;
+    let glowX = -100;
+    let glowY = -100;
+    let targetOpacity = 0.4;
+    let glowOpacity = 0.4;
+    let targetScale = 0.8;
+    let glowScale = 0.8;
+    let animating = false;
+
+    function startAnimation() {
+      if (!animating) {
+        animating = true;
+        requestAnimationFrame(tick);
       }
-    };
+    }
 
-    const onOut = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const clickable = target.closest("a, button, [role='button'], input, textarea, select, label");
-      if (clickable) {
-        setIsHovering(false);
+    function tick() {
+      if (reducedMotion) {
+        glow.style.transform = `translate(${pointerX}px, ${pointerY}px) translate(-50%, -50%)`;
+        glow.style.opacity = String(targetOpacity);
+        animating = false;
+        return;
       }
-    };
 
-    window.addEventListener("mousemove", onMouse, { passive: true });
-    window.addEventListener("mouseover", onOver, { passive: true });
-    window.addEventListener("mouseout", onOut, { passive: true });
+      const ease = 0.14;
+      glowX += (pointerX - glowX) * ease;
+      glowY += (pointerY - glowY) * ease;
+      glowOpacity += (targetOpacity - glowOpacity) * ease;
+      glowScale += (targetScale - glowScale) * ease;
 
-    const frame = () => {
-      const targetScale = isHovering ? 1.8 : 1;
-      const targetGlow = isHovering ? 1 : 0;
+      glow.style.transform = `translate(${glowX}px, ${glowY}px) translate(-50%, -50%) scale(${glowScale})`;
+      glow.style.opacity = String(glowOpacity);
 
-      currentScale += (targetScale - currentScale) * 0.12;
-      currentGlow += (targetGlow - currentGlow) * 0.1;
+      const settled =
+        Math.abs(pointerX - glowX) < 0.5 &&
+        Math.abs(pointerY - glowY) < 0.5 &&
+        Math.abs(targetOpacity - glowOpacity) < 0.01 &&
+        Math.abs(targetScale - glowScale) < 0.01;
 
-      dotX += (mouseX - dotX) * 0.12;
-      dotY += (mouseY - dotY) * 0.12;
+      if (settled) {
+        glow.style.transform = `translate(${pointerX}px, ${pointerY}px) translate(-50%, -50%) scale(${targetScale})`;
+        glow.style.opacity = String(targetOpacity);
+        animating = false;
+        return;
+      }
 
-      dot.style.transform = `translate(${dotX}px, ${dotY}px) scale(${currentScale})`;
-      dot.style.boxShadow = `0 0 ${12 + currentGlow * 20}px rgba(59, 130, 246, ${0.3 + currentGlow * 0.3}), 0 0 ${30 + currentGlow * 40}px rgba(59, 130, 246, ${0.1 + currentGlow * 0.15})`;
+      requestAnimationFrame(tick);
+    }
 
-      requestAnimationFrame(frame);
-    };
+    function onPointerMove(e: PointerEvent) {
+      pointerX = e.clientX;
+      pointerY = e.clientY;
+      startAnimation();
+    }
 
-    const raf = requestAnimationFrame(frame);
+    function onPointerOver(e: PointerEvent) {
+      const interactive = (e.target as HTMLElement).closest(
+        "a, button, [role='button'], input, textarea, select, label, [data-cursor-hover]"
+      );
+      if (interactive) {
+        targetOpacity = 1;
+        targetScale = 1;
+        startAnimation();
+      }
+    }
+
+    function onPointerOut(e: PointerEvent) {
+      const interactive = (e.target as HTMLElement).closest(
+        "a, button, [role='button'], input, textarea, select, label, [data-cursor-hover]"
+      );
+      if (interactive) {
+        targetOpacity = 0.4;
+        targetScale = 0.8;
+        startAnimation();
+      }
+    }
+
+    document.addEventListener("pointermove", onPointerMove, { passive: true });
+    document.addEventListener("pointerover", onPointerOver, { passive: true });
+    document.addEventListener("pointerout", onPointerOut, { passive: true });
 
     return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("mousemove", onMouse);
-      window.removeEventListener("mouseover", onOver);
-      window.removeEventListener("mouseout", onOut);
+      motionQuery.removeEventListener("change", onMotionChange);
+      document.removeEventListener("pointermove", onPointerMove);
+      document.removeEventListener("pointerover", onPointerOver);
+      document.removeEventListener("pointerout", onPointerOut);
     };
-  }, [isHovering]);
+  }, []);
 
   return (
     <div
-      ref={dotRef}
-      className="pointer-events-none fixed z-[9999] h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full mix-blend-difference hidden lg:block"
+      ref={glowRef}
+      className="pointer-events-none fixed z-[9999] hidden lg:block"
       style={{
-        background: "rgba(59, 130, 246, 0.7)",
-        boxShadow: "0 0 12px rgba(59, 130, 246, 0.3), 0 0 30px rgba(59, 130, 246, 0.1)",
-        willChange: "transform",
-        transition: "width 0.3s ease, height 0.3s ease, background 0.3s ease",
+        width: 32,
+        height: 32,
+        borderRadius: "50%",
+        background:
+          "radial-gradient(circle, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 40%, transparent 70%)",
+        opacity: 0.4,
+        transform: "translate(-100px, -100px) translate(-50%, -50%) scale(0.8)",
+        willChange: "transform, opacity",
       }}
       aria-hidden="true"
     />

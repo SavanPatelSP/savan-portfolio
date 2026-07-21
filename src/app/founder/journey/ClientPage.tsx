@@ -22,6 +22,7 @@ import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";
 import { RelatedPages } from "@/components/ui/RelatedPages";
 import { SocialModal } from "@/components/ui/SocialModal";
+import { Timeline, TimelineItem } from "@/components/timeline";
 import {
   FadeIn,
   SectionContainer,
@@ -182,34 +183,31 @@ export default function JourneyClientPage() {
             subtitle="Every year has been a chapter. Here's how the story unfolded."
           />
 
-          <div className="relative">
-            <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-white/[0.06] via-white/[0.04] to-transparent" aria-hidden="true" />
-
-            <div className="space-y-0">
+          <div className="max-w-3xl mx-auto">
+            <Timeline layout="left">
               {journeyData.map((item, i) => (
-                <FadeIn key={item.year} delay={i * 0.08}>
-                  <div className="relative flex gap-6 sm:gap-8 py-8 sm:py-10 group">
-                    <div className="relative z-10 flex h-12 w-12 sm:h-16 sm:w-16 shrink-0 items-center justify-center rounded-2xl border border-white/[0.06] bg-[#0a0a0a] group-hover:border-white/[0.12] group-hover:bg-white/[0.02] transition-all duration-500">
-                      <item.icon className="h-5 w-5 sm:h-6 sm:w-6 text-white/30 group-hover:text-white/50 transition-colors duration-500" />
-                    </div>
-
-                    <div className="flex-1 min-w-0 pt-1 sm:pt-3">
-                      <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 mb-2">
-                        <span className="text-xs font-mono uppercase tracking-[0.2em] text-white/20">
-                          {item.year}
-                        </span>
-                      </div>
-                      <h3 className="text-lg sm:text-xl font-medium text-white/70 mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm text-white/30 leading-relaxed max-w-xl">
-                        {item.description}
-                      </p>
-                    </div>
+                <TimelineItem
+                  key={item.year}
+                  icon={item.icon}
+                  index={i}
+                  total={journeyData.length}
+                  isLast={i === journeyData.length - 1}
+                  layout="left"
+                >
+                  <div className="py-1 sm:py-2">
+                    <span className="text-xs font-mono uppercase tracking-[0.2em] text-white/20">
+                      {item.year}
+                    </span>
+                    <h3 className="text-lg sm:text-xl font-medium text-white/70 mt-1 mb-2">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-white/30 leading-relaxed max-w-xl">
+                      {item.description}
+                    </p>
                   </div>
-                </FadeIn>
+                </TimelineItem>
               ))}
-            </div>
+            </Timeline>
           </div>
       </SectionContainer>
 

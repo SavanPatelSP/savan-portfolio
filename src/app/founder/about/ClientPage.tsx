@@ -122,7 +122,7 @@ export default function AboutClientPage() {
       />
 
       <SectionContainer id="about">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
             <FadeIn>
               <span className="inline-block text-xs font-medium uppercase tracking-[0.2em] text-white/20 mb-4">
                 Introduction
@@ -316,7 +316,7 @@ export default function AboutClientPage() {
                   target={"modal" in link ? undefined : "_blank"}
                   rel={"modal" in link ? undefined : "noopener noreferrer"}
                   onClick={"modal" in link ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
-                  className="group inline-flex items-center gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 py-3 text-sm text-white/40 hover:text-white/60 hover:border-white/[0.10] hover:bg-white/[0.04] transition-all duration-200"
+                  className="group inline-flex items-center gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 py-3.5 text-sm text-white/40 hover:text-white/60 hover:border-white/[0.10] hover:bg-white/[0.04] transition-all duration-200"
                   whileHover={{ y: -2, scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
                   transition={spring.gentle}

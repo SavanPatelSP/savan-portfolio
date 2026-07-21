@@ -11,6 +11,9 @@
   "dependencies": {
     "@react-email/components": "^1.0.12",
     "@react-email/render": "^2.1.0",
+    "@sentry/nextjs": "^10.67.0",
+    "@upstash/ratelimit": "^2.0.8",
+    "@upstash/redis": "^1.38.0",
     "@vercel/og": "^0.11.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.42.0",

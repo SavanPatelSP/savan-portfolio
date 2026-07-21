@@ -341,10 +341,10 @@ export const faqItems: FAQItem[] = [
       { label: "Products", href: "/explore/products" },
       { label: "System Status", href: "/trust/status" },
     ],
-    related: ["What is SP NET GRAM?", "Can I download your products?"],
+    related: ["What is SP NET GRAM?", "Can I use your products?"],
   },
   {
-    question: "Can I download your products?",
+    question: "Can I use your products?",
     answer:
       "Not yet. SP NET GRAM, SP NET ADMIN OS, and SP NET AI are all in active development and not yet publicly available. When beta access opens, it will be announced on the System Status page and through the PCA. Core features will always be free; premium features like more storage, advanced analytics, and enterprise controls will have paid tiers. Follow the journey for updates on availability.",
     category: "products",
@@ -518,9 +518,9 @@ export const faqItems: FAQItem[] = [
 
   // ─── Resources ───────────────────────────────────────────
   {
-    question: "How can I download the Media Kit?",
+    question: "How can I get the Media Kit?",
     answer:
-      "The Media Kit is available at the Resources > Media Kit page. It includes official brand assets, color palette, typography guidelines, logo usage rules, brand do's and don'ts, boilerplate text, and key facts about SP NET INC. Everything journalists, partners, and content creators need to accurately represent the brand is included. The Media Kit is free to download and use within the published brand guidelines.",
+      "The Media Kit is available at the Resources > Media Kit page. It includes official brand assets, color palette, typography guidelines, logo usage rules, brand do's and don'ts, boilerplate text, and key facts about SP NET INC. Everything journalists, partners, and content creators need to accurately represent the brand is included. The Media Kit is free to access and use within the published brand guidelines.",
     category: "resources",
     links: [
       { label: "Media Kit", href: "/resources/media-kit" },
@@ -537,7 +537,7 @@ export const faqItems: FAQItem[] = [
       { label: "Press Contact", href: "/resources/press-contact" },
       { label: "Media Kit", href: "/resources/media-kit" },
     ],
-    related: ["Can media contact SP NET?", "How can I download the Media Kit?"],
+    related: ["Can media contact SP NET?", "How can I get the Media Kit?"],
   },
   {
     question: "What resources does SP NET offer?",
@@ -549,7 +549,7 @@ export const faqItems: FAQItem[] = [
       { label: "Media Kit", href: "/resources/media-kit" },
       { label: "Open Source", href: "/resources/open-source" },
     ],
-    related: ["How can I download the Media Kit?", "When will the Blog launch?"],
+    related: ["How can I get the Media Kit?", "When will the Blog launch?"],
   },
   {
     question: "Do you have a newsletter?",
@@ -1006,7 +1006,7 @@ export const faqItems: FAQItem[] = [
       { label: "Media Kit", href: "/resources/media-kit" },
       { label: "Brand", href: "/company/brand" },
     ],
-    related: ["How can I download the Media Kit?", "Can media contact SP NET?"],
+    related: ["How can I get the Media Kit?", "Can media contact SP NET?"],
   },
   {
     question: "What are the terms of using SP NET products?",

@@ -22,7 +22,16 @@ async function loadGeist(): Promise<ArrayBuffer> {
   ).text();
   const match = css.match(/src:\s*url\(([^)]+)\)/);
   if (!match) throw new Error("Font URL not found");
-  const res = await fetch(match[1]);
+  const fontUrl = match[1];
+  const parsedUrl = new URL(fontUrl);
+  if (!parsedUrl.hostname.endsWith("googleapis.com") && !parsedUrl.hostname.endsWith("gstatic.com")) {
+    throw new Error("Invalid font URL domain");
+  }
+  const res = await fetch(fontUrl);
+  const contentType = res.headers.get("content-type") || "";
+  if (!contentType.includes("woff") && !contentType.includes("woff2") && !contentType.includes("octet-stream")) {
+    throw new Error(`Invalid font content-type: ${contentType}`);
+  }
   return res.arrayBuffer();
 }
 

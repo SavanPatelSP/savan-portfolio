@@ -9,7 +9,10 @@ const AboutSection = dynamic(() => import("@/components/about/About").then((m) =
 const TechGridSection = dynamic(() => import("@/components/tech/TechGrid").then((m) => ({ default: m.TechGridSection })), {
   loading: () => <SectionSkeleton />,
 });
-const OrganizationSection = dynamic(() => import("@/components/organization/Organization").then((m) => ({ default: m.OrganizationSection })), {
+const PortfolioAppSection = dynamic(() => import("@/components/portfolio-app/PortfolioAppSection").then((m) => ({ default: m.PortfolioAppSection })), {
+  loading: () => <SectionSkeleton />,
+});
+const LockedOrganization = dynamic(() => import("@/components/ui/LockedSection").then((m) => ({ default: m.LockedSection })), {
   loading: () => <SectionSkeleton />,
 });
 const ExperienceSection = dynamic(() => import("@/components/experience/Experience").then((m) => ({ default: m.ExperienceSection })), {
@@ -29,7 +32,8 @@ export default function Home() {
       <ProductsSection />
       <AboutSection />
       <TechGridSection />
-      <OrganizationSection />
+      <PortfolioAppSection />
+      <LockedOrganization />
       <ExperienceSection />
       <ProjectsSection />
       <ContactSection />

@@ -278,7 +278,7 @@ export default function ClientPage() {
                     </span>
                     <a
                       href={product.href}
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-1.5 text-xs text-white/40 hover:text-white/60 hover:border-white/[0.1] transition-all duration-200"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3 py-2.5 text-xs text-white/40 hover:text-white/60 hover:border-white/[0.1] transition-all duration-200"
                     >
                       Learn more
                       <ArrowUpRight className="h-3 w-3" />

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MotionConfig } from "framer-motion";
+import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -8,6 +9,8 @@ import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
 import { SplashWrapper } from "@/components/ui/SplashWrapper";
 import { Cursor } from "@/components/ui/Cursor";
+import { InstallPrompt } from "@/components/ui/InstallPrompt";
+import { InstallModal } from "@/components/portfolio-app/InstallModal";
 import { CookieConsent } from "@/components/ui/CookieConsent";
 import { ScrollToHash } from "@/components/ScrollToHash";
 import { personal } from "@/data/personal";
@@ -79,15 +82,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  appleWebApp: {
-    capable: true,
-    title: "Savan Patel",
-    statusBarStyle: "black-translucent",
-  },
+
   formatDetection: {
     telephone: true,
     email: true,
     address: true,
+  },
+  appleWebApp: {
+    capable: true,
+    title: "Savan Patel",
+    statusBarStyle: "black-translucent",
   },
 };
 
@@ -176,12 +180,15 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/icon-192.svg" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="theme-color" content="#0a0a0a" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-black text-white antialiased lg-cursor-none">
+      <body className="min-h-screen bg-black text-white antialiased">
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-xl focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-black focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-white/30"
@@ -197,7 +204,16 @@ export default function RootLayout({
           <ScrollToHash />
           <main id="main-content" tabIndex={-1}>{children}</main>
           <Footer />
+          <InstallPrompt />
+          <InstallModal />
           <CookieConsent />
+        <Script
+          id="sw-register"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})})}`,
+          }}
+        />
         </MotionConfig>
       </body>
     </html>

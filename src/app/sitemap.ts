@@ -42,6 +42,18 @@ const pages: PageConfig[] = [
   { route: "/products/sp-net-ecosystem", priority: 0.7, changeFrequency: "monthly" },
   { route: "/products/sp-net-api", priority: 0.7, changeFrequency: "monthly" },
 
+  { route: "/downloads", priority: 0.9, changeFrequency: "monthly" },
+  { route: "/downloads/portfolio-app", priority: 0.9, changeFrequency: "monthly" },
+
+  { route: "/portfolio-app", priority: 0.9, changeFrequency: "monthly" },
+  { route: "/portfolio-app/install", priority: 0.8, changeFrequency: "monthly" },
+  { route: "/portfolio-app/platform-support", priority: 0.8, changeFrequency: "monthly" },
+  { route: "/portfolio-app/offline", priority: 0.8, changeFrequency: "monthly" },
+  { route: "/portfolio-app/release-notes", priority: 0.8, changeFrequency: "monthly" },
+  { route: "/portfolio-app/privacy", priority: 0.8, changeFrequency: "monthly" },
+  { route: "/portfolio-app/faq", priority: 0.8, changeFrequency: "monthly" },
+  { route: "/install", priority: 0.7, changeFrequency: "monthly" },
+
   { route: "/research", priority: 0.8, changeFrequency: "monthly" },
   { route: "/research/ai", priority: 0.8, changeFrequency: "monthly" },
   { route: "/research/cloud", priority: 0.7, changeFrequency: "monthly" },

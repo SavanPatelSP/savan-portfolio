@@ -6,6 +6,7 @@ import { Target, Compass, Zap, Globe, Code, Building2, Layers, Infinity, Heart, 
 import { SectionContainer, FadeIn, Reveal, BlurReveal, StaggerFade, StaggerItem, SectionTitle, ParallaxContainer } from "@/components/ui/AnimationPrimitives";
 import { ParticleField } from "@/components/ui/ParticleField";
 import { personal, founderMetrics, principles } from "@/data/personal";
+import { VerifiedBadge } from "@/components/ui/VerifiedBadge";
 import { ease, spring, NORMAL } from "@/lib/motion";
 
 const metricIcons: Record<string, React.ElementType> = {
@@ -96,7 +97,7 @@ function FounderCard() {
               <span className="text-sm font-bold text-white tracking-tight">{personal.initials}</span>
             </div>
             <div>
-              <div className="text-xs font-semibold text-white tracking-wider">{personal.name}</div>
+              <div className="text-xs font-semibold text-white tracking-wider inline-flex items-center">{personal.name}<VerifiedBadge size="1.35em" /></div>
               <div className="text-[10px] text-blue-400/60 font-mono">{personal.title}</div>
             </div>
           </motion.div>

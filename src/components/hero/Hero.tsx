@@ -175,7 +175,7 @@ export function Hero() {
     <section
       id="home"
       ref={ref}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black scroll-mt-16"
+      className="relative flex min-h-screen min-h-[100dvh] flex-col items-center justify-center overflow-hidden bg-black scroll-mt-16"
     >
       {/* Grid overlay */}
       <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
@@ -246,7 +246,7 @@ export function Hero() {
       ))}
 
       {/* Hero content */}
-      <div className="relative z-[3] mx-auto max-w-6xl px-4 text-center">
+      <div className="relative z-[3] mx-auto max-w-6xl px-5 sm:px-6 text-center">
         {/* Roles badge */}
         <motion.div
           className="mb-6 sm:mb-8"
@@ -263,7 +263,7 @@ export function Hero() {
         {/* Gigantic name — mask reveal */}
         <div className="overflow-hidden">
           <motion.h1
-            className="text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl xl:text-[10rem] 2xl:text-[11rem] font-bold tracking-tight text-white leading-[0.85]"
+            className="text-[2rem] sm:text-5xl md:text-7xl lg:text-8xl xl:text-[10rem] 2xl:text-[11rem] font-bold tracking-tight text-white leading-[0.85]"
             initial={{ y: "120%", filter: "blur(8px)" }}
             animate={isInView ? { y: 0, filter: "blur(0px)" } : {}}
             transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
@@ -318,7 +318,7 @@ export function Hero() {
           >
             <motion.a
               href="#products"
-              className="group relative inline-flex items-center gap-2.5 rounded-xl bg-white px-7 py-3.5 text-sm font-medium text-black hover:bg-white/90 transition-colors overflow-hidden"
+              className="group relative inline-flex items-center gap-2.5 rounded-xl bg-white px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-black hover:bg-white/90 transition-colors overflow-hidden min-h-[48px]"
               animate={{ x: magneticPos.x, y: magneticPos.y }}
               transition={spring.gentle}
               whileHover={{ scale: 1.02, y: -1, boxShadow: "0 8px 30px -8px rgba(255,255,255,0.15), 0 0 20px -6px rgba(59,130,246,0.1)" }}
@@ -335,7 +335,7 @@ export function Hero() {
           >
             <motion.a
               href="#contact"
-              className="group relative inline-flex items-center gap-2.5 rounded-xl border border-white/10 px-7 py-3.5 text-sm font-medium text-white/50 hover:text-white hover:border-white/20 transition-all overflow-hidden"
+              className="group relative inline-flex items-center gap-2.5 rounded-xl border border-white/10 px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white/50 hover:text-white hover:border-white/20 transition-all overflow-hidden min-h-[48px]"
               animate={{ x: magneticPos2.x, y: magneticPos2.y }}
               transition={spring.gentle}
               whileHover={{ scale: 1.02, y: -1, boxShadow: "0 4px 20px -4px rgba(0,0,0,0.3)" }}
@@ -349,14 +349,14 @@ export function Hero() {
       </div>
 
       {/* Scroll indicator — smooth pulse */}
-        <motion.button
-          onClick={scrollNext}
-          className="absolute bottom-8 left-1/2 z-[3] -translate-x-1/2 flex flex-col items-center gap-2 text-white/20 hover:text-white/35 transition-colors"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 1.6, duration: 0.8 }}
-          aria-label="Scroll to content"
-        >
+      <motion.button
+        onClick={scrollNext}
+        className="absolute bottom-8 left-1/2 z-[3] -translate-x-1/2 flex flex-col items-center gap-2 text-white/20 hover:text-white/35 transition-colors min-h-[48px] min-w-[48px] justify-center"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ delay: 1.6, duration: 0.8 }}
+        aria-label="Scroll to content"
+      >
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: [0.33, 0, 0.67, 1] }}

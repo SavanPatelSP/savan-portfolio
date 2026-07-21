@@ -335,7 +335,7 @@ export function SectionContainer({
   id?: string;
 }) {
   return (
-    <section id={id} className={cn("relative scroll-mt-16 py-28 sm:py-36", className)}>
+    <section id={id} className={cn("relative scroll-mt-16 py-20 sm:py-28 lg:py-36", className)}>
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">{children}</div>
     </section>
   );

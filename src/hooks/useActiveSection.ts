@@ -2,7 +2,16 @@
 
 import { useState, useEffect } from "react";
 
-const sections = ["home", "products", "founder", "technologies", "organization", "journey", "roadmap", "contact"];
+const sections = [
+  "home",
+  "products",
+  "founder",
+  "technologies",
+  "organization",
+  "journey",
+  "roadmap",
+  "contact",
+];
 
 export function useActiveSection() {
   const [active, setActive] = useState<string | null>(null);
@@ -20,12 +29,17 @@ export function useActiveSection() {
 
         const observer = new IntersectionObserver(
           ([entry]) => {
+            if (cancelled) return;
             if (entry.isIntersecting) {
               setActive(id === "home" ? null : id);
 
               if (id === "home") {
                 if (window.location.hash) {
-                  history.replaceState(null, "", window.location.pathname + window.location.search);
+                  history.replaceState(
+                    null,
+                    "",
+                    window.location.pathname + window.location.search
+                  );
                 }
               } else {
                 const newHash = `#${id}`;
@@ -35,13 +49,13 @@ export function useActiveSection() {
               }
             }
           },
-          { threshold: 0.3, rootMargin: "-80px 0px 0px 0px" }
+          { threshold: 0.2, rootMargin: "-64px 0px -20% 0px" }
         );
 
         observer.observe(el);
         observers.push(observer);
       }
-    }, 300);
+    }, 100);
 
     return () => {
       cancelled = true;

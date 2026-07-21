@@ -1,0 +1,113 @@
+export interface DocSection {
+  title: string;
+  slug: string;
+  items: DocItem[];
+}
+
+export interface DocItem {
+  title: string;
+  slug: string;
+  description?: string;
+}
+
+export const docsNavigation: DocSection[] = [
+  {
+    title: "Getting Started",
+    slug: "getting-started",
+    items: [
+      { title: "Introduction", slug: "introduction", description: "What the Portfolio App is and why it exists" },
+      { title: "Quick Start", slug: "quick-start", description: "Get up and running in under a minute" },
+      { title: "Navigation", slug: "navigation", description: "How to move through the application" },
+    ],
+  },
+  {
+    title: "Installation",
+    slug: "installation",
+    items: [
+      { title: "Overview", slug: "overview", description: "Installation methods and requirements" },
+      { title: "Web", slug: "web", description: "Using the app directly in your browser" },
+      { title: "PWA", slug: "pwa", description: "Progressive Web App installation" },
+      { title: "Android", slug: "android", description: "Install on Android devices" },
+      { title: "iOS", slug: "ios", description: "Install on iPhone and iPad" },
+    ],
+  },
+  {
+    title: "Application",
+    slug: "application",
+    items: [
+      { title: "Dashboard", slug: "dashboard", description: "Project metrics and activity overview" },
+      { title: "Projects", slug: "projects", description: "Engineering portfolio and project tracking" },
+      { title: "Downloads", slug: "downloads", description: "Installing software and managing versions" },
+      { title: "Documentation", slug: "documentation", description: "Knowledge base and guides" },
+      { title: "Settings", slug: "settings", description: "Application preferences and configuration" },
+      { title: "Search", slug: "search", description: "Finding content across the portfolio" },
+    ],
+  },
+  {
+    title: "Features",
+    slug: "features",
+    items: [
+      { title: "Offline Experience", slug: "offline", description: "Caching, service workers, and offline access" },
+      { title: "Updates", slug: "updates", description: "How automatic updates work" },
+      { title: "Responsive Design", slug: "responsive", description: "Adapting to every screen size" },
+      { title: "Accessibility", slug: "accessibility", description: "Inclusive design and WCAG compliance" },
+      { title: "Performance", slug: "performance", description: "Optimization strategies and Core Web Vitals" },
+      { title: "Privacy & Security", slug: "privacy", description: "Data handling and security practices" },
+    ],
+  },
+  {
+    title: "Architecture",
+    slug: "architecture",
+    items: [
+      { title: "Technology Stack", slug: "technology-stack", description: "Next.js, React, TypeScript, Tailwind, and more" },
+      { title: "Project Structure", slug: "project-structure", description: "Folder organization and file conventions" },
+      { title: "Routing", slug: "routing", description: "App Router and file-based routing" },
+      { title: "Service Worker", slug: "service-worker", description: "Offline caching and update strategies" },
+      { title: "SEO & Metadata", slug: "seo", description: "Search optimization and structured data" },
+      { title: "Build & Deployment", slug: "build-deploy", description: "Build process and Vercel deployment" },
+    ],
+  },
+  {
+    title: "Developer Guide",
+    slug: "developer",
+    items: [
+      { title: "Project Setup", slug: "project-setup", description: "Local development environment" },
+      { title: "Component Architecture", slug: "component-architecture", description: "UI component patterns and conventions" },
+      { title: "Coding Standards", slug: "coding-standards", description: "Style guide and best practices" },
+      { title: "Contributing", slug: "contributing", description: "How to contribute to the project" },
+    ],
+  },
+  {
+    title: "Reference",
+    slug: "reference",
+    items: [
+      { title: "FAQ", slug: "faq", description: "Frequently asked questions" },
+      { title: "Troubleshooting", slug: "troubleshooting", description: "Common issues and solutions" },
+      { title: "Changelog", slug: "changelog", description: "Version history and release notes" },
+      { title: "Platform Support", slug: "platform-support", description: "Browser and OS compatibility" },
+    ],
+  },
+];
+
+export function findDocItem(slug: string): { section: DocSection; item: DocItem } | null {
+  for (const section of docsNavigation) {
+    for (const item of section.items) {
+      if (item.slug === slug) return { section, item };
+    }
+  }
+  return null;
+}
+
+export function getAdjacentDocs(slug: string): { prev: DocItem | null; next: DocItem | null; section: DocSection | null } {
+  const allItems = docsNavigation.flatMap((s) => s.items);
+  const idx = allItems.findIndex((i) => i.slug === slug);
+  const found = findDocItem(slug);
+  return {
+    prev: idx > 0 ? allItems[idx - 1] : null,
+    next: idx < allItems.length - 1 ? allItems[idx + 1] : null,
+    section: found?.section || null,
+  };
+}
+
+export const APP_VERSION = "1.0.0";
+export const LAST_UPDATED = "July 2026";

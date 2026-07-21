@@ -33,7 +33,7 @@ export function TechGridSection() {
           <button
             key={cat.name}
             onClick={() => handleTab(i)}
-            className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300 ${
+            className={`relative px-4 py-2.5 min-h-[44px] rounded-lg text-sm font-medium transition-colors duration-300 ${
               active === i
                 ? "text-black"
                 : "text-white/30 hover:text-white/60"

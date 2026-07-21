@@ -273,7 +273,7 @@ export default function PressContactPage() {
                 Media kit
               </h3>
               <p className="text-sm text-white/25 max-w-md mx-auto leading-relaxed mb-6">
-                Download official SP NET INC brand assets including logos,
+                Get official SP NET INC brand assets including logos,
                 colors, typography guidelines, and usage rules. Available
                 in multiple formats for print and digital use.
               </p>

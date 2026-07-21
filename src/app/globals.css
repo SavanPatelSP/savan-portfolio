@@ -59,7 +59,7 @@
     font-family: var(--font-sans), "SF Pro Display", "Inter", "system-ui", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: clip;
+    overflow-x: hidden;
   }
   ::selection {
     background: rgba(59, 130, 246, 0.25);
@@ -123,11 +123,6 @@
   100% { transform: translateX(200%); }
 }
 
-@media (width >= 1024px) {
-  .lg\:cursor-none, .lg-cursor-none {
-    cursor: none;
-  }
-}
 
 :focus-visible {
   outline: 2px solid rgba(59, 130, 246, 0.4);
@@ -184,6 +179,26 @@ button:focus-visible {
 
 .animate-border-glow {
   animation: border-glow 4s ease-in-out infinite;
+}
+
+/* Premium scrollbar for gallery components */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Glass morphism utility */
+.glass {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+/* Subtle glow effect */
+.glow-subtle {
+  box-shadow: 0 0 30px -10px rgba(59, 130, 246, 0.1);
 }
 
 /* GPU acceleration hints */

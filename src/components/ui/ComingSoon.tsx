@@ -109,14 +109,14 @@ export function ComingSoon({
         >
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors duration-200"
+            className="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-sm font-medium text-black hover:bg-white/90 transition-colors duration-200"
           >
             <Rocket className="h-4 w-4" />
             Get Notified
           </Link>
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.08] px-6 py-3 text-sm font-medium text-white/40 hover:text-white/60 hover:border-white/15 transition-all duration-200"
+            className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.08] px-6 py-3.5 text-sm font-medium text-white/40 hover:text-white/60 hover:border-white/15 transition-all duration-200"
           >
             <ArrowLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform duration-200" />
             Back to Home

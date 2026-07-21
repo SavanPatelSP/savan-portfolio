@@ -301,7 +301,7 @@ function FutureProductCard({
   const status = product.status === "research" ? statusConfig.research : statusConfig.future;
   return (
     <motion.div
-      className="group relative rounded-2xl border border-white/[0.04] bg-white/[0.02] p-6 sm:p-8 overflow-hidden"
+      className="group relative rounded-2xl border border-white/[0.04] bg-white/[0.02] p-6 sm:p-8 overflow-hidden flex flex-col"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
@@ -373,7 +373,7 @@ export function ProductsSection() {
           <Reveal delay={0.1}>
             <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-white/30 mb-6 text-center sm:text-left">Future Initiatives</h3>
           </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-4 sm:gap-5 sm:grid-cols-2">
             {futureProducts.map((product, i) => (
               <FutureProductCard key={product.id} product={product} index={i} />
             ))}
@@ -388,7 +388,7 @@ export function ProductsSection() {
               </p>
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-medium text-black hover:bg-white/90 transition-all duration-200 hover:shadow-[0_4px_16px_-4px_rgba(255,255,255,0.15)] hover:-translate-y-0.5 active:scale-[0.98]"
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-medium text-black hover:bg-white/90 transition-all duration-200 hover:shadow-[0_4px_16px_-4px_rgba(255,255,255,0.15)] hover:-translate-y-0.5 active:scale-[0.98] min-h-[48px]"
               >
                 View All Products
               </Link>
