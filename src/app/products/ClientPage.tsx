@@ -16,8 +16,7 @@ import {
   Briefcase,
   ArrowUpRight,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
+import { spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { CTASection } from "@/components/ui/CTASection";
 import { RelatedPages } from "@/components/ui/RelatedPages";

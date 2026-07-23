@@ -11,7 +11,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { ease, spring, NORMAL, SLOW } from "@/lib/motion";
+import { spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { CTASection } from "@/components/ui/CTASection";
 import { RelatedPages } from "@/components/ui/RelatedPages";

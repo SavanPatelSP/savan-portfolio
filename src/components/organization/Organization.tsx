@@ -56,11 +56,11 @@ const catIcons: Record<string, React.ElementType> = {
 
 /* ─── TREE NODE ────────────────────────────────────────────────── */
 
-interface TNode { name: string; level: Level; icon?: React.ElementType; children?: TNode[]; }
+interface TNode { name: string; level: Level; icon?: React.ElementType; childNodes?: TNode[]; }
 
-function TreeNode({ name, level, icon: Icon, children, idx, visible }: { name: string; level: Level; icon?: React.ElementType; children?: TNode[]; idx: number; visible: boolean }) {
+function TreeNode({ name, level, icon: Icon, childNodes, idx, visible }: { name: string; level: Level; icon?: React.ElementType; childNodes?: TNode[]; idx: number; visible: boolean }) {
   const [open, setOpen] = useState(level < 2);
-  const hasKids = !!(children && children.length);
+  const hasKids = !!(childNodes && childNodes.length);
   const cfg = levelCfg[level];
   const cat = level === 3 ? organizationCategories.find((c) => c.name === name) : null;
   const DIcon = cat ? catIcons[cat.name] || Building2 : null;
@@ -100,7 +100,7 @@ function TreeNode({ name, level, icon: Icon, children, idx, visible }: { name: s
 
           {hasKids && level < 2 && (
             <motion.div initial={false} animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }} transition={{ duration: 0.25 }} className="overflow-hidden">
-              <div className="ml-0 mt-0.5">{children!.map((ch, i) => <TreeNode key={ch.name} name={ch.name} level={ch.level} icon={ch.icon} children={ch.children} idx={idx + i + 1} visible={visible} />)}</div>
+              <div className="ml-0 mt-0.5">{childNodes!.map((ch, i) => <TreeNode key={ch.name} name={ch.name} level={ch.level} icon={ch.icon} childNodes={ch.childNodes} idx={idx + i + 1} visible={visible} />)}</div>
             </motion.div>
           )}
 
@@ -194,9 +194,9 @@ const deptIcon: Record<string, React.ElementType> = {
 };
 
 const tree: TNode[] = [{
-  name: "Founder & CEO", level: 0, icon: Crown, children: [{
-    name: "Executive Leadership", level: 1, icon: Users, children: [{
-      name: "Departments", level: 2, icon: HardDrive, children: organizationCategories.map((c) => ({ name: c.name, level: 3 as Level, icon: deptIcon[c.name] || Building2 })),
+    name: "Founder & CEO", level: 0, icon: Crown, childNodes: [{
+    name: "Executive Leadership", level: 1, icon: Users, childNodes: [{
+      name: "Departments", level: 2, icon: HardDrive, childNodes: organizationCategories.map((c) => ({ name: c.name, level: 3 as Level, icon: deptIcon[c.name] || Building2 })),
     }],
   }],
 }];
@@ -225,7 +225,7 @@ export function OrganizationSection() {
             <CircuitBoard className="h-3 w-3 text-blue-400/60 shrink-0" />
           </div>
           <div className="p-5 sm:p-6">
-            {tree.map((n, i) => <TreeNode key={n.name} name={n.name} level={n.level} icon={n.icon} children={n.children} idx={i} visible={treeVis} />)}
+            {tree.map((n, i) => <TreeNode key={n.name} name={n.name} level={n.level} icon={n.icon} childNodes={n.childNodes} idx={i} visible={treeVis} />)}
           </div>
         </div>
 

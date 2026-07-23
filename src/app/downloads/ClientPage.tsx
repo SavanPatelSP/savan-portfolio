@@ -10,7 +10,7 @@ import {
   Shield,
   ArrowRight,
 } from "lucide-react";
-import { ease, spring, NORMAL, SLOW, FAST } from "@/lib/motion";
+import { ease, NORMAL, SLOW } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { ProductCard } from "@/components/downloads/ProductCard";
@@ -36,6 +36,8 @@ export default function ClientPage() {
     }
     if (activeCategory === "available") {
       items = items.filter((p) => p.status === "available");
+    } else if (activeCategory === "coming-soon") {
+      items = [];
     }
     return items;
   }, [search, activeCategory]);

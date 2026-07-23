@@ -2,14 +2,14 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Mail, Calendar, Send, Sparkles, MapPin, RotateCcw, MessageCircle, Check, ShieldCheck, Award } from "lucide-react";
+import { Mail, Calendar, Send, Sparkles, RotateCcw, MessageCircle, Check, ShieldCheck, Award } from "lucide-react";
 import { SectionContainer, FadeIn, SectionTitle, BlurReveal } from "@/components/ui/AnimationPrimitives";
 import { Button } from "@/components/ui/Button";
 import { GithubIcon, XIcon, LinkedinIcon, TelegramIcon, InstagramIcon } from "@/components/ui/Icons";
 import { SocialModal } from "@/components/ui/SocialModal";
 import { SuccessModal } from "@/components/ui/SuccessModal";
 import { personal } from "@/data/personal";
-import { ease, spring, NORMAL, SLOW } from "@/lib/motion";
+import { spring } from "@/lib/motion";
 
 const socials = [
   { icon: TelegramIcon, href: personal.social.telegram, label: "Telegram" },
@@ -66,7 +66,7 @@ function PremiumInput({
 export function ContactSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
+  const _isInView = useInView(sectionRef, { once: true, amount: 0.1 });
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);

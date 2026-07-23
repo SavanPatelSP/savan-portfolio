@@ -11,6 +11,8 @@ import { Badge } from "@/components/ui/Badge";
 import { ProductStatus } from "@/components/products/ProductStatus";
 import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
 
+const MotionLink = motion(Link);
+
 const statusConfig: Record<string, { label: string; variant: "success" | "warning" | "beta" }> = {
   building: { label: "Active Development", variant: "warning" },
   researching: { label: "Research & Development", variant: "warning" },
@@ -53,16 +55,17 @@ const futureProductIcons: Record<string, React.ElementType> = {
 };
 
 function ProductShowcase({ product, index }: { product: typeof products[number]; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [isHovered, setIsHovered] = useState(false);
   const Icon = productIcons[product.id];
   const milestone = productMilestones[product.id];
 
   return (
-    <motion.div
+    <MotionLink
       ref={ref}
-      className="group relative overflow-hidden rounded-3xl"
+      href={product.url || `/products/${product.id}`}
+      className="group relative block overflow-hidden rounded-3xl"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       initial={{ opacity: 0, y: 30 }}
@@ -219,7 +222,7 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
             )}
           </div>
 
-          {/* Device mockup */}
+          {/* Premium device mockup */}
           <div className={cn(index % 2 === 1 && "lg:order-1")}>
             <ParallaxContainer speed={0.1}>
               <motion.div
@@ -283,10 +286,7 @@ function ProductShowcase({ product, index }: { product: typeof products[number];
           </div>
         </div>
       </div>
-      <Link href={product.url || `/products/${product.id}`} className="contents" tabIndex={-1}>
-        <span className="sr-only">View {product.name}</span>
-      </Link>
-    </motion.div>
+    </MotionLink>
   );
 }
 
@@ -300,7 +300,8 @@ function FutureProductCard({
   const Icon = futureProductIcons[product.id] || Clock;
   const status = product.status === "research" ? statusConfig.research : statusConfig.future;
   return (
-    <motion.div
+    <MotionLink
+      href={`/products/${product.id}`}
       className="group relative rounded-2xl border border-white/[0.04] bg-white/[0.02] p-6 sm:p-8 overflow-hidden flex flex-col"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -344,10 +345,7 @@ function FutureProductCard({
         <Clock className="h-3 w-3" />
         {product.eta}
       </div>
-      <Link href={`/products/${product.id}`} className="contents" tabIndex={-1}>
-        <span className="sr-only">View {product.name}</span>
-      </Link>
-    </motion.div>
+    </MotionLink>
   );
 }
 

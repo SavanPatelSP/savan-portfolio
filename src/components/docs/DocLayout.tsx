@@ -2,14 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ease } from "@/lib/motion";
 import { AppShell } from "@/components/navigation";
 import { documentationNavigation } from "@/data/navigation/documentation-navigation";
-import { docsNavigation, type DocSection, type DocItem } from "@/data/docs";
+import { type DocItem } from "@/data/docs";
 
 /* ─── TABLE OF CONTENTS ────────────────────────────────────── */
 
@@ -40,7 +39,7 @@ export function TableOfContents({ items }: { items: { id: string; label: string 
 
   return (
     <nav className="hidden xl:block w-56 shrink-0" aria-label="Table of contents">
-      <div className="sticky top-24">
+      <div className="sticky top-20">
         <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/20 mb-3 px-3">
           On this page
         </p>
@@ -127,7 +126,7 @@ export function Callout({
 
 export function CodeBlock({
   code,
-  language = "bash",
+  language: _language = "bash",
   filename,
 }: {
   code: string;
@@ -231,7 +230,7 @@ export function DocPage({
   title,
   description,
   toc = [],
-  section,
+  section: _section,
   children,
 }: {
   title: string;
@@ -244,8 +243,8 @@ export function DocPage({
     <AppShell
       navigation={documentationNavigation}
       basePath="/docs"
+      rightSidebar={<TableOfContents items={toc} />}
     >
-      <TableOfContents items={toc} />
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -254,9 +253,11 @@ export function DocPage({
         <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight text-white leading-tight mb-3">
           {title}
         </h1>
-        <p className="text-base text-white/30 leading-relaxed mb-10 max-w-2xl">
-          {description}
-        </p>
+        {description && (
+          <p className="text-base text-white/30 leading-relaxed mb-10 max-w-2xl">
+            {description}
+          </p>
+        )}
       </motion.div>
       <motion.div
         className="docs-content"

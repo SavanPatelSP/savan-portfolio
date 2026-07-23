@@ -3,26 +3,21 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ease, SLOW } from "@/lib/motion";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 export function SplashScreen() {
   const [show, setShow] = useState(true);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const reducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReducedMotion(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
-    mq.addEventListener("change", handler);
-
     const timer = setTimeout(() => {
       setShow(false);
     }, reducedMotion ? 300 : 2800);
 
     return () => {
       clearTimeout(timer);
-      mq.removeEventListener("change", handler);
     };
-  }, []);
+  }, [reducedMotion]);
 
   return (
     <AnimatePresence>

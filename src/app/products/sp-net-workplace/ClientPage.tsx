@@ -15,7 +15,7 @@ import {
   Settings,
   Bell,
 } from "lucide-react";
-import { ease, spring, NORMAL } from "@/lib/motion";
+import { spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";
@@ -27,7 +27,6 @@ import {
   StaggerFade,
   StaggerItem,
 } from "@/components/ui/AnimationPrimitives";
-import { Badge } from "@/components/ui/Badge";
 
 const features = [
   {

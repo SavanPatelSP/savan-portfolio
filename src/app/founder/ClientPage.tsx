@@ -7,14 +7,12 @@ import {
   Globe,
   Calendar,
   ArrowUpRight,
-  BookOpen,
   Route,
   Compass,
   Rocket,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
-import { personal, founderMetrics } from "@/data/personal";
+import { spring } from "@/lib/motion";
+import { personal } from "@/data/personal";
 import { PageHero } from "@/components/ui/PageHero";
 import { CTASection } from "@/components/ui/CTASection";
 import { RelatedPages } from "@/components/ui/RelatedPages";

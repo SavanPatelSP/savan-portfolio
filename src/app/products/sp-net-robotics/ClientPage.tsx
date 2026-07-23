@@ -15,7 +15,7 @@ import {
   Radio,
   Workflow,
 } from "lucide-react";
-import { ease, spring, NORMAL } from "@/lib/motion";
+import { spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";
@@ -194,7 +194,7 @@ export default function SPNetRoboticsClientPage() {
               <p>
                 This research is early-stage and long-term. We are building simulation
                 environments, developing software prototypes, and exploring how the SP NET
-                ecosystem's existing capabilities — AI, cloud infrastructure, security, and
+                ecosystem&apos;s existing capabilities — AI, cloud infrastructure, security, and
                 workspace tools — can provide a foundation for robotic intelligence.
               </p>
             </div>

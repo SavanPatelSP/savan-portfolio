@@ -233,9 +233,9 @@ export default function ClientPage() {
             Browser Compatibility
           </h2>
           <p className="text-[14px] text-white/40 leading-relaxed mb-4">
-            The table below shows PWA-specific support for each browser. "Full" means the
+            The table below shows PWA-specific support for each browser. &quot;Full&quot; means the
             browser supports automatic PWA installation via the beforeinstallprompt event.
-            "Manual" means the user must install through browser menus. "None" means PWA
+            &quot;Manual&quot; means the user must install through browser menus. &quot;None&quot; means PWA
             installation is not supported at all.
           </p>
           <div className="overflow-x-auto rounded-xl border border-white/[0.06]">

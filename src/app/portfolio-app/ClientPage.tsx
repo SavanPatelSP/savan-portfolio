@@ -10,14 +10,13 @@ import {
   Zap,
   Shield,
   ArrowRight,
-  CheckCircle2,
   RefreshCw,
   Smartphone,
   Globe,
   Lock,
   ChevronRight,
 } from "lucide-react";
-import { ease, spring, NORMAL, SLOW, FAST } from "@/lib/motion";
+import { ease, NORMAL, SLOW } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { APP_VERSION, features, platforms } from "@/data/portfolio-app";
 import { AppShell } from "@/components/navigation";

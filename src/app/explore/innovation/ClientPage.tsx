@@ -12,7 +12,7 @@ import {
   Layers,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
+import { spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";
@@ -231,7 +231,7 @@ export default function ClientPage() {
             <div className="space-y-6 text-sm sm:text-base text-white/30 leading-relaxed max-w-3xl">
               <p>
                 The tech world is full of impressive demos that solve no real problem.
-                I have learned to be skeptical of novelty for novelty's sake. Instead, I
+                I have learned to be skeptical of novelty for novelty&apos;s sake. Instead, I
                 focus my experimental energy on things that could genuinely change how
                 people interact with software — better privacy, smarter interfaces, faster
                 responses, more personal experiences.

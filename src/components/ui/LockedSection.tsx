@@ -5,7 +5,6 @@ import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { Lock, ArrowRight } from "lucide-react";
 import { ease, NORMAL, SLOW } from "@/lib/motion";
-import { cn } from "@/lib/utils";
 import { SectionContainer } from "@/components/ui/AnimationPrimitives";
 
 interface LockedSectionProps {

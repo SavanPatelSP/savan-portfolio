@@ -17,12 +17,10 @@ import {
   Laptop,
   Terminal,
   Package,
-  Gauge,
   Clock,
   Layers,
   Eye,
   Cog,
-  HardDrive,
   FileCheck,
   Lock,
   BookOpen,
@@ -33,8 +31,7 @@ import { SectionContainer, SectionTitle, FadeIn } from "@/components/ui/Animatio
 import { ParticleField } from "@/components/ui/ParticleField";
 import { ApplicationPreview } from "@/components/portfolio-app/ApplicationPreview";
 import { APP_VERSION, features } from "@/data/portfolio-app";
-import { cn } from "@/lib/utils";
-import { ease, spring, NORMAL, SLOW, FAST } from "@/lib/motion";
+import { ease, NORMAL } from "@/lib/motion";
 
 /* ─── ICON MAP ───────────────────────────────────────────────── */
 

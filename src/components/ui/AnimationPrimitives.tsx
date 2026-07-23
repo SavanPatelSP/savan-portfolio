@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, ReactNode, useState, useCallback } from "react";
-import { motion, useInView, useScroll, useTransform, useReducedMotion, HTMLMotionProps } from "framer-motion";
+import { useRef, ReactNode, useState } from "react";
+import { motion, useInView, useScroll, useTransform, HTMLMotionProps } from "framer-motion";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
 import { cn } from "@/lib/utils";
-import { FAST, NORMAL, SLOW, ease, spring, cardHover, buttonPress } from "@/lib/motion";
+import { NORMAL, SLOW, ease, spring, cardHover, buttonPress } from "@/lib/motion";
 
 type MotionDivProps = Omit<HTMLMotionProps<"div">, "children"> & { children?: ReactNode };
 

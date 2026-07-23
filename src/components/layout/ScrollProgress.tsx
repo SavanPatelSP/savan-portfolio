@@ -18,12 +18,12 @@ export function ScrollProgress() {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 right-0 z-[100] h-[2px] origin-left bg-white/15"
+        className="fixed top-0 left-0 right-0 z-[120] h-[2px] origin-left bg-white/15"
         style={{ scaleX: smoothProgress }}
       />
       <motion.button
         onClick={handleScrollToTop}
-        className="fixed bottom-6 right-6 z-[100] flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/[0.08] bg-black/70 backdrop-blur-md shadow-lg shadow-black/20 hover:border-white/[0.15] transition-all duration-200"
+        className="fixed bottom-6 right-6 z-[120] flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full border border-white/[0.08] bg-black/70 backdrop-blur-md shadow-lg shadow-black/20 hover:border-white/[0.15] transition-all duration-200"
         style={{ opacity: showBtn, scale: btnScale }}
         whileHover={{ scale: 1.1, y: -2 }}
         whileTap={{ scale: 0.95 }}

@@ -1,6 +1,6 @@
 "use client";
 
-import { Plus, Wrench, Bug, AlertTriangle, CheckCircle2, ArrowRight, Calendar, Tag } from "lucide-react";
+import { Plus, Wrench, Bug, AlertTriangle, ArrowRight, Calendar, Tag } from "lucide-react";
 import { ease, NORMAL, SLOW, FAST } from "@/lib/motion";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";

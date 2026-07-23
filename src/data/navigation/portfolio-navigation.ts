@@ -1,11 +1,5 @@
 import {
-  LayoutDashboard,
   Download,
-  Wifi,
-  Smartphone,
-  HelpCircle,
-  Shield,
-  FileText,
 } from "lucide-react";
 import type { NavigationConfig } from "./types";
 
@@ -16,25 +10,23 @@ export const portfolioNavigation: NavigationConfig = {
       title: "Portfolio App",
       slug: "portfolio-app",
       items: [
-        { title: "Overview", slug: "overview", description: "What the Portfolio App is" },
+        { title: "Overview", slug: "overview", href: "/portfolio-app", description: "What the Portfolio App is" },
         { title: "Installation", slug: "install", description: "Step-by-step install guides" },
-        { title: "Screenshots", slug: "screenshots", description: "App screenshots and previews" },
-        { title: "Offline Experience", slug: "offline", description: "How caching and offline access work" },
         { title: "Platform Support", slug: "platform-support", description: "Browser and OS compatibility" },
+        { title: "Offline Experience", slug: "offline", description: "How caching and offline access work" },
       ],
     },
     {
       title: "Documentation",
       slug: "documentation",
       items: [
-        { title: "Introduction", slug: "docs/introduction", description: "Overview of the Portfolio App" },
-        { title: "Quick Start", slug: "docs/quick-start", description: "Get started in under a minute" },
-        { title: "Installation", slug: "docs/installation", description: "Platform-specific install guides" },
-        { title: "Application", slug: "docs/application", description: "App features and sections" },
-        { title: "Features", slug: "docs/features", description: "Offline, updates, responsive, and more" },
-        { title: "Architecture", slug: "docs/architecture", description: "Technology stack and project structure" },
-        { title: "Developer Guide", slug: "docs/developer", description: "Setup, patterns, and standards" },
-        { title: "Reference", slug: "docs/reference", description: "FAQ, troubleshooting, and changelog" },
+        { title: "Introduction", slug: "getting-started/introduction", href: "/docs/getting-started/introduction", description: "Overview of the Portfolio App" },
+        { title: "Quick Start", slug: "getting-started/quick-start", href: "/docs/getting-started/quick-start", description: "Get started in under a minute" },
+        { title: "Installation Guide", slug: "installation/overview", href: "/docs/installation/overview", description: "Platform-specific install guides" },
+        { title: "Features", slug: "features/offline", href: "/docs/features/offline", description: "Offline, updates, responsive, and more" },
+        { title: "Architecture", slug: "architecture/technology-stack", href: "/docs/architecture/technology-stack", description: "Technology stack and project structure" },
+        { title: "Developer Guide", slug: "developer/project-setup", href: "/docs/developer/project-setup", description: "Setup, patterns, and standards" },
+        { title: "Reference", slug: "reference/faq", href: "/docs/reference/faq", description: "FAQ, troubleshooting, and changelog" },
       ],
     },
     {
@@ -42,17 +34,15 @@ export const portfolioNavigation: NavigationConfig = {
       slug: "support",
       items: [
         { title: "FAQ", slug: "faq", description: "Frequently asked questions" },
-        { title: "Troubleshooting", slug: "troubleshooting", description: "Common issues and solutions" },
         { title: "Release Notes", slug: "release-notes", description: "Changelog and version history" },
         { title: "Privacy", slug: "privacy", description: "What data is and is not collected" },
       ],
     },
     {
-      title: "Resources",
-      slug: "resources",
+      title: "Downloads",
+      slug: "downloads",
       items: [
-        { title: "Downloads", slug: "downloads", description: "Download the Portfolio App" },
-        { title: "All Downloads", slug: "downloads/all", description: "Browse all available downloads" },
+        { title: "Download App", slug: "downloads/portfolio-app", href: "/downloads/portfolio-app", description: "Download the Portfolio App" },
       ],
     },
   ],

@@ -3,14 +3,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { ease, FAST, NORMAL } from "@/lib/motion";
+import { ease, FAST } from "@/lib/motion";
 import {
   Monitor,
   Smartphone,
   Tablet,
   Terminal,
   Globe,
-  CheckCircle2,
 } from "lucide-react";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {

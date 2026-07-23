@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { CheckCircle2, XCircle, AlertCircle, Monitor, Smartphone, ArrowRight } from "lucide-react";
-import { ease, NORMAL, SLOW, FAST } from "@/lib/motion";
+import { ease, NORMAL, SLOW } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { compatibilityMatrix } from "@/data/portfolio-app";
 import { AppShell } from "@/components/navigation";
@@ -164,7 +164,7 @@ export default function ClientPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {compatibilityMatrix.features.map((feature, i) => (
+                  {compatibilityMatrix.features.map((feature, _i) => (
                     <tr
                       key={feature.name}
                       className={cn(

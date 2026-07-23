@@ -12,11 +12,9 @@ import {
   ArrowUpRight,
   Newspaper,
   Handshake,
-  HelpCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ease, spring, NORMAL } from "@/lib/motion";
-import { personal } from "@/data/personal";
+import { spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";

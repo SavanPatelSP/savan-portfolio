@@ -463,7 +463,7 @@ export default function GetInTouchClientPage() {
           <FadeIn className="mb-10">
             <div className="max-w-2xl mx-auto">
               <motion.a
-                href="/contact#contact"
+                href="/contact"
                 className="group block rounded-xl border border-white/[0.04] bg-white/[0.01] p-6 sm:p-8 hover:bg-white/[0.02] hover:border-white/[0.08] transition-all duration-300 text-center"
                 whileHover={{ y: -4, scale: 1.01 }}
                 transition={spring.gentle}

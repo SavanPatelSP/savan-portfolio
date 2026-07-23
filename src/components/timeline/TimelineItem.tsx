@@ -3,7 +3,7 @@
 import { useRef, ReactNode, ElementType } from "react";
 import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { ease, spring, NORMAL, FAST } from "@/lib/motion";
+import { ease, NORMAL } from "@/lib/motion";
 
 export type TimelineNodeStatus = "default" | "done" | "active" | "inactive";
 
@@ -127,9 +127,9 @@ export function TimelineItem({
   icon,
   status = "default",
   index = 0,
-  total = 1,
+  total: _total = 1,
   isLast = false,
-  isLeft = true,
+  isLeft: _isLeft = true,
   layout = "left",
   accentColor,
   delay = 0,

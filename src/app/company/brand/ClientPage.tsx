@@ -1,22 +1,18 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   Palette,
   Check,
   X,
   Type,
   Download,
-  BarChart3,
   Star,
   MessageSquare,
   Shield,
   Globe,
   Eye,
 } from "lucide-react";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { SLOW, NORMAL, FAST, ease, spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";

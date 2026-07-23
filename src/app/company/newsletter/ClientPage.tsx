@@ -11,7 +11,6 @@ import {
   Clock,
 } from "lucide-react";
 import Link from "next/link";
-import { personal } from "@/data/personal";
 import { SLOW, NORMAL, ease, spring } from "@/lib/motion";
 import {
   FadeIn,

@@ -8,27 +8,16 @@ import {
   Navigation,
   Download,
   LayoutDashboard,
-  Search,
   Wifi,
-  RefreshCw,
-  Smartphone,
-  Eye,
   Zap,
-  Shield,
   Code2,
   FolderTree,
-  Route,
-  FileJson,
-  Globe,
   HelpCircle,
   AlertTriangle,
-  FileText,
-  Monitor,
   ArrowRight,
 } from "lucide-react";
 import { docsNavigation, APP_VERSION } from "@/data/docs";
-import { ease, FAST, NORMAL, spring, stagger } from "@/lib/motion";
-import { cn } from "@/lib/utils";
+import { ease, NORMAL } from "@/lib/motion";
 
 const sectionIcons: Record<string, React.ReactNode> = {
   "Getting Started": <Rocket className="h-5 w-5" />,

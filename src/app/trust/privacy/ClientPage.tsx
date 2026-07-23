@@ -6,14 +6,11 @@ import {
   Eye,
   Trash2,
   Lock,
-  Server,
-  Globe,
   CheckCircle,
   User,
   MessageSquare,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
+import { ease, FAST } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";

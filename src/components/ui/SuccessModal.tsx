@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Check, Mail, Shield, Clock, ArrowRight, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -16,7 +16,7 @@ export function SuccessModal({ isOpen, onClose, onSendAnother }: SuccessModalPro
   const dialogRef = useRef<HTMLDivElement>(null);
   const prevFocus = useRef<HTMLElement | null>(null);
 
-  const submittedAt = useRef<string>("");
+  const [submittedAt, setSubmittedAt] = useState("");
 
   const escHandler = useCallback(
     (e: KeyboardEvent) => {
@@ -43,8 +43,11 @@ export function SuccessModal({ isOpen, onClose, onSendAnother }: SuccessModalPro
   }, []);
 
   useEffect(() => {
+    let rafId: number | undefined;
     if (isOpen) {
-      submittedAt.current = new Date().toLocaleString();
+      rafId = requestAnimationFrame(() => {
+        setSubmittedAt(new Date().toLocaleString());
+      });
       prevFocus.current = document.activeElement as HTMLElement;
       document.body.style.overflow = "hidden";
       document.addEventListener("keydown", escHandler);
@@ -57,6 +60,7 @@ export function SuccessModal({ isOpen, onClose, onSendAnother }: SuccessModalPro
       prevFocus.current?.focus();
     }
     return () => {
+      if (rafId !== undefined) cancelAnimationFrame(rafId);
       document.body.style.overflow = "";
       document.removeEventListener("keydown", escHandler);
       document.removeEventListener("keydown", trapFocus);
@@ -175,7 +179,7 @@ export function SuccessModal({ isOpen, onClose, onSendAnother }: SuccessModalPro
                   <span className="text-[11px] font-medium text-white/20 uppercase tracking-wider">
                     Submitted
                   </span>
-                  <p className="text-sm text-white/60">{submittedAt.current}</p>
+                  <p className="text-sm text-white/60">{submittedAt}</p>
                 </div>
               </div>
             </div>

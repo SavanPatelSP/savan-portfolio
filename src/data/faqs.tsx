@@ -5,8 +5,6 @@ import {
   Briefcase,
   Lightbulb,
   Shield,
-  Globe,
-  Mail,
   Building2,
   BookOpen,
   Clock,

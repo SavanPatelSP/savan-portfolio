@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   Handshake,
   Cloud,
@@ -8,18 +7,13 @@ import {
   Shield,
   Globe,
   BarChart3,
-  Users,
   Target,
   Heart,
   Lightbulb,
   Zap,
-  ArrowRight,
   Lock,
   Code2,
 } from "lucide-react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { SLOW, NORMAL, FAST, ease, spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";

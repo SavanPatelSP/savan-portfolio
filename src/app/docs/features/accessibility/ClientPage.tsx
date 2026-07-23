@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { DocPage, Callout, CodeBlock, InlineCode } from "@/components/docs/DocLayout";
-import { APP_VERSION, LAST_UPDATED } from "@/data/docs";
+import { DocPage, Callout, InlineCode } from "@/components/docs/DocLayout";
 
 const toc = [
   { id: "wcag-target", label: "WCAG 2.1 AA Target" },

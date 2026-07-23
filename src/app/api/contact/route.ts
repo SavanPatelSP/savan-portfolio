@@ -253,8 +253,8 @@ export async function POST(req: Request) {
     }
 
     const resBody = await res.text();
-    let resJson: Record<string, unknown> = {};
-    try { resJson = JSON.parse(resBody); } catch { /* not JSON */ }
+    let _resJson: Record<string, unknown> = {};
+    try { _resJson = JSON.parse(resBody); } catch { /* not JSON */ }
 
     if (!res.ok) {
       log("error", "Resend rejected the request", { status: res.status });

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { DocPage, Callout, CodeBlock, InlineCode } from "@/components/docs/DocLayout";
-import { APP_VERSION, LAST_UPDATED } from "@/data/docs";
 
 const toc = [
   { id: "what-is-a-service-worker", label: "What Is a Service Worker" },
@@ -218,7 +217,7 @@ if (url.pathname.startsWith("/_next/")) {
           Strategy 2: Network-First (Navigation)
         </h3>
         <p className="text-[14px] text-white/40 leading-relaxed mb-4">
-          Used for page navigations (<InlineCode>request.mode === "navigate"</InlineCode>). HTML
+          Used for page navigations (<InlineCode>request.mode === &quot;navigate&quot;</InlineCode>). HTML
           content must be fresh — serving stale HTML means the user sees outdated content. The
           service worker fetches from the network first. If the network fails (offline), it falls
           back to the cached offline page at <InlineCode>/portfolio-app/offline</InlineCode>.

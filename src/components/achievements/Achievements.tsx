@@ -4,11 +4,11 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { SectionContainer, SectionTitle, ScaleIn } from "@/components/ui/AnimationPrimitives";
 import { achievements } from "@/data/achievements";
-import { ease, spring, NORMAL } from "@/lib/motion";
+import { spring } from "@/lib/motion";
 
 export function AchievementsSection() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const _isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
     <SectionContainer id="achievements" className="bg-black relative overflow-hidden">

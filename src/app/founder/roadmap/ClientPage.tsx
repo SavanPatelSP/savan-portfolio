@@ -4,17 +4,12 @@ import {
   Map,
   Rocket,
   Target,
-  Code2,
   GitBranch,
   Users,
-  Globe,
   Calendar,
-  ArrowRight,
   Clock,
-  Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";
@@ -26,7 +21,6 @@ import {
   SectionTitle,
   StaggerFade,
   StaggerItem,
-  Reveal,
 } from "@/components/ui/AnimationPrimitives";
 
 const products = [
@@ -419,7 +413,7 @@ export default function RoadmapPage() {
           />
 
           <StaggerFade className="space-y-8">
-            {shortTermGoals.map((goal, goalIdx) => (
+            {shortTermGoals.map((goal, _goalIdx) => (
               <StaggerItem key={goal.quarter}>
                 <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-6 sm:p-8">
                   <div className="flex items-center gap-2 mb-5">

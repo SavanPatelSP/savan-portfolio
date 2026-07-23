@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Sparkles, ArrowLeft, Check, Rocket } from "lucide-react";
 import Link from "next/link";
-import { SLOW, NORMAL, ease, spring } from "@/lib/motion";
+import { SLOW, NORMAL, ease } from "@/lib/motion";
 
 interface ComingSoonProps {
   title: string;

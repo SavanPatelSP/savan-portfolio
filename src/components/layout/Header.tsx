@@ -1,13 +1,16 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback, useMemo, memo } from "react";
+import { useState, useEffect, useRef, useCallback, memo } from "react";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { Download, BookOpen } from "lucide-react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { personal } from "@/data/personal";
 import { VerifiedBadge } from "@/components/ui/VerifiedBadge";
 import { useActiveSection } from "@/hooks/useActiveSection";
-import { ease, spring, FAST, NORMAL } from "@/lib/motion";
+import { spring, FAST } from "@/lib/motion";
 
 const sections = [
   { label: "Products", id: "products" },
@@ -20,8 +23,8 @@ const sections = [
 ] as const;
 
 const externalLinks = [
-  { label: "Install", href: "/downloads" },
-  { label: "Docs", href: "/docs" },
+  { label: "Install", href: "/downloads", icon: Download },
+  { label: "Docs", href: "/docs", icon: BookOpen },
 ] as const;
 
 function getSectionHref(id: string, pathname: string) {
@@ -64,7 +67,7 @@ const NavLink = memo(function NavLink({
     <a
       href={href}
       className={cn(
-        "relative text-sm py-2 transition-colors duration-200",
+        "relative text-sm py-2 transition-colors duration-200 whitespace-nowrap",
         isActive ? "text-white/80" : "text-white/35 hover:text-white/80"
       )}
       aria-current={isActive ? "location" : undefined}
@@ -81,6 +84,25 @@ const NavLink = memo(function NavLink({
   );
 });
 
+const ExternalLink = memo(function ExternalLink({
+  link,
+}: {
+  link: (typeof externalLinks)[number];
+}) {
+  const Icon = link.icon;
+  return (
+    <a
+      href={link.href}
+      className="group hidden lg:flex items-center gap-1.5 rounded-xl px-2.5 py-2 text-sm text-white/35 hover:text-white/80 hover:bg-white/[0.03] transition-all duration-200"
+      aria-label={link.label}
+    >
+      <Icon className="h-3.5 w-3.5 shrink-0" />
+      <span className="hidden xl:inline whitespace-nowrap">{link.label}</span>
+      <span className="hidden xl:block h-1 w-1 rounded-full bg-blue-400/50 shrink-0" />
+    </a>
+  );
+});
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -89,11 +111,7 @@ export function Header() {
   const mobileNavRef = useRef<HTMLDivElement>(null);
   const savedScrollYRef = useRef(0);
   const wasOpenRef = useRef(false);
-  const pathnameRef = useRef("/");
-
-  useEffect(() => {
-    pathnameRef.current = window.location.pathname;
-  }, []);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -115,12 +133,6 @@ export function Header() {
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        setOpen(false);
-        return;
-      }
-
       if (e.key !== "Tab") return;
 
       const container = mobileNavRef.current;
@@ -166,13 +178,24 @@ export function Header() {
     wasOpenRef.current = open;
   }, [open]);
 
+  useEffect(() => {
+    if (!open) return;
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, [open]);
+
   const isHome = active === null;
-  const pathname = pathnameRef.current;
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-[110] transition-all duration-500",
         scrolled
           ? "bg-black/70 backdrop-blur-2xl border-b border-white/[0.03]"
           : "bg-transparent"
@@ -182,10 +205,10 @@ export function Header() {
         className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
         aria-label="Main navigation"
       >
-        <a
-          href="#home"
+        <Link
+          href="/"
           className={cn(
-            "group flex items-center gap-2 text-sm font-medium transition-colors duration-200",
+            "group flex shrink-0 items-center gap-2 text-sm font-medium whitespace-nowrap transition-colors duration-200",
             isHome ? "text-white/80" : "text-white/80 hover:text-white"
           )}
           aria-current={isHome ? "location" : undefined}
@@ -209,30 +232,31 @@ export function Header() {
           </span>
           {personal.name}
           <VerifiedBadge size="1.3em" />
-        </a>
+        </Link>
 
-        <div className="hidden md:flex items-center gap-8">
-          {sections.map((s) => (
-            <NavLink
-              key={s.id}
-              s={s}
-              isActive={active === s.id}
-              href={getSectionHref(s.id, pathname)}
-            />
-          ))}
+        {/* Desktop nav */}
+        <div className="hidden lg:flex flex-1 items-center justify-center min-w-0 px-6">
+          <div className="flex items-center gap-5 xl:gap-6">
+            {sections.map((s) => (
+              <NavLink
+                key={s.id}
+                s={s}
+                isActive={active === s.id}
+                href={getSectionHref(s.id, pathname)}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Right actions */}
+        <div className="hidden lg:flex shrink-0 items-center gap-1">
           {externalLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="relative text-sm py-2 text-white/35 hover:text-white/80 transition-colors duration-200 inline-flex items-center gap-1.5"
-            >
-              {link.label}
-              <span className="h-1 w-1 rounded-full bg-blue-400/50" />
-            </a>
+            <ExternalLink key={link.href} link={link} />
           ))}
+          <div className="hidden xl:block w-px h-5 bg-white/[0.08] mx-1" />
           <motion.a
-            href={getSectionHref("contact", pathname)}
-            className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-black hover:bg-white/90 transition-all duration-200 hover:shadow-[0_4px_16px_-4px_rgba(255,255,255,0.15)]"
+            href="/contact"
+            className="rounded-xl bg-white px-4 py-2 text-sm font-medium text-black whitespace-nowrap hover:bg-white/90 transition-all duration-200 hover:shadow-[0_4px_16px_-4px_rgba(255,255,255,0.15)]"
             whileHover={{ scale: 1.02, y: -1 }}
             whileTap={{ scale: 0.98 }}
             transition={spring.gentle}
@@ -244,14 +268,15 @@ export function Header() {
         <button
           ref={hamburgerRef}
           className={cn(
-            "relative z-[60] flex md:hidden items-center justify-center w-12 h-12 rounded-xl bg-transparent border border-transparent text-white/60 hover:text-white hover:border-white/[0.08] transition-all duration-200 [-webkit-appearance:none] active:scale-95",
+            "relative z-[60] flex lg:hidden items-center justify-center w-12 h-12 rounded-xl bg-transparent border border-transparent text-white/60 hover:text-white hover:border-white/[0.08] transition-all duration-200 [-webkit-appearance:none] active:scale-95",
             open && "pointer-events-none opacity-0"
           )}
-          style={{ outline: "none" }}
           onClick={handleToggle}
-          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          aria-label="Open navigation menu"
           aria-expanded={open}
           aria-controls="mobile-nav"
+          aria-hidden={open ? true : undefined}
+          tabIndex={open ? -1 : 0}
         >
           <div className="flex flex-col gap-[5px]">
             <motion.span
@@ -279,11 +304,11 @@ export function Header() {
         </button>
       </nav>
 
-      {/* Mobile nav — permanently mounted, toggled via visibility */}
+      {/* Mobile nav — full-screen overlay above the header */}
       <div
         id="mobile-nav"
         className={cn(
-          "fixed inset-0 z-50 bg-black transition-all duration-300",
+          "fixed inset-0 z-[120] bg-black transition-all duration-300",
           open
             ? "opacity-100 visible pointer-events-auto"
             : "opacity-0 invisible pointer-events-none"
@@ -292,9 +317,10 @@ export function Header() {
         aria-modal="true"
         aria-label="Navigation menu"
         onKeyDown={open ? handleKeyDown : undefined}
+        onClick={open ? handleClose : undefined}
       >
         <button
-          className="absolute top-4 right-4 z-[60] flex items-center justify-center w-12 h-12 rounded-xl border border-white/[0.08] bg-white/[0.04] text-white/50 hover:text-white hover:border-white/[0.15] hover:bg-white/[0.08] transition-all duration-200 active:scale-95"
+          className="absolute top-4 right-4 z-[130] flex items-center justify-center w-12 h-12 rounded-xl border border-white/[0.08] bg-white/[0.04] text-white/50 hover:text-white hover:border-white/[0.15] hover:bg-white/[0.08] transition-all duration-200 active:scale-95"
           onClick={handleClose}
           aria-label="Close navigation menu"
           tabIndex={open ? 0 : -1}
@@ -319,6 +345,7 @@ export function Header() {
         <div
           ref={mobileNavRef}
           className="flex h-full flex-col items-center justify-center overflow-y-auto overscroll-contain"
+          onClick={(e) => e.stopPropagation()}
         >
           <nav
             className="flex flex-col items-center gap-1 py-20"
@@ -350,21 +377,24 @@ export function Header() {
               );
             })}
 
-            {externalLinks.map((link, i) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-2xl sm:text-3xl font-medium min-h-[52px] flex items-center px-8 rounded-2xl w-full max-w-xs justify-center text-white/35 hover:text-white/70 hover:bg-white/[0.03] transition-all duration-300"
-                style={{
-                  transitionDelay: open ? `${50 + (sections.length + i) * 25}ms` : "0ms",
-                }}
-                tabIndex={open ? 0 : -1}
-                onClick={handleNavItemClick}
-              >
-                {link.label}
-                <span className="ml-2 h-1.5 w-1.5 rounded-full bg-blue-400/50" />
-              </a>
-            ))}
+            {externalLinks.map((link, i) => {
+              const Icon = link.icon;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="text-2xl sm:text-3xl font-medium min-h-[52px] flex items-center px-8 rounded-2xl w-full max-w-xs justify-center text-white/35 hover:text-white/70 hover:bg-white/[0.03] transition-all duration-300"
+                  style={{
+                    transitionDelay: open ? `${50 + (sections.length + i) * 25}ms` : "0ms",
+                  }}
+                  tabIndex={open ? 0 : -1}
+                  onClick={handleNavItemClick}
+                >
+                  <Icon className="h-5 w-5 mr-2 shrink-0" />
+                  {link.label}
+                </a>
+              );
+            })}
 
             <div
               className={cn(
@@ -377,7 +407,7 @@ export function Header() {
             />
 
             <a
-              href={getSectionHref("contact", pathname)}
+              href="/contact"
               className="rounded-2xl bg-white px-8 py-3.5 text-base font-medium text-black min-h-[48px] flex items-center hover:bg-white/90 transition-all duration-300 active:scale-[0.98]"
               style={{
                 transitionDelay: open ? "225ms" : "0ms",

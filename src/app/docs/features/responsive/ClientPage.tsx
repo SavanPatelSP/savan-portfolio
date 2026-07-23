@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { DocPage, Callout, InlineCode } from "@/components/docs/DocLayout";
-import { APP_VERSION, LAST_UPDATED } from "@/data/docs";
 
 const toc = [
   { id: "breakpoint-system", label: "Breakpoint System" },

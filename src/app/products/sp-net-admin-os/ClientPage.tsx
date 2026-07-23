@@ -6,19 +6,12 @@ import {
   Shield,
   Users,
   BarChart3,
-  Settings,
-  Bell,
   Coins,
   Building2,
-  FileText,
   Lock,
-  Activity,
-  GitBranch,
   ChevronRight,
-  Layers,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
+import { ease, spring, FAST } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";
@@ -29,9 +22,7 @@ import {
   SectionTitle,
   StaggerFade,
   StaggerItem,
-  Reveal,
 } from "@/components/ui/AnimationPrimitives";
-import { Badge } from "@/components/ui/Badge";
 
 const features = [
   {

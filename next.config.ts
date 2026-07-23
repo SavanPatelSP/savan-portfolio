@@ -1,15 +1,21 @@
 import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
+const isDev = process.env.NODE_ENV === "development";
+
 const CSP_REPORT_URI = "/api/security/csp-report";
 
-const cspDirectives = [
+/**
+ * Production CSP — strict, no eval, no localhost.
+ * Covers: self, inline scripts/styles, Sentry, Vercel Live, Google Fonts.
+ */
+const productionDirectives = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://vercel.live",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data: https://fonts.gstatic.com",
-  "connect-src 'self' https://vercel.live",
+  "connect-src 'self' https://vercel.live https://fonts.googleapis.com https://o4511773683023872.ingest.us.sentry.io",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -17,6 +23,29 @@ const cspDirectives = [
   `report-uri ${CSP_REPORT_URI}`,
   "upgrade-insecure-requests",
 ].join("; ");
+
+/**
+ * Development CSP — allows everything Next.js + Turbopack + React Fast Refresh need:
+ * - 'unsafe-eval': React dev runtime and Turbopack use eval()
+ * - ws/wss localhost: HMR WebSocket connection
+ * - http/https localhost: dev server and Turbopack manifest fetching
+ * - Sentry ingest: keeps error reporting functional during development
+ */
+const developmentDirectives = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self' data: https://fonts.gstatic.com",
+  "connect-src 'self' https://vercel.live https://fonts.googleapis.com https://o4511773683023872.ingest.us.sentry.io https://o447951.ingest.sentry.io ws://localhost:* wss://localhost:* http://localhost:*",
+  "worker-src 'self' blob:",
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  `report-uri ${CSP_REPORT_URI}`,
+].join("; ");
+
+const cspDirectives = isDev ? developmentDirectives : productionDirectives;
 
 const securityHeaders = [
   {

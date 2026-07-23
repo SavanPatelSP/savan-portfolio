@@ -6,7 +6,7 @@ import { ArrowDown, Sparkles, Terminal } from "lucide-react";
 import { personal } from "@/data/personal";
 import { products } from "@/data/products";
 import { cn } from "@/lib/utils";
-import { ease, spring, NORMAL, FAST } from "@/lib/motion";
+import { ease, spring, NORMAL } from "@/lib/motion";
 import { ParticleField } from "@/components/ui/ParticleField";
 
 function useMousePosition() {
@@ -97,34 +97,6 @@ function FloatingProductCard({
       </motion.div>
     </motion.div>
   );
-}
-
-function CountUp({ target, delay = 0 }: { target: string; delay?: number }) {
-  const [count, setCount] = useState("0");
-  const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true });
-
-  useEffect(() => {
-    if (!isInView) return;
-    const num = parseInt(target.replace(/[^0-9]/g, ""));
-    if (isNaN(num)) { setCount(target); return; }
-    const suffix = target.replace(/[0-9]/g, "");
-    const duration = 1200;
-    const start = Date.now();
-    const timer = setTimeout(() => {
-      const animate = () => {
-        const elapsed = Date.now() - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        setCount(Math.round(num * eased) + suffix);
-        if (progress < 1) requestAnimationFrame(animate);
-      };
-      animate();
-    }, delay * 1000);
-    return () => clearTimeout(timer);
-  }, [isInView, target, delay]);
-
-  return <span ref={ref}>{count}</span>;
 }
 
 export function Hero() {
@@ -334,7 +306,7 @@ export function Hero() {
             onMouseLeave={resetMagnetic2}
           >
             <motion.a
-              href="#contact"
+              href="/contact"
               className="group relative inline-flex items-center gap-2.5 rounded-xl border border-white/10 px-6 sm:px-7 py-3 sm:py-3.5 text-sm font-medium text-white/50 hover:text-white hover:border-white/20 transition-all overflow-hidden min-h-[48px]"
               animate={{ x: magneticPos2.x, y: magneticPos2.y }}
               transition={spring.gentle}

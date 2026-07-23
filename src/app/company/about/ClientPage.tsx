@@ -7,20 +7,13 @@ import {
   Shield,
   Users,
   Lightbulb,
-  Code2,
   Globe,
   Target,
   Calendar,
   Sparkles,
-  ArrowRight,
-  History,
   Compass,
-  Heart,
-  Zap,
 } from "lucide-react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
+import { ease, FAST } from "@/lib/motion";
 import { personal } from "@/data/personal";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";

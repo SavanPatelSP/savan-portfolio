@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { FAST, ease, spring } from "@/lib/motion";
+import { FAST, ease } from "@/lib/motion";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
 
 interface RelatedPage {

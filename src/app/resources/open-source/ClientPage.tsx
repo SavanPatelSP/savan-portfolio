@@ -20,7 +20,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { FAST, NORMAL, ease, spring } from "@/lib/motion";
+import { FAST, ease, spring } from "@/lib/motion";
 import { personal } from "@/data/personal";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";

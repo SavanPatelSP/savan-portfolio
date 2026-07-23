@@ -34,7 +34,7 @@ export default function OfflineClientPage() {
           The offline experience is built on a service worker that intercepts every network request the browser makes while the app is loaded. The service worker runs in a dedicated thread, completely separate from the page, and makes caching decisions based on the type of asset being requested and its current state in the Cache API.
         </p>
         <p className="text-[14px] text-white/40 leading-relaxed mb-4">
-          When the browser requests an asset — a JavaScript bundle, an image, a CSS file — the service worker intercepts that request before it reaches the network. It checks its cache stores to determine whether a usable copy exists. If it does, the cached response is returned immediately. If it doesn't, the request passes through to the network, the response is stored in the cache, and then returned to the browser.
+          When the browser requests an asset — a JavaScript bundle, an image, a CSS file — the service worker intercepts that request before it reaches the network. It checks its cache stores to determine whether a usable copy exists. If it does, the cached response is returned immediately. If it doesn&apos;t, the request passes through to the network, the response is stored in the cache, and then returned to the browser.
         </p>
 
         <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] my-6 overflow-hidden">

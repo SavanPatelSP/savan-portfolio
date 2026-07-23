@@ -1,13 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import { Code, Building2, MessageCircle, Shield, Bot, Rocket, Sparkles } from "lucide-react";
 import { SectionContainer, FadeIn, SectionTitle, ParallaxContainer } from "@/components/ui/AnimationPrimitives";
 import { Timeline, TimelineItem } from "@/components/timeline";
-import { cn } from "@/lib/utils";
 import { journey } from "@/data/personal";
-import { ease, NORMAL } from "@/lib/motion";
 
 const journeyIcons: Record<string, React.ElementType> = {
   "2018": Code,
@@ -20,7 +18,7 @@ const journeyIcons: Record<string, React.ElementType> = {
 
 export function ExperienceSection() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const _isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
     <ParallaxContainer speed={0.03}>

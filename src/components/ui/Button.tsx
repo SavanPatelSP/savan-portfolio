@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { spring, FAST } from "@/lib/motion";
+import { spring } from "@/lib/motion";
 
 interface ButtonProps {
   variant?: "primary" | "secondary" | "ghost" | "outline";
@@ -29,6 +29,7 @@ export function Button({
   onClick,
 }: ButtonProps) {
   const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [buttonWidth, setButtonWidth] = useState(100);
   const ref = useRef<HTMLButtonElement & HTMLAnchorElement>(null);
 
   const base =
@@ -57,6 +58,7 @@ export function Button({
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    setButtonWidth(ref.current.offsetWidth);
   };
 
   const content = (
@@ -68,8 +70,8 @@ export function Button({
         style={{
           left: position.x,
           top: position.y,
-          width: Math.max(ref.current?.offsetWidth || 100) * 1.5,
-          paddingBottom: Math.max(ref.current?.offsetWidth || 100) * 1.5,
+          width: Math.max(buttonWidth) * 1.5,
+          paddingBottom: Math.max(buttonWidth) * 1.5,
         }}
       />
     </>

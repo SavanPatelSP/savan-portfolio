@@ -2,9 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Download, Monitor, Smartphone, CheckCircle2, ArrowRight } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { ease, spring, NORMAL, SLOW, FAST } from "@/lib/motion";
+import { X, Monitor, CheckCircle2, ArrowRight } from "lucide-react";
+import { spring, NORMAL, FAST } from "@/lib/motion";
 import { isStandalone } from "@/lib/pwa";
 
 const DISMISS_KEY = "portfolio-app-modal-dismissed";
@@ -18,8 +17,8 @@ const FEATURES = [
 
 export function InstallModal() {
   const [visible, setVisible] = useState(false);
-  const [sectionsViewed, setSectionsViewed] = useState(0);
-  const [timeSpent, setTimeSpent] = useState(0);
+  const [_sectionsViewed, setSectionsViewed] = useState(0);
+  const [_timeSpent, setTimeSpent] = useState(0);
 
   useEffect(() => {
     if (typeof window === "undefined") return;

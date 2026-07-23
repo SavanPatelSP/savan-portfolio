@@ -36,7 +36,7 @@ const supportConfig = {
 } as const;
 
 export function PlatformBadge({
-  platformId,
+  platformId: _platformId,
   name,
   icon,
   support = "full",

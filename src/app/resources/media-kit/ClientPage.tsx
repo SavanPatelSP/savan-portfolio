@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import {
   Palette,
   Download,
-  FileText,
   Type,
   Mail,
   CheckCircle2,
@@ -12,13 +11,9 @@ import {
   Image,
   Building2,
   User,
-  Shield,
-  Printer,
-  Globe,
   Newspaper,
-  ExternalLink,
 } from "lucide-react";
-import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
+import { spring } from "@/lib/motion";
 import { personal } from "@/data/personal";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";

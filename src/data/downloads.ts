@@ -1,3 +1,5 @@
+import { features as portfolioFeatures, APP_TAGLINE, APP_DESCRIPTION } from "./portfolio-app";
+
 export const DOWNLOAD_PLATFORMS = [
   {
     id: "windows",
@@ -107,9 +109,8 @@ export const downloadProducts: DownloadProduct[] = [
     id: "portfolio-app",
     slug: "portfolio-app",
     name: "Portfolio App",
-    tagline: "The flagship installable web application by SP NET INC",
-    description:
-      "A Progressive Web App that transforms the portfolio into a native-like application with offline access, automatic updates, and a distraction-free experience.",
+    tagline: APP_TAGLINE,
+    description: APP_DESCRIPTION,
     status: "available",
     releaseChannel: "stable",
     version: "1.0.0",
@@ -119,7 +120,7 @@ export const downloadProducts: DownloadProduct[] = [
     architecture: "Web (PWA)",
     license: "Free",
     fileSize: "5\u201315 MB",
-    checksum: "sha256:a1b2c3d4e5f6\u2026placeholder",
+    checksum: "N/A — installed directly through your browser",
     color: "#f59e0b",
     gradient: "from-amber-500 via-orange-400 to-yellow-300",
     platforms: ["windows", "macos", "linux", "android", "ios", "ipados", "chromeos", "browser"],
@@ -135,14 +136,7 @@ export const downloadProducts: DownloadProduct[] = [
       { label: "Projects", description: "Engineering portfolio with progress tracking and deployment status" },
       { label: "Offline Mode", description: "Cached content management with sync status and storage metrics" },
     ],
-    features: [
-      { title: "Native Experience", description: "Runs in its own standalone window without browser chrome." },
-      { title: "Offline Access", description: "Previously viewed pages remain available without internet." },
-      { title: "Automatic Updates", description: "Always stays current with the latest content." },
-      { title: "Instant Launch", description: "Opens directly from your desktop or home screen." },
-      { title: "Privacy First", description: "No analytics, no tracking, no data collection." },
-      { title: "Cross-Platform", description: "Consistent experience on every device." },
-    ],
+    features: portfolioFeatures.map((f) => ({ title: f.title, description: f.description })),
     documentationUrl: "/portfolio-app",
     downloadUrl: "/downloads/portfolio-app",
   },
@@ -202,7 +196,7 @@ export const downloadIntegrity: DownloadIntegrityItem[] = [
   { label: "Official Build", value: "Verified by SP NET INC", icon: "ShieldCheck" },
   { label: "Developed by", value: "SP NET INC", icon: "Building2" },
   { label: "Secure Distribution", value: "HTTPS only", icon: "Lock" },
-  { label: "SHA-256 Checksum", value: "sha256:a1b2c3\u2026", icon: "Fingerprint" },
+  { label: "SHA-256 Checksum", value: "N/A for browser install", icon: "Fingerprint" },
   { label: "Release Channel", value: "Stable", icon: "Radio" },
   { label: "Version Signature", value: "v1.0.0", icon: "Tag" },
   { label: "Build Number", value: "2026.07.17", icon: "Hash" },

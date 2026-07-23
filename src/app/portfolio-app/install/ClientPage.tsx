@@ -2,17 +2,14 @@
 
 import { useState } from "react";
 import {
-  Download,
   Monitor,
   Smartphone,
   Tablet,
   Terminal,
-  CheckCircle2,
   ArrowRight,
   ChevronDown,
-  ExternalLink,
 } from "lucide-react";
-import { ease, spring, NORMAL, SLOW, FAST } from "@/lib/motion";
+import { ease, NORMAL, SLOW } from "@/lib/motion";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { platforms, APP_VERSION } from "@/data/portfolio-app";

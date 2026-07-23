@@ -1,31 +1,18 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   Briefcase,
   Heart,
   Globe,
-  Shield,
   Sparkles,
-  Users,
   Code2,
   Palette,
   GraduationCap,
-  Rocket,
   Target,
   Clock,
   Lightbulb,
-  ArrowRight,
   TrendingUp,
-  Zap,
-  Lock,
-  Coffee,
-  Compass,
 } from "lucide-react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
-import { personal } from "@/data/personal";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";

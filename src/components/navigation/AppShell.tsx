@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ease, FAST, NORMAL } from "@/lib/motion";
+import { ease } from "@/lib/motion";
 import { Sidebar } from "./Sidebar";
 import type { NavigationConfig, NavigationItem, NavigationSection } from "@/data/navigation/types";
 
@@ -17,7 +17,8 @@ function findCurrentItem(
 ): { item: NavigationItem; section: NavigationSection } | null {
   for (const section of sections) {
     for (const item of section.items) {
-      if (pathname === `${basePath}/${item.slug}`) {
+      const itemPath = item.href ?? `${basePath}/${item.slug}`;
+      if (pathname === itemPath) {
         return { item, section };
       }
     }
@@ -36,7 +37,7 @@ function getAdjacentItems(
 ): { prev: NavigationItem | null; next: NavigationItem | null } {
   const allItems = flattenItems(sections);
   const idx = allItems.findIndex(
-    (i) => pathname === `${basePath}/${i.slug}`
+    (i) => pathname === (i.href ?? `${basePath}/${i.slug}`)
   );
   return {
     prev: idx > 0 ? allItems[idx - 1] : null,
@@ -50,6 +51,7 @@ export function AppShell({
   breadcrumbs,
   title,
   description,
+  rightSidebar,
   children,
 }: {
   navigation: NavigationConfig;
@@ -57,6 +59,7 @@ export function AppShell({
   breadcrumbs?: { label: string; href?: string }[];
   title?: string;
   description?: string;
+  rightSidebar?: React.ReactNode;
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
@@ -117,8 +120,11 @@ export function AppShell({
 
   // Close drawer on route change
   useEffect(() => {
-    closeSidebar();
-  }, [pathname, closeSidebar]);
+    const id = requestAnimationFrame(() => {
+      setSidebarOpen(false);
+    });
+    return () => cancelAnimationFrame(id);
+  }, [pathname]);
 
   // Auto-compute breadcrumbs from navigation data if not provided
   const computedBreadcrumbs = (() => {
@@ -150,17 +156,17 @@ export function AppShell({
         <div className="flex gap-8">
           {/* Desktop sidebar */}
           <aside className="hidden lg:block w-56 shrink-0">
-            <div className="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto scrollbar-none pb-8">
+            <div className="sticky top-20 sm:top-24 max-h-[calc(100vh-7rem)] overflow-y-auto scrollbar-none pb-8">
               <Sidebar navigation={navigation} basePath={basePath} />
             </div>
           </aside>
 
           {/* Main content */}
-          <main className="flex-1 min-w-0 py-8 sm:py-12 max-w-3xl">
+          <main className={cn("flex-1 min-w-0 pt-20 sm:pt-24 pb-8 sm:pb-12", rightSidebar ? "max-w-2xl" : "max-w-3xl")}>
             {/* Mobile sidebar toggle */}
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden flex items-center gap-2 text-[13px] text-white/30 hover:text-white/50 mb-6 transition-colors duration-200"
+              className="lg:hidden flex items-center gap-2 text-[13px] text-white/30 hover:text-white/50 mb-4 transition-colors duration-200"
               aria-label="Open navigation"
             >
               <Menu className="h-4 w-4" />
@@ -169,7 +175,7 @@ export function AppShell({
 
             {/* Breadcrumbs */}
             <nav
-              className="flex items-center gap-1.5 text-[12px] text-white/20 mb-8"
+              className="flex items-center gap-1.5 text-[12px] text-white/20 mb-5"
               aria-label="Breadcrumb"
             >
               {computedBreadcrumbs.map((crumb, i) => {
@@ -228,7 +234,7 @@ export function AppShell({
               <div className="flex items-stretch gap-3 mt-16 pt-8 border-t border-white/[0.06]">
                 {prev ? (
                   <Link
-                    href={`${basePath}/${prev.slug}`}
+                    href={prev.href ?? `${basePath}/${prev.slug}`}
                     className="group flex-1 flex items-center justify-between rounded-xl border border-white/[0.04] bg-white/[0.01] p-5 hover:border-white/[0.08] hover:bg-white/[0.02] transition-all duration-300"
                   >
                     <div>
@@ -257,7 +263,7 @@ export function AppShell({
                 )}
                 {next ? (
                   <Link
-                    href={`${basePath}/${next.slug}`}
+                    href={next.href ?? `${basePath}/${next.slug}`}
                     className="group flex-1 flex items-center justify-between rounded-xl border border-white/[0.04] bg-white/[0.01] p-5 hover:border-white/[0.08] hover:bg-white/[0.02] transition-all duration-300"
                   >
                     <div>
@@ -287,6 +293,8 @@ export function AppShell({
               </div>
             )}
           </main>
+
+          {rightSidebar}
         </div>
       </div>
 
@@ -295,7 +303,7 @@ export function AppShell({
         {sidebarOpen && (
           <>
             <motion.div
-              className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm lg:hidden"
+              className="fixed inset-0 z-[120] bg-black/60 backdrop-blur-sm lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -307,7 +315,7 @@ export function AppShell({
               role="dialog"
               aria-modal="true"
               aria-label={`${navigation.title} navigation`}
-              className="fixed inset-y-0 left-0 z-[70] w-72 bg-[#0a0a0a] border-r border-white/[0.06] p-6 overflow-y-auto lg:hidden"
+              className="fixed inset-y-0 left-0 z-[130] w-72 bg-[#0a0a0a] border-r border-white/[0.06] p-6 overflow-y-auto lg:hidden"
               initial={{ x: -288 }}
               animate={{ x: 0 }}
               exit={{ x: -288 }}

@@ -3,6 +3,8 @@ import type { LucideIcon } from "lucide-react";
 export interface NavigationItem {
   title: string;
   slug: string;
+  /** Absolute path override — used when the target route differs from basePath/slug. */
+  href?: string;
   description?: string;
   icon?: LucideIcon;
   badge?: string;

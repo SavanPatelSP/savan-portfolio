@@ -15,9 +15,7 @@ import {
   Mail,
   Globe,
 } from "lucide-react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { SLOW, NORMAL, FAST, ease, spring } from "@/lib/motion";
+import { spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";
@@ -28,7 +26,6 @@ import {
   SectionTitle,
   StaggerFade,
   StaggerItem,
-  Reveal,
 } from "@/components/ui/AnimationPrimitives";
 import { GithubIcon, XIcon, LinkedinIcon, TelegramIcon, InstagramIcon } from "@/components/ui/Icons";
 import { SocialModal } from "@/components/ui/SocialModal";

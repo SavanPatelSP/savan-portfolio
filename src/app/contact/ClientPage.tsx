@@ -7,7 +7,6 @@ import {
   Calendar,
   Send,
   ArrowUpRight,
-  Clock,
   CheckCircle,
   RotateCcw,
   Sparkles,
@@ -27,10 +26,8 @@ import {
   HelpCircle,
   Handshake,
   MessageSquare,
-  ArrowDown,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { ease, spring, NORMAL, SLOW, FAST } from "@/lib/motion";
+import { ease, spring, FAST } from "@/lib/motion";
 import { personal } from "@/data/personal";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";

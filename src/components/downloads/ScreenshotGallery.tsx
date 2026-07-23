@@ -16,7 +16,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ease, spring, FAST } from "@/lib/motion";
+import { ease, spring } from "@/lib/motion";
 import { screenshots, type ScreenshotEntry } from "@/data/screenshots";
 
 /* ─── DEVICE ICONS ──────────────────────────────────────────── */

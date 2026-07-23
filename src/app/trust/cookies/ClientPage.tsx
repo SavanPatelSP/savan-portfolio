@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronRight,
@@ -118,27 +118,31 @@ const breadcrumbItems = [
    STORAGE INSPECTOR COMPONENT
    ═══════════════════════════════════════════════════════════════ */
 
+function getStorageData() {
+  const value = localStorage.getItem(STORAGE_KEY) ?? "";
+  const exists = value.length > 0;
+  const encoder = new TextEncoder();
+  const size = encoder.encode(STORAGE_KEY + value).length;
+  return { key: STORAGE_KEY, value: exists ? value : "(not set)", size, exists };
+}
+
 function StorageInspector() {
-  const [storageData, setStorageData] = useState<{
-    key: string;
-    value: string;
-    size: number;
-    exists: boolean;
-  }>({ key: STORAGE_KEY, value: "", size: 0, exists: false });
+  const [revision, setRevision] = useState(0);
   const [copied, setCopied] = useState(false);
 
-  const refresh = useCallback(() => {
-    if (typeof window === "undefined") return;
-    const value = localStorage.getItem(STORAGE_KEY) ?? "";
-    const exists = value.length > 0;
-    const encoder = new TextEncoder();
-    const size = encoder.encode(STORAGE_KEY + value).length;
-    setStorageData({ key: STORAGE_KEY, value: exists ? value : "(not set)", size, exists });
-  }, []);
+  const storageData = useSyncExternalStore(
+    (callback) => {
+      window.addEventListener("storage", callback);
+      return () => window.removeEventListener("storage", callback);
+    },
+    () => {
+      void revision;
+      return getStorageData();
+    },
+    () => ({ key: STORAGE_KEY, value: "(not set)", size: 0, exists: false }),
+  );
 
-  useEffect(() => {
-    refresh();
-  }, [refresh]);
+  const refresh = useCallback(() => setRevision((r) => r + 1), []);
 
   const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(`${storageData.key}=${storageData.value}`);
@@ -292,7 +296,7 @@ export default function ClientPage() {
 
           <div className="grid grid-cols-2 gap-3">
             {statusCards.map((item, i) => {
-              const Icon = item.icon;
+              const _Icon = item.icon;
               return (
                 <motion.div
                   key={item.label}

@@ -3,21 +3,21 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { SectionContainer, SectionTitle, StaggerFade, StaggerItem, FadeIn, Reveal, BlurReveal } from "@/components/ui/AnimationPrimitives";
+import { SectionContainer, SectionTitle, StaggerFade, StaggerItem, FadeIn, Reveal } from "@/components/ui/AnimationPrimitives";
 import { Badge } from "@/components/ui/Badge";
 import { projects } from "@/data/projects";
 import { achievements } from "@/data/achievements";
 import { personal } from "@/data/personal";
 import { Sparkles, Code, Rocket } from "lucide-react";
 import { GithubIcon } from "@/components/ui/Icons";
-import { ease, spring, NORMAL, SLOW } from "@/lib/motion";
+import { ease, spring, NORMAL } from "@/lib/motion";
 
 const statusStyles: Record<string, string> = {
   private: "border-yellow-500/20 text-yellow-400/60 bg-yellow-500/5",
   future: "border-blue-500/20 text-blue-400/60 bg-blue-500/5",
 };
 
-const phaseIcons: Record<string, React.ElementType> = {
+const _phaseIcons: Record<string, React.ElementType> = {
   "2022": Rocket,
   "3+": Layers,
   "Full Stack": Code,

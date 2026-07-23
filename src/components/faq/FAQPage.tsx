@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { useState, useMemo, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, Search, ChevronsUpDown, X, ArrowUpRight, Link2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FAST, NORMAL, ease, spring } from "@/lib/motion";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
-import type { FAQCategory, FAQLink, FAQItem } from "@/data/faqs";
+import type { FAQCategory, FAQItem } from "@/data/faqs";
 
 function FAQAccordionItem({
   item,
@@ -149,6 +149,13 @@ export function FAQPage({
     return result;
   }, [items, activeCategory, searchQuery]);
 
+  const effectiveOpenItems = useMemo(() => {
+    if (allOpen) {
+      return new Set(filteredItems.map((_, i) => i));
+    }
+    return openItems;
+  }, [allOpen, filteredItems, openItems]);
+
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = { all: items.length };
     for (const item of items) {
@@ -182,13 +189,6 @@ export function FAQPage({
       setAllOpen(true);
     }
   }, [allOpen, filteredItems]);
-
-  useEffect(() => {
-    if (allOpen) {
-      const allIndices = new Set(filteredItems.map((_, i) => i));
-      setOpenItems(allIndices);
-    }
-  }, [filteredItems, allOpen]);
 
   const clearSearch = useCallback(() => {
     setSearchQuery("");
@@ -344,7 +344,7 @@ export function FAQPage({
                   key={`${item.question}-${i}`}
                   item={item}
                   index={i}
-                  open={openItems.has(i)}
+                  open={effectiveOpenItems.has(i)}
                   onToggle={() => toggleItem(i)}
                   onRelatedClick={handleRelatedClick}
                   allItems={items}

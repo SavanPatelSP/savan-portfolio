@@ -1,13 +1,5 @@
-import {
-  BookOpen,
-  Rocket,
-  Download,
-  LayoutDashboard,
-  Zap,
-  Code2,
-  FolderTree,
-  HelpCircle,
-} from "lucide-react";
+
+
 import type { NavigationConfig } from "./types";
 
 export const documentationNavigation: NavigationConfig = {

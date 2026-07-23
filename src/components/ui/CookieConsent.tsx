@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Shield, Check, Cookie, Globe, Lock, ArrowRight, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { Shield, Cookie, Globe, Lock, ArrowRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FAST, NORMAL, ease, spring } from "@/lib/motion";
 
@@ -100,15 +101,6 @@ export function CookieConsent() {
 
   useFocusTrap(visible, panelRef);
 
-  useEffect(() => {
-    if (!visible) return;
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") handleDismiss();
-    };
-    document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
-  }, [visible]); // eslint-disable-line react-hooks/exhaustive-deps
-
   /* ─── Body scroll lock on mobile ──────────────────────────── */
 
   useEffect(() => {
@@ -130,6 +122,15 @@ export function CookieConsent() {
     setVisible(false);
   }, []);
 
+  useEffect(() => {
+    if (!visible) return;
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") handleDismiss();
+    };
+    document.addEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
+  }, [visible, handleDismiss]);
+
   /* ─── Panel motion variants ───────────────────────────────── */
 
   const panelVariants = isMobile
@@ -144,7 +145,7 @@ export function CookieConsent() {
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 z-[99]"
+            className="pointer-events-none fixed inset-0 z-[99]"
             style={{ background: "rgba(0,0,0,0.3)", backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

@@ -15,11 +15,9 @@ import {
   BookOpen,
   ArrowRight,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { SLOW, NORMAL, FAST, ease, spring } from "@/lib/motion";
+import { spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
-import { CTASection } from "@/components/ui/CTASection";
 import { RelatedPages } from "@/components/ui/RelatedPages";
 import { SocialModal } from "@/components/ui/SocialModal";
 import { Timeline, TimelineItem } from "@/components/timeline";
@@ -29,7 +27,6 @@ import {
   SectionTitle,
   StaggerFade,
   StaggerItem,
-  Reveal,
 } from "@/components/ui/AnimationPrimitives";
 
 const journeyData = [
@@ -219,7 +216,7 @@ export default function JourneyClientPage() {
           />
 
           <StaggerFade className="grid grid-cols-1 sm:grid-cols-2 gap-6" staggerDelay={0.08}>
-            {milestones.map((milestone, i) => (
+            {milestones.map((milestone, _i) => (
               <StaggerItem key={milestone.year}>
                 <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-6 sm:p-8 h-full hover:border-white/[0.08] hover:bg-white/[0.02] transition-all duration-300">
                   <div className="flex items-center gap-3 mb-4">

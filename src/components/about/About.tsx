@@ -2,12 +2,12 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import { Target, Compass, Zap, Globe, Code, Building2, Layers, Infinity, Heart, Sparkles } from "lucide-react";
-import { SectionContainer, FadeIn, Reveal, BlurReveal, StaggerFade, StaggerItem, SectionTitle, ParallaxContainer } from "@/components/ui/AnimationPrimitives";
+import { Target, Compass, Zap, Globe, Code, Building2, Layers, Infinity, Heart } from "lucide-react";
+import { SectionContainer, FadeIn, Reveal, BlurReveal, StaggerFade, StaggerItem, SectionTitle } from "@/components/ui/AnimationPrimitives";
 import { ParticleField } from "@/components/ui/ParticleField";
 import { personal, founderMetrics, principles } from "@/data/personal";
 import { VerifiedBadge } from "@/components/ui/VerifiedBadge";
-import { ease, spring, NORMAL } from "@/lib/motion";
+import { spring } from "@/lib/motion";
 
 const metricIcons: Record<string, React.ElementType> = {
   code: Code,
@@ -42,14 +42,14 @@ function CircuitPattern() {
 
 function FounderCard() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const glowY = useTransform(scrollYProgress, [0, 1], [0, 30]);
 
   return (
     <div ref={ref} className="relative">
       <motion.div
-        className="relative overflow-hidden rounded-3xl border border-blue-500/15 bg-gradient-to-br from-blue-500/[0.04] via-black to-blue-500/[0.02] p-8 sm:p-12 lg:p-16 shadow-2xl"
+        className="relative overflow-hidden rounded-3xl border border-blue-500/15 bg-gradient-to-br from-blue-500/[0.04] via-black to-blue-500/[0.02] p-8 sm:p-12 lg:p-16 xl:p-20 shadow-2xl"
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -88,63 +88,86 @@ function FounderCard() {
         <div className="relative z-[2]">
           {/* Founder identity */}
           <motion.div
-            className="flex items-center gap-3 mb-8"
+            className="flex items-center gap-3.5 mb-10"
             initial={{ opacity: 0, x: -10 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/20">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/25">
               <span className="text-sm font-bold text-white tracking-tight">{personal.initials}</span>
             </div>
             <div>
-              <div className="text-xs font-semibold text-white tracking-wider inline-flex items-center">{personal.name}<VerifiedBadge size="1.35em" /></div>
-              <div className="text-[10px] text-blue-400/60 font-mono">{personal.title}</div>
+              <div className="text-sm font-semibold text-white tracking-wider inline-flex items-center gap-1">{personal.name}<VerifiedBadge size="1.3em" /></div>
+              <div className="text-[11px] text-blue-400/50 font-mono mt-0.5">{personal.title}</div>
             </div>
           </motion.div>
 
           {/* Title and tagline */}
           <BlurReveal delay={0.3}>
-            <h3 className="text-2xl sm:text-3xl font-semibold text-white tracking-tight">
+            <h3 className="text-3xl sm:text-4xl font-semibold text-white tracking-tight">
               Founder
             </h3>
-            <p className="mt-2 text-lg text-white/30 font-light tracking-wide">
+            <p className="mt-3 text-lg sm:text-xl text-white/30 font-light tracking-wide">
               Lead • Build • Connect
             </p>
           </BlurReveal>
 
           {/* Mission statement */}
           <BlurReveal delay={0.4}>
-            <p className="mt-6 max-w-2xl text-base sm:text-lg text-white/40 leading-relaxed">
+            <p className="mt-8 max-w-2xl text-base sm:text-lg text-white/40 leading-relaxed">
               {personal.mission}
             </p>
           </BlurReveal>
 
           <BlurReveal delay={0.5}>
-            <p className="mt-4 max-w-2xl text-base text-white/30 leading-relaxed">
+            <p className="mt-5 max-w-2xl text-base text-white/30 leading-relaxed">
               {personal.vision}
             </p>
           </BlurReveal>
 
           {/* Tech-inspired metadata */}
           <motion.div
-            className="mt-6 sm:mt-8 flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start"
+            className="mt-8 sm:mt-10 flex flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start"
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.6 }}
           >
-            <div className="flex items-center gap-2 text-xs text-blue-400/40 font-mono">
+            <div className="flex items-center gap-2 text-xs text-blue-400/40 font-mono bg-blue-500/[0.05] px-3 py-1.5 rounded-full border border-blue-500/10">
               <div className="h-1.5 w-1.5 rounded-full bg-blue-400/60" />
               {personal.madeIn}
             </div>
-            <div className="flex items-center gap-2 text-xs text-blue-400/40 font-mono">
+            <div className="flex items-center gap-2 text-xs text-blue-400/40 font-mono bg-blue-500/[0.05] px-3 py-1.5 rounded-full border border-blue-500/10">
               <div className="h-1.5 w-1.5 rounded-full bg-blue-400/60" />
               Self-taught engineer
             </div>
-            <div className="flex items-center gap-2 text-xs text-blue-400/40 font-mono">
+            <div className="flex items-center gap-2 text-xs text-emerald-400/40 font-mono bg-emerald-500/[0.05] px-3 py-1.5 rounded-full border border-emerald-500/10">
               <div className="h-1.5 w-1.5 rounded-full bg-emerald-400/60" />
               Building SP NET INC
             </div>
           </motion.div>
+
+          {/* CTA buttons */}
+          <BlurReveal delay={0.6}>
+            <div className="mt-10 sm:mt-12 flex flex-wrap gap-4">
+              <motion.a
+                href="/founder/about"
+                className="group inline-flex items-center gap-2 rounded-xl bg-white/[0.08] border border-white/[0.1] px-6 py-3 text-sm font-medium text-white/80 hover:bg-white/[0.12] hover:text-white hover:border-white/[0.15] transition-all duration-300"
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Learn More
+                <span className="text-white/40 group-hover:text-white/70 transition-colors">→</span>
+              </motion.a>
+              <motion.a
+                href="/contact"
+                className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.08] px-6 py-3 text-sm font-medium text-white/50 hover:text-white/80 hover:border-white/[0.15] hover:bg-white/[0.04] transition-all duration-300"
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Get in Touch
+              </motion.a>
+            </div>
+          </BlurReveal>
         </div>
       </motion.div>
 
@@ -206,20 +229,23 @@ export function AboutSection() {
           <h3 className="text-sm font-medium uppercase tracking-[0.15em] text-white/20 mb-6 sm:mb-8 text-center lg:text-left">Engineering Principles</h3>
         </Reveal>
         <StaggerFade staggerDelay={0.08} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {principles.map((p) => {
+          {principles.map((p, i) => {
             const Icon = principleIcons[p.title] || Target;
             return (
               <StaggerItem key={p.title}>
-                <div className="group rounded-xl border border-white/[0.04] bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.03] transition-all duration-300">
+                <div className="group relative rounded-xl border border-white/[0.04] bg-white/[0.02] p-6 sm:p-7 hover:border-white/10 hover:bg-white/[0.03] transition-all duration-300">
+                  <div className="absolute top-5 right-5 text-[10px] font-mono text-white/10 group-hover:text-white/20 transition-colors">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
                   <motion.div
-                    className="h-4 w-4 text-white/20 group-hover:text-white/50 transition-colors duration-300"
+                    className="h-5 w-5 text-white/20 group-hover:text-blue-400/60 transition-colors duration-300"
                     whileHover={{ rotate: 8, y: -2 }}
                     transition={spring.gentle}
                   >
-                    <Icon className="h-4 w-4" />
+                    <Icon className="h-5 w-5" />
                   </motion.div>
-                  <h4 className="mt-4 text-sm font-medium text-white">{p.title}</h4>
-                  <p className="mt-2 text-sm text-white/35 leading-relaxed">{p.description}</p>
+                  <h4 className="mt-5 text-sm sm:text-[15px] font-medium text-white/90 group-hover:text-white transition-colors leading-snug">{p.title}</h4>
+                  <p className="mt-2.5 text-sm text-white/35 leading-relaxed">{p.description}</p>
                 </div>
               </StaggerItem>
             );

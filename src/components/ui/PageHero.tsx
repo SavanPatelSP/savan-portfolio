@@ -2,8 +2,7 @@
 
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { SLOW, NORMAL, ease, spring } from "@/lib/motion";
+import { SLOW, NORMAL, ease } from "@/lib/motion";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 
 interface PageHeroProps {

@@ -15,16 +15,10 @@ import { Timeline, TimelineItem } from "@/components/timeline";
 
 const navGroups = [
   {
-    title: "Install",
-    links: [
-      { label: "Install Guide", href: "/downloads" },
-      { label: "Portfolio App", href: "/downloads/portfolio-app" },
-    ],
-  },
-  {
     title: "Portfolio App",
     links: [
       { label: "Overview", href: "/portfolio-app" },
+      { label: "Install App", href: "/downloads/portfolio-app" },
       { label: "Installation Guide", href: "/portfolio-app/install" },
       { label: "Platform Support", href: "/portfolio-app/platform-support" },
       { label: "Offline Experience", href: "/portfolio-app/offline" },

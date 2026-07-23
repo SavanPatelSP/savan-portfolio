@@ -1,8 +1,8 @@
 "use client";
 
-import { Brain, Bot, Lightbulb, Database, Sparkles, Rocket, MessageSquare, Code2 } from "lucide-react";
+import { Brain, Lightbulb, Database, Sparkles, Rocket, MessageSquare, Code2 } from "lucide-react";
 import { motion } from "framer-motion";
-import { ease, spring, NORMAL, SLOW } from "@/lib/motion";
+import { ease, spring, NORMAL } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";
@@ -286,7 +286,7 @@ export default function ClientPage() {
                   Human-Centered Approach
                 </h3>
                 <p className="text-sm text-white/30 leading-relaxed">
-                  Every AI feature I build has to pass one test: does it make the user more capable? I'm not interested in AI for the sake of buzzwords. If it doesn't genuinely help someone do their work better, faster, or more comfortably — it doesn't ship. Transparency over black-box optimization, always.
+                  Every AI feature I build has to pass one test: does it make the user more capable? I&apos;m not interested in AI for the sake of buzzwords. If it doesn&apos;t genuinely help someone do their work better, faster, or more comfortably — it doesn&apos;t ship. Transparency over black-box optimization, always.
                 </p>
               </div>
             </div>

@@ -8,18 +8,14 @@ import {
   Target,
   Globe,
   ArrowRight,
-  Lightbulb,
   Sparkles,
   Code2,
-  Heart,
   Shield,
-  Brain,
   Compass,
   TrendingUp,
-  Building2,
 } from "lucide-react";
 import Link from "next/link";
-import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
+import { ease, FAST } from "@/lib/motion";
 import { personal } from "@/data/personal";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";

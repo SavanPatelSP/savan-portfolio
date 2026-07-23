@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { VersionBadge } from "@/components/downloads/VersionBadge";
 import { PlatformBadge } from "@/components/downloads/PlatformBadge";
 import { DOWNLOAD_PLATFORMS, type DownloadProduct } from "@/data/downloads";
-import { ease, NORMAL, spring } from "@/lib/motion";
+import { ease, NORMAL } from "@/lib/motion";
 
 export function ProductCard({
   product,

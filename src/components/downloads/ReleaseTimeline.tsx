@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Plus, Wrench, Bug, AlertTriangle, Calendar, ArrowUpRight } from "lucide-react";
+import { Plus, Wrench, Bug, AlertTriangle, Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ease, NORMAL, FAST } from "@/lib/motion";
+import { ease, NORMAL } from "@/lib/motion";
 import type { ReleaseNote } from "@/data/portfolio-app";
 
 const typeConfig: Record<string, { label: string; className: string }> = {

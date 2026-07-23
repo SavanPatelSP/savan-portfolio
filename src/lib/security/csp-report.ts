@@ -1,20 +1,5 @@
 import { CSP_REPORT } from "./constants";
 
-interface CSPReportBody {
-  "document-uri"?: string;
-  referrer?: string;
-  "blocked-uri"?: string;
-  violatedDirective?: string;
-  "effective-directive"?: string;
-  "original-policy"?: string;
-  disposition?: string;
-  "status-code"?: number;
-  "script-sample"?: string;
-  sourceFile?: string;
-  "line-number"?: number;
-  "column-number"?: number;
-}
-
 export interface SanitizedCSPReport {
   timestamp: string;
   blockedUri: string;

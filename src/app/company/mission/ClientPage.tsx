@@ -1,26 +1,17 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   Compass,
   Globe,
-  Rocket,
   Shield,
   Users,
-  Lightbulb,
   Target,
-  Zap,
   Eye,
   Brain,
   Code2,
   Heart,
-  ArrowRight,
   Sparkles,
-  TrendingUp,
 } from "lucide-react";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
 import { personal } from "@/data/personal";
 import { principles } from "@/data/personal";
 import { PageHero } from "@/components/ui/PageHero";

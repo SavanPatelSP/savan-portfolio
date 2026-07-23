@@ -5,12 +5,10 @@ import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import {
   Shield,
-  Eye,
   Database,
   Trash2,
   RefreshCw,
   Lock,
-  CheckCircle2,
   XCircle,
   ArrowRight,
 } from "lucide-react";

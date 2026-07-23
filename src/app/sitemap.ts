@@ -95,7 +95,7 @@ const pages: PageConfig[] = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const LAST_MODIFIED = new Date("2026-07-17T00:00:00.000Z");
+  const _LAST_MODIFIED = new Date("2026-07-17T00:00:00.000Z");
 
   return pages.map(({ route, priority, changeFrequency }) => ({
     url: new URL(route, BASE_URL).toString(),

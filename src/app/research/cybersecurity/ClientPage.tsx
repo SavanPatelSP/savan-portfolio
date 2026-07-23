@@ -277,7 +277,7 @@ export default function ClientPage() {
                   Verifiable, Not Just Promised
                 </h3>
                 <p className="text-sm text-white/30 leading-relaxed">
-                  I want to build a platform where users don't have to take my word for it. Open-source cryptographic implementations, auditable key management, transparent security practices — trust should be demonstrated, not demanded. That's the standard I hold myself to.
+                  I want to build a platform where users don&apos;t have to take my word for it. Open-source cryptographic implementations, auditable key management, transparent security practices — trust should be demonstrated, not demanded. That&apos;s the standard I hold myself to.
                 </p>
               </div>
             </div>

@@ -13,18 +13,21 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ease, spring, FAST } from "@/lib/motion";
-import { type BeforeInstallPromptEvent, type BrowserCapability, detectBrowserCapability } from "@/lib/pwa";
+import { type BeforeInstallPromptEvent, type BrowserCapability } from "@/lib/pwa";
+import { useBrowserCapability } from "@/hooks/useBrowserCapability";
 
 export function DownloadFlow({
   productName = "Portfolio App",
-  version = "1.0.0",
+  version: _version = "1.0.0",
   className,
 }: {
   productName?: string;
   version?: string;
   className?: string;
 }) {
-  const [capability, setCapability] = useState<BrowserCapability>("unsupported");
+  const initialCapability = useBrowserCapability();
+  const [overrideCapability, setOverrideCapability] = useState<string | null>(null);
+  const capability = (overrideCapability as BrowserCapability | null) ?? initialCapability;
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [installing, setInstalling] = useState(false);
   const [installed, setInstalled] = useState(false);
@@ -33,21 +36,19 @@ export function DownloadFlow({
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    setCapability(detectBrowserCapability());
-
     const onPrompt = (e: Event) => {
       e.preventDefault();
       const evt = e as BeforeInstallPromptEvent;
       promptRef.current = evt;
       setDeferredPrompt(evt);
-      setCapability("chromium");
+      setOverrideCapability("chromium");
     };
 
     const onAppInstalled = () => {
       promptRef.current = null;
       setDeferredPrompt(null);
       setInstalled(true);
-      setCapability("standalone");
+      setOverrideCapability("standalone");
     };
 
     window.addEventListener("beforeinstallprompt", onPrompt);

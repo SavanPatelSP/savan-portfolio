@@ -1,11 +1,9 @@
 "use client";
 
 import { ReactNode } from "react";
-import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { SLOW, NORMAL, ease, spring } from "@/lib/motion";
 import { FadeIn } from "@/components/ui/AnimationPrimitives";
 
 function CTALink({

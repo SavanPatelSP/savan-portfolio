@@ -21,15 +21,12 @@ import {
   Globe,
   CheckCircle2,
   BookOpen,
-  ExternalLink,
   Info,
   ChevronDown,
-  Clock,
   Cpu,
   Layers,
-  Zap,
 } from "lucide-react";
-import { ease, spring, NORMAL, SLOW, FAST } from "@/lib/motion";
+import { ease, NORMAL, SLOW, FAST } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { VersionBadge } from "@/components/downloads/VersionBadge";
@@ -40,7 +37,7 @@ import { ReleaseTimeline } from "@/components/downloads/ReleaseTimeline";
 import { PlatformTabs } from "@/components/downloads/PlatformTabs";
 import { ApplicationPreview } from "@/components/portfolio-app/ApplicationPreview";
 import { MultiDevicePreview } from "@/components/portfolio-app/MultiDevicePreview";
-import { releases, APP_VERSION } from "@/data/portfolio-app";
+import { releases, APP_VERSION, faqs as portfolioFaqs } from "@/data/portfolio-app";
 import { downloadProducts, downloadIntegrity, DOWNLOAD_PLATFORMS } from "@/data/downloads";
 
 const product = downloadProducts[0];
@@ -154,32 +151,7 @@ const platformSteps = [
 
 /* ─── FAQ ACCORDION ─────────────────────────────────────────── */
 
-const faqs = [
-  {
-    q: "What is the Portfolio App?",
-    a: "A Progressive Web App (PWA) that transforms the portfolio into a native-like application. Install it on your desktop or mobile device for faster access, offline browsing, and a distraction-free experience.",
-  },
-  {
-    q: "Is it really free?",
-    a: "Yes. The Portfolio App is completely free with no in-app purchases, subscriptions, or hidden costs.",
-  },
-  {
-    q: "Does it work offline?",
-    a: "Yes. Once installed and visited at least once while online, previously viewed pages are cached for offline access. The homepage and core assets are always available offline.",
-  },
-  {
-    q: "How are updates delivered?",
-    a: "The app checks for updates each time it connects to the internet. New versions are automatically cached. Restart the app to see the latest version.",
-  },
-  {
-    q: "Does it collect data?",
-    a: "No. The Portfolio App does not use analytics, tracking cookies, or any data collection. Your browsing activity stays entirely on your device.",
-  },
-  {
-    q: "How do I uninstall it?",
-    a: "On desktop: right-click the taskbar icon or use OS app management. On mobile: long-press the app icon and select Remove.",
-  },
-];
+const faqs = portfolioFaqs.slice(0, 6).map((f) => ({ q: f.question, a: f.answer }));
 
 function FAQItem({ faq, index }: { faq: (typeof faqs)[number]; index: number }) {
   const [open, setOpen] = useState(false);

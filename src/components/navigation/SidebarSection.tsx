@@ -1,12 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ease, FAST, NORMAL } from "@/lib/motion";
+import { ease, NORMAL } from "@/lib/motion";
 import { SidebarItem } from "./SidebarItem";
 import type { NavigationSection } from "@/data/navigation/types";
 
@@ -21,12 +20,17 @@ export function SidebarSection({
 }) {
   const pathname = usePathname();
   const hasActiveChild = section.items.some(
-    (item) => pathname === `${basePath}/${item.slug}`
+    (item) => pathname === (item.href ?? `${basePath}/${item.slug}`)
   );
   const [expanded, setExpanded] = useState(hasActiveChild);
 
   useEffect(() => {
-    if (hasActiveChild) setExpanded(true);
+    if (hasActiveChild) {
+      const id = requestAnimationFrame(() => {
+        setExpanded(true);
+      });
+      return () => cancelAnimationFrame(id);
+    }
   }, [hasActiveChild]);
 
   return (
@@ -55,7 +59,7 @@ export function SidebarSection({
           >
             <div className="ml-3 border-l border-white/[0.06] pl-3 space-y-0.5">
               {section.items.map((item) => {
-                const href = `${basePath}/${item.slug}`;
+                const href = item.href ?? `${basePath}/${item.slug}`;
                 return (
                   <SidebarItem
                     key={item.slug}

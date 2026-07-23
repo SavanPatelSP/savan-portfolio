@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useSyncExternalStore } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Download, Monitor, Smartphone } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ease, FAST, NORMAL } from "@/lib/motion";
+import { ease, NORMAL } from "@/lib/motion";
 import { type BeforeInstallPromptEvent, isStandalone } from "@/lib/pwa";
+import { useIsStandalone } from "@/hooks/useIsStandalone";
 
 const DISMISS_KEY = "portfolio-install-dismissed";
 const SHOWN_KEY = "portfolio-install-shown";
@@ -14,8 +15,12 @@ export function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [visible, setVisible] = useState(false);
   const [isInstalling, setIsInstalling] = useState(false);
-  const [isIOS, setIsIOS] = useState(false);
-  const [isStandaloneState, setIsStandaloneState] = useState(false);
+  const isStandaloneState = useIsStandalone();
+  const isIOS = useSyncExternalStore(
+    () => () => {},
+    () => /iPad|iPhone|iPod/.test(navigator.userAgent),
+    () => false,
+  );
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -23,12 +28,7 @@ export function InstallPrompt() {
     const dismissed = localStorage.getItem(DISMISS_KEY);
     if (dismissed) return;
 
-    const standalone = isStandalone();
-    setIsStandaloneState(standalone);
-    if (standalone) return;
-
-    const ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    setIsIOS(ios);
+    if (isStandalone()) return;
 
     const shown = parseInt(localStorage.getItem(SHOWN_KEY) || "0", 10);
     if (shown >= 3) return;

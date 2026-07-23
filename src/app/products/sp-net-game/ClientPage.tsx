@@ -15,7 +15,7 @@ import {
   Wifi,
   Joystick,
 } from "lucide-react";
-import { ease, spring, NORMAL } from "@/lib/motion";
+import { spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";
