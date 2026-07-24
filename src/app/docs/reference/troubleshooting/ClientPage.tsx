@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { DocPage, Callout, CodeBlock } from "@/components/docs/DocLayout"
 import Link from "next/link"
-import { APP_VERSION, LAST_UPDATED } from "@/data/docs"
+import { APP_VERSION, LAST_UPDATED } from "@/data/documentation"
 
 interface Issue {
   title: string

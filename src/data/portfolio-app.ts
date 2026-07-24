@@ -1,6 +1,8 @@
-export const APP_VERSION = "1.0.0";
+import { APP_CONFIG } from "@/config/app";
+
+export const APP_VERSION = APP_CONFIG.version;
 export const APP_NAME = "Portfolio App";
-export const APP_DESCRIPTION = "Installable web application developed by SP NET INC";
+export const APP_DESCRIPTION = `Installable web application developed by ${APP_CONFIG.organization.name}`;
 export const APP_TAGLINE = "The portfolio, installed.";
 export const RELEASE_CHANNEL = "Stable";
 export const FIRST_RELEASE = "2026";

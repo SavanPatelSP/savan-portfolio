@@ -28,6 +28,7 @@ function PremiumInput({
   error,
   tag: Tag = "input",
   rows,
+  maxLength,
 }: {
   id: string;
   name: string;
@@ -37,6 +38,7 @@ function PremiumInput({
   error?: boolean;
   tag?: "input" | "textarea";
   rows?: number;
+  maxLength?: number;
 }) {
   return (
     <div className="relative group">
@@ -46,6 +48,7 @@ function PremiumInput({
         type={type}
         required={required}
         rows={rows}
+        maxLength={maxLength}
         aria-required={required}
         aria-invalid={error ? "true" : undefined}
         aria-describedby={error ? "form-error" : undefined}
@@ -314,20 +317,20 @@ export function ContactSection() {
                   <label htmlFor="name" className="block text-xs font-medium text-white/25 mb-1.5">
                     Name
                   </label>
-                  <PremiumInput id="name" name="name" required placeholder="Your name" error={!!error} />
+                  <PremiumInput id="name" name="name" required maxLength={100} placeholder="Your name" error={!!error} />
                 </div>
                 <div>
                   <label htmlFor="email-c" className="block text-xs font-medium text-white/25 mb-1.5">
                     Email
                   </label>
-                  <PremiumInput id="email-c" name="email-c" type="email" required placeholder="you@example.com" error={!!error} />
+                  <PremiumInput id="email-c" name="email-c" type="email" required maxLength={200} placeholder="you@example.com" error={!!error} />
                 </div>
               </div>
               <div>
                 <label htmlFor="message" className="block text-xs font-medium text-white/25 mb-1.5">
                   Message
                 </label>
-                <PremiumInput id="message" name="message" required rows={4} placeholder="Tell me about your project..." error={!!error} tag="textarea" />
+                <PremiumInput id="message" name="message" required rows={4} maxLength={5000} placeholder="Tell me about your project..." error={!!error} tag="textarea" />
               </div>
               <div className="flex items-center justify-center gap-3 sm:gap-4 flex-wrap">
                 <Button type="submit" variant="primary" disabled={sending || sent}>

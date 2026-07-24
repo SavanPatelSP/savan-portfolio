@@ -210,7 +210,7 @@ export function CookieConsent() {
                 </div>
                 <button
                   onClick={handleDismiss}
-                  className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-white/20 hover:text-white/40 hover:bg-white/[0.04] transition-all duration-200"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-white/20 hover:text-white/40 hover:bg-white/[0.04] transition-all duration-200"
                   aria-label="Close"
                 >
                   <X className="h-3.5 w-3.5" />

@@ -16,21 +16,25 @@ export default function GlobalError({
 
   return (
     <html lang="en">
-      <body className="bg-[#050505] text-white flex min-h-screen items-center justify-center">
-        <main className="mx-auto max-w-lg px-6 text-center">
-          <h1 className="text-3xl font-bold">Something went wrong</h1>
-
-          <p className="mt-4 text-neutral-400">
+      <head>
+        <style>{`
+          body { background: #050505; color: white; display: flex; min-height: 100vh; align-items: center; justify-content: center; margin: 0; font-family: system-ui, -apple-system, sans-serif; }
+          main { max-width: 32rem; margin: 0 auto; padding: 0 1.5rem; text-align: center; }
+          h1 { font-size: 1.875rem; font-weight: 700; }
+          p { margin-top: 1rem; color: #a3a3a3; }
+          button { margin-top: 2rem; border-radius: 0.5rem; background: white; color: black; padding: 0.75rem 1.25rem; font-weight: 500; cursor: pointer; border: none; font-size: 0.875rem; transition: opacity 0.15s; }
+          button:hover { opacity: 0.9; }
+          button:focus-visible { outline: 2px solid rgba(59, 130, 246, 0.5); outline-offset: 2px; }
+        `}</style>
+      </head>
+      <body>
+        <main>
+          <h1>Something went wrong</h1>
+          <p>
             An unexpected error occurred. The issue has been automatically
             reported, and you can try loading the page again.
           </p>
-
-          <button
-            onClick={() => reset()}
-            className="mt-8 rounded-lg bg-white px-5 py-3 text-black transition hover:opacity-90"
-          >
-            Try Again
-          </button>
+          <button onClick={() => reset()}>Try Again</button>
         </main>
       </body>
     </html>

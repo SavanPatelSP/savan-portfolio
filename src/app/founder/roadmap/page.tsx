@@ -1,6 +1,7 @@
+import type { Metadata } from "next";
 import RoadmapPage from "./ClientPage";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Roadmap — What's Next for SP NET INC",
   description:
     "The roadmap for SP NET INC. Current focus, product timelines, and the long-term vision for the ecosystem.",
@@ -8,7 +9,7 @@ export const metadata = {
     title: "Roadmap — What's Next for SP NET INC",
     description:
       "Current focus, product timelines, and the long-term vision for the ecosystem.",
-    url: "https://savan.sp-net.in/founder/roadmap",
+    url: "/founder/roadmap",
     siteName: "SP NET INC",
     type: "website",
   },
@@ -19,7 +20,7 @@ export const metadata = {
       "Current focus, product timelines, and the long-term vision for the ecosystem.",
   },
   alternates: {
-    canonical: "https://savan.sp-net.in/founder/roadmap",
+    canonical: "/founder/roadmap",
   },
 };
 

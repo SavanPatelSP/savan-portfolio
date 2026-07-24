@@ -313,7 +313,7 @@ function FullscreenViewer({
         <div className="flex items-center gap-1 shrink-0">
           <button
             onClick={() => setZoom((z) => Math.max(z - 0.25, 0.5))}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-white/30 hover:text-white/60 hover:bg-white/[0.06] transition-all"
+            className="flex h-11 w-11 items-center justify-center rounded-lg text-white/30 hover:text-white/60 hover:bg-white/[0.06] transition-all"
             aria-label="Zoom out"
           >
             <ZoomOut className="h-4 w-4" />
@@ -323,7 +323,7 @@ function FullscreenViewer({
           </span>
           <button
             onClick={() => setZoom((z) => Math.min(z + 0.25, 3))}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-white/30 hover:text-white/60 hover:bg-white/[0.06] transition-all"
+            className="flex h-11 w-11 items-center justify-center rounded-lg text-white/30 hover:text-white/60 hover:bg-white/[0.06] transition-all"
             aria-label="Zoom in"
           >
             <ZoomIn className="h-4 w-4" />
@@ -331,7 +331,7 @@ function FullscreenViewer({
           <div className="w-px h-4 bg-white/[0.08] mx-1" />
           <button
             onClick={onClose}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-white/30 hover:text-white/60 hover:bg-white/[0.06] transition-all"
+            className="flex h-11 w-11 items-center justify-center rounded-lg text-white/30 hover:text-white/60 hover:bg-white/[0.06] transition-all"
             aria-label="Close viewer"
           >
             <X className="h-4 w-4" />
@@ -343,7 +343,7 @@ function FullscreenViewer({
       <div className="flex-1 flex items-center justify-center overflow-hidden relative px-4">
         <button
           onClick={goPrev}
-          className="absolute left-2 sm:left-4 z-10 flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.06] border border-white/[0.08] text-white/40 hover:text-white hover:bg-white/[0.1] transition-all backdrop-blur-sm"
+          className="absolute left-2 sm:left-4 z-10 flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.06] border border-white/[0.08] text-white/40 hover:text-white hover:bg-white/[0.1] transition-all backdrop-blur-sm"
           aria-label="Previous screenshot"
         >
           <ChevronLeft className="h-4 w-4" />
@@ -437,7 +437,7 @@ function FullscreenViewer({
 
         <button
           onClick={goNext}
-          className="absolute right-2 sm:right-4 z-10 flex h-10 w-10 items-center justify-center rounded-xl bg-white/[0.06] border border-white/[0.08] text-white/40 hover:text-white hover:bg-white/[0.1] transition-all backdrop-blur-sm"
+          className="absolute right-2 sm:right-4 z-10 flex h-11 w-11 items-center justify-center rounded-xl bg-white/[0.06] border border-white/[0.08] text-white/40 hover:text-white hover:bg-white/[0.1] transition-all backdrop-blur-sm"
           aria-label="Next screenshot"
         >
           <ChevronRight className="h-4 w-4" />

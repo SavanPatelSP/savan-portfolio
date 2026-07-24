@@ -448,7 +448,7 @@ export default function ClientPage() {
             </p>
           </Link>
           <Link
-            href="/docs/application/changelog"
+            href="/docs/reference/changelog"
             className="group rounded-xl border border-white/[0.04] bg-white/[0.01] p-5 hover:border-white/[0.08] hover:bg-white/[0.02] transition-all duration-300"
           >
             <p className="text-sm font-medium text-white/60 group-hover:text-white/80 transition-colors mb-1">
@@ -470,7 +470,7 @@ export default function ClientPage() {
             </p>
           </Link>
           <Link
-            href="/docs/features/security"
+            href="/trust/security"
             className="group rounded-xl border border-white/[0.04] bg-white/[0.01] p-5 hover:border-white/[0.08] hover:bg-white/[0.02] transition-all duration-300"
           >
             <p className="text-sm font-medium text-white/60 group-hover:text-white/80 transition-colors mb-1">

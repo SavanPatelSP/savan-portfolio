@@ -15,6 +15,7 @@ const FALLBACK_RESULT: RateLimitResult = {
 };
 
 let limiter: Ratelimit | null = null;
+let warned = false;
 
 function getLimiter(): Ratelimit {
   if (limiter) return limiter;
@@ -36,6 +37,12 @@ function getLimiter(): Ratelimit {
 
 export async function checkRateLimit(key: string): Promise<RateLimitResult> {
   if (!isRedisConfigured()) {
+    if (!warned) {
+      warned = true;
+      console.warn(
+        "[Security] Rate limiting disabled: Redis not configured. Set UPSTASH_REDIS_REST_URL and UPSTASH_REDIS_REST_TOKEN environment variables.",
+      );
+    }
     return FALLBACK_RESULT;
   }
 

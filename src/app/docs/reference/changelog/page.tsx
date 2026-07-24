@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Changelog — Portfolio App Documentation",
     description:
       "Version history and changelog for the Portfolio App.",
-    url: "https://savan.sp-net.in/docs/changelog",
+    url: "https://savan.sp-net.in/docs/reference/changelog",
     type: "website",
     siteName: "SP NET INC",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       "Version history and changelog for the Portfolio App.",
   },
   alternates: {
-    canonical: "/docs/changelog",
+    canonical: "/docs/reference/changelog",
   },
 }
 

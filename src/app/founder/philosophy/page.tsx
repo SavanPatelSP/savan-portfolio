@@ -1,6 +1,7 @@
+import type { Metadata } from "next";
 import PhilosophyPage from "./ClientPage";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Engineering Philosophy — Principles That Guide Every Decision",
   description:
     "The engineering philosophy behind SP NET INC. Core principles, quality standards, and the approach to building software that matters.",
@@ -8,7 +9,7 @@ export const metadata = {
     title: "Engineering Philosophy — Principles That Guide Every Decision",
     description:
       "Core principles, quality standards, and the approach to building software that matters.",
-    url: "https://savan.sp-net.in/founder/philosophy",
+    url: "/founder/philosophy",
     siteName: "SP NET INC",
     type: "website",
   },
@@ -19,7 +20,7 @@ export const metadata = {
       "Core principles, quality standards, and the approach to building software that matters.",
   },
   alternates: {
-    canonical: "https://savan.sp-net.in/founder/philosophy",
+    canonical: "/founder/philosophy",
   },
 };
 

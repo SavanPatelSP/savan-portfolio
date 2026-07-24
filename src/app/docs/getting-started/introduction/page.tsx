@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Introduction — Portfolio App Documentation",
     description:
       "Learn what the Portfolio App is — a PWA that delivers a native app experience without the app store.",
-    url: "https://savan.sp-net.in/docs/introduction",
+    url: "https://savan.sp-net.in/docs/getting-started/introduction",
     type: "website",
     siteName: "SP NET INC",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       "Learn what the Portfolio App is — a PWA that delivers a native app experience without the app store.",
   },
   alternates: {
-    canonical: "/docs/introduction",
+    canonical: "/docs/getting-started/introduction",
   },
 };
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { DocPage, Callout, CodeBlock, InlineCode } from "@/components/docs/DocLayout";
-import { APP_VERSION, LAST_UPDATED } from "@/data/docs";
+import { APP_VERSION, LAST_UPDATED } from "@/data/documentation";
 
 const toc = [
   { id: "how-seo-works", label: "How SEO Works Here" },

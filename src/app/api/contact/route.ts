@@ -257,7 +257,17 @@ export async function POST(req: Request) {
     try { _resJson = JSON.parse(resBody); } catch { /* not JSON */ }
 
     if (!res.ok) {
-      log("error", "Resend rejected the request", { status: res.status });
+      let resendError = "";
+      try {
+        const errJson = JSON.parse(resBody);
+        resendError = errJson?.message || errJson?.error || resBody;
+      } catch {
+        resendError = resBody;
+      }
+      log("error", "Resend rejected the request", {
+        status: res.status,
+        resendError: String(resendError).slice(0, 200),
+      });
       return NextResponse.json(
         {
           error: "Email provider returned an error. Please email me directly.",

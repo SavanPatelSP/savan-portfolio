@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -8,203 +8,11 @@ import {
   Info, Lightbulb, Shield, Code,
 } from "lucide-react";
 
-type ErrorCategory =
-  | "module-loading"
-  | "chunk-loading"
-  | "hydration"
-  | "network"
-  | "runtime"
-  | "server"
-  | "permission"
-  | "unknown";
-
-interface ErrorClassification {
-  category: ErrorCategory;
-  label: string;
-  summary: string;
-  likelyCauses: string[];
-  suggestedResolution: string[];
-  severity: "recoverable" | "transient" | "critical";
-}
-
-function generateErrorId(): string {
-  const chars = "0123456789ABCDEF";
-  let id = "";
-  for (let i = 0; i < 8; i++) {
-    id += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return `SPNET-${id}`;
-}
-
-function getBrowserInfo(): string {
-  if (typeof navigator === "undefined") return "Unknown";
-  const ua = navigator.userAgent;
-  if (ua.includes("Firefox/")) return `Firefox ${ua.split("Firefox/")[1]?.split(" ")[0] || ""}`;
-  if (ua.includes("Edg/")) return `Edge ${ua.split("Edg/")[1]?.split(" ")[0] || ""}`;
-  if (ua.includes("Chrome/")) return `Chrome ${ua.split("Chrome/")[1]?.split(" ")[0] || ""}`;
-  if (ua.includes("Safari/") && !ua.includes("Chrome")) return `Safari ${ua.split("Version/")[1]?.split(" ")[0] || ""}`;
-  return "Unknown Browser";
-}
-
-function getOSInfo(): string {
-  if (typeof navigator === "undefined") return "Unknown";
-  const ua = navigator.userAgent;
-  if (ua.includes("Win")) return "Windows";
-  if (ua.includes("Mac")) return "macOS";
-  if (ua.includes("Linux")) return "Linux";
-  if (ua.includes("Android")) return "Android";
-  if (ua.includes("iPhone") || ua.includes("iPad")) return "iOS";
-  return "Unknown OS";
-}
-
-function classifyError(message: string, stack?: string): ErrorClassification {
-  const msg = message.toLowerCase();
-  const stackStr = (stack || "").toLowerCase();
-
-  if (msg.includes("module") && (msg.includes("factory") || msg.includes("not available") || msg.includes("is not defined") || msg.includes("cannot be imported"))) {
-    return {
-      category: "module-loading",
-      label: "Module Loading Error",
-      summary: "A required JavaScript module could not be loaded. This typically happens when the browser is using an outdated cached version of the application after a deployment.",
-      likelyCauses: [
-        "Browser cache holding stale JavaScript bundles",
-        "Recent deployment changed module paths",
-        "Service Worker serving outdated assets",
-        "Hot Module Replacement conflict during development",
-      ],
-      suggestedResolution: [
-        "Refresh the page to load the latest version",
-        "Clear browser cache and hard reload (Ctrl+Shift+R)",
-        "If the problem persists, wait a moment and try again",
-      ],
-      severity: "recoverable",
-    };
-  }
-
-  if (msg.includes("chunk") && (msg.includes("load") || msg.includes("failed") || msg.includes("error"))) {
-    return {
-      category: "chunk-loading",
-      label: "Chunk Loading Error",
-      summary: "The browser tried to load a JavaScript file that is no longer available. This usually happens after a new deployment while the old page is still open.",
-      likelyCauses: [
-        "New deployment invalidated old JavaScript chunks",
-        "Cached JavaScript bundle is outdated",
-        "Network interruption during resource loading",
-      ],
-      suggestedResolution: [
-        "Refresh the page to load the updated assets",
-        "Close other tabs and try again",
-      ],
-      severity: "recoverable",
-    };
-  }
-
-  if (msg.includes("hydrat")) {
-    return {
-      category: "hydration",
-      label: "Hydration Error",
-      summary: "The server-rendered HTML does not match what React expected to render in the browser. This is usually a non-critical rendering mismatch.",
-      likelyCauses: [
-        "Server and client rendered different HTML",
-        "Browser extensions modifying the DOM",
-        "Dynamic values that differ between server and client",
-      ],
-      suggestedResolution: [
-        "Refresh the page — this often resolves automatically",
-        "Disable browser extensions that modify page content",
-      ],
-      severity: "recoverable",
-    };
-  }
-
-  if (msg.includes("network") || msg.includes("fetch") || msg.includes("econnrefused") || msg.includes("Failed to fetch")) {
-    return {
-      category: "network",
-      label: "Network Error",
-      summary: "The application could not communicate with a required service. Check your internet connection and try again.",
-      likelyCauses: [
-        "Internet connection is unavailable or unstable",
-        "Backend service is temporarily unavailable",
-        "Firewall or security software blocking the request",
-      ],
-      suggestedResolution: [
-        "Check your internet connection",
-        "Try again in a few moments",
-        "If the problem persists, the service may be temporarily down",
-      ],
-      severity: "transient",
-    };
-  }
-
-  if (msg.includes("typeerror") || msg.includes("referenceerror") || msg.includes("syntaxerror") || stackStr.includes("typeerror") || stackStr.includes("referenceerror")) {
-    return {
-      category: "runtime",
-      label: "Runtime Exception",
-      summary: "The application encountered an unexpected state during execution. This is an internal error that has been logged for investigation.",
-      likelyCauses: [
-        "Unexpected application state",
-        "Race condition between components",
-        "Third-party script interference",
-      ],
-      suggestedResolution: [
-        "Refresh the page — this often resolves the issue",
-        "If the problem continues, report the Error ID below",
-      ],
-      severity: "recoverable",
-    };
-  }
-
-  if (msg.includes("500") || msg.includes("502") || msg.includes("503") || msg.includes("internal server") || msg.includes("server")) {
-    return {
-      category: "server",
-      label: "Server Error",
-      summary: "The server encountered an error while processing the request. This is a temporary issue on our end.",
-      likelyCauses: [
-        "Server is temporarily overloaded",
-        "Backend service encountered an error",
-        "Configuration issue on the server",
-      ],
-      suggestedResolution: [
-        "Try again in a few moments",
-        "If the problem persists, the issue is being investigated",
-      ],
-      severity: "transient",
-    };
-  }
-
-  if (msg.includes("permission") || msg.includes("403") || msg.includes("unauthorized") || msg.includes("forbidden")) {
-    return {
-      category: "permission",
-      label: "Permission Error",
-      summary: "You do not have permission to access this resource. This may require authentication or specific access rights.",
-      likelyCauses: [
-        "Session has expired",
-        "Insufficient permissions for this resource",
-        "Access requires authentication",
-      ],
-      suggestedResolution: [
-        "Try refreshing the page",
-        "Return to the homepage and navigate from there",
-      ],
-      severity: "recoverable",
-    };
-  }
-
-  return {
-    category: "unknown",
-    label: "Unknown Error",
-    summary: "An unexpected error occurred. The technical details below can help identify the cause.",
-    likelyCauses: [
-      "An internal application error",
-      "Unexpected system state",
-    ],
-    suggestedResolution: [
-      "Refresh the page to try again",
-      "If the problem continues, report the Error ID below",
-    ],
-    severity: "recoverable",
-  };
-}
+import {
+  buildReportFromError,
+  copyReportToClipboard,
+  type DiagnosticsReport,
+} from "@/lib/diagnostics";
 
 function ErrorIllustration() {
   return (
@@ -257,75 +65,40 @@ function ErrorIllustration() {
 
 function TechnicalDetails({
   error,
+  report,
 }: {
   error: Error & { digest?: string };
+  report: DiagnosticsReport;
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isDevOpen, setIsDevOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    return () => { isMountedRef.current = false; };
+  }, []);
 
   const details = useMemo(() => {
-    const errorId = error.digest || generateErrorId();
-    const timestamp = new Date().toLocaleString("en-US", {
-      day: "numeric",
-      month: "short",
-      year: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      hour12: true,
-    });
-    const timestampFull = new Date().toISOString();
-    const route = typeof window !== "undefined" ? window.location.pathname : "/";
-    const classification = classifyError(error.message, error.stack);
-    const browser = getBrowserInfo();
-    const os = getOSInfo();
+    return {
+      errorId: report.errorId,
+      timestamp: report.timestamp,
+      route: report.route,
+      classification: report.classification,
+      browser: report.environment.browser,
+      os: report.environment.os,
+    };
+  }, [report]);
 
-    return { errorId, timestamp, timestampFull, route, classification, browser, os };
-  }, [error.digest, error.message, error.stack]);
-
-  const handleCopy = useCallback(() => {
-    const { errorId, timestampFull, route, classification, browser, os } = details;
-    const report = `SP NET Error Report
-
-Error ID:
-${errorId}
-
-Detected:
-${timestampFull}
-
-Route:
-${route}
-
-Error Type:
-${classification.label}
-
-Severity:
-${classification.severity}
-
-Summary:
-${classification.summary}
-
-Likely Cause:
-${classification.likelyCauses.map((c) => `• ${c}`).join("\n")}
-
-Suggested Resolution:
-${classification.suggestedResolution.map((r) => `• ${r}`).join("\n")}
-
-Original Error Message:
-${error.message}
-
-Browser: ${browser}
-OS: ${os}
-Framework: Next.js
-
-Technical Details:
-${error.stack || "No stack trace available"}`;
-
-    navigator.clipboard.writeText(report).then(() => {
+  const handleCopy = useCallback(async () => {
+    const success = await copyReportToClipboard(report);
+    if (success) {
       setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  }, [details, error.message, error.stack]);
+      setTimeout(() => {
+        if (isMountedRef.current) setCopied(false);
+      }, 2000);
+    }
+  }, [report]);
 
   const { classification } = details;
   const severityColors: Record<string, string> = {
@@ -533,6 +306,16 @@ export default function Error({
   reset: () => void;
 }) {
   const [isRetrying, setIsRetrying] = useState(false);
+  const isMountedRef = useRef(true);
+
+  const report = useMemo(
+    () => buildReportFromError(error),
+    [error]
+  );
+
+  useEffect(() => {
+    return () => { isMountedRef.current = false; };
+  }, []);
 
   useEffect(() => {
     if (process.env.NODE_ENV === "production") {
@@ -546,8 +329,10 @@ export default function Error({
     if (isRetrying) return;
     setIsRetrying(true);
     setTimeout(() => {
-      reset();
-      setIsRetrying(false);
+      if (isMountedRef.current) {
+        reset();
+        setIsRetrying(false);
+      }
     }, 600);
   }, [isRetrying, reset]);
 
@@ -658,7 +443,7 @@ export default function Error({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.8 }}
         >
-          <TechnicalDetails error={error} />
+          <TechnicalDetails error={error} report={report} />
         </motion.div>
       </motion.div>
     </div>

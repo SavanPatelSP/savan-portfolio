@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     "Entrepreneur",
     "Portfolio",
   ],
-  authors: [{ name: "Savan Patel", url: "https://sp-net.in" }],
+  authors: [{ name: "Savan Patel", url: "https://savan.sp-net.in" }],
   creator: "Savan Patel",
   publisher: "SP NET INC",
   openGraph: {
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "SP NET INC",
     url: "https://savan.sp-net.in",
-    images: [{ url: "/og?section=default", width: 1200, height: 630 }],
+    images: [{ url: "/og?section=default", width: 1200, height: 630, alt: "Savan Patel — Founder & Product Engineer" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
     description:
       "Building SP NET GRAM, SP NET ADMIN OS, and SP NET AI. Products that connect people, empower communities, and shape the future of technology.",
     creator: "@savanpatel",
-    images: [{ url: "/og?section=default", width: 1200, height: 630 }],
+    images: [{ url: "/og?section=default", width: 1200, height: 630, alt: "Savan Patel — Founder & Product Engineer" }],
   },
   robots: {
     index: true,
@@ -135,7 +135,7 @@ const jsonLd = {
       name: "SP NET INC",
       alternateName: "SP NET",
       url: "https://sp-net.in",
-      logo: "https://savan.sp-net.in/icon-512.svg",
+      logo: "https://savan.sp-net.in/android-chrome-512x512.png",
       description: personal.description,
       founder: { "@type": "Person", name: "Savan Patel" },
       email: personal.email,
@@ -179,10 +179,7 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/icon-192.svg" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="theme-color" content="#0a0a0a" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -211,7 +208,7 @@ export default function RootLayout({
           id="sw-register"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: `if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(){})})}`,
+            __html: `if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').catch(function(e){if(window.location.hostname==='localhost')console.error('SW registration failed:',e)})})}`,
           }}
         />
         </MotionConfig>

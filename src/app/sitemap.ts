@@ -1,9 +1,7 @@
 import type { MetadataRoute } from "next";
+import { APP_CONFIG } from "@/config/app";
 
-export const dynamic = "force-static";
-export const revalidate = 86400;
-
-const BASE_URL = "https://savan.sp-net.in";
+const BASE_URL = APP_CONFIG.url;
 
 type PageConfig = {
   route: string;
@@ -95,7 +93,6 @@ const pages: PageConfig[] = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const _LAST_MODIFIED = new Date("2026-07-17T00:00:00.000Z");
 
   return pages.map(({ route, priority, changeFrequency }) => ({
     url: new URL(route, BASE_URL).toString(),

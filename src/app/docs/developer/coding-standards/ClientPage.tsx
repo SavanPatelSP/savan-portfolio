@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { DocPage, Callout, CodeBlock, InlineCode } from "@/components/docs/DocLayout";
-import { APP_VERSION, LAST_UPDATED } from "@/data/docs";
+import { APP_VERSION, LAST_UPDATED } from "@/data/documentation";
 
 const toc = [
   { id: "typescript", label: "TypeScript Strict Mode" },
@@ -192,7 +192,7 @@ Constant                camelCase / UPPER     FAST, NORMAL`}
           separated by a blank line.
         </p>
         <CodeBlock
-          code={`// 1. React and Next.js\nimport { useState, useEffect } from "react";\nimport Link from "next/link";\nimport { useRouter } from "next/navigation";\n\n// 2. Third-party libraries\nimport { motion } from "framer-motion";\nimport { ChevronRight } from "lucide-react";\n\n// 3. Internal utilities and lib\nimport { cn } from "@/lib/utils";\nimport { ease, spring, NORMAL } from "@/lib/motion";\n\n// 4. Internal components\nimport { DocPage, Callout } from "@/components/docs/DocLayout";\n\n// 5. Internal data and types\nimport { APP_VERSION } from "@/data/docs";\nimport type { DocItem } from "@/data/docs";`}
+          code={`// 1. React and Next.js\nimport { useState, useEffect } from "react";\nimport Link from "next/link";\nimport { useRouter } from "next/navigation";\n\n// 2. Third-party libraries\nimport { motion } from "framer-motion";\nimport { ChevronRight } from "lucide-react";\n\n// 3. Internal utilities and lib\nimport { cn } from "@/lib/utils";\nimport { ease, spring, NORMAL } from "@/lib/motion";\n\n// 4. Internal components\nimport { DocPage, Callout } from "@/components/docs/DocLayout";\n\n// 5. Internal data and types\nimport { APP_VERSION } from "@/data/documentation";\nimport type { DocItem } from "@/data/documentation";`}
           language="tsx"
           filename="Import order"
         />

@@ -373,7 +373,7 @@ export function MultiDevicePreview({ className }: { className?: string }) {
                     "transition-all duration-500",
                     activeScreenshot.device === "laptop" &&
                       "w-full max-w-4xl",
-                    activeScreenshot.device === "tablet" && "w-[380px]",
+                    activeScreenshot.device === "tablet" && "w-[min(380px,90vw)]",
                     activeScreenshot.device === "phone" && "w-[280px]",
                     activeScreenshot.device === "landscape" &&
                       "w-full max-w-3xl"

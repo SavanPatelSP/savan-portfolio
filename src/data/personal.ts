@@ -14,8 +14,8 @@ export const personal = {
   calendar: "https://cal.com/savanpatel",
   social: {
     github: "https://github.com/savanpatelssp",
-    x: "https://x.com/savanpatel",
-    linkedin: "https://linkedin.com/in/savanpatel",
+    x: "",
+    linkedin: "",
     telegram: "https://t.me/ABOUTME_SP",
     instagram: "https://instagram.com/savanpatelssp",
   },
@@ -24,7 +24,7 @@ export const personal = {
   tagline: "Lead • Build • Connect",
   roles: ["Founder", "Engineer", "Builder", "Visionary"] as const,
   founderStatement:
-    "Building products that connect people, empower communities, and shape the future of technology through SP NET INC.",
+    "I believe in building products that genuinely solve problems — not just ship features. Every line of code should serve a purpose, every design should feel intentional, and every product should leave the user better than before.",
 };
 
 export const journey = [

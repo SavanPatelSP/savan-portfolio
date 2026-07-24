@@ -6,7 +6,7 @@ import {
   InlineCode,
 } from "@/components/docs/DocLayout";
 import Link from "next/link";
-import { APP_VERSION, LAST_UPDATED } from "@/data/docs";
+import { APP_VERSION, LAST_UPDATED } from "@/data/documentation";
 
 const toc = [
   { id: "installation-methods", label: "Installation Methods" },

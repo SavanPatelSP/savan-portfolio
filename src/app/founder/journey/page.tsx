@@ -11,6 +11,10 @@ export const metadata: Metadata = {
       "From writing his first line of code in 2018 to founding SP NET INC — the full timeline.",
     url: "https://savan.sp-net.in/founder/journey",
     type: "profile",
+    siteName: "SP NET INC",
+  },
+  twitter: {
+    card: "summary_large_image",
   },
   alternates: {
     canonical: "/founder/journey",

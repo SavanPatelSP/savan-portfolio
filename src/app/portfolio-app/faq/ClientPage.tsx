@@ -129,6 +129,7 @@ export default function ClientPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search questions..."
+            aria-label="Search questions"
             className="w-full rounded-xl border border-white/[0.08] bg-white/[0.02] pl-11 pr-10 py-3 text-sm text-white/60 placeholder:text-white/20 focus:outline-none focus:border-white/[0.15] transition-colors duration-200"
           />
           {search && (

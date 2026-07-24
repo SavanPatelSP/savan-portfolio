@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Media Kit — Brand Assets & Press Information",
     description:
       "Official brand assets, press information, and media guidelines for SP NET INC.",
-    url: "https://savan.sp-net.in/resources/media-kit",
+    url: "/resources/media-kit",
     siteName: "SP NET INC",
     type: "website",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       "Official brand assets, press information, and media guidelines for SP NET INC.",
   },
   alternates: {
-    canonical: "https://savan.sp-net.in/resources/media-kit",
+    canonical: "/resources/media-kit",
   },
 };
 

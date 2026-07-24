@@ -1,6 +1,7 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Redirecting to Downloads — SP NET INC",
   robots: { index: false, follow: true },
 };

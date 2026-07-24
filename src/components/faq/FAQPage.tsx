@@ -286,6 +286,7 @@ export function FAQPage({
             {searchQuery && (
               <button
                 onClick={clearSearch}
+                aria-label="Clear search"
                 className="absolute right-3 top-1/2 -translate-y-1/2 text-white/20 hover:text-white/40 transition-colors"
               >
                 <X className="h-4 w-4" />

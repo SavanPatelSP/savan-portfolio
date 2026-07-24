@@ -11,6 +11,10 @@ export const metadata: Metadata = {
       "Learn about Savan Patel — the founder and product engineer behind SP NET INC.",
     url: "https://savan.sp-net.in/founder/about",
     type: "profile",
+    siteName: "SP NET INC",
+  },
+  twitter: {
+    card: "summary_large_image",
   },
   alternates: {
     canonical: "/founder/about",

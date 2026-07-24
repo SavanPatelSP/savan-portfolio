@@ -7,8 +7,7 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ease } from "@/lib/motion";
 import { AppShell } from "@/components/navigation";
-import { documentationNavigation } from "@/data/navigation/documentation-navigation";
-import { type DocItem } from "@/data/docs";
+import { documentationNavigation, type DocItem } from "@/data/documentation";
 
 /* ─── TABLE OF CONTENTS ────────────────────────────────────── */
 

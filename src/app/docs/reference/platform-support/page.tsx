@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Platform Support — Portfolio App Documentation",
     description:
       "Browser compatibility and OS support for the Portfolio App.",
-    url: "https://savan.sp-net.in/docs/platform-support",
+    url: "https://savan.sp-net.in/docs/reference/platform-support",
     type: "website",
     siteName: "SP NET INC",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       "Browser compatibility and OS support for the Portfolio App.",
   },
   alternates: {
-    canonical: "/docs/platform-support",
+    canonical: "/docs/reference/platform-support",
   },
 }
 

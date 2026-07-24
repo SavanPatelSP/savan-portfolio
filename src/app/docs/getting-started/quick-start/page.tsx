@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Quick Start — Portfolio App Documentation",
     description:
       "Get up and running with the Portfolio App in under a minute. Open, install, launch, and browse — even offline.",
-    url: "https://savan.sp-net.in/docs/quick-start",
+    url: "https://savan.sp-net.in/docs/getting-started/quick-start",
     type: "website",
     siteName: "SP NET INC",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       "Get up and running with the Portfolio App in under a minute.",
   },
   alternates: {
-    canonical: "/docs/quick-start",
+    canonical: "/docs/getting-started/quick-start",
   },
 };
 

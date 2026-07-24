@@ -24,7 +24,6 @@
 }
 
 
-
 @layer base {
   @media (hover: hover) and (pointer: fine) {
     * {
@@ -41,7 +40,6 @@
     *::-webkit-scrollbar-thumb {
       background: rgba(255, 255, 255, 0.08);
       border-radius: 999px;
-      transition: background 0.2s ease;
     }
     *::-webkit-scrollbar-thumb:hover {
       background: rgba(255, 255, 255, 0.15);
@@ -87,7 +85,7 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
+  0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
 
@@ -194,17 +192,4 @@ button:focus-visible {
 .glass {
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-}
-
-/* Subtle glow effect */
-.glow-subtle {
-  box-shadow: 0 0 30px -10px rgba(59, 130, 246, 0.1);
-}
-
-/* GPU acceleration hints */
-.will-change-transform {
-  will-change: transform;
-}
-.will-change-opacity {
-  will-change: opacity;
 }

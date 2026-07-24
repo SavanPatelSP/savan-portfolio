@@ -16,7 +16,7 @@ import {
   AlertTriangle,
   ArrowRight,
 } from "lucide-react";
-import { docsNavigation, APP_VERSION } from "@/data/docs";
+import { docsNavigation, APP_VERSION } from "@/data/documentation";
 import { ease, NORMAL } from "@/lib/motion";
 
 const sectionIcons: Record<string, React.ReactNode> = {

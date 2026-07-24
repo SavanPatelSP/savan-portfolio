@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { DocPage, Callout, CodeBlock, InlineCode } from "@/components/docs/DocLayout";
-import { APP_VERSION, LAST_UPDATED } from "@/data/docs";
+import { APP_VERSION, LAST_UPDATED } from "@/data/documentation";
 
 const toc = [
   { id: "doc-layout-components", label: "DocLayout Components" },
@@ -143,7 +143,7 @@ InlineCode    children                            Inline code styling for props,
           serialized HTML streamed to the client. Zero JavaScript is sent for these components.
         </p>
         <CodeBlock
-          code={`// Server Component — no "use client" directive\nimport { findDocItem } from "@/data/docs";\n\nexport default async function DocPage({ slug }: { slug: string }) {\n  const doc = findDocItem(slug);\n  return <article>{doc?.item.title}</article>;\n}`}
+          code={`// Server Component — no "use client" directive\nimport { findDocItem } from "@/data/documentation";\n\nexport default async function DocPage({ slug }: { slug: string }) {\n  const doc = findDocItem(slug);\n  return <article>{doc?.item.title}</article>;\n}`}
           language="tsx"
           filename="Server Component"
         />

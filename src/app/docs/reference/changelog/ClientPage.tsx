@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { DocPage, Callout } from "@/components/docs/DocLayout"
-import { APP_VERSION, LAST_UPDATED } from "@/data/docs"
+import { APP_VERSION, LAST_UPDATED } from "@/data/documentation"
 
 interface ChangelogEntry {
   version: string

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -13,7 +13,7 @@ const navChips = [
   { label: "Products", href: "/products", icon: Package },
   { label: "Founder", href: "/founder/about", icon: User },
   { label: "Expertise", href: "/founder/about#expertise", icon: Briefcase },
-  { label: "Roadmap", href: "/roadmap", icon: Route },
+  { label: "Roadmap", href: "/founder/roadmap", icon: Route },
   { label: "Contact", href: "/contact", icon: MessageCircle },
   { label: "Resources", href: "/resources", icon: FileText },
   { label: "Docs", href: "/docs", icon: BookOpen },
@@ -157,12 +157,7 @@ function NotFoundIllustration() {
 }
 
 export default function NotFound() {
-  const [canGoBack] = useState(() => {
-    if (typeof window !== "undefined") {
-      return window.history.length > 1;
-    }
-    return false;
-  });
+  const [canGoBack, setCanGoBack] = useState(false);
 
   const handleGoBack = useCallback(() => {
     if (canGoBack) {
@@ -171,6 +166,13 @@ export default function NotFound() {
       window.location.href = "/";
     }
   }, [canGoBack]);
+
+  useEffect(() => {
+    const checkHistory = () => {
+      setCanGoBack(window.history.length > 1);
+    };
+    checkHistory();
+  }, []);
 
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center bg-black overflow-hidden">
@@ -265,7 +267,7 @@ export default function NotFound() {
             onClick={handleGoBack}
             className="group inline-flex items-center gap-2.5 rounded-xl border border-white/[0.08] px-7 py-3.5 text-sm font-medium text-white/50 hover:text-white/80 hover:border-white/[0.15] hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgba(59,130,246,0.04)] transition-all duration-300 min-h-[48px]"
           >
-            <ArrowLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" />
+            <ArrowLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" aria-hidden="true" />
             <span>Go Back</span>
           </button>
         </motion.div>

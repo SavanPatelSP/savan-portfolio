@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: "Troubleshooting — Portfolio App Documentation",
     description:
       "Troubleshooting guide for common issues with the Portfolio App.",
-    url: "https://savan.sp-net.in/docs/troubleshooting",
+    url: "https://savan.sp-net.in/docs/reference/troubleshooting",
     type: "website",
     siteName: "SP NET INC",
   },
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
       "Troubleshooting guide for common issues with the Portfolio App.",
   },
   alternates: {
-    canonical: "/docs/troubleshooting",
+    canonical: "/docs/reference/troubleshooting",
   },
 }
 

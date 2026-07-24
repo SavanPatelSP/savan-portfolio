@@ -4,7 +4,7 @@ import { useState, useMemo } from "react"
 import { ChevronDown, Search } from "lucide-react"
 import { DocPage } from "@/components/docs/DocLayout"
 import Link from "next/link"
-import { APP_VERSION, LAST_UPDATED } from "@/data/docs"
+import { APP_VERSION, LAST_UPDATED } from "@/data/documentation"
 
 interface FAQItem {
   question: string
@@ -293,6 +293,7 @@ export default function ClientPage() {
           <input
             type="text"
             placeholder="Search questions and answers..."
+            aria-label="Search questions"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-white/5 border border-white/10 rounded-lg pl-10 pr-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-white/30 transition-colors"

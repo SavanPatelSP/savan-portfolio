@@ -327,7 +327,7 @@ export function AppShell({
                 </span>
                 <button
                   onClick={closeSidebar}
-                  className="p-1 text-white/30 hover:text-white/60 transition-colors"
+                  className="min-h-[44px] min-w-[44px] p-1 flex items-center justify-center text-white/30 hover:text-white/60 transition-colors"
                   aria-label="Close navigation"
                 >
                   <X className="h-5 w-5" />
