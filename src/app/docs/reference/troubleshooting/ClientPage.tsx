@@ -321,7 +321,7 @@ export default function ClientPage() {
                     browser console (F12 &gt; Console tab) for specific error
                     messages and report them on{" "}
                     <a
-                      href="https://github.com/savanpatel/savan-portfolio/issues"
+                      href="https://github.com/savanpatelssp/savan-portfolio/issues"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="underline underline-offset-2 hover:text-white"
@@ -344,7 +344,7 @@ export default function ClientPage() {
           New issues are added as they are reported. If your problem is not listed,
           check the browser console for errors and{" "}
           <a
-            href="https://github.com/savanpatel/savan-portfolio/issues"
+            href="https://github.com/savanpatelssp/savan-portfolio/issues"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white/70 hover:text-white underline underline-offset-2"
@@ -362,7 +362,7 @@ export default function ClientPage() {
         </Link>{" "}
         for general questions, or report the problem on{" "}
         <a
-          href="https://github.com/savanpatel/savan-portfolio/issues"
+          href="https://github.com/savanpatelssp/savan-portfolio/issues"
           target="_blank"
           rel="noopener noreferrer"
           className="underline underline-offset-2 hover:text-white"

@@ -18,36 +18,36 @@ import {
 const whatImExploring = [
   {
     icon: Container,
-    title: "Docker & Containers",
+    title: "Containerization",
     description:
-      "I spent a weekend containerizing the entire SP NET stack and it changed how I think about deployment. Once you go container-first, going back feels archaic. Docker made my development environment reproducible and my deploys predictable.",
+      "I spent a weekend containerizing the entire SP NET stack and it changed how I think about deployment. Once you go container-first, going back feels archaic. Containers made my development environment reproducible and my deploys predictable.",
   },
   {
     icon: Layers,
-    title: "Kubernetes Experiments",
+    title: "Orchestration Experiments",
     description:
-      "I set up a small K3s cluster on old hardware just to learn orchestration. Managing pods, services, and ingress controllers taught me more about distributed systems than any textbook. It was messy, humbling, and incredibly rewarding.",
+      "I set up a small cluster on old hardware just to learn orchestration. Managing services, load balancing, and ingress controllers taught me more about distributed systems than any textbook. It was messy, humbling, and incredibly rewarding.",
   },
   {
     icon: Globe,
     title: "Edge Computing",
     description:
-      "Latency matters. I started exploring edge deployment after noticing GRAM felt slow for users far from my main server. Pushing compute closer to users — through CDN Workers and edge functions — is something I actively experiment with.",
+      "Latency matters. I started exploring edge deployment after noticing GRAM felt slow for users far from my main server. Pushing compute closer to users — through CDN workers and edge functions — is something I actively experiment with.",
   },
   {
     icon: Zap,
     title: "Serverless Functions",
     description:
-      "I went through a serverless phase where I rewrote half my API routes as Cloudflare Workers. Some stayed, some didn't. The experience taught me when serverless makes sense and when a good old server is the better choice.",
+      "I went through a serverless phase where I rewrote half my API routes as edge functions. Some stayed, some didn't. The experience taught me when serverless makes sense and when a good old server is the better choice.",
   },
 ];
 
 const lessonsLearned = [
-  { name: "Container Orchestration", detail: "Hands-on K3s and Docker Swarm experience — understanding service mesh, load balancing, and rolling deployments" },
-  { name: "Infrastructure as Code", detail: "Writing Terraform and Pulumi configs to make infrastructure reproducible instead of a one-man snowflake" },
-  { name: "CI/CD Pipelines", detail: "Building GitHub Actions workflows that actually work — automated testing, building, and deploying with confidence" },
-  { name: "Monitoring & Observability", detail: "Setting up Grafana dashboards and distributed tracing so I can actually see what's happening in production" },
-  { name: "Edge Deployment", detail: "Deploying functions to Cloudflare Workers and edge runtimes for sub-50ms responses globally" },
+  { name: "Container Orchestration", detail: "Hands-on experience with orchestration platforms — understanding service mesh, load balancing, and rolling deployments" },
+  { name: "Infrastructure as Code", detail: "Writing infrastructure configs to make environments reproducible instead of a one-man snowflake" },
+  { name: "CI/CD Pipelines", detail: "Building automated workflows that actually work — automated testing, building, and deploying with confidence" },
+  { name: "Monitoring & Observability", detail: "Setting up dashboards and distributed tracing so I can actually see what's happening in production" },
+  { name: "Edge Deployment", detail: "Deploying functions to edge runtimes for sub-50ms responses globally" },
   { name: "Cost Management", detail: "Learning the hard way that cloud bills can spiral — and building habits to monitor and optimize spending early" },
 ];
 
@@ -65,7 +65,7 @@ const designPrinciples = [
   {
     icon: Server,
     title: "Simplicity First",
-    description: "Kubernetes is powerful but a simple docker-compose setup might be all you need. I've learned to match the solution to the actual problem, not the imagined scale.",
+    description: "Powerful orchestration is great but a simple container setup might be all you need. I've learned to match the solution to the actual problem, not the imagined scale.",
   },
 ];
 
@@ -73,17 +73,17 @@ const faqItems = [
   {
     question: "How did you get into cloud infrastructure?",
     answer:
-      "Honestly, out of necessity. When I first deployed SP NET GRAM, I was running everything on a single VPS. As users grew, things started breaking. I had to learn about containers, load balancing, and redundancy the hard way — by watching production systems go down at 3 AM.",
+      "Honestly, out of necessity. When I first deployed SP NET GRAM, I was running everything on a single server. As users grew, things started breaking. I had to learn about containers, load balancing, and redundancy the hard way — by watching production systems go down at 3 AM.",
   },
   {
     question: "What cloud providers do you use?",
     answer:
-      "I keep things provider-agnostic where possible. My main deployments use a mix of traditional VPS providers and edge platforms like Cloudflare. I prefer not to lock myself into any single ecosystem — it keeps costs honest and makes migration easier if needed.",
+      "I keep things provider-agnostic where possible. My main deployments use a mix of traditional VPS providers and edge platforms. I prefer not to lock myself into any single ecosystem — it keeps costs honest and makes migration easier if needed.",
   },
   {
-    question: "Do you actually use Kubernetes in production?",
+    question: "Do you actually use orchestration in production?",
     answer:
-      "For my current scale, honestly, Docker Compose and a few well-placed scripts handle things fine. I use Kubernetes in my experimentation cluster and for learning, but I believe in using the right tool for the actual scale, not the imagined scale.",
+      "For my current scale, honestly, a simple container setup handles things fine. I use orchestration in my experimentation cluster and for learning, but I believe in using the right tool for the actual scale, not the imagined scale.",
   },
   {
     question: "What's your approach to server costs?",
@@ -142,7 +142,7 @@ export default function ClientPage() {
         label="Research"
         title="Cloud Computing"
         titleAccent="Scalable infrastructure exploration"
-        description="How I learned cloud infrastructure the hard way — by breaking things in production and fixing them at 3 AM. Docker, Kubernetes, edge computing, and serverless experiments."
+        description="How I learned cloud infrastructure the hard way — by breaking things in production and fixing them at 3 AM. Containers, edge computing, and serverless experiments."
         icon={<Cloud className="h-4 w-4" />}
       />
 

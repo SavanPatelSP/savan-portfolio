@@ -21,8 +21,7 @@ import { cn } from "@/lib/utils";
 import { APP_VERSION, features, platforms } from "@/data/portfolio-app";
 import { AppShell } from "@/components/navigation";
 import { portfolioNavigation } from "@/data/navigation/portfolio-navigation";
-import { ApplicationPreview } from "@/components/portfolio-app/ApplicationPreview";
-import { MultiDevicePreview } from "@/components/portfolio-app/MultiDevicePreview";
+import { SectionHeader } from "@/components/portfolio-app/shared/SectionHeader";
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Monitor,
@@ -93,19 +92,9 @@ const storySteps = [
   },
 ];
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="block text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-3">
-      {children}
-    </span>
-  );
-}
-
 export default function ClientPage() {
   const heroRef = useRef<HTMLDivElement>(null);
   const heroInView = useInView(heroRef, { once: true, amount: 0.2 });
-  const previewRef = useRef<HTMLDivElement>(null);
-  const previewInView = useInView(previewRef, { once: true, amount: 0.1 });
   const proseRef = useRef<HTMLDivElement>(null);
   const proseInView = useInView(proseRef, { once: true, amount: 0.2 });
   const featuresRef = useRef<HTMLDivElement>(null);
@@ -174,74 +163,22 @@ export default function ClientPage() {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/[0.08] to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <Download className="h-4 w-4 relative z-[1]" />
-              <span className="relative z-[1]">Download</span>
+              <span className="relative z-[1]">Install Now</span>
               <ArrowRight className="h-4 w-4 relative z-[1] group-hover:translate-x-0.5 transition-transform duration-200" />
             </Link>
             <Link
-              href="/portfolio-app"
+              href="/portfolio-app/install"
               className="inline-flex items-center gap-2 rounded-xl border border-white/[0.06] px-6 py-3 text-sm text-white/40 hover:text-white/60 hover:border-white/[0.1] transition-all duration-200 min-h-[48px]"
             >
-              Documentation
+              Installation Guide
               <ArrowRight className="h-4 w-4" />
             </Link>
           </motion.div>
         </motion.div>
 
-        {/* ─── APPLICATION PREVIEW ─── */}
-        <motion.section
-          ref={previewRef}
-          className="mb-20 sm:mb-28"
-          initial={{ opacity: 0, y: 20 }}
-          animate={previewInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: SLOW, ease: ease.out }}
-        >
-          <div className="text-center mb-10">
-            <SectionLabel>Preview</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white/70 tracking-tight mb-3">
-              See it in action
-            </h2>
-            <p className="text-sm text-white/25 max-w-md mx-auto">
-              A full desktop application experience, built entirely with web standards.
-            </p>
-          </div>
-
-          {/* Desktop Window Preview */}
-          <ApplicationPreview activeTab="home" variant="hero" />
-        </motion.section>
-
-        {/* ─── MULTI DEVICE ─── */}
-        <motion.section
-          className="mb-20 sm:mb-28"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: SLOW, ease: ease.out }}
-        >
-          <div className="text-center mb-10">
-            <SectionLabel>Every Device</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white/70 tracking-tight mb-3">
-              One app, every screen
-            </h2>
-            <p className="text-sm text-white/25 max-w-md mx-auto">
-              Optimized for desktop, laptop, tablet, and phone — in portrait and landscape.
-            </p>
-          </div>
-
-          <MultiDevicePreview />
-        </motion.section>
-
         {/* ─── WHAT IS THE PORTFOLIO APP? ─── */}
         <section className="mb-20 sm:mb-28" ref={proseRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={proseInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: SLOW, ease: ease.out }}
-          >
-            <SectionLabel>Overview</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white/70 tracking-tight mb-8">
-              What is the Portfolio App?
-            </h2>
-          </motion.div>
+          <SectionHeader label="Overview" title="What is the Portfolio App?" />
 
           <motion.div
             className="space-y-5 text-sm sm:text-base text-white/30 leading-relaxed max-w-3xl"
@@ -277,16 +214,7 @@ export default function ClientPage() {
 
         {/* ─── FEATURES GRID ─── */}
         <section className="mb-20 sm:mb-28" ref={featuresRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: SLOW, ease: ease.out }}
-          >
-            <SectionLabel>Features</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white/70 tracking-tight mb-12">
-              Built for every device
-            </h2>
-          </motion.div>
+          <SectionHeader label="Features" title="Built for every device" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {features.map((feature, i) => {
@@ -317,16 +245,7 @@ export default function ClientPage() {
 
         {/* ─── HOW IT WORKS ─── */}
         <section className="mb-20 sm:mb-28" ref={stepsRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={stepsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: SLOW, ease: ease.out }}
-          >
-            <SectionLabel>Process</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white/70 tracking-tight mb-12">
-              How it works
-            </h2>
-          </motion.div>
+          <SectionHeader label="Process" title="How it works" />
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 relative">
             {storySteps.map((item, i) => (
@@ -352,7 +271,6 @@ export default function ClientPage() {
                   </p>
                 </div>
 
-                {/* Connector arrow */}
                 {i < 2 && (
                   <div className="hidden sm:flex absolute top-1/2 -right-4 sm:-right-5 -translate-y-1/2 z-10">
                     <ChevronRight className="h-5 w-5 text-white/10" />
@@ -365,16 +283,7 @@ export default function ClientPage() {
 
         {/* ─── PLATFORMS ─── */}
         <section className="mb-20 sm:mb-28" ref={platformsRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={platformsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: SLOW, ease: ease.out }}
-          >
-            <SectionLabel>Compatibility</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white/70 tracking-tight mb-12">
-              Platform support
-            </h2>
-          </motion.div>
+          <SectionHeader label="Compatibility" title="Platform support" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {platforms.map((platform, i) => (
@@ -413,18 +322,9 @@ export default function ClientPage() {
           </div>
         </section>
 
-        {/* ─── NAVIGATION LINKS ─── */}
+        {/* ─── DOCUMENTATION LINKS ─── */}
         <section className="mb-20 sm:mb-28" ref={navRef}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={navInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: SLOW, ease: ease.out }}
-          >
-            <SectionLabel>Documentation</SectionLabel>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-white/70 tracking-tight mb-12">
-              Explore the documentation
-            </h2>
-          </motion.div>
+          <SectionHeader label="Documentation" title="Explore the documentation" />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {navLinks.map((link, i) => (
@@ -465,7 +365,6 @@ export default function ClientPage() {
             animate={ctaInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: SLOW, ease: ease.out }}
           >
-            {/* Background Glow */}
             <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.03] via-transparent to-transparent pointer-events-none" />
 
             <div className="relative">

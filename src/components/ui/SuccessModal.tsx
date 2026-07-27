@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Check, Mail, Shield, Clock, ArrowRight, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -15,6 +16,11 @@ export function SuccessModal({ isOpen, onClose, onSendAnother }: SuccessModalPro
   const closeRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const prevFocus = useRef<HTMLElement | null>(null);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   const [submittedAt, setSubmittedAt] = useState("");
 
@@ -49,11 +55,13 @@ export function SuccessModal({ isOpen, onClose, onSendAnother }: SuccessModalPro
         setSubmittedAt(new Date().toLocaleString());
       });
       prevFocus.current = document.activeElement as HTMLElement;
+      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
       document.addEventListener("keydown", escHandler);
       document.addEventListener("keydown", trapFocus);
       requestAnimationFrame(() => closeRef.current?.focus());
     } else {
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
       document.removeEventListener("keydown", escHandler);
       document.removeEventListener("keydown", trapFocus);
@@ -61,6 +69,7 @@ export function SuccessModal({ isOpen, onClose, onSendAnother }: SuccessModalPro
     }
     return () => {
       if (rafId !== undefined) cancelAnimationFrame(rafId);
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
       document.removeEventListener("keydown", escHandler);
       document.removeEventListener("keydown", trapFocus);
@@ -72,7 +81,9 @@ export function SuccessModal({ isOpen, onClose, onSendAnother }: SuccessModalPro
     onClose();
   };
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -92,11 +103,12 @@ export function SuccessModal({ isOpen, onClose, onSendAnother }: SuccessModalPro
             role="dialog"
             aria-modal="true"
             aria-label="Message sent successfully"
-            className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent bg-black/90 p-6 sm:p-8 shadow-2xl backdrop-blur-xl"
+            className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-6 sm:p-8 shadow-2xl"
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            style={{ paddingBottom: "calc(1.5rem + var(--safe-bottom))" }}
           >
             <button
               ref={closeRef}
@@ -197,6 +209,7 @@ export function SuccessModal({ isOpen, onClose, onSendAnother }: SuccessModalPro
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

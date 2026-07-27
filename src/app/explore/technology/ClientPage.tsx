@@ -29,38 +29,38 @@ import {
 const dailyStack = [
   {
     icon: Braces,
-    title: "TypeScript",
-    why: "I write TypeScript every single day. The type system catches mistakes before they reach production, and in a codebase this size, that safety net is everything.",
+    title: "Type Safety",
+    why: "I write type-safe code every single day. The type system catches mistakes before they reach production, and in a codebase this size, that safety net is everything.",
     color: "#3b82f6",
   },
   {
     icon: Layers,
-    title: "Next.js",
-    why: "Server components, edge middleware, and the App Router give me the most complete toolkit for building real applications. It handles the hard parts so I can focus on the product.",
+    title: "Modern Framework",
+    why: "Server components, edge middleware, and file-based routing give me the most complete toolkit for building real applications. It handles the hard parts so I can focus on the product.",
     color: "#8b5cf6",
   },
   {
     icon: Database,
-    title: "PostgreSQL",
-    why: "Reliable, powerful, and extensible. From relational data to full-text search to JSON — PostgreSQL handles everything I throw at it without making me reach for a second database.",
+    title: "Relational Databases",
+    why: "Reliable, powerful, and extensible. From relational data to full-text search to JSON — a solid relational database handles everything I throw at it without making me reach for a second one.",
     color: "#10b981",
   },
   {
     icon: Cloud,
-    title: "Cloudflare",
+    title: "Edge Computing",
     why: "Edge computing with sub-millisecond cold starts. I deploy authentication, rate limiting, and API routing to the edge so users get instant responses regardless of location.",
     color: "#f59e0b",
   },
   {
     icon: Shield,
-    title: "Prisma",
+    title: "Type-Safe Data Access",
     why: "Type-safe database access that eliminates raw SQL while keeping full power. Auto-generated clients mean my frontend and backend share the same type definitions.",
     color: "#3b82f6",
   },
   {
     icon: Cpu,
-    title: "Redis",
-    why: "Caching, sessions, rate limiting, pub/sub — Redis absorbs traffic spikes and keeps response times in the sub-millisecond range.",
+    title: "In-Memory Stores",
+    why: "Caching, sessions, rate limiting, pub/sub — an in-memory store absorbs traffic spikes and keeps response times in the sub-millisecond range.",
     color: "#ef4444",
   },
 ];
@@ -68,53 +68,53 @@ const dailyStack = [
 const learningNow = [
   {
     icon: Terminal,
-    title: "Rust",
+    title: "Systems Programming",
     description:
-      "Learning Rust for performance-critical services and WebAssembly compilation. The ownership model forces me to think differently about memory and concurrency.",
+      "Learning a systems language for performance-critical services. The ownership model forces me to think differently about memory and concurrency.",
   },
   {
     icon: Globe,
-    title: "WebAssembly",
+    title: "Portable Code Execution",
     description:
-      "Exploring Wasm for running sandboxed plugins and compute-intensive tasks in the browser. The potential for portable, secure code execution is huge.",
+      "Exploring sandboxed runtime environments for running plugins and compute-intensive tasks in the browser. The potential for portable, secure code execution is huge.",
   },
   {
     icon: Zap,
     title: "Local-First Software",
     description:
-      "Studying CRDTs and local-first architectures for building applications that work offline and sync seamlessly when connectivity returns.",
+      "Studying conflict-free data structures and local-first architectures for building applications that work offline and sync seamlessly when connectivity returns.",
   },
 ];
 
 const toolsExcitingMe = [
   {
-    title: "Bun",
-    description: "A faster JavaScript runtime that might replace Node.js for my workflows.",
+    title: "Fast JavaScript Runtimes",
+    description: "New runtimes that rethink the JavaScript runtime from scratch for better performance.",
   },
   {
-    title: "Drizzle ORM",
-    description: "A lightweight, type-safe ORM that feels closer to writing SQL.",
+    title: "Lightweight ORMs",
+    description: "A lightweight, type-safe ORM approach that feels closer to writing SQL.",
   },
   {
-    title: "Turborepo",
-    description: "Monorepo tooling that makes shared codebases actually manageable.",
+    title: "Monorepo Tooling",
+    description: "Tooling that makes shared codebases actually manageable.",
   },
   {
-    title: "Vercel AI SDK",
+    title: "AI Development Kits",
     description: "Streaming AI responses with React hooks — makes building AI features feel natural.",
   },
 ];
 
 const faqItems = [
   {
-    question: "Why TypeScript over everything else?",
+    question: "Why type-safe languages over everything else?",
     answer:
-      "I have tried a lot of languages, and TypeScript gives me the best balance of productivity and safety. The type system catches entire categories of bugs at compile time. In a complex ecosystem where multiple products share code, that safety is not a nice-to-have — it is essential.",
+      "I have tried a lot of languages, and type safety gives me the best balance of productivity and safety. The type system catches entire categories of bugs at compile time. In a complex ecosystem where multiple products share code, that safety is not a nice-to-have — it is essential.",
   },
   {
-    question: "Why did you choose Next.js specifically?",
+    question: "Why did you choose a modern web framework?",
     answer:
-      "I evaluated a lot of frameworks. Next.js gave me the most complete package: server components for performance, edge middleware for personalization, the App Router for clean architecture, and a massive ecosystem. It handles the hard infrastructure problems so I can focus on building features.",
+      "I evaluated a lot of frameworks. The one I chose gave me the most complete package: server components for performance, edge middleware for personalization, file-based routing for clean architecture, and a massive ecosystem. It handles the hard infrastructure problems so I can focus on building features.",
   },
   {
     question: "What is your philosophy on choosing technologies?",
@@ -124,12 +124,12 @@ const faqItems = [
   {
     question: "Are you learning anything new right now?",
     answer:
-      "Rust, WebAssembly, and local-first architecture are my current learning focus. Rust for performance-critical services, Wasm for portable code execution, and local-first for building applications that work offline and sync beautifully.",
+      "Systems programming, portable code execution, and local-first architecture are my current learning focus. Systems languages for performance-critical services, portable runtimes for sandboxed code execution, and local-first for building applications that work offline and sync beautifully.",
   },
   {
     question: "What tools are you most excited about?",
     answer:
-      "Bun is rethinking the JavaScript runtime from scratch. Drizzle makes database access feel natural. Turborepo makes monorepos manageable. Vercel AI SDK makes building AI features feel like an afterthought. These are tools that genuinely improve how I work.",
+      "Fast JavaScript runtimes, lightweight ORMs, build tooling, and AI development kits. These are tools that genuinely improve how I work.",
   },
 ];
 
@@ -277,7 +277,7 @@ export default function ClientPage() {
       <CTASection
         title="Want the full technical breakdown?"
         titleAccent="Every technology has a story."
-        description="See the complete list of languages, frameworks, databases, and infrastructure powering every product I build."
+        description="See the complete list of technologies powering every product I build."
         primaryAction={{ label: "View Full Tech Stack", href: "/founder/about" }}
         secondaryAction={{ label: "Back to Explore", href: "/explore" }}
       />

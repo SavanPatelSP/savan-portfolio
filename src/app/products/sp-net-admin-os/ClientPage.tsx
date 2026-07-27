@@ -41,7 +41,7 @@ const features = [
     icon: Coins,
     title: "Coins & Gems Economy",
     description:
-      "A built-in virtual economy system for rewarding engagement, managing premium currency, processing transactions, and tracking balances across your platform.",
+      "A virtual currency system for platform rewards and premium features.",
   },
   {
     icon: BarChart3,
@@ -79,9 +79,8 @@ const modules = [
     icon: Lock,
     title: "Permissions",
     items: [
-      "Role-based access control (RBAC)",
-      "Custom roles with granular permissions",
-      "Resource-level access policies",
+      "Flexible access control with custom roles",
+      "Granular permissions at the resource level",
       "API key management and scoping",
       "Session management and revocation",
     ],
@@ -90,11 +89,9 @@ const modules = [
     icon: Coins,
     title: "Economy",
     items: [
-      "Virtual coins and gems currency",
-      "Transaction history and ledger",
-      "Payout and redemption system",
-      "Rate limiting and fraud detection",
-      "Leaderboards and reward tiers",
+      "Configurable virtual currency system",
+      "Transaction history and tracking",
+      "Reward tiers and leaderboards",
     ],
   },
   {
@@ -112,11 +109,9 @@ const modules = [
     icon: Shield,
     title: "Moderation",
     items: [
-      "Automated content classification",
-      "User trust scoring system",
-      "Escalation and review queues",
-      "Ban, mute, and restriction tools",
-      "Appeal and resolution workflows",
+      "Automated content moderation",
+      "Escalation and review workflows",
+      "Appeal and resolution tools",
     ],
   },
 ];
@@ -130,7 +125,7 @@ const faqItems = [
   {
     question: "How does the coins & gems economy system work?",
     answer:
-      "The economy module provides a full virtual currency system. Coins serve as the base currency for transactions, while gems act as a premium tier. You can configure earning rules (sign-ups, referrals, achievements), spending mechanisms (purchases, upgrades, donations), and withdrawal or redemption policies. The system includes built-in fraud detection, rate limiting, and a complete transaction ledger for auditing.",
+      "The economy module provides a full virtual currency system. A configurable virtual currency system supports earning, spending, and redemption within the platform.",
   },
   {
     question: "Can SP NET ADMIN OS handle multiple organizations?",
@@ -329,16 +324,12 @@ export default function SPNetAdminOSClientPage() {
               </h3>
               <div className="space-y-3 text-xs text-white/25 leading-relaxed">
                 <p>
-                  SP NET ADMIN OS is built on a multi-tenant architecture where each organization
-                  operates in an isolated workspace. Data separation is enforced at the database level,
-                  not just the application layer, ensuring that no organization can ever access another
-                  organization&apos;s data — even through API misconfigurations.
+                  Each organization operates in an isolated workspace with strong data separation
+                  guarantees.
                 </p>
                 <p>
-                  Permission evaluation happens through a policy engine that supports RBAC, ABAC, and
-                  resource-level scoping. Policies are compiled at deployment time and evaluated in
-                  microseconds, so permission checks never become a bottleneck even at millions of
-                  requests per second.
+                  A fast, flexible permission system supports role-based and attribute-based access
+                  control with granular resource-level policies.
                 </p>
               </div>
             </div>
@@ -349,15 +340,9 @@ export default function SPNetAdminOSClientPage() {
               </h3>
               <div className="space-y-3 text-xs text-white/25 leading-relaxed">
                 <p>
-                  Analytics and moderation run on an event-driven data pipeline. Every action in the
-                  system — from a permission change to a transaction to a content flag — generates a
-                  structured event that flows through the pipeline in real time.
-                </p>
-                <p>
-                  This architecture means analytics dashboards update live, moderation triggers fire
-                  instantly, and audit logs are populated without any batch processing delays. The
-                  pipeline handles backpressure automatically and guarantees at-least-once delivery,
-                  so no event is ever lost.
+                  Analytics and moderation run in real time. Every significant action generates an
+                  event that flows through the system instantly, keeping dashboards and audit logs
+                  up to date.
                 </p>
               </div>
             </div>

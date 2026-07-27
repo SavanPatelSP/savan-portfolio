@@ -59,7 +59,7 @@ export default function ClientPage() {
         label="Founder"
         title="Savan Patel"
         titleAccent="Self-taught engineer and builder"
-        description="Learn about Savan Patel — the self-taught software engineer and founder behind SP NET INC."
+        description="The person behind SP NET INC — building products that connect people, empower communities, and shape the future of technology."
         icon={<User className="h-4 w-4" />}
       />
 

@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback, memo } from "react";
+import { useState, useEffect, useRef, useCallback, memo, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { Download, BookOpen } from "lucide-react";
+import { Download, BookOpen, X } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -36,9 +37,7 @@ function lockScroll() {
   const scrollbarWidth =
     window.innerWidth - document.documentElement.clientWidth;
   document.documentElement.style.overflow = "hidden";
-  document.body.style.position = "fixed";
-  document.body.style.inset = "0";
-  document.body.style.top = `-${scrollY}px`;
+  document.body.style.overflow = "hidden";
   if (scrollbarWidth > 0) {
     document.body.style.paddingRight = `${scrollbarWidth}px`;
   }
@@ -47,9 +46,7 @@ function lockScroll() {
 
 function unlockScroll(savedScrollY: number) {
   document.documentElement.style.overflow = "";
-  document.body.style.position = "";
-  document.body.style.inset = "";
-  document.body.style.top = "";
+  document.body.style.overflow = "";
   document.body.style.paddingRight = "";
   window.scrollTo(0, savedScrollY);
 }
@@ -106,11 +103,17 @@ const ExternalLink = memo(function ExternalLink({
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
   const active = useActiveSection();
   const hamburgerRef = useRef<HTMLButtonElement>(null);
   const mobileNavRef = useRef<HTMLDivElement>(null);
   const savedScrollYRef = useRef(0);
   const wasOpenRef = useRef(false);
+  const closeForNavRef = useRef(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -128,6 +131,10 @@ export function Header() {
   }, []);
 
   const handleNavItemClick = useCallback(() => {
+    closeForNavRef.current = true;
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+    document.body.style.paddingRight = "";
     setOpen(false);
   }, []);
 
@@ -171,9 +178,21 @@ export function Header() {
         });
       });
     } else if (wasOpenRef.current) {
-      unlockScroll(savedScrollYRef.current);
+      const savedY = savedScrollYRef.current;
       savedScrollYRef.current = 0;
-      hamburgerRef.current?.focus();
+      const isNavClose = closeForNavRef.current;
+      closeForNavRef.current = false;
+      const raf = requestAnimationFrame(() => {
+        if (isNavClose) {
+          document.documentElement.style.overflow = "";
+          document.body.style.overflow = "";
+          document.body.style.paddingRight = "";
+        } else {
+          unlockScroll(savedY);
+        }
+        hamburgerRef.current?.focus();
+      });
+      return () => cancelAnimationFrame(raf);
     }
     wasOpenRef.current = open;
   }, [open]);
@@ -265,161 +284,157 @@ export function Header() {
           </motion.a>
         </div>
 
-        <button
-          ref={hamburgerRef}
-          className={cn(
-            "relative z-[60] flex lg:hidden items-center justify-center w-12 h-12 rounded-xl bg-transparent border border-transparent text-white/60 hover:text-white hover:border-white/[0.08] transition-all duration-200 [-webkit-appearance:none] active:scale-95",
-            open && "pointer-events-none opacity-0"
-          )}
-          onClick={handleToggle}
-          aria-label="Open navigation menu"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-hidden={open ? true : undefined}
-          tabIndex={open ? -1 : 0}
-        >
-          <div className="flex flex-col gap-[5px]">
-            <motion.span
-              className="block h-px w-5 bg-current rounded-full"
-              animate={open ? { rotate: 45, y: 3.5 } : { rotate: 0, y: 0 }}
-              transition={spring.snappy}
-            />
-            <motion.span
-              className="block h-px w-5 bg-current rounded-full"
-              animate={
-                open
-                  ? { opacity: 0, scaleX: 0 }
-                  : { opacity: 1, scaleX: 1 }
-              }
-              transition={{ duration: FAST }}
-            />
-            <motion.span
-              className="block h-px w-5 bg-current rounded-full"
-              animate={
-                open ? { rotate: -45, y: -3.5 } : { rotate: 0, y: 0 }
-              }
-              transition={spring.snappy}
-            />
-          </div>
-        </button>
+        {/* Mobile hamburger — close button is portaled inside the overlay */}
+        <div className="lg:hidden w-12 h-12">
+          <button
+            ref={hamburgerRef}
+            className={cn(
+              "flex items-center justify-center w-12 h-12 rounded-xl bg-transparent border border-transparent text-white/60 hover:text-white hover:border-white/[0.08] transition-all duration-200 [-webkit-appearance:none] active:scale-95",
+              open && "pointer-events-none opacity-0"
+            )}
+            onClick={handleToggle}
+            aria-label="Open navigation menu"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-hidden={open ? true : undefined}
+            tabIndex={open ? -1 : 0}
+          >
+            <div className="flex flex-col gap-[5px]">
+              <motion.span
+                className="block h-px w-5 bg-current rounded-full"
+                animate={open ? { rotate: 45, y: 3.5 } : { rotate: 0, y: 0 }}
+                transition={spring.snappy}
+              />
+              <motion.span
+                className="block h-px w-5 bg-current rounded-full"
+                animate={
+                  open
+                    ? { opacity: 0, scaleX: 0 }
+                    : { opacity: 1, scaleX: 1 }
+                }
+                transition={{ duration: FAST }}
+              />
+              <motion.span
+                className="block h-px w-5 bg-current rounded-full"
+                animate={
+                  open ? { rotate: -45, y: -3.5 } : { rotate: 0, y: 0 }
+                }
+                transition={spring.snappy}
+              />
+            </div>
+          </button>
+        </div>
       </nav>
 
-      {/* Mobile nav — full-screen overlay above the header */}
-      <div
-        id="mobile-nav"
-        className={cn(
-          "fixed inset-0 z-[120] bg-black transition-all duration-300",
-          open
-            ? "opacity-100 visible pointer-events-auto"
-            : "opacity-0 invisible pointer-events-none"
-        )}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Navigation menu"
-        onKeyDown={open ? handleKeyDown : undefined}
-        onClick={open ? handleClose : undefined}
-      >
-        <button
-          className="absolute top-4 right-4 z-[130] flex items-center justify-center w-12 h-12 rounded-xl border border-white/[0.08] bg-white/[0.04] text-white/50 hover:text-white hover:border-white/[0.15] hover:bg-white/[0.08] transition-all duration-200 active:scale-95"
-          onClick={handleClose}
-          aria-label="Close navigation menu"
-          tabIndex={open ? 0 : -1}
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            className="text-current"
-          >
-            <path
-              d="M12 4L4 12M4 4l8 8"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-
+      {/* Mobile nav overlay — portaled to body so it escapes the header stacking context */}
+      {mounted && createPortal(
         <div
+          id="mobile-nav"
           ref={mobileNavRef}
-          className="flex h-full flex-col items-center justify-center overflow-y-auto overscroll-contain"
-          onClick={(e) => e.stopPropagation()}
+          className={cn(
+            "fixed inset-0 z-[120] bg-black transition-all duration-300",
+            open
+              ? "opacity-100 visible pointer-events-auto"
+              : "opacity-0 invisible pointer-events-none"
+          )}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
+          onKeyDown={open ? handleKeyDown : undefined}
+          onClick={open ? handleClose : undefined}
         >
-          <nav
-            className="flex flex-col items-center gap-1 py-20"
-            aria-label="Mobile navigation"
+          {/* Close button — inside the overlay so it renders above it (same z-context) */}
+          <button
+            className={cn(
+              "absolute top-3 right-3 z-10 flex items-center justify-center w-11 h-11 rounded-xl border border-white/[0.12] bg-white/[0.08] text-white/70 hover:text-white hover:border-white/[0.2] hover:bg-white/[0.12] transition-all duration-200 [-webkit-appearance:none] active:scale-95",
+              !open && "pointer-events-none opacity-0"
+            )}
+            onClick={handleClose}
+            aria-label="Close navigation menu"
+            tabIndex={open ? 0 : -1}
           >
-            {sections.map((s, i) => {
-              const isActive = active === s.id;
-              return (
-                <a
-                  key={s.id}
-                  href={getSectionHref(s.id, pathname)}
-                  className={cn(
-                    "relative text-2xl sm:text-3xl font-medium min-h-[52px] flex items-center px-8 rounded-2xl w-full max-w-xs justify-center transition-all duration-300",
-                    isActive
-                      ? "text-white/90 bg-white/[0.06]"
-                      : "text-white/35 hover:text-white/70 hover:bg-white/[0.03]"
-                  )}
-                  style={{
-                    transitionDelay: open ? `${50 + i * 25}ms` : "0ms",
-                  }}
-                  tabIndex={open ? 0 : -1}
-                  onClick={handleNavItemClick}
-                >
-                  {isActive && (
-                    <span className="absolute left-1/2 -translate-x-1/2 -top-0.5 h-0.5 w-8 rounded-full bg-white/30" />
-                  )}
-                  {s.label}
-                </a>
-              );
-            })}
+            <X className="h-5 w-5" />
+          </button>
 
-            {externalLinks.map((link, i) => {
-              const Icon = link.icon;
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-2xl sm:text-3xl font-medium min-h-[52px] flex items-center px-8 rounded-2xl w-full max-w-xs justify-center text-white/35 hover:text-white/70 hover:bg-white/[0.03] transition-all duration-300"
-                  style={{
-                    transitionDelay: open ? `${50 + (sections.length + i) * 25}ms` : "0ms",
-                  }}
-                  tabIndex={open ? 0 : -1}
-                  onClick={handleNavItemClick}
-                >
-                  <Icon className="h-5 w-5 mr-2 shrink-0" />
-                  {link.label}
-                </a>
-              );
-            })}
-
-            <div
-              className={cn(
-                "w-12 h-px bg-white/[0.06] my-3 transition-all duration-300",
-                open ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
-              )}
-              style={{
-                transitionDelay: open ? "200ms" : "0ms",
-              }}
-            />
-
-            <a
-              href="/contact"
-              className="rounded-2xl bg-white px-8 py-3.5 text-base font-medium text-black min-h-[48px] flex items-center hover:bg-white/90 transition-all duration-300 active:scale-[0.98]"
-              style={{
-                transitionDelay: open ? "225ms" : "0ms",
-              }}
-              tabIndex={open ? 0 : -1}
-              onClick={handleNavItemClick}
+          <div
+            className="flex h-dvh flex-col items-center justify-center overflow-y-auto overscroll-contain"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <nav
+              className="flex flex-col items-center gap-1 py-20"
+              aria-label="Mobile navigation"
             >
-              Get in touch
-            </a>
-          </nav>
-        </div>
-      </div>
+              {sections.map((s, i) => {
+                const isActive = active === s.id;
+                return (
+                  <a
+                    key={s.id}
+                    href={getSectionHref(s.id, pathname)}
+                    className={cn(
+                      "relative text-2xl sm:text-3xl font-medium min-h-[52px] flex items-center px-8 rounded-2xl w-full max-w-xs justify-center transition-all duration-300",
+                      isActive
+                        ? "text-white/90 bg-white/[0.06]"
+                        : "text-white/35 hover:text-white/70 hover:bg-white/[0.03]"
+                    )}
+                    style={{
+                      transitionDelay: open ? `${50 + i * 25}ms` : "0ms",
+                    }}
+                    tabIndex={open ? 0 : -1}
+                    onClick={handleNavItemClick}
+                  >
+                    {isActive && (
+                      <span className="absolute left-1/2 -translate-x-1/2 -top-0.5 h-0.5 w-8 rounded-full bg-white/30" />
+                    )}
+                    {s.label}
+                  </a>
+                );
+              })}
+
+              {externalLinks.map((link, i) => {
+                const Icon = link.icon;
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="text-2xl sm:text-3xl font-medium min-h-[52px] flex items-center px-8 rounded-2xl w-full max-w-xs justify-center text-white/35 hover:text-white/70 hover:bg-white/[0.03] transition-all duration-300"
+                    style={{
+                      transitionDelay: open ? `${50 + (sections.length + i) * 25}ms` : "0ms",
+                    }}
+                    tabIndex={open ? 0 : -1}
+                    onClick={handleNavItemClick}
+                  >
+                    <Icon className="h-5 w-5 mr-2 shrink-0" />
+                    {link.label}
+                  </a>
+                );
+              })}
+
+              <div
+                className={cn(
+                  "w-12 h-px bg-white/[0.06] my-3 transition-all duration-300",
+                  open ? "opacity-100 scale-x-100" : "opacity-0 scale-x-0"
+                )}
+                style={{
+                  transitionDelay: open ? "200ms" : "0ms",
+                }}
+              />
+
+              <a
+                href="/contact"
+                className="rounded-2xl bg-white px-8 py-3.5 text-base font-medium text-black min-h-[48px] flex items-center hover:bg-white/90 transition-all duration-300 active:scale-[0.98]"
+                style={{
+                  transitionDelay: open ? "225ms" : "0ms",
+                }}
+                tabIndex={open ? 0 : -1}
+                onClick={handleNavItemClick}
+              >
+                Get in touch
+              </a>
+            </nav>
+          </div>
+        </div>,
+        document.body
+      )}
     </header>
   );
 }

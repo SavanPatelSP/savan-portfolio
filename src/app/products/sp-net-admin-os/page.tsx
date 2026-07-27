@@ -1,57 +1,27 @@
-import type { Metadata } from "next";
 import SPNetAdminOSClientPage from "./ClientPage";
+import { generateProductMetadata, generateProductJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = generateProductMetadata({
+  slug: "sp-net-admin-os",
   title: "SP NET ADMIN OS — Enterprise Administration Platform",
   description:
     "A complete enterprise administration platform featuring licensing, premium management, coins & gems economy, organizations, team members, departments, permissions, audit logs, analytics, moderation, security, and administration dashboard.",
-  openGraph: {
-    title: "SP NET ADMIN OS — Enterprise Administration Platform",
-    description:
-      "Enterprise administration, redesigned. Organizations, permissions, economies, analytics, moderation — all unified in one platform.",
-    type: "website",
-    url: "https://savan.sp-net.in/products/sp-net-admin-os",
-    siteName: "SP NET INC",
-    images: [{ url: "/og?section=sp-net-admin-os", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "SP NET ADMIN OS — Enterprise Administration Platform",
-    description:
-      "Enterprise administration, redesigned. A complete platform for organizations, permissions, analytics, and moderation.",
-    creator: "@savanpatel",
-    images: [{ url: "/og?section=sp-net-admin-os", width: 1200, height: 630 }],
-  },
-  alternates: {
-    canonical: "/products/sp-net-admin-os",
-  },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "SP NET ADMIN OS",
-  applicationCategory: "BusinessApplication",
+  ogDescription:
+    "Enterprise administration, redesigned. Organizations, permissions, economies, analytics, moderation — all unified in one platform.",
+  twitterDescription:
+    "Enterprise administration, redesigned. A complete platform for organizations, permissions, analytics, and moderation.",
+  category: "BusinessApplication",
   operatingSystem: "Web",
+});
+
+const jsonLd = generateProductJsonLd({
+  slug: "sp-net-admin-os",
+  title: "SP NET ADMIN OS",
   description:
     "A complete enterprise administration platform featuring licensing, premium management, coins & gems economy, organizations, team members, departments, permissions, audit logs, analytics, moderation, security, and administration dashboard.",
-  url: "https://savan.sp-net.in/products/sp-net-admin-os",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-  },
-  creator: {
-    "@type": "Person",
-    name: "Savan Patel",
-    url: "https://savan.sp-net.in",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "SP NET INC",
-    url: "https://sp-net.in",
-  },
-};
+  category: "BusinessApplication",
+  operatingSystem: "Web",
+});
 
 export default function SPNetAdminOSPage() {
   return (

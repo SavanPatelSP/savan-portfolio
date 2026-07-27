@@ -140,7 +140,7 @@ const faqItems = [
   {
     question: "How realistic are these goals?",
     answer:
-      "Every goal has a concrete technical path. The edge infrastructure is already architected for global scale. The monorepo enables rapid development. The AI integration layer makes intelligence a first-class capability. These are engineering targets, not wishes.",
+      "Every goal has a concrete technical path. The edge infrastructure is already architected for global scale. The shared foundation enables rapid development. The AI integration layer makes intelligence a first-class capability. These are engineering targets, not wishes.",
   },
   {
     question: "What makes your approach different?",

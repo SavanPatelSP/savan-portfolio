@@ -18,7 +18,7 @@ import {
 const whatIDo = [
   {
     icon: Lock,
-    title: "E2EE in SP NET GRAM",
+    title: "End-to-End Encryption in SP NET GRAM",
     description:
       "End-to-end encryption was one of the hardest and most rewarding things I've built. Implementing proper key exchange, ensuring forward secrecy, and making sure even I can't read user messages — that's the standard I hold myself to. GRAM's encryption isn't a feature; it's a promise.",
   },
@@ -43,7 +43,7 @@ const whatIDo = [
 ];
 
 const securityPractices = [
-  { name: "End-to-End Encryption", detail: "Implementing Signal Protocol-style E2EE for GRAM with forward secrecy and post-compromise security" },
+  { name: "End-to-End Encryption", detail: "Implementing end-to-end encryption for GRAM with forward secrecy and post-compromise security" },
   { name: "Key Management", detail: "Secure key generation, rotation, and storage — because encryption is only as strong as your key management" },
   { name: "Secure Authentication", detail: "Multi-factor auth, session management, and secure password hashing across all SP NET products" },
   { name: "Audit Logging", detail: "Immutable, tamper-proof audit trails so every access and change is traceable and accountable" },
@@ -83,7 +83,7 @@ const faqItems = [
   {
     question: "What's the hardest security problem you've solved?",
     answer:
-      "Implementing end-to-end encryption in GRAM properly. Not just wrapping messages in encryption, but doing it right — key exchange, forward secrecy, handling device changes, key recovery without breaking E2EE guarantees. It took months of research, implementation, and testing.",
+      "Implementing end-to-end encryption in GRAM properly. Not just wrapping messages in encryption, but doing it right — secure key exchange, forward secrecy, handling device changes, key recovery without breaking encryption guarantees. It took months of research, implementation, and testing.",
   },
   {
     question: "Do you do bug bounties?",
@@ -142,7 +142,7 @@ export default function ClientPage() {
         label="Research"
         title="Cybersecurity"
         titleAccent="Protecting what matters"
-        description="My passion for security — from implementing E2EE in SP NET GRAM to learning zero-trust architecture. Security isn't a feature I add; it's the foundation everything is built on."
+        description="My passion for security — from implementing end-to-end encryption in SP NET GRAM to learning zero-trust architecture. Security isn't a feature I add; it's the foundation everything is built on."
         icon={<Shield className="h-4 w-4" />}
       />
 
@@ -156,7 +156,7 @@ export default function ClientPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-12">
             {[
               { label: "Philosophy", value: "Security by design, not by bolt-on" },
-              { label: "Standard", value: "E2EE for all communication" },
+              { label: "Standard", value: "End-to-end encryption for all communication" },
               { label: "Commitment", value: "User data sovereignty always" },
             ].map((stat, i) => (
               <motion.div

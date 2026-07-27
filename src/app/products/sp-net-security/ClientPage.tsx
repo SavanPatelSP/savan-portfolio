@@ -32,7 +32,7 @@ const features = [
     icon: Scan,
     title: "Threat Detection",
     description:
-      "Real-time monitoring and analysis of network traffic, system behavior, and user activity. Machine learning models identify anomalies and potential threats before they become incidents.",
+      "Real-time monitoring and analysis of network traffic, system behavior, and user activity. Advanced monitoring and analysis identify potential threats before they become incidents.",
   },
   {
     icon: Search,
@@ -44,13 +44,13 @@ const features = [
     icon: LifeBuoy,
     title: "Incident Response",
     description:
-      "Automated playbooks for common security events — from account compromise to data breach. Orchestrate containment, investigation, and recovery workflows from a single console.",
+      "Automated response workflows handle common security events, with escalation for complex incidents.",
   },
   {
     icon: FileCheck,
     title: "Compliance Monitoring",
     description:
-      "Continuous compliance assessment against SOC 2, GDPR, HIPAA, and custom policies. Automated evidence collection and audit-ready reports generated on demand.",
+      "Continuous compliance assessment against industry standards and custom policies. Automated evidence collection and audit-ready reports generated on demand.",
   },
   {
     icon: Eye,
@@ -80,7 +80,7 @@ const principles = [
   {
     icon: Globe,
     title: "Ecosystem-Wide Visibility",
-    description: "Security monitoring spans every SP NET product — GRAM, ADMIN OS, WORKPLACE, API, and Cloud. A single pane of glass for your entire security posture.",
+    description: "Security monitoring spans the entire SP NET ecosystem from a unified dashboard.",
   },
   {
     icon: Bell,
@@ -101,11 +101,11 @@ const faqItems = [
   },
   {
     question: "What does it protect against?",
-    answer: "SP NET Security monitors for a wide range of threats including unauthorized access, data exfiltration, account compromise, malware, DDoS attacks, insider threats, and configuration drift. Automated playbooks handle common events while complex incidents are escalated with full context.",
+    answer:       "SP NET Security monitors for a wide range of threats and suspicious activities across your infrastructure. Automated playbooks handle common events while complex incidents are escalated with full context.",
   },
   {
     question: "How does compliance monitoring work?",
-    answer: "SP NET Security continuously evaluates your configuration and activity against compliance frameworks like SOC 2, GDPR, and HIPAA. It automatically collects evidence, generates audit-ready reports, and alerts you when drift is detected. Custom policies can be defined for organization-specific requirements.",
+    answer: "SP NET Security continuously evaluates your configuration and activity against industry compliance standards and custom policies. It automatically collects evidence, generates audit-ready reports, and alerts you when drift is detected. Custom policies can be defined for organization-specific requirements.",
   },
   {
     question: "Is SP NET Security only for SP NET products?",

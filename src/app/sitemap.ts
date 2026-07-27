@@ -39,6 +39,7 @@ const pages: PageConfig[] = [
   { route: "/products/sp-net-robotics", priority: 0.7, changeFrequency: "monthly" },
   { route: "/products/sp-net-ecosystem", priority: 0.7, changeFrequency: "monthly" },
   { route: "/products/sp-net-api", priority: 0.7, changeFrequency: "monthly" },
+  { route: "/products/savaro-x", priority: 0.8, changeFrequency: "monthly" },
 
   { route: "/downloads", priority: 0.9, changeFrequency: "monthly" },
   { route: "/downloads/portfolio-app", priority: 0.9, changeFrequency: "monthly" },

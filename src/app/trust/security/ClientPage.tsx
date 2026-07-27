@@ -304,8 +304,8 @@ export default function ClientPage() {
               </p>
               <div className="space-y-2">
                 {[
-                  "Signal Protocol-inspired key exchange for secure session setup",
-                  "Messages encrypted with AES-256-GCM before leaving your device",
+                  "Secure key exchange for session setup",
+                  "Messages encrypted with industry-standard encryption before leaving your device",
                   "Keys stored locally — never transmitted to the server",
                   "Forward secrecy ensures past messages stay safe if a key is compromised",
                 ].map((item) => (

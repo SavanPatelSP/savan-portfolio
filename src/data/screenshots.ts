@@ -11,7 +11,7 @@ export const screenshots: ScreenshotEntry[] = [
   {
     id: "dashboard",
     title: "Dashboard",
-    description: "Command center with real-time project metrics, activity feed, and quick actions",
+    description: "Your project overview at a glance",
     feature: "Real-Time Dashboard",
     device: "desktop",
     src: "/screenshots/portfolio-app/desktop/dashboard.png",
@@ -27,7 +27,7 @@ export const screenshots: ScreenshotEntry[] = [
   {
     id: "downloads",
     title: "Installations",
-    description: "Secure software installation with platform selection, version control, and integrity verification",
+    description: "Download and install across your devices",
     feature: "Software Distribution",
     device: "desktop",
     src: "/screenshots/portfolio-app/desktop/downloads.png",
@@ -51,7 +51,7 @@ export const screenshots: ScreenshotEntry[] = [
   {
     id: "offline",
     title: "Offline Mode",
-    description: "Cached content management with sync status, storage metrics, and offline capabilities",
+    description: "Your content, available even offline",
     feature: "Offline Experience",
     device: "laptop",
     src: "/screenshots/portfolio-app/laptop/offline.png",

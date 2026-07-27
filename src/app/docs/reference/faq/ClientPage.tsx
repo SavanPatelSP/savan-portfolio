@@ -111,12 +111,12 @@ const faqData: FAQCategory[] = [
       {
         question: "What technology stack does the app use?",
         answer:
-          "The application is built with Next.js 16.2 (App Router), React 19.2, TypeScript 5, and Tailwind CSS 4. Animations use Framer Motion 12.42. The contact form uses the Resend API for email delivery. The app is deployed on Vercel. Testing uses Playwright for E2E coverage.",
+          "The application is built with a modern web framework featuring server-side rendering, static generation, and progressive web app capabilities. It uses a utility-first styling system, physics-based animations, and is deployed on a global edge network for fast loading everywhere.",
       },
       {
         question: "Is the source code available?",
         answer:
-          "The source code is available on GitHub at github.com/savanpatel/savan-portfolio. You can view the repository, inspect the code, and contribute improvements through pull requests. See the Contributing guide for the workflow.",
+          "The source code is available on GitHub at github.com/savanpatelssp/savan-portfolio. You can view the repository, inspect the code, and contribute improvements through pull requests. See the Contributing guide for the workflow.",
       },
       {
         question: "How much storage does the app use?",
@@ -389,7 +389,7 @@ export default function ClientPage() {
             </Link>{" "}
             guide or open an issue on the{" "}
             <a
-              href="https://github.com/savanpatel/savan-portfolio/issues"
+              href="https://github.com/savanpatelssp/savan-portfolio/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/80 hover:text-white underline underline-offset-2"

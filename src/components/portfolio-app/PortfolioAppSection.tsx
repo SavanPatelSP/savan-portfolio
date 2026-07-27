@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useCallback } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, useInView } from "framer-motion";
 import {
   Monitor,
@@ -29,9 +30,9 @@ import {
 } from "lucide-react";
 import { SectionContainer, SectionTitle, FadeIn } from "@/components/ui/AnimationPrimitives";
 import { ParticleField } from "@/components/ui/ParticleField";
-import { ApplicationPreview } from "@/components/portfolio-app/ApplicationPreview";
 import { APP_VERSION, features } from "@/data/portfolio-app";
 import { ease, NORMAL } from "@/lib/motion";
+import { usePwaInstall } from "@/hooks/usePwaInstall";
 
 /* ─── ICON MAP ───────────────────────────────────────────────── */
 
@@ -274,6 +275,21 @@ export function PortfolioAppSection() {
   const trustRef = useRef<HTMLDivElement>(null);
   const trustInView = useInView(trustRef, { once: true, amount: 0.1 });
 
+  const router = useRouter();
+  const { canInstall, isInstalled, isSafari, isIOS, promptInstall } = usePwaInstall();
+
+  const handleInstall = useCallback(async () => {
+    if (canInstall) {
+      await promptInstall();
+    } else if (isInstalled) {
+      router.push("/downloads/portfolio-app");
+    } else if (isSafari || isIOS) {
+      router.push("/downloads/portfolio-app");
+    } else {
+      router.push("/downloads/portfolio-app");
+    }
+  }, [canInstall, isInstalled, isSafari, isIOS, promptInstall, router]);
+
   return (
     <SectionContainer
       id="portfolio-app"
@@ -327,28 +343,21 @@ export function PortfolioAppSection() {
               </p>
 
               <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/downloads/portfolio-app"
+                <button
+                  onClick={handleInstall}
                   className="group inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-medium text-black transition-all duration-200 hover:bg-white/90 hover:shadow-[0_4px_20px_-4px_rgba(255,255,255,0.15)] hover:-translate-y-0.5 active:scale-[0.98]"
                 >
                   Install Now
                   <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                </Link>
+                </button>
                 <Link
-                  href="/portfolio-app"
+                  href="/docs"
                   className="group inline-flex min-h-[48px] items-center gap-2 rounded-xl border border-white/[0.10] px-6 py-3 text-sm font-medium text-white/50 transition-all duration-200 hover:text-white/70 hover:border-white/[0.18] hover:-translate-y-0.5 active:scale-[0.98]"
                 >
                   Documentation
                 </Link>
               </div>
             </div>
-          </div>
-        </FadeIn>
-
-        {/* ─── Application Preview ─── */}
-        <FadeIn delay={0.2} y={16} blur={6}>
-          <div className="mt-10 sm:mt-14">
-            <ApplicationPreview activeTab="home" variant="hero" />
           </div>
         </FadeIn>
 
@@ -503,15 +512,15 @@ export function PortfolioAppSection() {
                 Get the native app experience with faster loading, offline access, and a distraction-free interface.
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3">
-                <Link
-                  href="/downloads/portfolio-app"
+                <button
+                  onClick={handleInstall}
                   className="group inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-medium text-black transition-all duration-200 hover:bg-white/90 hover:shadow-[0_4px_20px_-4px_rgba(255,255,255,0.15)] hover:-translate-y-0.5 active:scale-[0.98]"
                 >
                   Install Portfolio App
                   <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                </Link>
+                </button>
                 <Link
-                  href="/portfolio-app"
+                  href="/docs"
                   className="group inline-flex min-h-[48px] items-center gap-2 rounded-xl border border-white/[0.10] px-6 py-3 text-sm font-medium text-white/50 transition-all duration-200 hover:text-white/70 hover:border-white/[0.18] hover:-translate-y-0.5 active:scale-[0.98]"
                 >
                   View Documentation

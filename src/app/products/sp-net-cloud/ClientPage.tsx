@@ -33,7 +33,7 @@ const features = [
     icon: Server,
     title: "Compute",
     description:
-      "Virtual machines, containers, and serverless functions. Deploy any workload with automatic scaling, load balancing, and health monitoring built in.",
+      "Flexible compute options with automatic scaling and health monitoring.",
   },
   {
     icon: HardDrive,
@@ -45,13 +45,13 @@ const features = [
     icon: FunctionSquare,
     title: "Edge Functions",
     description:
-      "Deploy code to edge nodes worldwide for sub-10ms execution. Perfect for API routing, authentication, image transformation, and real-time data processing.",
+      "Deploy code to edge nodes worldwide for ultra-low-latency execution. Perfect for API routing, authentication, image transformation, and real-time data processing.",
   },
   {
     icon: Settings,
     title: "Managed Services",
     description:
-      "Managed queues, caches, search engines, and message brokers. Run complex architectures without managing the underlying infrastructure.",
+      "A range of managed services to simplify complex architectures.",
   },
   {
     icon: BarChart3,
@@ -63,7 +63,7 @@ const features = [
     icon: Globe,
     title: "Global CDN",
     description:
-      "A content delivery network spanning 200+ edge locations. Static assets, media files, and API responses are cached and served from the nearest edge.",
+      "A global content delivery network ensuring fast access from anywhere. Static assets, media files, and API responses are cached and served from the nearest edge.",
   },
 ];
 
@@ -76,17 +76,17 @@ const principles = [
   {
     icon: Zap,
     title: "Performance First",
-    description: "NVMe storage, modern CPU architectures, and 10Gbps networking. Every component is chosen for speed and reliability.",
+    description: "High-performance storage and networking ensure fast, reliable infrastructure.",
   },
   {
     icon: Lock,
     title: "Compliance Ready",
-    description: "SOC 2 Type II, GDPR, and HIPAA compliance frameworks. Audit logs, data residency controls, and retention policies built into the platform.",
+    description: "Built-in compliance support for major regulatory frameworks, with audit logs and data residency controls.",
   },
   {
     icon: Activity,
     title: "99.99% Uptime SLA",
-    description: "Multi-az redundancy, automatic failover, and zero-downtime deployments. Infrastructure that stays up when you need it.",
+    description: "High availability with automatic failover and zero-downtime deployments. Infrastructure that stays up when you need it.",
   },
   {
     icon: Clock,
@@ -110,7 +110,7 @@ const faqItems = [
   },
   {
     question: "What managed services are available?",
-    answer: "SP NET Cloud will launch with managed databases (PostgreSQL, Redis), message queues, search engines, and object storage. Additional services like managed Kubernetes, ML inference, and workflow engines are planned for future releases.",
+    answer:       "SP NET Cloud will launch with managed databases, message queues, search engines, and object storage. Additional services like managed Kubernetes, ML inference, and workflow engines are planned for future releases.",
   },
   {
     question: "Is SP NET Cloud available now?",

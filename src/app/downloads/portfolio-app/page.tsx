@@ -2,22 +2,22 @@ import type { Metadata } from "next";
 import ClientPage from "./ClientPage";
 
 export const metadata: Metadata = {
-  title: "Install Portfolio App — SP NET INC",
+  title: "Install Portfolio App — PWA | SP NET INC",
   description:
-    "Install the Portfolio App v1.0.0 by SP NET INC. A Progressive Web App with native experience, offline access, and automatic updates. Free install for Windows, macOS, Linux, Android, and iOS.",
+    "Install the Portfolio Application as a Progressive Web App. Available now for Chrome, Edge, Safari, and other modern browsers. Works offline with automatic updates.",
   openGraph: {
-    title: "Install Portfolio App — SP NET INC",
+    title: "Install Portfolio App — PWA | SP NET INC",
     description:
-      "Install the Portfolio App v1.0.0. Progressive Web App with native experience, offline access, and automatic updates.",
+      "Install the Portfolio Application as a Progressive Web App. Works offline with automatic updates.",
     url: "https://savan.sp-net.in/downloads/portfolio-app",
     type: "website",
     siteName: "SP NET INC",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Install Portfolio App — SP NET INC",
+    title: "Install Portfolio App — PWA | SP NET INC",
     description:
-      "Install the Portfolio App v1.0.0. Progressive Web App with native experience, offline access, and automatic updates.",
+      "Install the Portfolio Application as a Progressive Web App. Works offline with automatic updates.",
   },
   alternates: {
     canonical: "/downloads/portfolio-app",
@@ -40,10 +40,6 @@ const jsonLd = {
     name: "SP NET INC",
     url: "https://savan.sp-net.in",
   },
-  softwareVersion: "1.0.0",
-  fileSize: "15MB",
-  downloadUrl: "https://savan.sp-net.in/downloads/portfolio-app",
-  screenshot: "https://savan.sp-net.in/og?section=portfolio-app",
   description:
     "A Progressive Web App that transforms the portfolio into a native-like application with offline access, automatic updates, and a distraction-free experience.",
 };

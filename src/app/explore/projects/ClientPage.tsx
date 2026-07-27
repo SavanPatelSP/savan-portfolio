@@ -9,6 +9,8 @@ import {
   Clock,
   Cpu,
   Server,
+  Layers,
+  Link2,
 } from "lucide-react";
 import { ease, spring, SLOW } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
@@ -28,8 +30,8 @@ const activeProjects = [
     icon: Code2,
     name: "SP NET Platform Core",
     description:
-      "The monorepo that holds everything together — shared packages, the design system, authentication, and core utilities. This is the foundation every product sits on.",
-    stack: ["TypeScript", "Next.js", "Prisma", "PostgreSQL"],
+      "The core foundation that holds everything together — shared packages, design system, authentication, and core utilities. Every SP NET product sits on this foundation. Getting the architecture right here means every product ships faster and stays consistent.",
+    stack: ["Type-Safe", "Web Framework", "Data Layer", "Database"],
     status: "Active",
     progress: 65,
     color: "#3b82f6",
@@ -38,8 +40,8 @@ const activeProjects = [
     icon: Cpu,
     name: "SP NET AI Engine",
     description:
-      "The intelligence layer I am building to power smart features across all products. Natural language understanding, content generation, and predictive analytics — all packaged as a reusable service.",
-    stack: ["Python", "FastAPI", "OpenAI", "pgvector"],
+      "The intelligence layer powering smart features across all products. Natural language understanding, content generation, predictive analytics, and smart search — packaged as a reusable service that plugs into GRAM, ADMIN OS, and every future product.",
+    stack: ["Python", "API Framework", "AI Models", "Vector Search"],
     status: "Active",
     progress: 40,
     color: "#10b981",
@@ -48,11 +50,21 @@ const activeProjects = [
     icon: Server,
     name: "SP NET API Gateway",
     description:
-      "A unified gateway that handles routing, authentication, and rate limiting across all backend services. Built for the edge with sub-millisecond overhead.",
-    stack: ["Hono", "Cloudflare Workers", "Redis", "TypeScript"],
+      "A unified gateway handling routing, authentication, and rate limiting across all backend services. Built for the edge with sub-millisecond overhead. Every external and internal API call flows through this layer.",
+    stack: ["Edge Runtime", "CDN Platform", "In-Memory Store", "Type-Safe"],
     status: "Active",
     progress: 55,
     color: "#8b5cf6",
+  },
+  {
+    icon: Link2,
+    name: "SavaroX",
+    description:
+      "Blockchain and Web3 initiative exploring decentralized infrastructure, tokenized economies, and Web3-native experiences. Building the decentralized layer that other SP NET products can tap into for trustless interactions and user sovereignty.",
+    stack: ["TypeScript", "Solidity", "Ethers.js", "Node.js"],
+    status: "Exploring",
+    progress: 15,
+    color: "#a855f7",
   },
 ];
 
@@ -104,11 +116,38 @@ const openSourceProjects = [
   },
 ];
 
+const techOverview = [
+  {
+    icon: Layers,
+    title: "Frontend",
+    tools: "Next.js, React, TypeScript, Tailwind CSS, Framer Motion",
+    focus: "Component architecture, design systems, and performant UIs",
+  },
+  {
+    icon: Server,
+    title: "Backend",
+    tools: "Node.js, Edge Runtime, Data Layer, Database, In-Memory Store",
+    focus: "API design, data modeling, and real-time infrastructure",
+  },
+  {
+    icon: Cpu,
+    title: "AI & Data",
+    tools: "Python, API Framework, AI Models, Vector Search",
+    focus: "Intelligence layers, embeddings, and semantic search",
+  },
+  {
+    icon: Link2,
+    title: "Web3",
+    tools: "Solidity, Ethers.js, Smart Contracts",
+    focus: "Decentralized infrastructure and tokenized economies",
+  },
+];
+
 const faqItems = [
   {
     question: "What are you actively working on?",
     answer:
-      "Three core projects are in active development: the Platform Core (the foundational monorepo), the AI Engine (intelligence layer), and the API Gateway (unified routing). These form the backbone that every SP NET product is built on, so getting them right is the top priority.",
+      "Three core projects are in active development: the Platform Core (the foundational architecture), the AI Engine (intelligence layer), and the API Gateway (unified routing). These form the backbone that every SP NET product is built on, so getting them right is the top priority.",
   },
   {
     question: "Why keep some projects private?",
@@ -139,9 +178,9 @@ const relatedPages = [
     href: "/explore/products",
   },
   {
-    title: "GitHub",
-    description: "Where the code lives and evolves.",
-    href: "https://github.com/aboutme-sp",
+    title: "SavaroX",
+    description: "Blockchain and Web3 initiative.",
+    href: "/products/savaro-x",
   },
   {
     title: "Innovation",
@@ -193,9 +232,34 @@ export default function ClientPage() {
 
       <SectionContainer className="pt-0">
         <SectionTitle
+          label="Technology"
+          title="The stack behind the products"
+          subtitle="Every project shares a common technology foundation, chosen for developer experience, performance, and long-term maintainability."
+        />
+        <StaggerFade staggerDelay={0.08} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {techOverview.map((tech) => {
+            const Icon = tech.icon;
+            return (
+              <StaggerItem key={tech.title}>
+                <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-5 h-full">
+                  <div className="mb-3 inline-flex items-center justify-center rounded-lg border border-white/[0.06] bg-white/[0.02] p-2">
+                    <Icon className="h-4 w-4 text-blue-400/60" />
+                  </div>
+                  <h3 className="text-sm font-medium text-white/60 mb-1">{tech.title}</h3>
+                  <p className="text-[11px] font-mono text-white/20 mb-2">{tech.tools}</p>
+                  <p className="text-xs text-white/25 leading-relaxed">{tech.focus}</p>
+                </div>
+              </StaggerItem>
+            );
+          })}
+        </StaggerFade>
+      </SectionContainer>
+
+      <SectionContainer className="pt-0">
+        <SectionTitle
           label="Active Projects"
           title="Currently in development"
-          subtitle="Three projects forming the core infrastructure of everything I build."
+          subtitle="Four projects forming the core infrastructure of everything SP NET builds."
         />
 
         <div className="space-y-5">

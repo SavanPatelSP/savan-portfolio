@@ -77,7 +77,7 @@ const faqItems = [
   {
     question: "What AI tools do you use day-to-day?",
     answer:
-      "I work with a mix of open-source models (Llama, Mistral) and API-based models depending on the task. For vector databases I have experimented with Pinecone and pgvector. For prompt engineering, I just use a lot of trial and error and patience.",
+      "I work with a mix of open-source and API-based models depending on the task. For vector databases I have experimented with managed and self-hosted options. For prompt engineering, I just use a lot of trial and error and patience.",
   },
   {
     question: "Is SP NET GRAM's AI all self-built?",

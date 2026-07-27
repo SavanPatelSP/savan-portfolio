@@ -95,7 +95,7 @@ const engineeringRoles = [
   {
     title: "Senior Full-Stack Engineer",
     description: "Build and own entire features end-to-end across the SP NET ecosystem. TypeScript, React, Node.js, and cloud infrastructure.",
-    skills: ["TypeScript", "React", "Next.js", "Node.js", "PostgreSQL"],
+    skills: ["TypeScript", "React", "Web Framework", "Node.js", "Database"],
   },
   {
     title: "Senior Backend Engineer",
@@ -110,7 +110,7 @@ const engineeringRoles = [
   {
     title: "DevOps / Platform Engineer",
     description: "Build and maintain the infrastructure, CI/CD pipelines, and deployment systems that keep SP NET products running smoothly.",
-    skills: ["Docker", "CI/CD", "Cloud", "Monitoring", "Security"],
+    skills: ["Containers", "CI/CD", "Cloud", "Monitoring", "Security"],
   },
 ];
 

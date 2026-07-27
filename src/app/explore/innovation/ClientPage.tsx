@@ -103,7 +103,7 @@ const currentExperiments = [
     area: "Applied AI",
   },
   {
-    title: "WebAssembly Plugin Runtime",
+    title: "Sandboxed Plugin Runtime",
     description:
       "A sandboxed environment for running third-party plugins safely inside SP NET products. Extensibility without the security risk.",
     status: "Research",

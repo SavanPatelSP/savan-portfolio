@@ -6,7 +6,7 @@ export default function SPNetEcosystemPage() {
   return (
     <ComingSoon
       title="SP NET Ecosystem"
-      titleAccent="The connected platform"
+      titleAccent="One account, one seamless experience across every tool"
       description="A unified ecosystem connecting messaging, administration, and intelligence. Currently in active research and development."
       features={[
         "Unified authentication",

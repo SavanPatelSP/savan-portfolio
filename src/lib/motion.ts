@@ -4,7 +4,6 @@
 export const FAST = 0.18;
 export const NORMAL = 0.28;
 export const SLOW = 0.45;
-export const PAGE = 0.6;
 
 // Easing curves
 export const ease = {
@@ -28,23 +27,6 @@ export const spring = {
   smooth: { type: "spring" as const, stiffness: 120, damping: 20, mass: 1 },
   /** Heavy spring — card returns */
   heavy: { type: "spring" as const, stiffness: 180, damping: 18, mass: 1.2 },
-};
-
-// Stagger timing
-export const stagger = {
-  /** Quick stagger — small item lists */
-  fast: 0.04,
-  /** Standard stagger — card grids, nav items */
-  normal: 0.06,
-  /** Slow stagger — large section reveals */
-  slow: 0.1,
-};
-
-// Section reveal config
-export const reveal = {
-  initial: { opacity: 0, y: 24, filter: "blur(8px)" },
-  animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-  transition: { duration: SLOW, ease: ease.out },
 };
 
 // Card hover config
@@ -72,28 +54,4 @@ export const buttonPress = {
   rest: { scale: 1, y: 0 },
   hover: { scale: 1.015, y: -1 },
   press: { scale: 0.98 },
-};
-
-// Interaction states (for CSS-based buttons)
-export const interaction = {
-  hover: {
-    y: -1,
-    transition: { duration: FAST, ease: ease.out },
-  },
-  press: {
-    scale: 0.98,
-    transition: { duration: FAST, ease: ease.out },
-  },
-  disabled: {
-    opacity: 0.4,
-    pointerEvents: "none" as const,
-  },
-};
-
-// Focus ring config
-export const focusRing = {
-  style: {
-    outline: "2px solid rgba(59,130,246,0.4)",
-    outlineOffset: "2px",
-  },
 };

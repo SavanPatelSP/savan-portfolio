@@ -32,13 +32,13 @@ const features = [
     icon: Brain,
     title: "Ecosystem Integration",
     description:
-      "A unified intelligence layer that connects SP NET GRAM, ADMIN OS, and every future product. Context flows seamlessly across tools, giving you an assistant that truly understands your entire workflow.",
+      "SP NET AI provides consistent intelligent assistance across every SP NET product.",
   },
   {
     icon: Lock,
     title: "Privacy-First Architecture",
     description:
-      "Built with privacy as a foundational principle. All AI processing respects your data boundaries with on-device inference options, zero data retention by default, and transparent model behavior.",
+      "Privacy is a foundational principle. SP NET AI is designed to respect your data boundaries, with user-controlled privacy settings across all features.",
   },
 ];
 
@@ -67,7 +67,7 @@ const privacyFeatures = [
   {
     title: "On-Device Processing",
     description:
-      "Sensitive operations run directly on your device. No raw data leaves your environment unless you explicitly choose to share it for enhanced cloud-powered features.",
+      "Sensitive operations can run locally on your device, with user-controlled data sharing.",
   },
   {
     title: "Zero Data Retention",
@@ -110,7 +110,7 @@ const faqItems = [
   {
     question: "What AI models power SP NET AI?",
     answer:
-      "SP NET AI is being built with a hybrid approach — leveraging both carefully fine-tuned open-source models and purpose-built inference pipelines. The goal is to balance performance, cost efficiency, and privacy, with the flexibility to run models locally or in the cloud depending on the task.",
+      "SP NET AI uses a flexible architecture that adapts to each task, with options for both local and cloud-based processing.",
   },
   {
     question: "How can I get in touch or learn more?",
@@ -270,7 +270,7 @@ export default function SPNetAIPage() {
                   Unified Intelligence Layer
                 </h3>
                 <p className="text-sm text-white/30 leading-relaxed">
-                  Instead of isolated AI features in each product, SP NET AI operates as a single unified intelligence layer. Context, preferences, and learned behaviors carry across every interaction — whether you are messaging in GRAM, managing teams in ADMIN OS, or using future SP NET products.
+                  SP NET AI provides consistent intelligent assistance across every SP NET product.
                 </p>
               </div>
             </div>

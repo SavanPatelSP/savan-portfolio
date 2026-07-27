@@ -5,19 +5,19 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Mail, Calendar, Send, Sparkles, RotateCcw, MessageCircle, Check, ShieldCheck, Award } from "lucide-react";
 import { SectionContainer, FadeIn, SectionTitle, BlurReveal } from "@/components/ui/AnimationPrimitives";
 import { Button } from "@/components/ui/Button";
-import { GithubIcon, XIcon, LinkedinIcon, TelegramIcon, InstagramIcon } from "@/components/ui/Icons";
+import { TelegramIcon } from "@/components/ui/Icons";
 import { SocialModal } from "@/components/ui/SocialModal";
 import { SuccessModal } from "@/components/ui/SuccessModal";
 import { personal } from "@/data/personal";
+import { socialLinks } from "@/data/social-links";
 import { spring } from "@/lib/motion";
 
-const socials = [
-  { icon: TelegramIcon, href: personal.social.telegram, label: "Telegram" },
-  { icon: GithubIcon, href: personal.social.github, label: "GitHub" },
-  { icon: InstagramIcon, href: personal.social.instagram, label: "Instagram" },
-  { icon: XIcon, href: personal.social.x, label: "X", modal: true as const },
-  { icon: LinkedinIcon, href: personal.social.linkedin, label: "LinkedIn", modal: true as const },
-];
+const socials = socialLinks.map((s) => ({
+  icon: s.icon,
+  href: s.href,
+  label: s.title,
+  modal: s.modal,
+}));
 
 function PremiumInput({
   id,
@@ -90,6 +90,7 @@ export function ContactSection() {
         body: JSON.stringify({
           name: data.get("name"),
           email: data.get("email-c"),
+          subject: data.get("subject"),
           message: data.get("message"),
           website: data.get("website") || undefined,
         }),
@@ -264,7 +265,7 @@ export function ContactSection() {
             <div className="flex gap-2 justify-center sm:justify-start">
               {socials.map((s) => {
                 const Icon = s.icon;
-                const isModal = "modal" in s;
+                const isModal = !!s.modal;
                 return (
                   <motion.a
                     key={s.label}
@@ -300,6 +301,7 @@ export function ContactSection() {
           <form
             ref={formRef}
             onSubmit={handleSubmit}
+            aria-label="Contact form"
           >
               <div className="space-y-5">
               <div className="absolute opacity-0 pointer-events-none absolute -left-[9999px]" aria-hidden="true">
@@ -325,6 +327,12 @@ export function ContactSection() {
                   </label>
                   <PremiumInput id="email-c" name="email-c" type="email" required maxLength={200} placeholder="you@example.com" error={!!error} />
                 </div>
+              </div>
+              <div>
+                <label htmlFor="subject" className="block text-xs font-medium text-white/25 mb-1.5">
+                  Subject
+                </label>
+                <PremiumInput id="subject" name="subject" required maxLength={200} placeholder="What is this about?" error={!!error} />
               </div>
               <div>
                 <label htmlFor="message" className="block text-xs font-medium text-white/25 mb-1.5">

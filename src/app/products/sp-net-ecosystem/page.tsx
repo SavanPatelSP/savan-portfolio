@@ -1,28 +1,18 @@
-import type { Metadata } from "next";
 import ClientPage from "./ClientPage";
+import { generateProductMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = generateProductMetadata({
+  slug: "sp-net-ecosystem",
   title: "SP NET Ecosystem — Coming Soon",
   description:
     "A unified ecosystem connecting messaging, administration, and intelligence. Currently in active research and development.",
-  openGraph: {
-    title: "SP NET Ecosystem — Coming Soon",
-    description:
-      "A unified ecosystem connecting messaging, administration, and intelligence. Currently in active research and development.",
-    url: "https://savan.sp-net.in/products/sp-net-ecosystem",
-    siteName: "SP NET INC",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "SP NET Ecosystem — Coming Soon",
-    description:
-      "A unified ecosystem connecting messaging, administration, and intelligence. Currently in active research and development.",
-  },
-  alternates: {
-    canonical: "/products/sp-net-ecosystem",
-  },
-};
+  ogDescription:
+    "A unified ecosystem connecting messaging, administration, and intelligence. Currently in active research and development.",
+  twitterDescription:
+    "A unified ecosystem connecting messaging, administration, and intelligence. Currently in active research and development.",
+  category: "SoftwareApplication",
+  hasOgImage: false,
+});
 
 export default function Page() {
   return <ClientPage />;

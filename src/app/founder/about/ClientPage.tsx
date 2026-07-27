@@ -64,10 +64,10 @@ const expertiseCategories = [
 ];
 
 const principles = [
-  { title: "Craft over scale", description: "Every detail matters. Build for the one, then the many." },
-  { title: "Simplicity is the ultimate sophistication", description: "The best solutions feel obvious in hindsight. Remove until nothing else can be removed." },
-  { title: "Ship to learn", description: "Done is better than perfect. Real feedback comes from real users." },
-  { title: "Open by default", description: "Great software belongs to everyone. Transparency builds trust." },
+  { title: "Craft over scale", description: "Scale is a consequence of doing things well. Obsess over the one before building for the many." },
+  { title: "Simplicity through depth", description: "The best solutions feel obvious in hindsight. Complexity is easy — restraint requires understanding the problem deeply enough that the solution becomes inevitable." },
+  { title: "Ship, learn, iterate", description: "The gap between what we imagine and what users need is always wider than we expect. Ship early, measure ruthlessly, discard what doesn't work." },
+  { title: "Build in the open", description: "Great software eventually belongs to everyone. Transparency builds trust, and trust builds lasting products." },
 ];
 
 const socialLinks = [
@@ -81,23 +81,23 @@ const socialLinks = [
 const faqItems = [
   {
     question: "Who is Savan Patel?",
-    answer: "Savan Patel is the Founder and Product Engineer of SP NET INC. He is a self-taught software engineer from India who began coding in 2018 and has since built a suite of products including SP NET GRAM, SP NET ADMIN OS, and SP NET AI — all focused on modern communication, enterprise tooling, and intelligent automation.",
+    answer: "Savan Patel is the Founder and Product Engineer of SP NET INC — a self-taught software engineer from India who began coding in 2018 and has since built a suite of products spanning communication (SP NET GRAM), enterprise tooling (SP NET ADMIN OS), and AI systems (SP NET AI). He writes code, designs products, and thinks about software from first principles.",
   },
   {
     question: "What does SP NET INC do?",
-    answer: "SP NET INC builds infrastructure for modern communication, enterprise administration, and intelligent automation. The ecosystem includes SP NET GRAM (a next-generation messaging platform), SP NET ADMIN OS (an enterprise administration platform), and SP NET AI (an AI research initiative powering intelligent experiences across the product suite).",
+    answer: "SP NET INC builds infrastructure for modern communication, enterprise administration, and intelligent automation. The ecosystem includes SP NET GRAM (a next-generation messaging platform), SP NET ADMIN OS (an enterprise administration platform with full organizational tooling), and SP NET AI (an AI research initiative powering intelligent experiences across the product suite).",
   },
   {
     question: "What technologies does Savan use?",
-    answer: "Savan works across the full stack with expertise spanning TypeScript, React, Next.js, Node.js, Python, cloud infrastructure, AI/ML systems, and cybersecurity. His approach is technology-agnostic — he chooses the right tool for the problem rather than adhering to a single stack, though he has deep proficiency in modern web and AI technologies.",
+    answer: "Savan works across the full stack with expertise in TypeScript, React, Next.js, Node.js, Python, cloud infrastructure, AI/ML systems, and cybersecurity. His approach is technology-agnostic — he chooses the right tool for the problem rather than adhering to a single stack, though he has deep proficiency in modern web and AI technologies.",
   },
   {
     question: "What is Savan Patel's mission?",
-    answer: "His mission is to build software that elevates human potential through thoughtful design and precision engineering. He envisions a world where technology feels invisible, intuitive, and delightful — where every interaction is intentional and every product serves a genuine purpose.",
+    answer: "To build software that earns its place — products so well-crafted they feel inevitable, so intuitive they disappear into the workflow. He envisions a world where technology amplifies human potential without demanding attention, where every product serves a purpose, and every detail reflects craft.",
   },
   {
     question: "How can I get in touch with Savan?",
-    answer: "The recommended first point of contact is the PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT — it handles inquiries efficiently and connects you with the right channel. You can also email hello@sp-net.in (general), business@sp-net.in (partnerships), contact@sp-net.in (general inquiries), media@sp-net.in (press), or savan@sp-net.in (personal). For scheduling, visit cal.com/savanpatel. X and LinkedIn profiles are coming soon. Connect with him on GitHub (savanpatelssp), Telegram (@ABOUTME_SP), or Instagram (savanpatelssp).",
+    answer: "The recommended first point of contact is the PCA (Personal Communication Assistant) at https://t.me/SAVANPATELSP_BOT — it handles inquiries efficiently and connects you with the right channel. You can also email hello@sp-net.in (general), business@sp-net.in (partnerships), contact@sp-net.in (general inquiries), media@sp-net.in (press), or savan@sp-net.in (personal). For scheduling, visit cal.com/savanpatel. X and LinkedIn profiles are coming soon. Connect on GitHub (savanpatelssp), Telegram (@ABOUTME_SP), or Instagram (savanpatelssp).",
   },
 ];
 
@@ -114,7 +114,7 @@ export default function AboutClientPage() {
         label="Founder"
         title="Savan Patel"
         titleAccent="Founder & Product Engineer at SP NET INC"
-        description="Building products that connect people, empower communities, and shape the future of technology. Self-taught engineer, relentless builder, and the mind behind SP NET INC."
+        description="Self-taught engineer from India. Built SP NET from scratch — a growing ecosystem of products spanning communication, enterprise tooling, and intelligent systems."
         icon={<User className="h-4 w-4" />}
       />
 
@@ -134,16 +134,10 @@ export default function AboutClientPage() {
             <FadeIn delay={0.1}>
               <div className="space-y-5 text-sm sm:text-base text-white/35 leading-relaxed">
                 <p>
-                  I&apos;m Savan Patel — a self-taught software engineer and the founder of SP NET INC.
-                  I build products that sit at the intersection of communication, intelligence, and
-                  design. Every line of code I write is in service of a single belief: technology should
-                  feel invisible and work effortlessly.
+                  I&apos;m Savan Patel — a self-taught software engineer and the founder of SP NET INC. I build products that sit at the intersection of communication, intelligence, and design. Every line of code I write is in service of a single belief: technology should earn its place.
                 </p>
                 <p>
-                  From writing my first line of code in 2018 to founding a company that now ships
-                  products used across the globe, the journey has been defined by relentless curiosity,
-                  stubborn persistence, and an obsession with craft. I don&apos;t just build software —
-                  I architect experiences.
+                  From writing my first line of code in 2018 to founding a company that ships products used across the globe, the journey has been defined by relentless curiosity, stubborn persistence, and an obsession with craft. I don&apos;t just build software — I architect experiences.
                 </p>
               </div>
             </FadeIn>
@@ -309,10 +303,10 @@ export default function AboutClientPage() {
             {socialLinks.map((link) => (
               <StaggerItem key={link.label}>
                 <motion.a
-                  href={"modal" in link ? "#" : link.href}
-                  target={"modal" in link ? undefined : "_blank"}
-                  rel={"modal" in link ? undefined : "noopener noreferrer"}
-                  onClick={"modal" in link ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
+                  href={!!link.modal ? "#" : link.href}
+                  target={!!link.modal ? undefined : "_blank"}
+                  rel={!!link.modal ? undefined : "noopener noreferrer"}
+                  onClick={!!link.modal ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
                   className="group inline-flex items-center gap-2.5 rounded-xl border border-white/[0.06] bg-white/[0.02] px-5 py-3.5 text-sm text-white/40 hover:text-white/60 hover:border-white/[0.10] hover:bg-white/[0.04] transition-all duration-200"
                   whileHover={{ y: -2, scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
@@ -320,7 +314,7 @@ export default function AboutClientPage() {
                 >
                   <link.icon className="h-4 w-4 text-white/25 group-hover:text-white/40 transition-colors duration-200" />
                   {link.label}
-                  {"modal" in link ? null : <ExternalLink className="h-3 w-3 text-white/15 group-hover:text-white/30 transition-colors duration-200" />}
+                  {!!link.modal ? null : <ExternalLink className="h-3 w-3 text-white/15 group-hover:text-white/30 transition-colors duration-200" />}
                 </motion.a>
               </StaggerItem>
             ))}

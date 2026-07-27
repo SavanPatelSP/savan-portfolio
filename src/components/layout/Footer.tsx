@@ -47,6 +47,7 @@ const navGroups = [
       { label: "SP NET AI", href: "/products/sp-net-ai" },
       { label: "Savan's Portfolio", href: "/" },
       { label: "SP NET API", href: "/products/sp-net-api" },
+      { label: "SavaroX", href: "/products/savaro-x" },
       { label: "View All Products →", href: "/products" },
     ],
   },
@@ -132,8 +133,8 @@ const quickStats = [
 ];
 
 const techBadges = [
-  "Next.js", "React", "TypeScript", "Tailwind CSS",
-  "Framer Motion", "Node.js", "PostgreSQL", "Prisma",
+  "Web Framework", "UI Library", "TypeScript", "Styling",
+  "Animations", "Node.js", "Database", "Data Layer",
 ];
 
 /* ─── FADE IN ───────────────────────────────────────────────── */
@@ -250,29 +251,31 @@ export function Footer() {
 
           {/* ─── NAVIGATION ─── */}
           <FadeSection delay={0.3} className="flex-1">
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-8 text-center sm:text-left">
-              {navGroups.map((group) => (
-                <div key={group.title}>
-                  <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-4">{group.title}</h4>
-                  <ul className="list-none p-0 m-0 space-y-1">
-                    {group.links.map((link) => (
-                      <li key={link.label}>
-                        <a
-                          href={link.href}
-                          target={link.href.startsWith("http") ? "_blank" : undefined}
-                          rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          className="group/link inline-flex items-center gap-1.5 text-sm text-white/35 hover:text-white/70 transition-colors duration-200 min-h-[36px] py-1"
-                        >
-                          <span className="h-px w-0 group-hover/link:w-2 bg-white/30 transition-all duration-300" />
-                          {link.label}
-                          {link.href.startsWith("http") && <ExternalLink className="h-3 w-3 opacity-0 group-hover/link:opacity-60 transition-opacity duration-200" />}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            <nav aria-label="Footer navigation">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-8 text-center sm:text-left">
+                {navGroups.map((group) => (
+                  <div key={group.title}>
+                    <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-4">{group.title}</h4>
+                    <ul className="list-none p-0 m-0 space-y-1">
+                      {group.links.map((link) => (
+                        <li key={link.label}>
+                          <a
+                            href={link.href}
+                            target={link.href.startsWith("http") ? "_blank" : undefined}
+                            rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                            className="group/link inline-flex items-center gap-1.5 text-sm text-white/35 hover:text-white/70 transition-colors duration-200 min-h-[36px] py-1"
+                          >
+                            <span className="h-px w-0 group-hover/link:w-2 bg-white/30 transition-all duration-300" aria-hidden="true" />
+                            {link.label}
+                            {link.href.startsWith("http") && <ExternalLink className="h-3 w-3 opacity-0 group-hover/link:opacity-60 transition-opacity duration-200" aria-hidden="true" />}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </nav>
           </FadeSection>
         </div>
 

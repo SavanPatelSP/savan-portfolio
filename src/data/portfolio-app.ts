@@ -1,6 +1,7 @@
 import { APP_CONFIG } from "@/config/app";
+import { APP_VERSION } from "@/data/documentation";
 
-export const APP_VERSION = APP_CONFIG.version;
+export { APP_VERSION };
 export const APP_NAME = "Portfolio App";
 export const APP_DESCRIPTION = `Installable web application developed by ${APP_CONFIG.organization.name}`;
 export const APP_TAGLINE = "The portfolio, installed.";
@@ -136,9 +137,9 @@ export const releases: ReleaseNote[] = [
       "Initial Portfolio App release",
       "Progressive Web App with offline support",
       "Cross-platform installation (Windows, macOS, Linux, Android, iOS)",
-      "Service worker with cache-first strategy for static assets",
-      "Offline fallback page",
-      "Custom install prompt with engagement detection",
+      "Offline support for previously viewed content",
+      "Graceful offline experience",
+      "Smart installation experience",
       "Installation documentation for all platforms",
     ],
     improved: [],
@@ -372,7 +373,7 @@ export const faqs: FAQ[] = [
   {
     id: "performance",
     question: "How does it affect performance?",
-    answer: "The app uses a cache-first strategy for static assets, reducing network requests. Service worker registration adds minimal overhead. Overall performance is improved over browser-based browsing.",
+    answer: "Cached assets load quickly. The app is optimized for fast, reliable performance.",
     category: "Features",
   },
   {
@@ -428,7 +429,7 @@ export const privacyInfo = {
     "Location data",
     "Contact information",
   ],
-  howUpdatesWork: "The service worker checks for new versions on each app launch. When an update is available, the new assets are cached in the background. The next time you restart the app, you'll see the latest version.",
+  howUpdatesWork: "The app checks for updates automatically and refreshes in the background.",
   howToUninstall: "On desktop: right-click the taskbar icon or use OS app management. On mobile: long-press the app icon and select Remove. This removes all cached data from your device.",
   howToClearCache: "Through browser settings: Settings → Privacy → Clear browsing data → Cached images and files. Alternatively, uninstall and reinstall the app for a fresh cache.",
 };

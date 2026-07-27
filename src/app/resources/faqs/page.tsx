@@ -5,11 +5,11 @@ import { faqItems } from "@/data/faqs";
 export const metadata: Metadata = {
   title: "FAQs — Frequently Asked Questions",
   description:
-    "The complete knowledge base for Savan Patel, SP NET INC, our products, research, privacy practices, communication channels, and career opportunities.",
+    "The central FAQ hub for Savan Patel, SP NET INC, products, privacy, security, contact, and everything in between.",
   openGraph: {
     title: "FAQs — Frequently Asked Questions",
     description:
-      "The complete knowledge base for Savan Patel, SP NET INC, our products, research, privacy practices, communication channels, and career opportunities.",
+      "The central FAQ hub for Savan Patel, SP NET INC, products, privacy, security, contact, and everything in between.",
     url: "https://savan.sp-net.in/resources/faqs",
     siteName: "SP NET INC",
     type: "website",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FAQs — Frequently Asked Questions",
     description:
-      "The complete knowledge base for Savan Patel, SP NET INC, our products, research, privacy practices, communication channels, and career opportunities.",
+      "The central FAQ hub for Savan Patel, SP NET INC, products, privacy, security, contact, and everything in between.",
   },
   alternates: {
     canonical: "/resources/faqs",

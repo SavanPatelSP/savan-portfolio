@@ -32,7 +32,7 @@ const playgrounds = [
     icon: Telescope,
     title: "Local-First Software",
     description:
-      "I'm fascinated by local-first architectures — software that works offline, syncs when possible, and doesn't depend on a central server. I've been experimenting with CRDTs for collaborative editing and thinking about what SP NET GRAM could look like if it truly worked without the cloud.",
+      "I'm fascinated by local-first architectures — software that works offline, syncs when possible, and doesn't depend on a central server. I've been experimenting with conflict-free data structures for collaborative editing and thinking about what SP NET GRAM could look like if it truly worked without the cloud.",
   },
 ];
 
@@ -50,7 +50,7 @@ const currentExperiments = [
   {
     icon: Zap,
     title: "Offline-Sync Engine",
-    description: "Experimenting with conflict-free replicated data types (CRDTs) for seamless offline-to-online transitions in GRAM. The goal: write messages while offline and have them merge perfectly when connectivity returns.",
+    description: "Experimenting with conflict-free replicated data types for seamless offline-to-online transitions in GRAM. The goal: write messages while offline and have them merge perfectly when connectivity returns.",
   },
   {
     icon: FlaskConical,

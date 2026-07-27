@@ -6,9 +6,9 @@ import {
   ExternalLink,
   ArrowUpRight,
 } from "lucide-react";
-import { GithubIcon, XIcon, LinkedinIcon, InstagramIcon, TelegramIcon } from "@/components/ui/Icons";
 import { SocialModal } from "@/components/ui/SocialModal";
 import { personal } from "@/data/personal";
+import { socialLinks } from "@/data/social-links";
 import { PageHero } from "@/components/ui/PageHero";
 import { CTASection } from "@/components/ui/CTASection";
 import { RelatedPages } from "@/components/ui/RelatedPages";
@@ -21,70 +21,29 @@ import {
   StaggerItem,
 } from "@/components/ui/AnimationPrimitives";
 
-const socials = [
-  {
-    title: "GitHub",
-    username: "savanpatelssp",
-    description:
-      "Open source projects, code repositories, and development activity. Follow to see what is being built next.",
-    href: personal.social.github,
-    icon: GithubIcon,
-    color: "text-white/70",
-    borderColor: "border-white/[0.08]",
-    hoverBorder: "hover:border-white/20",
-    stats: "Open Source & Code",
-  },
-  {
-    title: "X",
-    username: null,
-    description:
-      "Official profile launching soon. Follow for real-time updates, development insights, and announcements.",
-    href: personal.social.x,
-    icon: XIcon,
-    color: "text-white/70",
-    borderColor: "border-white/[0.08]",
-    hoverBorder: "hover:border-white/20",
-    stats: "Real-time Updates",
-    modal: true as const,
-  },
-  {
-    title: "LinkedIn",
-    username: null,
-    description:
-      "Professional profile coming soon. Connect for partnership and collaboration opportunities.",
-    href: personal.social.linkedin,
-    icon: LinkedinIcon,
-    color: "text-blue-400/70",
-    borderColor: "border-blue-400/10",
-    hoverBorder: "hover:border-blue-400/25",
-    stats: "Professional Network",
-    modal: true as const,
-  },
-  {
-    title: "Instagram",
-    username: "savanpatelssp",
-    description:
-      "Behind-the-scenes content, product visuals, and day-to-day updates from the founder.",
-    href: personal.social.instagram,
-    icon: InstagramIcon,
-    color: "text-pink-400/70",
-    borderColor: "border-pink-400/10",
-    hoverBorder: "hover:border-pink-400/25",
-    stats: "Visual Updates",
-  },
-  {
-    title: "Telegram",
-    username: "ABOUTME_SP",
-    description:
-      "Direct communication, community discussions, and real-time updates. Join the channel for the latest news.",
-    href: personal.social.telegram,
-    icon: TelegramIcon,
-    color: "text-cyan-400/70",
-    borderColor: "border-cyan-400/10",
-    hoverBorder: "hover:border-cyan-400/25",
-    stats: "Direct Messaging",
-  },
-];
+const socials = socialLinks.map((s) => ({
+  ...s,
+  description:
+    s.title === "GitHub"
+      ? "Open source projects, code repositories, and development activity. Follow to see what is being built next."
+      : s.title === "X"
+        ? "Official profile launching soon. Follow for real-time updates, development insights, and announcements."
+        : s.title === "LinkedIn"
+          ? "Professional profile coming soon. Connect for partnership and collaboration opportunities."
+          : s.title === "Instagram"
+            ? "Behind-the-scenes content, product visuals, and day-to-day updates from the founder."
+            : "Direct communication, community discussions, and real-time updates. Join the channel for the latest news.",
+  stats:
+    s.title === "GitHub"
+      ? "Open Source & Code"
+      : s.title === "X"
+        ? "Real-time Updates"
+        : s.title === "LinkedIn"
+          ? "Professional Network"
+          : s.title === "Instagram"
+            ? "Visual Updates"
+            : "Direct Messaging",
+}));
 
 export default function SocialsClientPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -118,10 +77,10 @@ export default function SocialsClientPage() {
             {socials.map((social) => (
               <StaggerItem key={social.title}>
                 <motion.a
-                  href={"modal" in social ? "#" : social.href}
-                  target={"modal" in social ? undefined : "_blank"}
-                  rel={"modal" in social ? undefined : "noopener noreferrer"}
-                  onClick={"modal" in social ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
+                  href={!!social.modal ? "#" : social.href}
+                  target={!!social.modal ? undefined : "_blank"}
+                  rel={!!social.modal ? undefined : "noopener noreferrer"}
+                  onClick={!!social.modal ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
                   className={`group block rounded-xl border ${social.borderColor} ${social.hoverBorder} bg-white/[0.01] p-6 sm:p-8 h-full transition-all duration-300 hover:bg-white/[0.02]`}
                   whileHover={{ y: -4, scale: 1.01 }}
                   transition={spring.gentle}

@@ -1,58 +1,25 @@
-import type { Metadata } from "next";
 import ClientPage from "./ClientPage";
+import { generateProductMetadata, generateProductJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = generateProductMetadata({
+  slug: "sp-net-robotics",
   title: "SP NET Robotics — Intelligence Meets the Physical World",
   description:
     "A robotics research initiative exploring how the SP NET AI platform can bridge the gap between digital intelligence and physical-world automation.",
-  openGraph: {
-    title: "SP NET Robotics — Intelligence Meets the Physical World",
-    description:
-      "Exploring how SPNET AI bridges digital intelligence and physical-world automation through robotics research.",
-    type: "website",
-    url: "https://savan.sp-net.in/products/sp-net-robotics",
-    siteName: "SP NET INC",
-    images: [{ url: "/og?section=sp-net-robotics", width: 1200, height: 630 }],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "SP NET Robotics — Intelligence Meets the Physical World",
-    description:
-      "Robotics research exploring how AI bridges digital intelligence and physical-world automation.",
-    creator: "@savanpatel",
-    images: [{ url: "/og?section=sp-net-robotics", width: 1200, height: 630 }],
-  },
-  alternates: {
-    canonical: "/products/sp-net-robotics",
-  },
-};
+  ogDescription:
+    "Exploring how SPNET AI bridges digital intelligence and physical-world automation through robotics research.",
+  twitterDescription:
+    "Robotics research exploring how AI bridges digital intelligence and physical-world automation.",
+  category: "DeveloperApplication",
+});
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "SP NET Robotics",
-  applicationCategory: "DeveloperApplication",
-  operatingSystem: "Cross-platform",
+const jsonLd = generateProductJsonLd({
+  slug: "sp-net-robotics",
+  title: "SP NET Robotics",
   description:
     "A robotics research initiative exploring how the SP NET AI platform can bridge the gap between digital intelligence and physical-world automation.",
-  url: "https://savan.sp-net.in/products/sp-net-robotics",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-    availability: "https://schema.org/PreRelease",
-  },
-  creator: {
-    "@type": "Person",
-    name: "Savan Patel",
-    url: "https://savan.sp-net.in",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "SP NET INC",
-    url: "https://sp-net.in",
-  },
-};
+  category: "DeveloperApplication",
+});
 
 export default function SPNetRoboticsPage() {
   return (

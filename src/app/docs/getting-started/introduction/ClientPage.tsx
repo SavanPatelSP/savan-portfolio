@@ -77,8 +77,8 @@ export default function ClientPage() {
           The Portfolio App is a <strong className="text-white/50">Progressive Web App (PWA)</strong> that
           showcases engineering projects, software products, and technical documentation in a
           fast, installable, and offline-capable package. It is built with{" "}
-          <InlineCode>Next.js 16</InlineCode>, <InlineCode>React 19</InlineCode>, and{" "}
-          <InlineCode>TypeScript</InlineCode>.
+          modern web technologies with server-side rendering, static generation, and
+          progressive web app capabilities.
         </p>
         <p className="text-[14px] text-white/40 leading-relaxed mb-4">
           Unlike a traditional website, the Portfolio App can be installed directly from your

@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-import { Clock, Building2, Bot, Globe, Code, Gamepad2, Cloud, Shield, Cog, Briefcase } from "lucide-react";
+import { Clock, Building2, Bot, Globe, Code, Gamepad2, Cloud, Shield, Cog, Briefcase, Link2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { products, futureProducts } from "@/data/products";
 import { SectionContainer, FadeIn, Reveal, BlurReveal, StaggerFade, StaggerItem, SectionTitle, ParallaxContainer } from "@/components/ui/AnimationPrimitives";
@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/Badge";
 import { ProductStatus } from "@/components/products/ProductStatus";
 import { ease, spring, FAST, NORMAL, SLOW } from "@/lib/motion";
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 const statusConfig: Record<string, { label: string; variant: "success" | "warning" | "beta" }> = {
   building: { label: "Active Development", variant: "warning" },
@@ -36,6 +36,7 @@ const productIcons: Record<string, React.ElementType> = {
   "sp-net-ai": Bot,
   "savan-portfolio": Globe,
   "sp-net-api": Code,
+  "savaro-x": Link2,
 };
 
 const productMilestones: Record<string, { phase: string; progress?: number }> = {
@@ -44,6 +45,7 @@ const productMilestones: Record<string, { phase: string; progress?: number }> = 
   "sp-net-ai": { phase: "Research & Prototyping", progress: 25 },
   "savan-portfolio": { phase: "Continuously Improving" },
   "sp-net-api": { phase: "Research & Planning", progress: 20 },
+  "savaro-x": { phase: "Architecture Design", progress: 15 },
 };
 
 const futureProductIcons: Record<string, React.ElementType> = {

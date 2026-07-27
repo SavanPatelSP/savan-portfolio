@@ -19,31 +19,31 @@ const principles = [
   {
     title: "Craft over scale",
     description:
-      "Every detail matters. Build for the one, then the many.",
+      "Scale is a consequence of doing things well. Obsess over the one before building for the many.",
     detailed:
       "Scale is a consequence of doing things well, not a goal in itself. When you obsess over the details of a single experience — the way a button feels, the clarity of an error message, the elegance of an API — you create something people genuinely want to use. Scale follows craft. We design every feature as if it will be used by one person who deserves our full attention.",
     icon: Sparkles,
   },
   {
-    title: "Simplicity is the ultimate sophistication",
+    title: "Simplicity through depth",
     description:
-      "The best solutions feel obvious in hindsight. Remove until nothing else can be removed.",
+      "The best solutions feel obvious in hindsight. Complexity is easy — restraint requires understanding the problem deeply enough that the solution becomes inevitable.",
     detailed:
       "Complexity is easy. Anyone can add features, layers, and abstractions. The hard part is restraint. Simplicity requires understanding a problem so deeply that the solution becomes inevitable. We constantly ask: what can we remove? What can we merge? What can we defer? Every interaction should feel effortless — not because it is simple, but because the complexity was absorbed by thoughtful design.",
     icon: Layers,
   },
   {
-    title: "Ship to learn",
+    title: "Ship, learn, iterate",
     description:
-      "Done is better than perfect. Real feedback comes from real users.",
+      "The gap between what we imagine and what users need is always wider than we expect. Ship early, measure ruthlessly, discard what doesn't work.",
     detailed:
       "The gap between what we imagine and what users need is always wider than we expect. Shipping early and often is not about cutting corners — it is about respecting the truth that only exists in the hands of real people. Every release is a hypothesis. Every metric is a lesson. We build iteratively, measuring what matters and discarding what does not.",
     icon: Zap,
   },
   {
-    title: "Open by default",
+    title: "Build in the open",
     description:
-      "Great software belongs to everyone. Transparency builds trust.",
+      "Great software eventually belongs to everyone. Transparency builds trust, and trust builds lasting products.",
     detailed:
       "When you build in the open, you invite accountability, collaboration, and community. Open source is not just a licensing decision — it is a philosophy of respect. We share our work because we believe the best products emerge when people can see how things are made, contribute improvements, and build on top of what exists. Transparency is a feature, not a vulnerability.",
     icon: Globe,

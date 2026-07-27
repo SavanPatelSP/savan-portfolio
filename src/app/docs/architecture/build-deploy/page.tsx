@@ -4,11 +4,11 @@ import ClientPage from "./ClientPage";
 export const metadata: Metadata = {
   title: "Build & Deployment",
   description:
-    "Vercel deployment, build process, environment variables, preview deployments, and performance budgets.",
+    "How the site is built, optimized, and delivered to visitors around the world.",
   openGraph: {
     title: "Build & Deployment — Portfolio App Docs",
     description:
-      "Vercel deployment, build process, environment variables, preview deployments, and performance budgets.",
+      "How the site is built, optimized, and delivered to visitors around the world.",
     url: "https://savan.sp-net.in/docs/architecture/build-deploy",
     siteName: "SP NET INC",
     type: "website",

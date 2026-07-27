@@ -26,26 +26,20 @@ const relatedPages = [
   {
     title: "Contact",
     description:
-      "Get in touch with Savan Patel and SP NET INC for inquiries, partnerships, or support.",
+      "Get in touch with Savan Patel and SP NET INC.",
     href: "/get-in-touch",
   },
   {
     title: "About SP NET INC",
     description:
-      "Learn about the company, its mission, and the vision behind the products.",
+      "Learn about the company, its mission, and the vision.",
     href: "/company/about",
   },
   {
     title: "Products",
     description:
-      "Explore SP NET GRAM, SP NET ADMIN OS, and SP NET AI.",
+      "Explore the full SP NET product ecosystem.",
     href: "/products",
-  },
-  {
-    title: "Roadmap",
-    description:
-      "What is next for SP NET INC and the products being built.",
-    href: "/founder/roadmap",
   },
   {
     title: "Trust & Privacy",
@@ -54,15 +48,21 @@ const relatedPages = [
     href: "/trust",
   },
   {
+    title: "Portfolio App",
+    description:
+      "Install the lightweight web app for quick access.",
+    href: "/portfolio-app",
+  },
+  {
     title: "Open Source",
     description:
-      "Contributing to open source and giving back to the developer community.",
+      "Future plans for open source releases.",
     href: "/resources/open-source",
   },
 ];
 
 const stats = [
-  { icon: Rocket, label: "Products", value: "3" },
+  { icon: Rocket, label: "Products", value: "6" },
   { icon: Users, label: "Team", value: "1" },
   { icon: Code2, label: "Stack", value: "TS/React" },
   { icon: MessageSquare, label: "Support", value: "<48h" },
@@ -79,7 +79,7 @@ export default function FAQsPage() {
         label="Resources"
         title="FAQs"
         titleAccent="Frequently asked questions"
-        description="The complete knowledge base for everything about Savan Patel, SP NET INC, products, research, privacy, communication, and career opportunities."
+        description="The central FAQ hub for Savan Patel, SP NET INC, products, privacy, contact, and everything in between."
         icon={<HelpCircle className="h-4 w-4" />}
       />
 
@@ -99,16 +99,14 @@ export default function FAQsPage() {
             <FadeIn delay={0.1}>
               <div className="space-y-5 text-sm sm:text-base text-white/35 leading-relaxed">
                 <p>
-                  This page is the complete knowledge base for Savan Patel and
-                  SP NET INC. It covers everything from products and research to
-                  privacy practices, communication channels, and career
-                  opportunities.
+                  This is the central FAQ hub for Savan Patel and SP NET INC. It
+                  covers everything at a high level — products, privacy, contact,
+                  and the vision behind the work.
                 </p>
                 <p>
-                  Browse by category, search for specific topics, or expand all
-                  questions to explore everything at once. The Personal
-                  Communication Assistant (PCA) is also available via Telegram
-                  for instant answers to any question not covered here.
+                  For detailed product-specific questions, check the individual
+                  product pages. For instant answers to anything not covered here,
+                  use the PCA on Telegram.
                 </p>
               </div>
             </FadeIn>
@@ -119,7 +117,7 @@ export default function FAQsPage() {
           <SectionTitle
             label="FAQ"
             title="Frequently asked questions"
-            subtitle="Browse by category or search for specific topics. The complete knowledge base covering all aspects of Savan Patel, SP NET INC, and the products being built."
+            subtitle="Browse by category or search for specific topics. High-level answers covering all aspects of Savan Patel, SP NET INC, and the products being built. Detailed questions are answered on each dedicated page."
           />
 
           <FAQPage categories={faqCategories} items={faqItems} />

@@ -33,7 +33,7 @@ const features = [
     icon: FileText,
     title: "Documents & Wikis",
     description:
-      "A real-time collaborative document editor with rich formatting, nested pages, inline databases, and template libraries. Build team wikis, meeting notes, and project specs in one place.",
+      "A real-time collaborative document editor with rich formatting, structured content, and template libraries. Build team wikis, meeting notes, and project specs in one place.",
   },
   {
     icon: FolderKanban,
@@ -76,7 +76,7 @@ const capabilities = [
   {
     icon: Zap,
     title: "Real-Time Collaboration",
-    description: "Multiple people editing the same document simultaneously with conflict-free resolution and instant sync.",
+    description: "Multiple people editing the same document simultaneously with reliable synchronization.",
   },
   {
     icon: Globe,

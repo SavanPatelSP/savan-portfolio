@@ -34,9 +34,10 @@ import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";
 import { RelatedPages } from "@/components/ui/RelatedPages";
 import { Button } from "@/components/ui/Button";
-import { GithubIcon, XIcon, LinkedinIcon, InstagramIcon, TelegramIcon } from "@/components/ui/Icons";
+import { TelegramIcon } from "@/components/ui/Icons";
 import { SocialModal } from "@/components/ui/SocialModal";
 import { SuccessModal } from "@/components/ui/SuccessModal";
+import { socialLinks } from "@/data/social-links";
 import {
   FadeIn,
   SectionContainer,
@@ -47,65 +48,19 @@ import {
 
 /* ─── DATA ───────────────────────────────────────────────────── */
 
-const socialProfiles = [
-  {
-    title: "GitHub",
-    username: "savanpatelssp",
-    description:
-      "Open source projects, repositories, and development activity. Follow to see what I am building.",
-    href: personal.social.github,
-    icon: GithubIcon,
-    color: "text-white/70",
-    borderColor: "border-white/[0.08]",
-    hoverBorder: "hover:border-white/20",
-  },
-  {
-    title: "X",
-    username: null,
-    description:
-      "Official profile launching soon.",
-    href: personal.social.x,
-    icon: XIcon,
-    color: "text-white/70",
-    borderColor: "border-white/[0.08]",
-    hoverBorder: "hover:border-white/20",
-    modal: true as const,
-  },
-  {
-    title: "LinkedIn",
-    username: null,
-    description:
-      "Professional profile coming soon.",
-    href: personal.social.linkedin,
-    icon: LinkedinIcon,
-    color: "text-blue-400/70",
-    borderColor: "border-blue-400/10",
-    hoverBorder: "hover:border-blue-400/25",
-    modal: true as const,
-  },
-  {
-    title: "Instagram",
-    username: "savanpatelssp",
-    description:
-      "Behind-the-scenes content, project visuals, and day-to-day updates from the journey.",
-    href: personal.social.instagram,
-    icon: InstagramIcon,
-    color: "text-pink-400/70",
-    borderColor: "border-pink-400/10",
-    hoverBorder: "hover:border-pink-400/25",
-  },
-  {
-    title: "Telegram",
-    username: "ABOUTME_SP",
-    description:
-      "Direct communication, real-time updates, and community discussions. Join the channel.",
-    href: personal.social.telegram,
-    icon: TelegramIcon,
-    color: "text-cyan-400/70",
-    borderColor: "border-cyan-400/10",
-    hoverBorder: "hover:border-cyan-400/25",
-  },
-];
+const socialProfiles = socialLinks.map((s) => ({
+  ...s,
+  description:
+    s.title === "GitHub"
+      ? "Open source projects, repositories, and development activity. Follow to see what I am building."
+      : s.title === "X"
+        ? "Official profile launching soon."
+        : s.title === "LinkedIn"
+          ? "Professional profile coming soon."
+          : s.title === "Instagram"
+            ? "Behind-the-scenes content, project visuals, and day-to-day updates from the journey."
+            : "Direct communication, real-time updates, and community discussions. Join the channel.",
+}));
 
 const availabilityItems = [
   {
@@ -256,6 +211,7 @@ function ContactForm() {
         body: JSON.stringify({
           name: data.get("name"),
           email: data.get("email-c"),
+          subject: data.get("subject"),
           message: data.get("message"),
           website: data.get("website") || undefined,
         }),
@@ -311,7 +267,7 @@ function ContactForm() {
               autoComplete="off"
             />
           </div>
-          <div className="grid gap-5 sm:grid-cols-2">
+              <div className="grid gap-5 sm:grid-cols-2">
             <div>
               <label
                 htmlFor="name"
@@ -344,6 +300,22 @@ function ContactForm() {
                 className="w-full rounded-lg border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-sm text-white placeholder-white/20 focus:outline-none focus:border-blue-500/30 focus:bg-white/[0.03] focus:ring-1 focus:ring-blue-500/20 focus:shadow-[0_0_20px_-5px_rgba(59,130,246,0.15)] transition-all duration-300"
               />
             </div>
+          </div>
+          <div>
+            <label
+              htmlFor="subject"
+              className="block text-xs font-medium text-white/25 mb-1.5"
+            >
+              Subject
+            </label>
+            <input
+              id="subject"
+              name="subject"
+              type="text"
+              required
+              placeholder="What is this about?"
+              className="w-full rounded-lg border border-white/[0.08] bg-white/[0.02] px-4 py-2.5 text-sm text-white placeholder-white/20 focus:outline-none focus:border-blue-500/30 focus:bg-white/[0.03] focus:ring-1 focus:ring-blue-500/20 focus:shadow-[0_0_20px_-5px_rgba(59,130,246,0.15)] transition-all duration-300"
+            />
           </div>
           <div>
             <label
@@ -497,7 +469,7 @@ export default function ContactClientPage() {
         label="Connect"
         title="Contact"
         titleAccent="Get in touch"
-        description="I am always happy to connect. Whether it is about technology, software engineering, collaborations, research, or simply a meaningful conversation — reach out anytime."
+        description="I personally review every message. Whether it's a project idea, collaboration, or just a conversation about technology — reach out anytime."
         icon={<Mail className="h-4 w-4" />}
       />
 
@@ -829,10 +801,10 @@ export default function ContactClientPage() {
             {socialProfiles.map((social) => (
               <StaggerItem key={social.title}>
                 <motion.a
-                  href={"modal" in social ? "#" : social.href}
-                  target={"modal" in social ? undefined : "_blank"}
-                  rel={"modal" in social ? undefined : "noopener noreferrer"}
-                  onClick={"modal" in social ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
+                  href={!!social.modal ? "#" : social.href}
+                  target={!!social.modal ? undefined : "_blank"}
+                  rel={!!social.modal ? undefined : "noopener noreferrer"}
+                  onClick={!!social.modal ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
                   className={`group block rounded-xl border ${social.borderColor} ${social.hoverBorder} bg-white/[0.01] p-6 sm:p-8 h-full transition-all duration-300 hover:bg-white/[0.02]`}
                   whileHover={{ y: -4, scale: 1.01 }}
                   transition={spring.gentle}

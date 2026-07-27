@@ -4,11 +4,11 @@ export const personal = {
   company: "SP NET INC",
   title: "Founder & Product Engineer",
   description:
-    "Building products that connect people, empower communities, and shape the future of technology through SP NET INC.",
+    "Founder and product engineer building SP NET — a growing ecosystem of products spanning communication, enterprise tooling, and intelligent systems. I write code, design products, and think about software from first principles.",
   mission:
-    "To build software that elevates human potential through thoughtful design and precision engineering.",
+    "To build software that earns its place — products so well-crafted they feel inevitable, so intuitive they disappear into the workflow.",
   vision:
-    "A world where technology feels invisible, intuitive, and delightful — where every interaction is intentional.",
+    "A world where technology amplifies human potential without demanding attention. Where every product serves a purpose, every interaction feels intentional, and every detail reflects craft.",
   location: "India",
   email: "savan@sp-net.in",
   calendar: "https://cal.com/savanpatel",
@@ -24,16 +24,16 @@ export const personal = {
   tagline: "Lead • Build • Connect",
   roles: ["Founder", "Engineer", "Builder", "Visionary"] as const,
   founderStatement:
-    "I believe in building products that genuinely solve problems — not just ship features. Every line of code should serve a purpose, every design should feel intentional, and every product should leave the user better than before.",
+    "I build products that solve real problems. Not because the market demands it, but because the problem exists and I believe I can solve it better. Every line of code is a commitment to the person who will use it. Every design decision is a promise that their time matters. I build software the way I want software built for me — with care, precision, and an obsession with getting the details right.",
 };
 
 export const journey = [
-  { year: "2018", title: "First Line of Code", description: "Wrote the first line of code that started a journey into software engineering. Self-taught, relentless, and curious." },
-  { year: "2022", title: "Founded SP NET INC", description: "Launched the company with a vision to build infrastructure for modern communication and enterprise tools." },
-  { year: "2023", title: "SP NET GRAM Development", description: "Architected a next-generation messaging platform focused on privacy, productivity, and premium experiences." },
-  { year: "2024", title: "SP NET ADMIN OS", description: "Developed a comprehensive enterprise administration platform with full organizational tooling and role-based access." },
-  { year: "2025", title: "SP NET AI Research", description: "Began research and development on AI systems to power intelligent experiences across the entire ecosystem." },
-  { year: "2026", title: "Scaling the Vision", description: "Expanding the SP NET ecosystem with new products, a growing community, and open-source contributions." },
+  { year: "2018", title: "First Line of Code", description: "Self-taught through curiosity and the internet. No bootcamps, no mentors — just a terminal, documentation, and an obsession with understanding how things work." },
+  { year: "2022", title: "Founded SP NET INC", description: "Turned conviction into a company. Built SP NET to create infrastructure for modern communication, enterprise tooling, and intelligent systems." },
+  { year: "2023", title: "SP NET GRAM", description: "Designed and architected a next-generation messaging platform from scratch. Privacy-first, productivity-focused, built for how people actually communicate." },
+  { year: "2024", title: "SP NET ADMIN OS", description: "Built a complete enterprise administration platform. Licensing, permissions, analytics, moderation — every tool an organization needs to operate at scale." },
+  { year: "2025", title: "SP NET AI", description: "Began research and development on AI systems. Building the intelligence layer that powers experiences across the entire SP NET ecosystem." },
+  { year: "2026", title: "Ecosystem & Scale", description: "Expanding the ecosystem with new products, developer tooling, and a blockchain initiative. The foundation is set — now building at scale." },
 ];
 
 export const founderMetrics = [
@@ -41,24 +41,23 @@ export const founderMetrics = [
   { value: "2022", label: "SP NET INC Founded", icon: "building" },
   { value: "3+", label: "Products In Development", icon: "layers" },
   { value: "∞", label: "Vision Beyond Limits", icon: "infinity" },
-  { value: "100%", label: "Commitment", icon: "heart" },
 ];
 
 export const principles = [
   {
     title: "Craft over scale",
-    description: "Every detail matters. Build for the one, then the many.",
+    description: "Scale is a consequence of doing things well. Obsess over the one before building for the many.",
   },
   {
-    title: "Simplicity is the ultimate sophistication",
-    description: "The best solutions feel obvious in hindsight. Remove until nothing else can be removed.",
+    title: "Simplicity through depth",
+    description: "The best solutions feel obvious in hindsight. Complexity is easy — restraint requires understanding the problem deeply enough that the solution becomes inevitable.",
   },
   {
-    title: "Ship to learn",
-    description: "Done is better than perfect. Real feedback comes from real users.",
+    title: "Ship, learn, iterate",
+    description: "The gap between what we imagine and what users need is always wider than we expect. Ship early, measure ruthlessly, discard what doesn't work.",
   },
   {
-    title: "Open by default",
-    description: "Great software belongs to everyone. Transparency builds trust.",
+    title: "Build in the open",
+    description: "Great software eventually belongs to everyone. Transparency builds trust, and trust builds lasting products.",
   },
 ];

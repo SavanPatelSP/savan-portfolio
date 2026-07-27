@@ -71,17 +71,17 @@ const capabilities = [
   {
     icon: Shield,
     title: "Anti-Cheat & Fair Play",
-    description: "Server-side validation and behavioral analysis to ensure competitive integrity across all multiplayer experiences.",
+    description: "Comprehensive fair play systems ensure competitive integrity across all multiplayer experiences.",
   },
   {
     icon: Zap,
     title: "Low-Latency Streaming",
-    description: "Custom video codec and adaptive bitrate streaming deliver sub-30ms input latency for competitive gaming.",
+    description: "Optimized video streaming delivers ultra-low latency for competitive gaming.",
   },
   {
     icon: Globe,
     title: "Global Edge Network",
-    description: "Game servers deployed across 50+ regions worldwide. Play with minimal latency no matter where you are.",
+    description: "Game servers deployed globally for minimal latency. Play with minimal latency no matter where you are.",
   },
   {
     icon: Wifi,
@@ -106,7 +106,7 @@ const faqItems = [
   },
   {
     question: "How does cloud streaming work?",
-    answer: "Games run on SP NET Cloud servers and stream video to your device in real time. Your inputs are sent back to the server with sub-30ms latency. This means you can play graphically demanding games on devices that could not normally run them — including phones, tablets, and low-spec laptops.",
+    answer:       "Games run in the cloud and stream to your device in real time, with minimal input delay. This means you can play graphically demanding games on devices that could not normally run them — including phones, tablets, and low-spec laptops.",
   },
   {
     question: "Can indie developers publish on SP NET GAME?",

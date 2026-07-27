@@ -216,15 +216,15 @@ export default function ClientPage() {
           <li className="flex items-start gap-3">
             <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-white/10 shrink-0" />
             <span>
-              <strong className="text-white/60">Infrastructure</strong> — Vercel,
-              AWS, Docker, Cloudflare, etc.
+              <strong className="text-white/60">Infrastructure</strong> — Cloud
+              platforms, containers, edge networks.
             </span>
           </li>
           <li className="flex items-start gap-3">
             <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-white/10 shrink-0" />
             <span>
-              <strong className="text-white/60">Tools</strong> — Git, Figma,
-              Tailwind CSS, Playwright, etc.
+              <strong className="text-white/60">Tools</strong> — Version control,
+              design tools, testing frameworks.
             </span>
           </li>
         </ul>

@@ -33,7 +33,7 @@ const features = [
     icon: Navigation,
     title: "Autonomous Navigation",
     description:
-      "Path planning and obstacle avoidance using computer vision and sensor fusion. Robots navigate complex environments without human intervention.",
+      "Autonomous navigation through advanced perception and environmental understanding. Robots navigate complex environments without human intervention.",
   },
   {
     icon: Eye,
@@ -45,7 +45,7 @@ const features = [
     icon: ListTodo,
     title: "Task Planning",
     description:
-      "High-level task decomposition and sequencing. Describe what you want done in natural language, and the system breaks it into executable robotic actions.",
+      "Translate high-level instructions into robotic actions through intelligent task planning.",
   },
   {
     icon: Hand,
@@ -81,7 +81,7 @@ const principles = [
   {
     icon: Zap,
     title: "Real-Time Processing",
-    description: "On-device inference for latency-critical decisions. Navigation, object recognition, and safety checks happen in milliseconds — not dependent on cloud connectivity.",
+    description: "Time-critical decisions happen locally on the device for maximum responsiveness.",
   },
   {
     icon: Globe,

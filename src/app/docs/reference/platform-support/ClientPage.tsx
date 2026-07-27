@@ -467,7 +467,7 @@ export default function ClientPage() {
             Results are re-verified quarterly against the latest stable browser releases.
             If you encounter an issue on a supported platform, report it on{" "}
             <a
-              href="https://github.com/savanpatel/savan-portfolio/issues"
+              href="https://github.com/savanpatelssp/savan-portfolio/issues"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white/60 hover:text-white underline underline-offset-2"

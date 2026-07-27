@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useInView, LayoutGroup } from "framer-motion";
 import Image from "next/image";
+import { useSyncExternalStore } from "react";
 import {
   X,
   ChevronLeft,
@@ -466,6 +468,11 @@ export function ScreenshotGallery({ className }: { className?: string }) {
   const [activeTab, setActiveTab] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.05 });
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   const activeScreenshot = screenshots[activeTab];
 
@@ -526,16 +533,19 @@ export function ScreenshotGallery({ className }: { className?: string }) {
         </AnimatePresence>
       </LayoutGroup>
 
-      {/* Fullscreen Modal */}
-      <AnimatePresence>
-        {fullscreenIndex !== null && (
-          <FullscreenViewer
-            allScreenshots={screenshots}
-            initialIndex={fullscreenIndex}
-            onClose={() => setFullscreenIndex(null)}
-          />
-        )}
-      </AnimatePresence>
+      {/* Fullscreen Modal — portaled to body to escape transformed ancestors */}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {fullscreenIndex !== null && (
+            <FullscreenViewer
+              allScreenshots={screenshots}
+              initialIndex={fullscreenIndex}
+              onClose={() => setFullscreenIndex(null)}
+            />
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   );
 }

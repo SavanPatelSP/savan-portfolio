@@ -31,19 +31,19 @@ const childLinks = [
   },
   {
     title: "Cloud Computing",
-    description: "Docker, K3s, edge computing, and cloud-native architecture",
+    description: "Containers, edge computing, and cloud-native architecture",
     href: "/research/cloud",
     icon: Cloud,
   },
   {
     title: "Cybersecurity",
-    description: "E2EE, zero-trust, secure coding, and privacy by default",
+    description: "Encryption, zero-trust, secure coding, and privacy by default",
     href: "/research/cybersecurity",
     icon: Shield,
   },
   {
     title: "Innovation Lab",
-    description: "Experimental projects: CRDTs, voice-first workflows, generative UI",
+    description: "Experimental projects: local-first data, voice-first workflows, generative UI",
     href: "/research/innovation-lab",
     icon: FlaskConical,
   },

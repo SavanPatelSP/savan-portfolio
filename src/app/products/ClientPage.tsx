@@ -15,6 +15,7 @@ import {
   Cog,
   Briefcase,
   ArrowUpRight,
+  Link2,
 } from "lucide-react";
 import { spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
@@ -63,6 +64,13 @@ const coreProducts = [
     href: "/products/sp-net-api",
     icon: Code,
     color: "#06b6d4",
+  },
+  {
+    title: "SavaroX",
+    description: "Decentralized infrastructure and Web3-native experiences",
+    href: "/products/savaro-x",
+    icon: Link2,
+    color: "#a855f7",
   },
 ];
 

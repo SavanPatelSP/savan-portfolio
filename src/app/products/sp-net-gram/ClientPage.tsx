@@ -72,7 +72,7 @@ const highlights = [
     icon: Lock,
     label: "Privacy Focused",
     description:
-      "Zero-access encryption, no ads, no tracking. Your data belongs to you — period.",
+      "End-to-end encrypted, no ads, no tracking. Your data belongs to you — period.",
   },
   {
     icon: Zap,
@@ -120,12 +120,12 @@ const faqItems = [
   {
     question: "How does the cloud sync work without compromising privacy?",
     answer:
-      "Messages are encrypted on your device before being synced to the cloud. The server only ever sees encrypted blobs — it cannot read your messages, access your media, or analyze your communication patterns. Decryption happens exclusively on your trusted devices using keys that never leave them.",
+      "Messages are encrypted before they leave your device, ensuring only intended recipients can read them.",
   },
   {
     question: "Can I migrate my existing chats from other platforms?",
     answer:
-      "Yes. SP NET GRAM includes import tools for migrating chat history from WhatsApp, Telegram, and Signal. Media, group memberships, and contact associations transfer seamlessly so you can switch without losing your conversations.",
+      "Yes. SP NET GRAM supports importing chat history from popular messaging platforms, including media and group memberships.",
   },
   {
     question: "When will SP NET GRAM be available?",
@@ -208,10 +208,9 @@ export default function SPNetGramClientPage() {
                 the tools — without the compromises.
               </p>
               <p>
-                The platform is built on a custom encryption protocol that ensures zero-access privacy while
-                maintaining the speed and reliability people expect from a modern messaging app. Your
-                messages, calls, and media are encrypted on your device before they ever leave — and
-                only your trusted devices hold the keys.
+                The platform is engineered with state-of-the-art encryption to ensure privacy while
+                maintaining speed and reliability. Your messages, calls, and media are encrypted
+                on your device before they ever leave — and only your trusted devices hold the keys.
               </p>
             </div>
           </FadeIn>
@@ -293,14 +292,12 @@ export default function SPNetGramClientPage() {
               </h3>
               <div className="space-y-3 text-xs text-white/25 leading-relaxed">
                 <p>
-                  SP NET GRAM uses a double-ratchet protocol with X3DH key agreement for
-                  end-to-end encryption. Each device maintains its own key pairs, and forward secrecy
-                  ensures that compromising one message never reveals past or future conversations.
+                  Industry-standard end-to-end encryption with forward secrecy protects every
+                  conversation. Compromising one message never reveals past or future conversations.
                 </p>
                 <p>
-                  Group conversations use Sender Keys with periodic re-keying, so adding or removing
-                  members never exposes previous message history. Key verification through QR codes and
-                  safety numbers gives users cryptographic proof of identity.
+                  Group conversations maintain forward secrecy when members join or leave. Users
+                  can verify contact identities through built-in verification tools.
                 </p>
               </div>
             </div>
@@ -311,14 +308,12 @@ export default function SPNetGramClientPage() {
               </h3>
               <div className="space-y-3 text-xs text-white/25 leading-relaxed">
                 <p>
-                  A globally distributed edge network delivers messages with sub-100ms latency. Messages
-                  are routed through the nearest relay node, and a smart queueing system handles
-                  offline delivery, retry logic, and bandwidth optimization automatically.
+                  A distributed global network delivers messages with low latency. Offline delivery
+                  and automatic retries ensure messages reach their destination reliably.
                 </p>
                 <p>
-                  Media uploads use chunked streaming with adaptive compression, so large files send
-                  quickly even on slow connections. A peer-to-peer fallback for nearby devices reduces
-                  server load and improves delivery speed for local conversations.
+                  Media is transferred efficiently regardless of connection quality, with
+                  optimizations that keep uploads fast.
                 </p>
               </div>
             </div>

@@ -64,7 +64,7 @@ const howItWorks = [
   {
     title: "Third-Party Services",
     description:
-      "This site is hosted on Vercel and uses GitHub for source code. Both are privacy-respecting platforms. No third-party analytics, advertising, or data broker services are involved.",
+      "This site is hosted on a global edge network and uses industry-standard version control. Both are privacy-respecting platforms. No third-party analytics, advertising, or data broker services are involved.",
   },
   {
     title: "Data Retention",

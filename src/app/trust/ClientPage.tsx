@@ -78,7 +78,7 @@ export default function ClientPage() {
         <SectionTitle
           label="Principles"
           title="Built on trust"
-          subtitle="Technology should earn the trust of the people who use it. Here is how I approach privacy, security, and transparency."
+          subtitle="Technology should earn the trust of the people who use it. Here is how I approach privacy, security, and transparency across everything I build."
         />
 
         <FadeIn delay={0.1}>
@@ -92,8 +92,25 @@ export default function ClientPage() {
             <p>
               From privacy-by-default architecture to responsible AI principles,
               these are the values that guide every technical and product decision
-              across the SP NET ecosystem.
+              across the SP NET ecosystem. I share these commitments publicly
+              because I believe developers should be transparent about how they
+              protect the people who use their software.
             </p>
+          </div>
+        </FadeIn>
+
+        <FadeIn delay={0.2}>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+            {[
+              { label: "Privacy", value: "No tracking, no ads, no data selling — ever" },
+              { label: "Security", value: "Secure by default, not as an afterthought" },
+              { label: "Transparency", value: "Honest communication about what I build and why" },
+            ].map((item) => (
+              <div key={item.label} className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-5">
+                <p className="text-xs font-mono uppercase tracking-[0.15em] text-white/20 mb-1.5">{item.label}</p>
+                <p className="text-sm text-white/40 leading-relaxed">{item.value}</p>
+              </div>
+            ))}
           </div>
         </FadeIn>
       </SectionContainer>

@@ -28,17 +28,17 @@ import {
 const currentlyLearning = [
   {
     icon: Terminal,
-    title: "Rust",
+    title: "Systems Programming",
     description:
-      "For performance-critical services and WebAssembly. The ownership model forces a different way of thinking about memory — uncomfortable at first, powerful once it clicks.",
+      "For performance-critical services and portable code execution. The ownership model forces a different way of thinking about memory — uncomfortable at first, powerful once it clicks.",
     difficulty: "Intermediate",
     color: "#ef4444",
   },
   {
     icon: Globe,
-    title: "WebAssembly",
+    title: "Portable Code Execution",
     description:
-      "Portable, sandboxed code execution in the browser. The potential for running third-party plugins safely is what drew me in.",
+      "Sandboxed runtime environments for running plugins and compute-intensive tasks in the browser. The potential for portable, secure code execution is what drew me in.",
     difficulty: "Intermediate",
     color: "#8b5cf6",
   },
@@ -46,7 +46,7 @@ const currentlyLearning = [
     icon: Rocket,
     title: "Local-First Architecture",
     description:
-      "CRDTs, offline-first patterns, and conflict resolution. Building apps that work without connectivity and sync beautifully when it returns.",
+      "Conflict-free data structures, offline-first patterns, and conflict resolution. Building apps that work without connectivity and sync beautifully when it returns.",
     difficulty: "Advanced",
     color: "#10b981",
   },
@@ -71,7 +71,7 @@ const recommendations = [
   },
   {
     icon: Database,
-    title: "PostgreSQL",
+    title: "Relational Databases",
     description:
       "The database I trust for everything. Complex queries, JSON support, full-text search, extensions — it handles the widest range of needs.",
     difficulty: "Intermediate",
@@ -79,7 +79,7 @@ const recommendations = [
   },
   {
     icon: Cloud,
-    title: "Cloudflare Workers",
+    title: "Edge Computing",
     description:
       "Edge computing with sub-millisecond cold starts. Authentication, rate limiting, API routing — deployed globally in seconds.",
     difficulty: "Intermediate to Advanced",

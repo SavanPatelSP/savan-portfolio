@@ -21,7 +21,7 @@ export const expertiseCategories = [
       "Prompt Engineering",
       "Automation",
       "LLM Applications",
-      "Vector Databases",
+      "AI Infrastructure",
     ],
   },
   {
@@ -32,7 +32,7 @@ export const expertiseCategories = [
       "Deployment & CI/CD",
       "Database Architecture",
       "Performance Optimization",
-      "Containerization",
+      "Infrastructure Management",
       "Edge Computing",
     ],
   },

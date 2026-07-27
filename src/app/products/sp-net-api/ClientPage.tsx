@@ -33,13 +33,13 @@ const features = [
     icon: Key,
     title: "Authentication & Authorization",
     description:
-      "A complete auth platform with OAuth 2.0, API keys, session management, and multi-factor authentication. Secure your apps without building auth from scratch.",
+      "A complete authentication and authorization platform with industry-standard security. Secure your apps without building auth from scratch.",
   },
   {
     icon: Gauge,
     title: "Rate Limiting & Quotas",
     description:
-      "Configurable rate limiting with token buckets, sliding windows, and per-endpoint quotas. Protect your infrastructure while giving developers predictable usage limits.",
+      "Configurable rate limiting with flexible quota management to protect your infrastructure while giving developers predictable usage limits.",
   },
   {
     icon: CreditCard,
@@ -51,13 +51,13 @@ const features = [
     icon: Package,
     title: "SDKs & Client Libraries",
     description:
-      "Official SDKs for JavaScript, Python, Go, Rust, and Swift. Type-safe, well-documented, and designed to make integration take minutes instead of hours.",
+      "Official SDKs for popular programming languages, with type-safe bindings and comprehensive documentation. Designed to make integration take minutes instead of hours.",
   },
   {
     icon: Webhook,
     title: "Webhooks & Events",
     description:
-      "A reliable event delivery system with webhook registration, retry logic, signature verification, and event filtering. React to platform events in real time.",
+      "A reliable event delivery system for reacting to platform events in real time.",
   },
   {
     icon: LayoutDashboard,
@@ -76,7 +76,7 @@ const architecture = [
   {
     icon: Zap,
     title: "Low Latency",
-    description: "Global edge network ensures sub-50ms response times. Smart routing, connection pooling, and response caching keep APIs fast.",
+    description: "A global network ensures fast response times. Intelligent routing and caching keep APIs performant at scale.",
   },
   {
     icon: Globe,

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles, Send, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
@@ -14,6 +15,11 @@ export function SocialModal({ isOpen, onClose }: SocialModalProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const prevFocus = useRef<HTMLElement | null>(null);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
   const escHandler = useCallback(
     (e: KeyboardEvent) => {
@@ -42,24 +48,29 @@ export function SocialModal({ isOpen, onClose }: SocialModalProps) {
   useEffect(() => {
     if (isOpen) {
       prevFocus.current = document.activeElement as HTMLElement;
+      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
       document.addEventListener("keydown", escHandler);
       document.addEventListener("keydown", trapFocus);
       requestAnimationFrame(() => closeRef.current?.focus());
     } else {
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
       document.removeEventListener("keydown", escHandler);
       document.removeEventListener("keydown", trapFocus);
       prevFocus.current?.focus();
     }
     return () => {
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
       document.removeEventListener("keydown", escHandler);
       document.removeEventListener("keydown", trapFocus);
     };
   }, [isOpen, escHandler, trapFocus]);
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -79,16 +90,17 @@ export function SocialModal({ isOpen, onClose }: SocialModalProps) {
             role="dialog"
             aria-modal="true"
             aria-label="Official X and LinkedIn profiles coming soon"
-            className="relative w-full max-w-md rounded-2xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent bg-black/90 p-6 sm:p-8 shadow-2xl backdrop-blur-xl"
+            className="relative w-full max-w-md max-h-[85vh] sm:max-h-[80vh] overflow-y-auto rounded-2xl border border-white/[0.06] bg-[#0a0a0a] p-6 sm:p-8 shadow-2xl"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ paddingBottom: "calc(1.5rem + var(--safe-bottom))" }}
           >
             <button
               ref={closeRef}
               onClick={onClose}
-              className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-lg border border-white/[0.06] text-white/25 hover:text-white/60 hover:border-white/12 transition-all duration-200"
+              className="absolute right-4 top-4 flex h-11 w-11 items-center justify-center rounded-lg border border-white/[0.06] text-white/25 hover:text-white/60 hover:border-white/12 transition-all duration-200 z-10"
               aria-label="Close modal"
             >
               <X className="h-4 w-4" />
@@ -145,6 +157,7 @@ export function SocialModal({ isOpen, onClose }: SocialModalProps) {
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }

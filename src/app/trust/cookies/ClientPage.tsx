@@ -447,7 +447,7 @@ export default function ClientPage() {
                 icon: Globe,
                 title: "Third-Party Services",
                 description:
-                  "SP NET INC uses Resend for email delivery and Vercel for hosting. Resend processes form submissions to deliver emails directly to the site operator. Vercel provides infrastructure hosting. Neither service sets tracking cookies through this site. For details, see the Privacy Policy.",
+                  "SP NET INC uses a third-party email service for delivery and a global edge network for hosting. The email service processes form submissions to deliver emails directly to the site operator. The hosting provider provides infrastructure services. Neither service sets tracking cookies through this site. For details, see the Privacy Policy.",
               },
               {
                 icon: Activity,

@@ -1,54 +1,25 @@
-import type { Metadata } from "next";
 import ClientPage from "./ClientPage";
+import { generateProductMetadata, generateProductJsonLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = generateProductMetadata({
+  slug: "sp-net-ai",
   title: "SP NET AI — Intelligent Experiences for the SP NET Ecosystem",
   description:
     "SP NET AI is an AI platform being built to power intelligent experiences across the SP NET ecosystem — from smart messaging to automated administration.",
-  openGraph: {
-    title: "SP NET AI — Intelligent Experiences for the SP NET Ecosystem",
-    description:
-      "An AI platform powering intelligent experiences across the SP NET ecosystem — from smart messaging to automated administration.",
-    url: "https://savan.sp-net.in/products/sp-net-ai",
-    siteName: "SP NET INC",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "SP NET AI — Intelligent Experiences for the SP NET Ecosystem",
-    description:
-      "An AI platform powering intelligent experiences across the SP NET ecosystem — from smart messaging to automated administration.",
-  },
-  alternates: {
-    canonical: "/products/sp-net-ai",
-  },
-};
+  ogDescription:
+    "An AI platform powering intelligent experiences across the SP NET ecosystem — from smart messaging to automated administration.",
+  twitterDescription:
+    "An AI platform powering intelligent experiences across the SP NET ecosystem — from smart messaging to automated administration.",
+  category: "Artificial Intelligence Application",
+});
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "SP NET AI",
+const jsonLd = generateProductJsonLd({
+  slug: "sp-net-ai",
+  title: "SP NET AI",
   description:
     "An AI platform powering intelligent experiences across the SP NET ecosystem — from smart messaging to automated administration.",
-  applicationCategory: "Artificial Intelligence Application",
-  url: "https://savan.sp-net.in/products/sp-net-ai",
-  creator: {
-    "@type": "Person",
-    name: "Savan Patel",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "SP NET INC",
-    url: "https://sp-net.in",
-  },
-  operatingSystem: "Cross-platform",
-  offers: {
-    "@type": "Offer",
-    price: "0",
-    priceCurrency: "USD",
-    availability: "https://schema.org/PreRelease",
-  },
-};
+  category: "Artificial Intelligence Application",
+});
 
 export default function SPNetAIPage() {
   return (

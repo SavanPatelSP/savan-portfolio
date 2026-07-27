@@ -29,8 +29,9 @@ import { FAST, ease, spring } from "@/lib/motion";
 import { personal } from "@/data/personal";
 import { RelatedPages } from "@/components/ui/RelatedPages";
 import { CTASection } from "@/components/ui/CTASection";
-import { GithubIcon, XIcon, LinkedinIcon, InstagramIcon, TelegramIcon } from "@/components/ui/Icons";
+import { TelegramIcon } from "@/components/ui/Icons";
 import { SocialModal } from "@/components/ui/SocialModal";
+import { socialLinks } from "@/data/social-links";
 import {
   FadeIn,
   SectionContainer,
@@ -115,60 +116,19 @@ const flowSteps = [
   },
 ];
 
-const socialProfiles = [
-  {
-    title: "GitHub",
-    username: "savanpatelssp",
-    description: "Best for: code, repositories, and open source.",
-    href: personal.social.github,
-    icon: GithubIcon,
-    color: "text-white/70",
-    borderColor: "border-white/[0.08]",
-    hoverBorder: "hover:border-white/20",
-  },
-  {
-    title: "X",
-    username: null,
-    description: "Official profile launching soon.",
-    href: personal.social.x,
-    icon: XIcon,
-    color: "text-white/70",
-    borderColor: "border-white/[0.08]",
-    hoverBorder: "hover:border-white/20",
-    modal: true as const,
-  },
-  {
-    title: "LinkedIn",
-    username: null,
-    description: "Professional profile coming soon.",
-    href: personal.social.linkedin,
-    icon: LinkedinIcon,
-    color: "text-blue-400/70",
-    borderColor: "border-blue-400/10",
-    hoverBorder: "hover:border-blue-400/25",
-    modal: true as const,
-  },
-  {
-    title: "Instagram",
-    username: "savanpatelssp",
-    description: "Best for: behind-the-scenes and visual updates.",
-    href: personal.social.instagram,
-    icon: InstagramIcon,
-    color: "text-pink-400/70",
-    borderColor: "border-pink-400/10",
-    hoverBorder: "hover:border-pink-400/25",
-  },
-  {
-    title: "Telegram",
-    username: "ABOUTME_SP",
-    description: "Best for: direct messaging and quick responses.",
-    href: personal.social.telegram,
-    icon: TelegramIcon,
-    color: "text-cyan-400/70",
-    borderColor: "border-cyan-400/10",
-    hoverBorder: "hover:border-cyan-400/25",
-  },
-];
+const socialProfiles = socialLinks.map((s) => ({
+  ...s,
+  description:
+    s.title === "GitHub"
+      ? "Best for: code, repositories, and open source."
+      : s.title === "X"
+        ? "Official profile launching soon."
+        : s.title === "LinkedIn"
+          ? "Professional profile coming soon."
+          : s.title === "Instagram"
+            ? "Best for: behind-the-scenes and visual updates."
+            : "Best for: direct messaging and quick responses.",
+}));
 
 /* ─── FLOW TIMELINE ──────────────────────────────────────────── */
 
@@ -493,10 +453,10 @@ export default function GetInTouchClientPage() {
             {socialProfiles.map((social) => (
               <StaggerItem key={social.title}>
                 <motion.a
-                  href={"modal" in social ? "#" : social.href}
-                  target={"modal" in social ? undefined : "_blank"}
-                  rel={"modal" in social ? undefined : "noopener noreferrer"}
-                  onClick={"modal" in social ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
+                  href={!!social.modal ? "#" : social.href}
+                  target={!!social.modal ? undefined : "_blank"}
+                  rel={!!social.modal ? undefined : "noopener noreferrer"}
+                  onClick={!!social.modal ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
                   className={`group block rounded-xl border ${social.borderColor} ${social.hoverBorder} bg-white/[0.01] p-6 h-full transition-all duration-300 hover:bg-white/[0.02]`}
                   whileHover={{ y: -4, scale: 1.01 }}
                   transition={spring.gentle}

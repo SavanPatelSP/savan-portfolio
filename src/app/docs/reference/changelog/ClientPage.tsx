@@ -236,7 +236,7 @@ export default function ClientPage() {
       <Callout type="tip">
         For the latest updates, check the{" "}
         <a
-          href="https://github.com/savanpatel/savan-portfolio/releases"
+          href="https://github.com/savanpatelssp/savan-portfolio/releases"
           target="_blank"
           rel="noopener noreferrer"
           className="underline underline-offset-2 hover:text-white"

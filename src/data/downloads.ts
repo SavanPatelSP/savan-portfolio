@@ -117,24 +117,24 @@ export const downloadProducts: DownloadProduct[] = [
     buildNumber: "2026.07.17",
     releaseDate: "2026",
     lastUpdated: "2026",
-    architecture: "Web (PWA)",
+    architecture: "Modern Web",
     license: "Free",
-    fileSize: "5\u201315 MB",
+    fileSize: "Lightweight",
     checksum: "N/A — installed directly through your browser",
     color: "#f59e0b",
     gradient: "from-amber-500 via-orange-400 to-yellow-300",
     platforms: ["windows", "macos", "linux", "android", "ios", "ipados", "chromeos", "browser"],
     minimumRequirements:
-      "A supported modern browser (Chrome 67+, Edge 79+, or Safari 14.1+) with an internet connection for initial setup.",
+      "Any modern browser on a recent operating system",
     recommendedRequirements:
-      "Chrome or Edge latest version on desktop. Chrome on Android. Safari on iOS 15+.",
+      "A modern browser on desktop or mobile",
     screenshots: [
-      { label: "Dashboard", description: "Real-time project metrics, activity feed, and quick actions" },
+      { label: "Dashboard", description: "Your project overview at a glance" },
       { label: "Products", description: "Full product ecosystem — SP NET GRAM, ADMIN OS, AI Engine" },
-      { label: "Installations", description: "Secure software installation with platform selection and integrity verification" },
+      { label: "Installations", description: "Download and install across your devices" },
       { label: "Documentation", description: "Structured knowledge base with code samples and installation guides" },
       { label: "Projects", description: "Engineering portfolio with progress tracking and deployment status" },
-      { label: "Offline Mode", description: "Cached content management with sync status and storage metrics" },
+      { label: "Offline Mode", description: "Your content, available even offline" },
     ],
     features: portfolioFeatures.map((f) => ({ title: f.title, description: f.description })),
     documentationUrl: "/portfolio-app",
@@ -194,12 +194,6 @@ export interface DownloadIntegrityItem {
 
 export const downloadIntegrity: DownloadIntegrityItem[] = [
   { label: "Official Build", value: "Verified by SP NET INC", icon: "ShieldCheck" },
-  { label: "Developed by", value: "SP NET INC", icon: "Building2" },
-  { label: "Secure Distribution", value: "HTTPS only", icon: "Lock" },
-  { label: "SHA-256 Checksum", value: "N/A for browser install", icon: "Fingerprint" },
-  { label: "Release Channel", value: "Stable", icon: "Radio" },
-  { label: "Version Signature", value: "v1.0.0", icon: "Tag" },
-  { label: "Build Number", value: "2026.07.17", icon: "Hash" },
   { label: "License", value: "Free", icon: "FileText" },
 ];
 

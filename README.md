@@ -172,7 +172,7 @@ The long-term vision: a portfolio that documents not just what I've built, but h
 ## Getting Started
 
 ```bash
-git clone https://github.com/savanpatel/savan-portfolio.git
+git clone https://github.com/savanpatelssp/savan-portfolio.git
 cd savan-portfolio
 npm install
 npm run dev
