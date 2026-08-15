@@ -299,17 +299,10 @@ export default function CompanyContactClientPage() {
       </SectionContainer>
 
       {/* ─── FAQ ──────────────────────────────────────────────── */}
-      <SectionContainer className="border-t border-white/[0.04]">
-          <SectionTitle
-            label="Questions"
-            title="Frequently asked questions"
-            subtitle="Common questions about contacting SP NET INC."
-          />
-
-          <div className="mx-auto max-w-2xl">
-            <FAQ items={faqItems} />
-          </div>
-      </SectionContainer>
+      <FAQ
+        title="Frequently Asked Questions"
+        items={faqItems}
+      />
 
       {/* ─── RELATED PAGES ────────────────────────────────────── */}
       <RelatedPages

@@ -177,13 +177,13 @@ export default function SocialsClientPage() {
             title: "Blog",
             description:
               "Engineering insights and technical deep dives.",
-            href: "/resources/blog",
+            href: "/blog",
           },
           {
             title: "Newsroom",
             description:
               "Company announcements and product launches.",
-            href: "/company/newsroom",
+            href: "/newsroom",
           },
           {
             title: "Support",

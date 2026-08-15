@@ -40,7 +40,7 @@ const childLinks = [
   {
     title: "Blog",
     description: "Engineering insights, product updates, and technical deep dives",
-    href: "/resources/blog",
+    href: "/blog",
     icon: Rss,
   },
   {
@@ -154,7 +154,7 @@ export default function ClientPage() {
           {
             title: "Blog",
             description: "Engineering insights and updates.",
-            href: "/resources/blog",
+            href: "/blog",
           },
         ]}
       />

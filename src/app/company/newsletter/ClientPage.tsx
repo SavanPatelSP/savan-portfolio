@@ -246,7 +246,7 @@ export default function NewsletterClientPage() {
               <FadeIn delay={0.3}>
                 <div className="flex flex-wrap items-center justify-center gap-3">
                   <motion.a
-                    href="/company/newsroom"
+                    href="/newsroom"
                     className="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 transition-colors duration-200"
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.97 }}
@@ -256,7 +256,7 @@ export default function NewsletterClientPage() {
                     Visit Newsroom
                   </motion.a>
                   <motion.a
-                    href="/resources/blog"
+                    href="/blog"
                     className="group inline-flex items-center gap-2 rounded-xl border border-white/[0.08] px-6 py-3 text-sm font-medium text-white/40 hover:text-white/60 hover:border-white/15 transition-all duration-200"
                     whileHover={{ y: -2, scale: 1.02 }}
                     whileTap={{ scale: 0.97 }}

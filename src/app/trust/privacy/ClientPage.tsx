@@ -67,6 +67,11 @@ const howItWorks = [
       "This site is hosted on a global edge network and uses industry-standard version control. Both are privacy-respecting platforms. No third-party analytics, advertising, or data broker services are involved.",
   },
   {
+    title: "Blog Comments",
+    description:
+      "Blog articles include a comments section powered by Hyvor Talk, a third-party comment platform. The widget only loads if you choose to open it, and it is not used for analytics. Commenting uses Hyvor Talk's own accounts or guest mode, and Hyvor processes commenter data under its own privacy policy. I can see and moderate comments through Hyvor's dashboard, but I do not collect, store, or analyze commenter data myself.",
+  },
+  {
     title: "Data Retention",
     description:
       "Contact form messages are kept only as long as needed to maintain our conversation. If you want your message deleted, just ask — I will remove it promptly.",
@@ -111,6 +116,11 @@ const faqItems = [
     question: "What if you add analytics in the future?",
     answer:
       "If I ever decide to add any form of tracking or analytics, I will update this page to explain what is being collected and why. I would also add a proper consent mechanism. But honestly, I have no plans to do that.",
+  },
+  {
+    question: "How do blog comments work?",
+    answer:
+      "Blog articles have a comments section powered by Hyvor Talk. The widget is not loaded automatically — it only loads when you choose to open it. Commenting is handled entirely by Hyvor Talk, which provides its own accounts, guest mode, and moderation. I can see and moderate comments in Hyvor's dashboard, but I do not collect, store, or analyze commenter data myself. Hyvor Talk's own privacy policy applies when you use it.",
   },
 ];
 

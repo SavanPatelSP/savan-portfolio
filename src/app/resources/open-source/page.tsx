@@ -43,7 +43,7 @@ const jsonLd = {
   },
 };
 
-export default function OpenSourcePage() {
+export default function Page() {
   return (
     <>
       <script

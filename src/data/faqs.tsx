@@ -81,7 +81,7 @@ export const faqItems: FAQItem[] = [
   {
     question: "What are you currently working on?",
     answer:
-      "My focus is on three core products: SP NET GRAM (messaging), SP NET ADMIN OS (enterprise administration), and SP NET AI (intelligence layer). I am also building SavaroX (blockchain infrastructure) and this portfolio. All products are in active development and not yet publicly available. Beta access for GRAM and ADMIN OS is planned for 2026.",
+      "My focus is on three core products: SP NET GRAM (messaging), SP NET ADMIN OS (enterprise administration), and SP NET AI (intelligence layer). I am also developing SP NET BLOCKCHAIN — a private blockchain platform — along with its official token, SavaroX. All products are in active development and not yet publicly available. Beta access for GRAM and ADMIN OS is planned for 2026.",
     category: "general",
     links: [
       { label: "Products", href: "/products" },
@@ -229,7 +229,7 @@ export const faqItems: FAQItem[] = [
   {
     question: "What products does SP NET build?",
     answer:
-      "Three core products: SP NET GRAM (next-generation messaging), SP NET ADMIN OS (enterprise administration), and SP NET AI (intelligence layer). Additionally, SavaroX explores blockchain infrastructure. The SP NET Ecosystem will unify everything. Each product has its own dedicated page with detailed features and vision.",
+      "Three core products: SP NET GRAM (next-generation messaging), SP NET ADMIN OS (enterprise administration), and SP NET AI (intelligence layer). The SP NET BLOCKCHAIN platform powers the blockchain ecosystem, with SavaroX as its official token. The SP NET Ecosystem will unify everything. Each product has its own dedicated page with detailed features and vision.",
     category: "products",
     links: [
       { label: "Products", href: "/products" },
@@ -268,14 +268,68 @@ export const faqItems: FAQItem[] = [
     related: ["What is SP NET GRAM?", "What is the SP NET Ecosystem?"],
   },
   {
+    question: "What is SP NET BLOCKCHAIN?",
+    answer:
+      "SP NET BLOCKCHAIN is a private blockchain platform developed entirely by SP NET INC. It serves as the long-term foundation for blockchain-powered products, official tokens, digital assets, and enterprise blockchain services within the SP NET ecosystem.",
+    category: "products",
+    links: [
+      { label: "SP NET BLOCKCHAIN", href: "/products/sp-net-blockchain" },
+    ],
+    related: ["What is SavaroX?", "What products does SP NET build?"],
+  },
+  {
     question: "What is SavaroX?",
     answer:
-      "SavaroX is SP NET's blockchain initiative, building decentralized infrastructure, tokenized economies, and Web3-native experiences. It is designed to complement the broader SP NET ecosystem. The product page covers the vision, roadmap, and technical approach in detail.",
+      "SavaroX is the official digital token of the SP NET BLOCKCHAIN platform. It is one of the official tokens within the SP NET BLOCKCHAIN ecosystem — designed for utility, governance, and ecosystem participation. SavaroX is not the blockchain itself; it is a token hosted on SP NET BLOCKCHAIN.",
     category: "products",
     links: [
       { label: "SavaroX", href: "/products/savaro-x" },
+      { label: "SP NET BLOCKCHAIN", href: "/products/sp-net-blockchain" },
     ],
-    related: ["What products does SP NET build?", "What is the SP NET Ecosystem?"],
+    related: ["What is SP NET BLOCKCHAIN?", "What products does SP NET build?"],
+  },
+  {
+    question: "Is SavaroX the blockchain?",
+    answer:
+      "No. SavaroX is an official token within the SP NET BLOCKCHAIN ecosystem. SP NET BLOCKCHAIN is the private blockchain platform developed by SP NET INC. SavaroX is one of the tokens hosted on this platform, alongside potential future tokens and digital assets.",
+    category: "products",
+    links: [
+      { label: "SP NET BLOCKCHAIN", href: "/products/sp-net-blockchain" },
+      { label: "SavaroX", href: "/products/savaro-x" },
+    ],
+    related: ["What is SP NET BLOCKCHAIN?", "What is SavaroX?"],
+  },
+  {
+    question: "Can multiple tokens exist on SP NET BLOCKCHAIN?",
+    answer:
+      "Yes. SP NET BLOCKCHAIN is designed to support multiple official tokens and digital assets. SavaroX is the first official token, and additional tokens and blockchain-powered services may be introduced as the ecosystem expands.",
+    category: "products",
+    links: [
+      { label: "SP NET BLOCKCHAIN", href: "/products/sp-net-blockchain" },
+    ],
+    related: ["What is SP NET BLOCKCHAIN?", "What is SavaroX?"],
+  },
+  {
+    question: "What products run on SP NET BLOCKCHAIN?",
+    answer:
+      "SP NET BLOCKCHAIN powers the blockchain ecosystem including official tokens like SavaroX, digital asset infrastructure, and future blockchain services. Products such as wallet, explorer, developer APIs, and enterprise solutions are planned as the ecosystem matures.",
+    category: "products",
+    links: [
+      { label: "SP NET BLOCKCHAIN", href: "/products/sp-net-blockchain" },
+      { label: "Products", href: "/products" },
+    ],
+    related: ["What is SP NET BLOCKCHAIN?", "What products does SP NET build?"],
+  },
+  {
+    question: "Who develops SP NET BLOCKCHAIN?",
+    answer:
+      "SP NET BLOCKCHAIN is developed entirely by SP NET INC. The platform is built by the same team behind SP NET GRAM, SP NET ADMIN OS, SP NET AI, and the broader SP NET product ecosystem.",
+    category: "products",
+    links: [
+      { label: "SP NET BLOCKCHAIN", href: "/products/sp-net-blockchain" },
+      { label: "About SP NET INC", href: "/company/about" },
+    ],
+    related: ["What is SP NET BLOCKCHAIN?", "What is SP NET INC?"],
   },
   {
     question: "Are SP NET products available now?",
@@ -646,8 +700,8 @@ export const faqItems: FAQItem[] = [
       "The Blog (technical articles and product updates), Newsroom (company announcements), and Press Releases are all in development. Social profiles on X and LinkedIn are also planned. These launch when there is enough quality content to justify them — not before.",
     category: "future",
     links: [
-      { label: "Blog", href: "/resources/blog" },
-      { label: "Newsroom", href: "/company/newsroom" },
+      { label: "Blog", href: "/blog" },
+      { label: "Newsroom", href: "/newsroom" },
     ],
     related: ["Do you have a newsletter?", "How can I stay updated?"],
   },

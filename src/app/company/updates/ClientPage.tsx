@@ -25,7 +25,7 @@ const updateChannels = [
     title: "Newsroom",
     description:
       "Company announcements, product launches, partnerships, and major milestones. The official source for SP NET INC news.",
-    href: "/company/newsroom",
+    href: "/newsroom",
     icon: Newspaper,
     color: "text-blue-400/70",
     borderColor: "border-blue-400/10",
@@ -36,7 +36,7 @@ const updateChannels = [
     title: "Blog",
     description:
       "Engineering deep dives, architecture decisions, product insights, and technical walkthroughs from the team.",
-    href: "/resources/blog",
+    href: "/blog",
     icon: BookOpen,
     color: "text-violet-400/70",
     borderColor: "border-violet-400/10",
@@ -165,12 +165,12 @@ export default function UpdatesClientPage() {
           {
             title: "Newsroom",
             description: "Official company announcements and milestones.",
-            href: "/company/newsroom",
+            href: "/newsroom",
           },
           {
             title: "Blog",
             description: "Engineering insights and technical deep dives.",
-            href: "/resources/blog",
+            href: "/blog",
           },
           {
             title: "Press Releases",
@@ -199,8 +199,8 @@ export default function UpdatesClientPage() {
         title="Want to"
         titleAccent="stay updated?"
         description="Follow the Newsroom, subscribe to the Blog, or reach out to be added to the notification list for important announcements."
-        primaryAction={{ label: "Visit Newsroom", href: "/company/newsroom" }}
-        secondaryAction={{ label: "Read the Blog", href: "/resources/blog" }}
+        primaryAction={{ label: "Visit Newsroom", href: "/newsroom" }}
+        secondaryAction={{ label: "Read the Blog", href: "/blog" }}
       />
     </>
   );

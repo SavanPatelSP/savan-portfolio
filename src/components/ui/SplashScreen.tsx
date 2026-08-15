@@ -1,33 +1,52 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ease, SLOW } from "@/lib/motion";
+import { useSplash } from "@/lib/splash";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { ease, SLOW } from "@/lib/motion";
+
+async function waitForReady(): Promise<void> {
+  if (document.fonts?.ready) {
+    await document.fonts.ready;
+  }
+  await new Promise((r) => setTimeout(r, 1200));
+}
 
 export function SplashScreen() {
-  const [show, setShow] = useState(true);
+  const { markReady, ready } = useSplash();
   const reducedMotion = useReducedMotion();
+  const show = reducedMotion ? false : !ready;
+  const mounted = useRef(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShow(false);
-    }, reducedMotion ? 300 : 2800);
-
-    return () => {
-      clearTimeout(timer);
+    mounted.current = true;
+    const init = async () => {
+      await waitForReady();
+      if (!mounted.current) return;
+      markReady();
     };
+    init();
+    return () => {
+      mounted.current = false;
+    };
+  }, [markReady]);
+
+  useEffect(() => {
+    if (reducedMotion) {
+      document.documentElement.removeAttribute("data-loading");
+    }
   }, [reducedMotion]);
 
   return (
     <AnimatePresence>
       {show && (
         <motion.div
-          className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-black"
+          id="splash-screen"
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#0a0a0a]"
           exit={{ opacity: 0, filter: "blur(12px)", scale: 1.02 }}
           transition={{ duration: reducedMotion ? 0 : 0.7, ease: ease.out }}
         >
-          {/* Ambient glow behind name */}
           {!reducedMotion && (
             <motion.div
               className="absolute h-64 w-64 rounded-full opacity-0"

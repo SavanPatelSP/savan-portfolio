@@ -189,7 +189,7 @@ export default function ClientPage() {
         title="Future Vision"
         titleAccent="Where I'm headed"
         description="My personal vision for the future — what I want to build, the impact I want to make, and the kind of technology I want to be known for."
-        icon={<Eye className="h-3.5 w-3.5" />}
+        icon={<Eye className="h-4 w-4" />}
       />
 
       <SectionContainer>

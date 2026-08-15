@@ -7,12 +7,14 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { NoiseOverlay } from "@/components/ui/NoiseOverlay";
-import { SplashWrapper } from "@/components/ui/SplashWrapper";
+import { SplashScreen } from "@/components/ui/SplashScreen";
+import { SplashProvider } from "@/lib/splash";
 import { Cursor } from "@/components/ui/Cursor";
 import { InstallPrompt } from "@/components/ui/InstallPrompt";
 import { InstallModal } from "@/components/portfolio-app/InstallModal";
 import { CookieConsent } from "@/components/ui/CookieConsent";
 import { ScrollToHash } from "@/components/ScrollToHash";
+import { PageTransition } from "@/components/ui/PageTransition";
 import { personal } from "@/data/personal";
 
 const geistSans = Geist({
@@ -174,12 +176,33 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-loading=""
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <style>{`
+          [data-loading] #page-content {
+            opacity: 0 !important;
+            visibility: hidden !important;
+          }
+          #splash-screen {
+            position: fixed !important;
+            inset: 0 !important;
+            z-index: 9999 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            flex-direction: column !important;
+            background: #0a0a0a !important;
+          }
+          @media (prefers-reduced-motion: reduce) {
+            [data-loading] { transition: none !important; }
+          }
+        `}</style>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -193,17 +216,21 @@ export default function RootLayout({
           Skip to content
         </a>
         <MotionConfig reducedMotion="user">
-          <Cursor />
-          <SplashWrapper />
-          <NoiseOverlay />
-          <ScrollProgress />
-          <Header />
-          <ScrollToHash />
-          <main id="main-content" tabIndex={-1}>{children}</main>
-          <Footer />
-          <InstallPrompt />
-          <InstallModal />
-          <CookieConsent />
+          <SplashProvider>
+            <Cursor />
+            <SplashScreen />
+            <NoiseOverlay />
+            <ScrollProgress />
+            <div id="page-content">
+              <Header />
+              <ScrollToHash />
+              <main id="main-content" tabIndex={-1}><PageTransition>{children}</PageTransition></main>
+              <Footer />
+            </div>
+            <InstallPrompt />
+            <InstallModal />
+            <CookieConsent />
+          </SplashProvider>
         <Script
           id="sw-register"
           strategy="afterInteractive"

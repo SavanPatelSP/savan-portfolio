@@ -11,7 +11,7 @@ export const metadata: Metadata = {
       "How I build in public, share progress honestly, and keep an open-source mindset.",
     url: "https://savan.sp-net.in/trust/transparency",
     type: "website",
-    siteName: "Savan Patel",
+    siteName: "SP NET INC",
   },
   twitter: {
     card: "summary_large_image",

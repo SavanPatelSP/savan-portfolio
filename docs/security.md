@@ -123,11 +123,12 @@ if (!result.allowed) {
 
 ```
 default-src 'self';
-script-src 'self' 'unsafe-inline' https://vercel.live;
+script-src 'self' 'unsafe-inline' https://vercel.live https://talk.hyvor.com;
 style-src 'self' 'unsafe-inline';
-img-src 'self' data: blob:;
+img-src 'self' data: blob: https://talk.hyvor.com;
 font-src 'self' data: https://fonts.gstatic.com;
-connect-src 'self' https://vercel.live;
+connect-src 'self' https://vercel.live https://talk.hyvor.com wss://talk.hyvor.com wss://soketi.hyvor.com ws://soketi.hyvor.com:*;
+frame-src 'self' https://talk.hyvor.com;
 frame-ancestors 'none';
 base-uri 'self';
 form-action 'self';
@@ -140,11 +141,12 @@ upgrade-insecure-requests
 
 | Directive | Value | Reason |
 |-----------|-------|--------|
-| `script-src` | `'self' 'unsafe-inline' https://vercel.live` | `unsafe-inline` required for 53 JSON-LD `<script>` tags and SW registration. `vercel.live` for dev toolbar. |
+| `script-src` | `'self' 'unsafe-inline' https://vercel.live https://talk.hyvor.com` | `unsafe-inline` required for 53 JSON-LD `<script>` tags and SW registration. `vercel.live` for dev toolbar. `talk.hyvor.com` for the Hyvor Talk comments embed. |
 | `style-src` | `'self' 'unsafe-inline'` | Required for Tailwind CSS and framer-motion style injection |
-| `img-src` | `'self' data: blob:` | Local images, data URIs, blob URLs |
+| `img-src` | `'self' data: blob: https://talk.hyvor.com` | Local images, data URIs, blob URLs, and Hyvor Talk reaction/avatar icons |
 | `font-src` | `'self' data: https://fonts.gstatic.com` | Local fonts, data URIs, Google Fonts |
-| `connect-src` | `'self' https://vercel.live` | Same-origin API calls and Vercel analytics only |
+| `connect-src` | `'self' https://vercel.live https://talk.hyvor.com wss://talk.hyvor.com wss://soketi.hyvor.com ws://soketi.hyvor.com:*` | Same-origin API calls, Vercel analytics, and Hyvor Talk real-time communication (incl. its soketi.hyvor.com WebSocket) |
+| `frame-src` | `'self' https://talk.hyvor.com` | Comments embed renders its UI in a talk.hyvor.com iframe |
 | `frame-ancestors` | `'none'` | Prevents iframe embedding |
 | `worker-src` | `'self'` | Service worker from same origin only |
 

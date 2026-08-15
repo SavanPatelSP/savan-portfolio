@@ -536,7 +536,7 @@ export default function BrandClientPage() {
             title: "Newsroom",
             description:
               "Company announcements and updates from SP NET INC.",
-            href: "/company/newsroom",
+            href: "/newsroom",
           },
           {
             title: "Partners",

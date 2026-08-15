@@ -31,19 +31,34 @@ export const projects = [
     technologies: ["TypeScript", "React", "Node.js", "Framer Motion", "Tailwind CSS"],
   },
   {
-    id: "savaro-x",
-    title: "SavaroX",
-    tagline: "Blockchain & Web3 Initiative",
+    id: "sp-net-blockchain",
+    title: "SP NET BLOCKCHAIN",
+    tagline: "Private Blockchain Platform",
     description:
-      "Exploring decentralized infrastructure, tokenized economies, and Web3-native experiences. SavaroX is SP NET's blockchain initiative — building the decentralized layer that other products can tap into for trustless interactions, user sovereignty, and open economies.",
+      "A private blockchain platform developed entirely by SP NET INC. SP NET BLOCKCHAIN serves as the long-term foundation for blockchain-powered products, official tokens, and digital asset services — including SavaroX, the platform's official token.",
     status: "future",
     gradient: "from-violet-600 to-purple-600",
     highlights: [
-      "Flexible, future-proof design",
-      "Tokenized economies with utility-first design",
-      "Decentralized infrastructure with user sovereignty",
+      "Private blockchain platform by SP NET INC",
+      "Official token and digital asset infrastructure",
+      "Enterprise-ready ecosystem expansion",
     ],
-    technologies: ["TypeScript", "Web3"],
+    technologies: ["TypeScript"],
+  },
+  {
+    id: "savaro-x",
+    title: "SavaroX",
+    tagline: "Official Token of SP NET BLOCKCHAIN",
+    description:
+      "The official digital token of the SP NET BLOCKCHAIN platform. SavaroX is designed for utility, governance, and ecosystem growth — powering transactions, participation, and future blockchain services within the SP NET ecosystem.",
+    status: "future",
+    gradient: "from-violet-600 to-purple-600",
+    highlights: [
+      "Official token of SP NET BLOCKCHAIN",
+      "Utility-focused digital asset design",
+      "Ecosystem governance and participation",
+    ],
+    technologies: ["TypeScript"],
   },
   {
     id: "innovation-labs",

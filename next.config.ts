@@ -11,11 +11,12 @@ const CSP_REPORT_URI = "/api/security/csp-report";
  */
 const productionDirectives = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://vercel.live",
+  "script-src 'self' 'unsafe-inline' https://vercel.live https://talk.hyvor.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  "img-src 'self' data: blob: https://talk.hyvor.com",
   "font-src 'self' data: https://fonts.gstatic.com",
-  "connect-src 'self' https://vercel.live https://fonts.googleapis.com https://o4511773683023872.ingest.us.sentry.io",
+  "connect-src 'self' https://vercel.live https://fonts.googleapis.com https://o4511773683023872.ingest.us.sentry.io https://talk.hyvor.com wss://talk.hyvor.com wss://soketi.hyvor.com ws://soketi.hyvor.com:*",
+  "frame-src 'self' https://talk.hyvor.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
@@ -33,11 +34,12 @@ const productionDirectives = [
  */
 const developmentDirectives = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://talk.hyvor.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob:",
+  "img-src 'self' data: blob: https://talk.hyvor.com",
   "font-src 'self' data: https://fonts.gstatic.com",
-  "connect-src 'self' https://vercel.live https://fonts.googleapis.com https://o4511773683023872.ingest.us.sentry.io https://o447951.ingest.sentry.io ws://localhost:* wss://localhost:* http://localhost:*",
+  "connect-src 'self' https://vercel.live https://fonts.googleapis.com https://o4511773683023872.ingest.us.sentry.io https://o447951.ingest.sentry.io https://talk.hyvor.com wss://talk.hyvor.com wss://soketi.hyvor.com ws://soketi.hyvor.com:* ws://localhost:* wss://localhost:* http://localhost:*",
+  "frame-src 'self' https://talk.hyvor.com",
   "worker-src 'self' blob:",
   "frame-ancestors 'none'",
   "base-uri 'self'",

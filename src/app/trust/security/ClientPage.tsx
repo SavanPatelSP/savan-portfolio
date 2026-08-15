@@ -9,7 +9,7 @@ import {
   CheckCircle,
   Code2,
 } from "lucide-react";
-import { ease, FAST } from "@/lib/motion";
+import { ease, FAST, NORMAL, spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { FAQ } from "@/components/ui/FAQ";
 import { CTASection } from "@/components/ui/CTASection";
@@ -195,7 +195,11 @@ export default function ClientPage() {
           <StaggerFade className="grid grid-cols-1 sm:grid-cols-2 gap-5" staggerDelay={0.08}>
             {securityPractices.map((practice, i) => (
               <StaggerItem key={practice.title}>
-                <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-6 sm:p-8 h-full">
+                <motion.div
+                  className="h-full rounded-xl border border-white/[0.04] bg-white/[0.01] p-6 sm:p-8"
+                  whileHover={{ y: -3, scale: 1.005 }}
+                  transition={spring.gentle}
+                >
                   <span className="inline-flex items-center justify-center h-8 w-8 rounded-lg bg-white/[0.04] border border-white/[0.06] text-xs font-mono text-white/30 mb-5">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -204,7 +208,7 @@ export default function ClientPage() {
                     <h3 className="text-base font-medium text-white/70">{practice.title}</h3>
                   </div>
                   <p className="text-sm text-white/30 leading-relaxed">{practice.description}</p>
-                </div>
+                </motion.div>
               </StaggerItem>
             ))}
           </StaggerFade>
@@ -226,6 +230,7 @@ export default function ClientPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: FAST, delay: i * 0.06, ease: ease.out }}
+                whileHover={{ y: -3, scale: 1.005 }}
               >
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10 border border-blue-500/20">
@@ -253,29 +258,55 @@ export default function ClientPage() {
             subtitle="I welcome security reports from anyone who finds an issue in good faith."
           />
 
-          <div className="space-y-0">
-            {responseSteps.map((step, i) => (
-              <motion.div
-                key={step.step}
-                className="relative pl-12 border-l border-white/[0.06]"
-                initial={{ opacity: 0, x: -8 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: FAST, delay: i * 0.08, ease: ease.out }}
-              >
-                <span className="absolute left-0 top-5 -translate-x-[5px] text-xs font-mono text-white/20 bg-[#0a0a0b] px-1">
-                  {step.step}
-                </span>
-                <div className="pb-10">
-                  <h3 className="text-base font-medium text-white/70 mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm text-white/35 leading-relaxed max-w-2xl">
-                    {step.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+          <div className="max-w-3xl">
+            {responseSteps.map((step, i) => {
+              const isLast = i === responseSteps.length - 1;
+              return (
+                <motion.div
+                  key={step.step}
+                  className="relative flex gap-5"
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: FAST, delay: i * 0.08, ease: ease.out }}
+                >
+                  {/* Node + per-item connector */}
+                  <div className="flex flex-col items-center shrink-0">
+                    <motion.span
+                      className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/[0.10] bg-[#0a0a0a] text-xs font-mono text-white/40"
+                      initial={{ scale: 0.5, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true, amount: 0.5 }}
+                      transition={{ duration: NORMAL, delay: i * 0.08, ease: ease.out }}
+                    >
+                      {step.step}
+                    </motion.span>
+                    {!isLast && (
+                      <div
+                        className="relative w-px flex-1 min-h-[32px] bg-white/[0.05]"
+                        aria-hidden="true"
+                      >
+                        <motion.div
+                          className="absolute inset-0 origin-top bg-gradient-to-b from-blue-500/30 via-white/[0.10] to-white/[0.04]"
+                          initial={{ scaleY: 0 }}
+                          whileInView={{ scaleY: 1 }}
+                          viewport={{ once: true, amount: 0.2 }}
+                          transition={{ duration: 0.8, delay: i * 0.08 + 0.2, ease: ease.out }}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className={`min-w-0 ${isLast ? "" : "pb-10"}`}>
+                    <h3 className="pt-1.5 text-base font-medium text-white/70 mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-white/35 leading-relaxed max-w-2xl">
+                      {step.description}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
       </SectionContainer>
 

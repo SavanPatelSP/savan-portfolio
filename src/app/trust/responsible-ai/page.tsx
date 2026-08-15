@@ -11,7 +11,7 @@ export const metadata: Metadata = {
       "My personal approach to using and building with AI ethically. Human oversight and transparency.",
     url: "https://savan.sp-net.in/trust/responsible-ai",
     type: "website",
-    siteName: "Savan Patel",
+    siteName: "SP NET INC",
   },
   twitter: {
     card: "summary_large_image",

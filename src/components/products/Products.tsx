@@ -31,21 +31,21 @@ function MessageCircle(props: { className?: string }) {
 }
 
 const productIcons: Record<string, React.ElementType> = {
+  "sp-net-blockchain": Link2,
   "sp-net-gram": MessageCircle,
   "sp-net-admin-os": Building2,
   "sp-net-ai": Bot,
-  "savan-portfolio": Globe,
   "sp-net-api": Code,
-  "savaro-x": Link2,
+  "savan-portfolio": Globe,
 };
 
 const productMilestones: Record<string, { phase: string; progress?: number }> = {
+  "sp-net-blockchain": { phase: "Platform Architecture", progress: 15 },
   "sp-net-gram": { phase: "Core Architecture Complete", progress: 65 },
   "sp-net-admin-os": { phase: "Platform Foundation", progress: 50 },
   "sp-net-ai": { phase: "Research & Prototyping", progress: 25 },
-  "savan-portfolio": { phase: "Continuously Improving" },
   "sp-net-api": { phase: "Research & Planning", progress: 20 },
-  "savaro-x": { phase: "Architecture Design", progress: 15 },
+  "savan-portfolio": { phase: "Continuously Improving" },
 };
 
 const futureProductIcons: Record<string, React.ElementType> = {

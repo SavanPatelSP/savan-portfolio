@@ -1,4 +1,4 @@
-import SPNetAdminOSClientPage from "./ClientPage";
+import ClientPage from "./ClientPage";
 import { generateProductMetadata, generateProductJsonLd } from "@/lib/seo";
 
 export const metadata = generateProductMetadata({
@@ -30,7 +30,7 @@ export default function SPNetAdminOSPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <SPNetAdminOSClientPage />
+      <ClientPage />
     </>
   );
 }

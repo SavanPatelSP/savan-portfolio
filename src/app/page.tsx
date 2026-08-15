@@ -21,6 +21,9 @@ const ExperienceSection = dynamic(() => import("@/components/experience/Experien
 const ProjectsSection = dynamic(() => import("@/components/projects/Projects").then((m) => ({ default: m.ProjectsSection })), {
   loading: () => <SectionSkeleton />,
 });
+const UpdatesBand = dynamic(() => import("@/components/blog/UpdatesBand").then((m) => ({ default: m.UpdatesBand })), {
+  loading: () => <SectionSkeleton />,
+});
 const ContactSection = dynamic(() => import("@/components/contact/Contact").then((m) => ({ default: m.ContactSection })), {
   loading: () => <SectionSkeleton />,
 });
@@ -36,6 +39,7 @@ export default function Home() {
       <LockedOrganization />
       <ExperienceSection />
       <ProjectsSection />
+      <UpdatesBand />
       <ContactSection />
     </>
   );

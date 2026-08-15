@@ -33,7 +33,7 @@ export const journey = [
   { year: "2023", title: "SP NET GRAM", description: "Designed and architected a next-generation messaging platform from scratch. Privacy-first, productivity-focused, built for how people actually communicate." },
   { year: "2024", title: "SP NET ADMIN OS", description: "Built a complete enterprise administration platform. Licensing, permissions, analytics, moderation — every tool an organization needs to operate at scale." },
   { year: "2025", title: "SP NET AI", description: "Began research and development on AI systems. Building the intelligence layer that powers experiences across the entire SP NET ecosystem." },
-  { year: "2026", title: "Ecosystem & Scale", description: "Expanding the ecosystem with new products, developer tooling, and a blockchain initiative. The foundation is set — now building at scale." },
+  { year: "2026", title: "Ecosystem & Scale", description: "Expanding the ecosystem with SP NET BLOCKCHAIN, developer tooling, and new products. The foundation is set — now building at scale." },
 ];
 
 export const founderMetrics = [

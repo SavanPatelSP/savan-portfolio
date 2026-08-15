@@ -11,7 +11,7 @@ export const metadata: Metadata = {
       "The products Savan Patel is building — SP NET GRAM, ADMIN OS, AI, and the Ecosystem.",
     type: "website",
     url: "https://savan.sp-net.in/explore/products",
-    siteName: "Savan Patel",
+    siteName: "SP NET INC",
   },
   twitter: {
     card: "summary_large_image",

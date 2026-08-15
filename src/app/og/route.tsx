@@ -11,6 +11,8 @@ const sectionConfig: Record<string, { label: string; accent: string }> = {
   journey: { label: "Journey", accent: "#3b82f6" },
   roadmap: { label: "Roadmap", accent: "#10b981" },
   contact: { label: "Contact", accent: "#3b82f6" },
+  blog: { label: "Blog", accent: "#3b82f6" },
+  newsroom: { label: "Newsroom", accent: "#f59e0b" },
 };
 
 async function loadGeist(): Promise<ArrayBuffer> {

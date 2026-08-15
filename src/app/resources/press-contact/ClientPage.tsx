@@ -71,7 +71,7 @@ const relatedPages = [
     title: "Newsroom",
     description:
       "Company announcements, product launches, and milestones.",
-    href: "/company/newsroom",
+    href: "/newsroom",
   },
   {
     title: "Press Releases",
@@ -324,7 +324,7 @@ export default function PressContactPage() {
         titleAccent="we are ready to help"
         description="Reach out with your inquiry and we will provide the information, access, and quotes you need for your story."
         primaryAction={{ label: "Email media team", href: "mailto:media@sp-net.in" }}
-        secondaryAction={{ label: "View newsroom", href: "/company/newsroom" }}
+        secondaryAction={{ label: "View newsroom", href: "/newsroom" }}
       />
     </>
   );

@@ -138,13 +138,12 @@ function FlowTimeline() {
 
   return (
     <div ref={ref} className="relative max-w-3xl mx-auto">
-      <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-emerald-500/20 via-emerald-500/10 to-transparent hidden sm:block" />
-
-      <div className="space-y-0">
-        {flowSteps.map((step, i) => (
+      {flowSteps.map((step, i) => {
+        const isLast = i === flowSteps.length - 1;
+        return (
           <motion.div
             key={step.label}
-            className="relative pl-14 sm:pl-16 pb-10 last:pb-0"
+            className="relative flex gap-5 sm:gap-6"
             initial={{ opacity: 0, x: -12 }}
             animate={vis ? { opacity: 1, x: 0 } : {}}
             transition={{
@@ -153,12 +152,27 @@ function FlowTimeline() {
               ease: ease.out,
             }}
           >
-            <div className="absolute left-0 top-1 flex h-12 w-12 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/[0.06] z-10">
-              <span className="text-sm font-mono text-emerald-400/70">
-                {String(i + 1).padStart(2, "0")}
-              </span>
+            <div className="flex flex-col items-center shrink-0">
+              <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/[0.06]">
+                <span className="text-sm font-mono text-emerald-400/70">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
+              {!isLast && (
+                <div
+                  className="relative w-px flex-1 min-h-[32px] bg-emerald-500/[0.06]"
+                  aria-hidden="true"
+                >
+                  <motion.div
+                    className="absolute inset-0 origin-top bg-gradient-to-b from-emerald-500/20 via-emerald-500/10 to-emerald-500/[0.03]"
+                    initial={{ scaleY: 0 }}
+                    animate={vis ? { scaleY: 1 } : {}}
+                    transition={{ duration: 0.8, delay: i * 0.1 + 0.2, ease: ease.out }}
+                  />
+                </div>
+              )}
             </div>
-            <div className="pt-2">
+            <div className={`min-w-0 pt-2 ${isLast ? "" : "pb-10"}`}>
               <h4 className="text-sm font-medium text-white/60 mb-1">
                 {step.label}
               </h4>
@@ -167,8 +181,8 @@ function FlowTimeline() {
               </p>
             </div>
           </motion.div>
-        ))}
-      </div>
+        );
+      })}
     </div>
   );
 }

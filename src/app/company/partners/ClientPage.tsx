@@ -384,7 +384,7 @@ export default function PartnersClientPage() {
             title: "Newsroom",
             description:
               "Company announcements, product launches, and updates.",
-            href: "/company/newsroom",
+            href: "/newsroom",
           },
           {
             title: "Technologies",

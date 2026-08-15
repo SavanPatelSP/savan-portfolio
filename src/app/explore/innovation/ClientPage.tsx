@@ -216,7 +216,7 @@ export default function ClientPage() {
         title="Innovation"
         titleAccent="Pushing boundaries"
         description="The ideas, experiments, and creative engineering that keep pushing me to build something better than what exists today."
-        icon={<Lightbulb className="h-3.5 w-3.5" />}
+        icon={<Lightbulb className="h-4 w-4" />}
       />
 
       <SectionContainer>

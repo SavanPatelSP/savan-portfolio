@@ -11,7 +11,7 @@ export const metadata: Metadata = {
       "Innovation, experiments, and creative engineering from Savan Patel.",
     type: "website",
     url: "https://savan.sp-net.in/explore/innovation",
-    siteName: "Savan Patel",
+    siteName: "SP NET INC",
   },
   twitter: {
     card: "summary_large_image",

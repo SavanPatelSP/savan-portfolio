@@ -11,7 +11,7 @@ export const metadata: Metadata = {
       "Savan Patel's vision for the future — goals, dreams, and impact.",
     type: "website",
     url: "https://savan.sp-net.in/explore/vision",
-    siteName: "Savan Patel",
+    siteName: "SP NET INC",
   },
   twitter: {
     card: "summary_large_image",

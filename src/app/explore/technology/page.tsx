@@ -11,7 +11,7 @@ export const metadata: Metadata = {
       "Technologies Savan Patel uses and loves — the tools behind every project.",
     type: "website",
     url: "https://savan.sp-net.in/explore/technology",
-    siteName: "Savan Patel",
+    siteName: "SP NET INC",
   },
   twitter: {
     card: "summary_large_image",

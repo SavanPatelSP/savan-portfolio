@@ -175,7 +175,7 @@ export default function ClientPage() {
         title="Products"
         titleAccent="What I'm building"
         description="The products I pour my time, energy, and ideas into — each one solving a problem I genuinely care about, built under SP NET INC."
-        icon={<Package className="h-3.5 w-3.5" />}
+        icon={<Package className="h-4 w-4" />}
       />
 
       <SectionContainer>

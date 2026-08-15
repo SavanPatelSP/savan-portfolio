@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback, memo, useSyncExternalStore } 
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { Download, BookOpen, X } from "lucide-react";
+import { Download, BookOpen, X, PenLine, Newspaper } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -24,6 +24,8 @@ const sections = [
 ] as const;
 
 const externalLinks = [
+  { label: "Blog", href: "/blog", icon: PenLine },
+  { label: "Newsroom", href: "/newsroom", icon: Newspaper },
   { label: "Install", href: "/downloads", icon: Download },
   { label: "Docs", href: "/docs", icon: BookOpen },
 ] as const;
@@ -83,19 +85,32 @@ const NavLink = memo(function NavLink({
 
 const ExternalLink = memo(function ExternalLink({
   link,
+  isActive,
 }: {
   link: (typeof externalLinks)[number];
+  isActive: boolean;
 }) {
   const Icon = link.icon;
   return (
     <a
       href={link.href}
-      className="group hidden lg:flex items-center gap-1.5 rounded-xl px-2.5 py-2 text-sm text-white/35 hover:text-white/80 hover:bg-white/[0.03] transition-all duration-200"
+      className={cn(
+        "group hidden lg:flex items-center gap-1.5 rounded-xl px-2.5 py-2 text-sm transition-all duration-200",
+        isActive
+          ? "text-white/80 bg-white/[0.04]"
+          : "text-white/35 hover:text-white/80 hover:bg-white/[0.03]"
+      )}
       aria-label={link.label}
+      aria-current={isActive ? "page" : undefined}
     >
       <Icon className="h-3.5 w-3.5 shrink-0" />
       <span className="hidden xl:inline whitespace-nowrap">{link.label}</span>
-      <span className="hidden xl:block h-1 w-1 rounded-full bg-blue-400/50 shrink-0" />
+      <span
+        className={cn(
+          "hidden xl:block h-1 w-1 rounded-full shrink-0",
+          isActive ? "bg-blue-400/80" : "bg-blue-400/50"
+        )}
+      />
     </a>
   );
 });
@@ -255,7 +270,7 @@ export function Header() {
 
         {/* Desktop nav */}
         <div className="hidden lg:flex flex-1 items-center justify-center min-w-0 px-6">
-          <div className="flex items-center gap-5 xl:gap-6">
+          <div className="flex items-center gap-4 xl:gap-6">
             {sections.map((s) => (
               <NavLink
                 key={s.id}
@@ -270,7 +285,7 @@ export function Header() {
         {/* Right actions */}
         <div className="hidden lg:flex shrink-0 items-center gap-1">
           {externalLinks.map((link) => (
-            <ExternalLink key={link.href} link={link} />
+            <ExternalLink key={link.href} link={link} isActive={pathname === link.href} />
           ))}
           <div className="hidden xl:block w-px h-5 bg-white/[0.08] mx-1" />
           <motion.a
@@ -392,14 +407,21 @@ export function Header() {
 
               {externalLinks.map((link, i) => {
                 const Icon = link.icon;
+                const isActive = pathname === link.href;
                 return (
                   <a
                     key={link.href}
                     href={link.href}
-                    className="text-2xl sm:text-3xl font-medium min-h-[52px] flex items-center px-8 rounded-2xl w-full max-w-xs justify-center text-white/35 hover:text-white/70 hover:bg-white/[0.03] transition-all duration-300"
+                    className={cn(
+                      "text-2xl sm:text-3xl font-medium min-h-[52px] flex items-center px-8 rounded-2xl w-full max-w-xs justify-center transition-all duration-300",
+                      isActive
+                        ? "text-white/90 bg-white/[0.06]"
+                        : "text-white/35 hover:text-white/70 hover:bg-white/[0.03]"
+                    )}
                     style={{
                       transitionDelay: open ? `${50 + (sections.length + i) * 25}ms` : "0ms",
                     }}
+                    aria-current={isActive ? "page" : undefined}
                     tabIndex={open ? 0 : -1}
                     onClick={handleNavItemClick}
                   >

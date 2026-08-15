@@ -96,8 +96,8 @@ export default function SupportClientPage() {
                 <StaggerItem key={channel.title}>
                   <motion.a
                     href={channel.href}
-                    target={isExternal ? undefined : "_blank"}
-                    rel={isExternal ? undefined : "noopener noreferrer"}
+                    target={isExternal ? "_blank" : undefined}
+                    rel={isExternal ? "noopener noreferrer" : undefined}
                     className={`group block rounded-xl border ${channel.borderColor} ${channel.hoverBorder} bg-white/[0.01] p-6 sm:p-8 h-full transition-all duration-300 hover:bg-white/[0.02]`}
                     whileHover={{ y: -4, scale: 1.01 }}
                     transition={spring.gentle}
@@ -192,7 +192,7 @@ export default function SupportClientPage() {
             title: "Blog",
             description:
               "Engineering insights and product updates.",
-            href: "/resources/blog",
+            href: "/blog",
           },
         ]}
       />

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
       "How I think about security as a developer. Secure coding practices and a security-first mindset.",
     url: "https://savan.sp-net.in/trust/security",
     type: "website",
-    siteName: "Savan Patel",
+    siteName: "SP NET INC",
   },
   twitter: {
     card: "summary_large_image",

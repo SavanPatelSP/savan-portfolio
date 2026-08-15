@@ -213,7 +213,7 @@ const relatedPages = [
     title: "Blog",
     description:
       "Engineering insights, product updates, and technical deep dives.",
-    href: "/resources/blog",
+    href: "/blog",
   },
 ];
 

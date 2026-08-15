@@ -59,7 +59,7 @@ const childLinks = [
   {
     title: "Newsroom",
     description: "The latest news, product launches, and company milestones",
-    href: "/company/newsroom",
+    href: "/newsroom",
     icon: Newspaper,
   },
   {

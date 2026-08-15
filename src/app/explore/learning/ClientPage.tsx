@@ -210,7 +210,7 @@ const relatedPages = [
   {
     title: "Blog",
     description: "Insights and lessons from building in public.",
-    href: "/resources/blog",
+    href: "/blog",
   },
 ];
 
@@ -226,7 +226,7 @@ export default function ClientPage() {
         title="Learning Resources"
         titleAccent="What I'm learning and recommend"
         description="Technologies I am currently learning, resources I recommend, and the approach I take to keep growing as a developer."
-        icon={<BookOpen className="h-3.5 w-3.5" />}
+        icon={<BookOpen className="h-4 w-4" />}
       />
 
       <SectionContainer>

@@ -16,6 +16,7 @@ import {
   Briefcase,
   ArrowUpRight,
   Link2,
+  Coins,
 } from "lucide-react";
 import { spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
@@ -66,11 +67,18 @@ const coreProducts = [
     color: "#06b6d4",
   },
   {
-    title: "SavaroX",
-    description: "Decentralized infrastructure and Web3-native experiences",
-    href: "/products/savaro-x",
+    title: "SP NET BLOCKCHAIN",
+    description: "Private blockchain platform powering the SP NET ecosystem",
+    href: "/products/sp-net-blockchain",
     icon: Link2,
-    color: "#a855f7",
+    color: "#4338ca",
+  },
+  {
+    title: "SavaroX",
+    description: "Official token of the SP NET BLOCKCHAIN platform",
+    href: "/products/savaro-x",
+    icon: Coins,
+    color: "#c084fc",
   },
 ];
 

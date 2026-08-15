@@ -253,7 +253,7 @@ const relatedPages = [
     title: "Blog",
     description:
       "Engineering insights, architecture decisions, and technical deep dives.",
-    href: "/resources/blog",
+    href: "/blog",
   },
   {
     title: "Contact",
@@ -743,17 +743,7 @@ export default function OpenSourceClientPage() {
       </SectionContainer>
 
       {/* ─── FAQ ─────────────────────────────────────────────── */}
-      <SectionContainer className="border-t border-white/[0.04]">
-          <SectionTitle
-            label="Questions"
-            title="Frequently asked questions"
-            subtitle="Common questions about the open source timeline and approach."
-          />
-
-          <div className="mx-auto max-w-2xl">
-            <FAQ title="" items={faqItems} />
-          </div>
-      </SectionContainer>
+      <FAQ title="Open Source FAQ" items={faqItems} />
 
       <RelatedPages title="Explore More" pages={relatedPages} />
 

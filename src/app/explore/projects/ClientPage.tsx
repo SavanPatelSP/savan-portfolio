@@ -11,6 +11,7 @@ import {
   Server,
   Layers,
   Link2,
+  Coins,
 } from "lucide-react";
 import { ease, spring, SLOW } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
@@ -58,13 +59,23 @@ const activeProjects = [
   },
   {
     icon: Link2,
-    name: "SavaroX",
+    name: "SP NET BLOCKCHAIN",
     description:
-      "Blockchain and Web3 initiative exploring decentralized infrastructure, tokenized economies, and Web3-native experiences. Building the decentralized layer that other SP NET products can tap into for trustless interactions and user sovereignty.",
-    stack: ["TypeScript", "Solidity", "Ethers.js", "Node.js"],
+      "A private blockchain platform developed by SP NET INC. SP NET BLOCKCHAIN powers official tokens like SavaroX, digital asset infrastructure, and the expanding blockchain ecosystem.",
+    stack: ["TypeScript", "Node.js"],
     status: "Exploring",
     progress: 15,
     color: "#a855f7",
+  },
+  {
+    icon: Coins,
+    name: "SavaroX",
+    description:
+      "Official token of the SP NET BLOCKCHAIN platform. SavaroX is a digital asset designed for utility, governance, and ecosystem participation within the SP NET BLOCKCHAIN ecosystem.",
+    stack: ["TypeScript"],
+    status: "Concept",
+    progress: 8,
+    color: "#c084fc",
   },
 ];
 
@@ -178,8 +189,13 @@ const relatedPages = [
     href: "/explore/products",
   },
   {
+    title: "SP NET BLOCKCHAIN",
+    description: "Private blockchain platform by SP NET INC.",
+    href: "/products/sp-net-blockchain",
+  },
+  {
     title: "SavaroX",
-    description: "Blockchain and Web3 initiative.",
+    description: "Official token of SP NET BLOCKCHAIN.",
     href: "/products/savaro-x",
   },
   {
@@ -201,7 +217,7 @@ export default function ClientPage() {
         title="Projects"
         titleAccent="Active development"
         description="What I am coding right now — active projects, private experiments, and the open-source work I am planning to give back."
-        icon={<FolderGit2 className="h-3.5 w-3.5" />}
+        icon={<FolderGit2 className="h-4 w-4" />}
       />
 
       <SectionContainer>

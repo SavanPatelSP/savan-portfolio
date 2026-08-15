@@ -11,9 +11,32 @@ import { cn } from "@/lib/utils";
 import { ease, spring, SLOW, NORMAL, FAST } from "@/lib/motion";
 import { Timeline, TimelineItem } from "@/components/timeline";
 
+/* ─── TYPES ──────────────────────────────────────────────────── */
+
+type LinkStatus = "available" | "development" | "planned" | "future";
+
+type NavLink = {
+  label: string;
+  href?: string;
+  description?: string;
+  status?: LinkStatus;
+};
+
+type NavGroup = {
+  title: string;
+  links: NavLink[];
+};
+
 /* ─── DATA ───────────────────────────────────────────────────── */
 
-const navGroups = [
+const statusConfig: Record<LinkStatus, { label: string; dot: string }> = {
+  available: { label: "Available", dot: "bg-emerald-400/60" },
+  development: { label: "In Development", dot: "bg-amber-400/60" },
+  planned: { label: "Planned", dot: "bg-blue-400/60" },
+  future: { label: "Future Vision", dot: "bg-white/20" },
+};
+
+const navGroups: NavGroup[] = [
   {
     title: "Portfolio App",
     links: [
@@ -35,20 +58,40 @@ const navGroups = [
       { label: "Leadership", href: "/company/leadership" },
       { label: "Partners", href: "/company/partners" },
       { label: "Careers", href: "/company/careers" },
-      { label: "Newsroom", href: "/company/newsroom" },
+      { label: "Newsroom", href: "/newsroom" },
       { label: "Contact", href: "/company/contact" },
     ],
   },
   {
     title: "Products",
     links: [
-      { label: "SP NET GRAM", href: "/products/sp-net-gram" },
-      { label: "SP NET ADMIN OS", href: "/products/sp-net-admin-os" },
-      { label: "SP NET AI", href: "/products/sp-net-ai" },
-      { label: "Savan's Portfolio", href: "/" },
-      { label: "SP NET API", href: "/products/sp-net-api" },
-      { label: "SavaroX", href: "/products/savaro-x" },
-      { label: "View All Products →", href: "/products" },
+      { label: "SP NET BLOCKCHAIN", href: "/products/sp-net-blockchain", description: "Private blockchain platform", status: "development" },
+      { label: "SP NET GRAM", href: "/products/sp-net-gram", description: "Modern messaging platform", status: "development" },
+      { label: "SP NET ADMINS OS", href: "/products/sp-net-admin-os", description: "Administration platform", status: "development" },
+      { label: "SP NET AI", href: "/products/sp-net-ai", description: "AI platform", status: "development" },
+      { label: "SP NET API", href: "/products/sp-net-api", description: "Developer platform", status: "future" },
+      { label: "Savan's Portfolio", href: "/", description: "Official founder website", status: "available" },
+    ],
+  },
+  {
+    title: "Blockchain Ecosystem",
+    links: [
+      { label: "SavaroX", href: "/products/savaro-x", description: "Official token of SP NET BLOCKCHAIN", status: "development" },
+      { label: "Explorer", href: "/products/sp-net-blockchain", description: "Blockchain explorer", status: "planned" },
+      { label: "Wallet", href: "/products/sp-net-blockchain", description: "Digital asset wallet", status: "planned" },
+      { label: "Developer Platform", href: "/products/sp-net-blockchain", description: "Developer tools", status: "planned" },
+      { label: "Enterprise Solutions", href: "/products/sp-net-blockchain", description: "Enterprise blockchain services", status: "future" },
+    ],
+  },
+  {
+    title: "Future Products",
+    links: [
+      { label: "SP NET Ecosystem", href: "/products/sp-net-ecosystem", description: "Connected platform", status: "future" },
+      { label: "SP NET WORKPLACE", href: "/products", description: "Digital workplace", status: "planned" },
+      { label: "SP NET GAME", href: "/products", description: "Gaming platform", status: "planned" },
+      { label: "SP NET Cloud", href: "/products", description: "Cloud infrastructure", status: "planned" },
+      { label: "SP NET Security", href: "/products", description: "Security platform", status: "planned" },
+      { label: "SP NET Robotics", href: "/products", description: "Robotics platform", status: "future" },
     ],
   },
   {
@@ -87,7 +130,7 @@ const navGroups = [
     links: [
       { label: "Documentation", href: "/docs" },
       { label: "FAQs", href: "/resources/faqs" },
-      { label: "Blog", href: "/resources/blog" },
+      { label: "Blog", href: "/blog" },
       { label: "Open Source", href: "/resources/open-source" },
       { label: "Media Kit", href: "/resources/media-kit" },
       { label: "Press Releases", href: "/resources/press-releases" },
@@ -127,7 +170,7 @@ const journeyMilestones = [
 
 const quickStats = [
   { value: "2018", label: "Coding Journey Started" },
-  { value: "3+", label: "Products In Development" },
+  { value: "6+", label: "Products In Development" },
   { value: "1", label: "Technology Ecosystem" },
   { value: "∞", label: "Vision Beyond Limits" },
 ];
@@ -152,6 +195,49 @@ function FadeSection({ children, delay = 0, className }: { children: React.React
     >
       {children}
     </motion.div>
+  );
+}
+
+/* ─── RICH LINK ──────────────────────────────────────────────── */
+
+function FooterLink({ link }: { link: NavLink }) {
+  const Tag = link.href ? "a" : "span";
+  const props = link.href ? { href: link.href } : {};
+  const external = link.href?.startsWith("http");
+  return (
+    <li>
+      <Tag
+        {...props}
+        target={external ? "_blank" : undefined}
+        rel={external ? "noopener noreferrer" : undefined}
+        className={cn(
+          "group/link flex flex-col gap-0.5 py-1 min-h-[36px] justify-center",
+          link.href ? "cursor-pointer" : "cursor-default"
+        )}
+      >
+        <span className={cn(
+          "inline-flex items-center gap-1.5 transition-colors duration-200",
+          link.href ? "text-white/35 hover:text-white/70" : "text-white/25"
+        )}>
+          <span className="h-px w-0 group-hover/link:w-2 bg-white/30 transition-all duration-300" aria-hidden="true" />
+          <span className="text-sm">{link.label}</span>
+          {link.status && (
+            <span className="inline-flex items-center gap-1 rounded-full border border-white/[0.06] px-1.5 py-0.5">
+              <span className={`h-1 w-1 rounded-full ${statusConfig[link.status].dot}`} />
+              <span className="text-[8px] font-mono tracking-wider text-white/20 uppercase">
+                {statusConfig[link.status].label}
+              </span>
+            </span>
+          )}
+          {external && <ExternalLink className="h-3 w-3 opacity-0 group-hover/link:opacity-60 transition-opacity duration-200" aria-hidden="true" />}
+        </span>
+        {link.description && (
+          <span className="text-[11px] text-white/15 leading-relaxed pl-0">
+            {link.description}
+          </span>
+        )}
+      </Tag>
+    </li>
   );
 }
 
@@ -252,24 +338,15 @@ export function Footer() {
           {/* ─── NAVIGATION ─── */}
           <FadeSection delay={0.3} className="flex-1">
             <nav aria-label="Footer navigation">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-8 text-center sm:text-left">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-8 items-start">
                 {navGroups.map((group) => (
-                  <div key={group.title}>
-                    <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-4">{group.title}</h4>
-                    <ul className="list-none p-0 m-0 space-y-1">
+                  <div key={group.title} className="lg:w-[calc(33.333%-1rem)] xl:w-[calc(20%-1rem)] min-w-0">
+                    <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-3">
+                      {group.title}
+                    </h4>
+                    <ul className="list-none p-0 m-0 space-y-0.5">
                       {group.links.map((link) => (
-                        <li key={link.label}>
-                          <a
-                            href={link.href}
-                            target={link.href.startsWith("http") ? "_blank" : undefined}
-                            rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                            className="group/link inline-flex items-center gap-1.5 text-sm text-white/35 hover:text-white/70 transition-colors duration-200 min-h-[36px] py-1"
-                          >
-                            <span className="h-px w-0 group-hover/link:w-2 bg-white/30 transition-all duration-300" aria-hidden="true" />
-                            {link.label}
-                            {link.href.startsWith("http") && <ExternalLink className="h-3 w-3 opacity-0 group-hover/link:opacity-60 transition-opacity duration-200" aria-hidden="true" />}
-                          </a>
-                        </li>
+                        <FooterLink key={link.label} link={link} />
                       ))}
                     </ul>
                   </div>

@@ -3,22 +3,22 @@ import { generateProductMetadata, generateProductJsonLd } from "@/lib/seo";
 
 export const metadata = generateProductMetadata({
   slug: "savaro-x",
-  title: "SavaroX — Decentralized Infrastructure for the Next Internet",
+  title: "SavaroX — Official Token of SP NET BLOCKCHAIN",
   description:
-    "SavaroX is a blockchain initiative building decentralized infrastructure, tokenized economies, and Web3-native experiences across the SP NET ecosystem.",
+    "SavaroX is the official digital token of the SP NET BLOCKCHAIN platform. A digital asset designed for utility, governance, and ecosystem participation within the SP NET ecosystem.",
   ogDescription:
-    "Building decentralized infrastructure, tokenized economies, and Web3-native experiences for the SP NET ecosystem.",
+    "Official token of the SP NET BLOCKCHAIN platform. Designed for utility, governance, and ecosystem participation.",
   twitterDescription:
-    "Building decentralized infrastructure, tokenized economies, and Web3-native experiences for the SP NET ecosystem.",
-  category: "Blockchain & Web3",
+    "Official token of the SP NET BLOCKCHAIN platform. Designed for utility, governance, and ecosystem participation.",
+  category: "Official Token",
 });
 
 const jsonLd = generateProductJsonLd({
   slug: "savaro-x",
-  title: "SavaroX",
+  title: "SavaroX — Official Token",
   description:
-    "Building decentralized infrastructure, tokenized economies, and Web3-native experiences for the SP NET ecosystem.",
-  category: "Blockchain & Web3",
+    "The official digital token of the SP NET BLOCKCHAIN platform. Designed for utility, governance, and ecosystem participation.",
+  category: "Official Token",
 });
 
 export default function SavaroXPage() {

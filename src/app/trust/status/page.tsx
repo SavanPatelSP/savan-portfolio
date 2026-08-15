@@ -11,7 +11,7 @@ export const metadata: Metadata = {
       "Current status of my projects, what I'm working on, and availability for collaboration.",
     url: "https://savan.sp-net.in/trust/status",
     type: "website",
-    siteName: "Savan Patel",
+    siteName: "SP NET INC",
   },
   twitter: {
     card: "summary_large_image",

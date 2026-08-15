@@ -11,7 +11,7 @@ export const metadata: Metadata = {
       "Learning resources and technologies Savan Patel recommends and is currently exploring.",
     type: "website",
     url: "https://savan.sp-net.in/explore/learning",
-    siteName: "Savan Patel",
+    siteName: "SP NET INC",
   },
   twitter: {
     card: "summary_large_image",

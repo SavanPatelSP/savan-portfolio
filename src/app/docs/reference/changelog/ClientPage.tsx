@@ -15,6 +15,16 @@ interface ChangelogEntry {
   upgradeNotes: string[]
 }
 
+function formatReleaseDate(date: string): string {
+  const [year, month, day] = date.split("-").map(Number);
+  return new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(Date.UTC(year, month - 1, day)));
+}
+
 const changelog: ChangelogEntry[] = [
   {
     version: "1.0.0",
@@ -135,11 +145,7 @@ export default function ClientPage() {
                     {entry.status}
                   </span>
                   <span className="text-xs text-white/40 ml-auto">
-                    {new Date(entry.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
+                    {formatReleaseDate(entry.date)}
                   </span>
                 </div>
               </button>

@@ -163,7 +163,7 @@ export default function ClientPage() {
         title="Technology"
         titleAccent="Technologies I love"
         description="The tools and technologies I reach for daily — why each one earned its place, and what I am learning next."
-        icon={<Code2 className="h-3.5 w-3.5" />}
+        icon={<Code2 className="h-4 w-4" />}
       />
 
       <SectionContainer>

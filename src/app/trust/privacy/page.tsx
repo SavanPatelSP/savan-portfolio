@@ -11,7 +11,7 @@ export const metadata: Metadata = {
       "How I handle visitor data on this portfolio. No tracking, no ads, no analytics.",
     url: "https://savan.sp-net.in/trust/privacy",
     type: "website",
-    siteName: "Savan Patel",
+    siteName: "SP NET INC",
   },
   twitter: {
     card: "summary_large_image",

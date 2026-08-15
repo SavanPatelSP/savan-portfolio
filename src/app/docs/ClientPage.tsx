@@ -146,7 +146,7 @@ export default function ClientPage() {
                   {section.items.map((doc) => (
                     <li key={doc.slug}>
                       <Link
-                        href={`/docs/${doc.slug}`}
+                        href={`/docs/${section.slug}/${doc.slug}`}
                         className="group flex items-center gap-2 py-1.5 px-3 rounded-lg hover:bg-white/[0.02] transition-colors duration-200"
                       >
                         <span className="h-1 w-1 rounded-full bg-white/10 group-hover:bg-white/30 transition-colors duration-200 shrink-0" />
