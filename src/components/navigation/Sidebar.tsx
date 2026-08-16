@@ -30,7 +30,7 @@ export function Sidebar({
               key={link.href}
               href={link.href}
               onClick={onClose}
-              className="flex items-center gap-2 px-3 py-2 text-[13px] text-white/30 hover:text-white/50 rounded-lg hover:bg-white/[0.02] transition-all duration-200 min-h-[32px]"
+              className="flex items-center gap-2 px-3 py-2 text-[13px] text-white/30 hover:text-white/50 rounded-lg hover:bg-white/[0.02] transition-all duration-200 min-h-[40px] lg:min-h-[32px]"
             >
               {link.icon && <link.icon className="h-3.5 w-3.5" />}
               {link.label}

@@ -20,7 +20,7 @@ export function SidebarItem({
       href={href}
       onClick={onClose}
       className={cn(
-        "flex items-center gap-2 px-3 py-1.5 text-[13px] rounded-lg transition-all duration-200 min-h-[32px] leading-normal",
+        "flex items-center gap-2 px-3 py-1.5 text-[13px] rounded-lg transition-all duration-200 min-h-[40px] lg:min-h-[32px] leading-normal",
         isActive
           ? "text-white/80 bg-white/[0.06] font-medium"
           : "text-white/30 hover:text-white/50 hover:bg-white/[0.02]"

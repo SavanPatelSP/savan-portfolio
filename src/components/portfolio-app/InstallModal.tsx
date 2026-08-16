@@ -16,9 +16,13 @@ import {
 } from "lucide-react";
 import { spring, NORMAL, FAST } from "@/lib/motion";
 import { isStandalone } from "@/lib/pwa";
+import { useSplash } from "@/lib/splash";
 
 const DISMISS_KEY = "portfolio-app-modal-dismissed";
 const SHOWN_KEY = "portfolio-app-modal-shown";
+const COOKIE_KEY = "cookie-consent";
+const INSTALL_PROMPT_DISMISS_KEY = "portfolio-install-dismissed";
+const INSTALL_PROMPT_SHOWN_KEY = "portfolio-install-shown";
 
 const STEPS = [
   {
@@ -50,12 +54,17 @@ export function InstallModal() {
   const [visible, setVisible] = useState(false);
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState(1);
+  const { ready: splashReady } = useSplash();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (!splashReady) return;
+    if (!localStorage.getItem(COOKIE_KEY)) return;
 
     if (localStorage.getItem(DISMISS_KEY)) return;
     if (sessionStorage.getItem(SHOWN_KEY)) return;
+    if (localStorage.getItem(INSTALL_PROMPT_DISMISS_KEY)) return;
+    if (localStorage.getItem(INSTALL_PROMPT_SHOWN_KEY)) return;
 
     if (isStandalone()) return;
 
@@ -91,7 +100,7 @@ export function InstallModal() {
       clearInterval(timer);
       observer.disconnect();
     };
-  }, []);
+  }, [splashReady]);
 
   const handleDismiss = useCallback(() => {
     setVisible(false);

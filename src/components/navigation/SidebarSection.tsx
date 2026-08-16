@@ -37,7 +37,7 @@ export function SidebarSection({
     <div className="mb-1">
       <button
         onClick={() => setExpanded(!expanded)}
-        className="flex items-center gap-2 w-full px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/30 hover:text-white/50 transition-colors duration-200 rounded-lg"
+        className="flex items-center gap-2 w-full px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/30 hover:text-white/50 transition-colors duration-200 rounded-lg min-h-[40px] lg:min-h-[36px]"
         aria-expanded={expanded}
       >
         <ChevronRight

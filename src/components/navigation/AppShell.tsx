@@ -166,7 +166,7 @@ export function AppShell({
             {/* Mobile sidebar toggle */}
             <button
               onClick={() => setSidebarOpen(true)}
-              className="lg:hidden flex items-center gap-2 text-[13px] text-white/30 hover:text-white/50 mb-4 transition-colors duration-200"
+              className="lg:hidden flex items-center gap-2 text-[13px] text-white/30 hover:text-white/50 mb-4 transition-colors duration-200 min-h-[44px] px-3 rounded-lg border border-white/[0.08] bg-white/[0.02] w-fit"
               aria-label="Open navigation"
             >
               <Menu className="h-4 w-4" />

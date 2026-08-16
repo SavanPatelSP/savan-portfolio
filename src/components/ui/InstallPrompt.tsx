@@ -5,16 +5,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Download, Monitor, Smartphone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ease, NORMAL } from "@/lib/motion";
+import { useSplash } from "@/lib/splash";
 import { type BeforeInstallPromptEvent, isStandalone } from "@/lib/pwa";
 import { useIsStandalone } from "@/hooks/useIsStandalone";
 
 const DISMISS_KEY = "portfolio-install-dismissed";
 const SHOWN_KEY = "portfolio-install-shown";
+const COOKIE_KEY = "cookie-consent";
+const MODAL_SHOWN_SESSION_KEY = "portfolio-app-modal-shown";
 
 export function InstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [visible, setVisible] = useState(false);
   const [isInstalling, setIsInstalling] = useState(false);
+  const { ready: splashReady } = useSplash();
   const isStandaloneState = useIsStandalone();
   const isIOS = useSyncExternalStore(
     () => () => {},
@@ -24,6 +28,8 @@ export function InstallPrompt() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (!splashReady) return;
+    if (!localStorage.getItem(COOKIE_KEY)) return;
 
     const dismissed = localStorage.getItem(DISMISS_KEY);
     if (dismissed) return;
@@ -32,6 +38,8 @@ export function InstallPrompt() {
 
     const shown = parseInt(localStorage.getItem(SHOWN_KEY) || "0", 10);
     if (shown >= 3) return;
+
+    if (sessionStorage.getItem(MODAL_SHOWN_SESSION_KEY)) return;
 
     const onPrompt = (e: Event) => {
       e.preventDefault();
@@ -42,7 +50,7 @@ export function InstallPrompt() {
 
     window.addEventListener("beforeinstallprompt", onPrompt);
     return () => window.removeEventListener("beforeinstallprompt", onPrompt);
-  }, []);
+  }, [splashReady]);
 
   const handleInstall = useCallback(async () => {
     if (!deferredPrompt) return;

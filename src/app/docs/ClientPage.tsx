@@ -147,7 +147,7 @@ export default function ClientPage() {
                     <li key={doc.slug}>
                       <Link
                         href={`/docs/${section.slug}/${doc.slug}`}
-                        className="group flex items-center gap-2 py-1.5 px-3 rounded-lg hover:bg-white/[0.02] transition-colors duration-200"
+                        className="group flex items-center gap-2 py-1.5 px-3 rounded-lg hover:bg-white/[0.02] transition-colors duration-200 min-h-[40px] sm:min-h-[32px]"
                       >
                         <span className="h-1 w-1 rounded-full bg-white/10 group-hover:bg-white/30 transition-colors duration-200 shrink-0" />
                         <span className="text-[13px] text-white/30 group-hover:text-white/50 transition-colors duration-200">

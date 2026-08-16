@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, ArrowUpRight, Clock, Feather, Pin, Rss } from "lucide-react";
 import type { BlogPost } from "@/data/blog";
 import { slugifyCategory } from "@/data/blog";
@@ -205,12 +206,14 @@ export function FeaturedCard({ post }: { post: BlogPost }) {
                 )}
                 aria-hidden="true"
               />
-              <div className="relative overflow-hidden rounded-2xl border border-white/[0.10] shadow-2xl shadow-black/50">
-                <img
+              <div className="relative aspect-[16/10] md:aspect-[4/5] overflow-hidden rounded-2xl border border-white/[0.10] shadow-2xl shadow-black/50">
+                <Image
                   src={post.heroImage}
                   alt={post.heroAlt || ""}
-                  className="aspect-[16/10] md:aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                  loading="eager"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  priority
                   fetchPriority="high"
                 />
                 {special && (
@@ -278,11 +281,13 @@ export function CompactPostCard({ post }: { post: BlogPost }) {
     >
       <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-lg border border-white/[0.08] bg-white/[0.02]">
         {post.heroImage ? (
-          <img
+          <Image
             src={post.heroImage}
             alt=""
+            fill
+            sizes="56px"
             loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.06]"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
           />
         ) : (
           <span className="flex h-full w-full items-center justify-center">
@@ -354,7 +359,7 @@ export function NextStoryCard({ rssHref = "/blog/rss.xml" }: { rssHref?: string 
       </p>
       <a
         href={rssHref}
-        className="mt-5 inline-flex items-center gap-2 rounded-lg border border-white/[0.10] px-4 py-2 text-xs font-medium text-white/45 hover:text-white/75 hover:border-white/[0.18] transition-all duration-200"
+        className="mt-5 inline-flex items-center gap-2 rounded-lg border border-white/[0.10] px-4 py-2 text-xs font-medium text-white/45 hover:text-white/75 hover:border-white/[0.18] transition-all duration-200 min-h-[44px]"
       >
         <Rss className="h-3.5 w-3.5" aria-hidden="true" />
         Subscribe via RSS

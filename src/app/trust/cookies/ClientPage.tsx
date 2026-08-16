@@ -3,7 +3,6 @@
 import { useState, useCallback, useSyncExternalStore } from "react";
 import { motion } from "framer-motion";
 import {
-  ChevronRight,
   HardDrive,
   Cookie,
   Shield,
@@ -368,27 +367,23 @@ export default function ClientPage() {
         />
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 max-w-4xl">
-          {statusCards.map((item, i) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={item.label}
-                className="flex items-center gap-3 rounded-xl border border-white/[0.04] bg-white/[0.01] px-4 py-4"
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: FAST, delay: i * 0.08, ease: ease.out }}
-                whileHover={{ borderColor: "rgba(59,130,246,0.15)", backgroundColor: "rgba(59,130,246,0.03)" }}
-              >
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/10">
-                  <Check className="h-4 w-4 text-emerald-400/70" />
-                </div>
-                <span className="text-xs font-medium text-white/50 leading-tight">{item.label}</span>
-              </motion.div>
-            );
-          })}
-        </div>
-      </SectionContainer>
+          {statusCards.map((item, i) => (
+            <motion.div
+              key={item.label}
+              className="flex items-center gap-3 rounded-xl border border-white/[0.04] bg-white/[0.01] px-4 py-4"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: FAST, delay: i * 0.08, ease: ease.out }}
+              whileHover={{ borderColor: "rgba(59,130,246,0.15)", backgroundColor: "rgba(59,130,246,0.03)" }}
+            >
+              <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-emerald-500/10 border border-emerald-500/10">
+                <Check className="h-4 w-4 text-emerald-400/70" />
+              </div>
+              <span className="text-xs font-medium text-white/50 leading-tight">{item.label}</span>
+            </motion.div>
+          ))}
+        </div>      </SectionContainer>
 
       <SectionContainer className="border-t border-white/[0.04]">
         <SectionTitle

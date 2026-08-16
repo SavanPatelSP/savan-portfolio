@@ -14,6 +14,7 @@ import { InstallPrompt } from "@/components/ui/InstallPrompt";
 import { InstallModal } from "@/components/portfolio-app/InstallModal";
 import { CookieConsent } from "@/components/ui/CookieConsent";
 import { ScrollToHash } from "@/components/ScrollToHash";
+import { ClientNavigation } from "@/components/ClientNavigation";
 import { PageTransition } from "@/components/ui/PageTransition";
 import { personal } from "@/data/personal";
 
@@ -182,12 +183,16 @@ export default function RootLayout({
     >
       <head>
         <link rel="manifest" href="/manifest.json" />
+        <link rel="preload" as="image" href="/sp-net-inc-splash-icon.png" fetchPriority="high" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <style>{`
           [data-loading] #page-content {
             opacity: 0 !important;
             visibility: hidden !important;
+          }
+          #page-content {
+            transition: opacity 0.6s ease;
           }
           #splash-screen {
             position: fixed !important;
@@ -201,6 +206,7 @@ export default function RootLayout({
           }
           @media (prefers-reduced-motion: reduce) {
             [data-loading] { transition: none !important; }
+            #page-content { transition: none !important; }
           }
         `}</style>
         <script
@@ -224,6 +230,7 @@ export default function RootLayout({
             <div id="page-content">
               <Header />
               <ScrollToHash />
+              <ClientNavigation />
               <main id="main-content" tabIndex={-1}><PageTransition>{children}</PageTransition></main>
               <Footer />
             </div>

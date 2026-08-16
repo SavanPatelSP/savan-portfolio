@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useSplash } from "@/lib/splash";
 import { Shield, Cookie, Globe, Lock, ArrowRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FAST, NORMAL, ease, spring } from "@/lib/motion";
@@ -77,16 +78,18 @@ export function CookieConsent() {
   const panelRef = useRef<HTMLDivElement>(null);
   const acceptRef = useRef<HTMLButtonElement>(null);
   const prefersReduced = useReducedMotion();
+  const { ready: splashReady } = useSplash();
 
-  /* ─── Mount: show if no consent yet ────────────────────────── */
+  /* ─── Mount: show only after the splash has finished ───────── */
 
   useEffect(() => {
+    if (!splashReady) return;
     const consent = localStorage.getItem(STORAGE_KEY);
     if (!consent) {
       const t = setTimeout(() => setVisible(true), 1800);
       return () => clearTimeout(t);
     }
-  }, []);
+  }, [splashReady]);
 
   /* ─── Responsive ──────────────────────────────────────────── */
 
@@ -260,7 +263,10 @@ export function CookieConsent() {
 
                 <motion.a
                   href="/trust/cookies"
-                  onClick={() => localStorage.setItem(STORAGE_KEY, "declined")}
+                  onClick={() => {
+                    localStorage.setItem(STORAGE_KEY, "declined");
+                    setVisible(false);
+                  }}
                   className="flex items-center justify-center gap-1.5 rounded-xl px-4 py-2.5 text-sm font-medium text-white/40 hover:text-white/60 min-h-[44px] transition-colors duration-200"
                   style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
                   whileHover={{ scale: 1.01, borderColor: "rgba(255,255,255,0.1)" }}
@@ -276,6 +282,7 @@ export function CookieConsent() {
               <div className="mt-4 pt-3 border-t border-white/[0.04] flex items-center justify-between">
                 <a
                   href="/trust/privacy"
+                  onClick={() => setVisible(false)}
                   className="text-[10px] text-blue-400/30 hover:text-blue-400/50 transition-colors underline underline-offset-2"
                 >
                   Privacy Policy

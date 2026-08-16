@@ -273,7 +273,7 @@ export function ContactSection() {
                     target={isModal ? undefined : "_blank"}
                     rel={isModal ? undefined : "noopener noreferrer"}
                     onClick={isModal ? (e) => { e.preventDefault(); setModalOpen(true); } : undefined}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.02] text-white/25 hover:text-white/60 hover:border-white/15 hover:bg-white/[0.04] transition-all duration-200"
+                    className="flex h-11 w-11 sm:h-9 sm:w-9 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.02] text-white/25 hover:text-white/60 hover:border-white/15 hover:bg-white/[0.04] transition-all duration-200"
                     whileHover={{ y: -2, scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     transition={spring.gentle}
