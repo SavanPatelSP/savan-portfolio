@@ -3,15 +3,16 @@
 import { motion } from "framer-motion";
 import {
   Activity,
-  Clock,
-  Code2,
-  MessageSquare,
-  Server,
-  Zap,
-  Globe,
   Brain,
   Briefcase,
+  Clock,
+  Code2,
+  Globe,
+  Link2,
+  MessageSquare,
+  Server,
   Users,
+  Zap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ease, FAST } from "@/lib/motion";
@@ -55,6 +56,13 @@ const projects = [
     status: "In Development",
     statusColor: "amber",
     icon: Brain,
+  },
+  {
+    name: "SP NET BLOCKCHAIN",
+    description: "Private blockchain platform and official token infrastructure",
+    status: "In Development",
+    statusColor: "amber",
+    icon: Link2,
   },
   {
     name: "Open Source",
@@ -293,8 +301,8 @@ export default function ClientPage() {
 
           <StaggerFade className="grid grid-cols-2 sm:grid-cols-4 gap-4" staggerDelay={0.06}>
             {[
-              { value: "5", label: "Projects", icon: Briefcase },
-              { value: "3", label: "In Development", icon: Clock },
+              { value: "6", label: "Projects", icon: Briefcase },
+              { value: "4", label: "In Development", icon: Clock },
               { value: "Active", label: "Open Source", icon: Code2 },
               { value: "Open", label: "For Collaboration", icon: Users },
             ].map((stat) => (

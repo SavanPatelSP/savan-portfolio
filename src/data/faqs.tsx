@@ -655,7 +655,7 @@ export const faqItems: FAQItem[] = [
   {
     question: "What is Savan Patel's roadmap?",
     answer:
-      "High-level: complete GRAM and ADMIN OS features through 2026, launch public betas, advance AI research, and scale the ecosystem. Cloud, Teams, and Automate are planned for 2027-2028. The Roadmap page has detailed quarterly milestones. The roadmap evolves as products mature — the vision stays stable, the specifics adapt.",
+      "High-level: complete GRAM and ADMIN OS features through 2026, launch public betas, advance AI research, and scale the ecosystem. SP NET WORKPLACE, SP NET Cloud, and SP NET Security are on the horizon for 2027-2028. The Roadmap page has detailed milestones. The roadmap evolves as products mature — the vision stays stable, the specifics adapt.",
     category: "future",
     links: [
       { label: "Roadmap", href: "/founder/roadmap" },
@@ -697,7 +697,7 @@ export const faqItems: FAQItem[] = [
   {
     question: "What SP NET pages are coming soon?",
     answer:
-      "The Blog (technical articles and product updates), Newsroom (company announcements), and Press Releases are all in development. Social profiles on X and LinkedIn are also planned. These launch when there is enough quality content to justify them — not before.",
+      "The Blog is live with technical articles and product updates, and the Newsroom section is ready for official announcements. Press Releases are still in development. Social profiles on X and LinkedIn are also planned. These launch when there is enough quality content to justify them — not before.",
     category: "future",
     links: [
       { label: "Blog", href: "/blog" },

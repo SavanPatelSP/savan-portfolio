@@ -8,6 +8,8 @@ import {
   Users,
   Calendar,
   Clock,
+  BrainCircuit,
+  Coins,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PageHero } from "@/components/ui/PageHero";
@@ -30,27 +32,30 @@ const products = [
     tagline: "Messaging reimagined",
     color: "#3b82f6",
     status: "In development",
+    description:
+      "A next-generation messaging platform focused on privacy, productivity, and a premium experience.",
     milestones: [
       {
-        quarter: "Q1 2026",
+        label: "Completed",
         title: "Core messaging infrastructure",
+        detail: "The core messaging engine and real-time sync foundation.",
         done: true,
       },
       {
-        quarter: "Q2 2026",
+        label: "In progress",
         title: "End-to-end encryption and channels",
-        done: false,
+        detail: "The current focus — getting the fundamentals rock-solid before opening GRAM to everyone.",
         active: true,
       },
       {
-        quarter: "Q3 2026",
-        title: "Premium features and integrations",
-        done: false,
+        label: "Planned",
+        title: "Premium experience and integrations",
+        detail: "The features that make GRAM feel like a complete communication platform.",
       },
       {
-        quarter: "Q4 2026",
-        title: "Public beta launch",
-        done: false,
+        label: "Planned · 2026",
+        title: "Public beta",
+        detail: "Beta access is planned for 2026.",
       },
     ],
   },
@@ -60,27 +65,29 @@ const products = [
     tagline: "Enterprise administration",
     color: "#8b5cf6",
     status: "In development",
+    description:
+      "A modern platform that makes managing organizations and teams simple and enjoyable.",
     milestones: [
       {
-        quarter: "Q1 2026",
-        title: "Organization management and roles",
-        done: true,
-      },
-      {
-        quarter: "Q2 2026",
-        title: "Audit logs and compliance tooling",
-        done: false,
+        label: "In progress",
+        title: "Core platform",
+        detail: "Organization management, analytics, moderation, and team management.",
         active: true,
       },
       {
-        quarter: "Q3 2026",
+        label: "Planned",
         title: "API platform and webhooks",
-        done: false,
+        detail: "The point where ADMIN OS becomes a platform others can build on.",
       },
       {
-        quarter: "Q4 2026",
+        label: "Planned",
         title: "Enterprise onboarding flows",
-        done: false,
+        detail: "SSO and onboarding experiences built for organizations.",
+      },
+      {
+        label: "Planned · 2026",
+        title: "Beta access",
+        detail: "Beta access is planned for 2026.",
       },
     ],
   },
@@ -89,28 +96,53 @@ const products = [
     name: "SP NET AI",
     tagline: "Intelligence for the ecosystem",
     color: "#10b981",
-    status: "Research phase",
+    status: "In development",
+    description:
+      "An AI platform being built to power intelligent experiences across the SP NET ecosystem.",
     milestones: [
       {
-        quarter: "Q2 2026",
+        label: "In progress",
         title: "Research and model evaluation",
-        done: false,
+        detail: "Understanding the unique problems in the ecosystem before building features.",
         active: true,
       },
       {
-        quarter: "Q3 2026",
-        title: "Internal AI features (search, suggestions)",
-        done: false,
+        label: "In progress",
+        title: "Internal AI features",
+        detail: "Intelligent search and suggestions across the ecosystem.",
+        active: true,
       },
       {
-        quarter: "Q4 2026",
+        label: "Planned",
         title: "Developer API for AI capabilities",
-        done: false,
+        detail: "A developer API for ecosystem partners.",
+      },
+    ],
+  },
+  {
+    id: "sp-net-blockchain",
+    name: "SP NET BLOCKCHAIN",
+    tagline: "SavaroX · Official Token",
+    color: "#4338ca",
+    status: "In development",
+    description:
+      "A private blockchain platform powering official tokens and digital asset infrastructure.",
+    milestones: [
+      {
+        label: "In progress",
+        title: "Platform and token infrastructure",
+        detail: "Foundation work on the blockchain platform and the SavaroX official token.",
+        active: true,
       },
       {
-        quarter: "Q1 2027",
-        title: "Public AI platform",
-        done: false,
+        label: "Planned",
+        title: "Digital asset wallet and explorer",
+        detail: "Infrastructure for storing, managing, and verifying digital assets.",
+      },
+      {
+        label: "Planned",
+        title: "Developer APIs and enterprise solutions",
+        detail: "APIs and enterprise-grade services for the ecosystem.",
       },
     ],
   },
@@ -118,30 +150,13 @@ const products = [
 
 const shortTermGoals = [
   {
-    quarter: "Q2 2026",
+    quarter: "2026",
     items: [
-      "Ship SP NET GRAM core messaging with real-time sync",
-      "Launch SP NET ADMIN OS audit logging and compliance module",
-      "Begin AI research with focus on on-device inference",
-      "Continue internal development of shared infrastructure for future open source release",
-    ],
-  },
-  {
-    quarter: "Q3 2026",
-    items: [
-      "SP NET GRAM end-to-end encryption and team channels",
-      "SP NET ADMIN OS API platform for third-party integrations",
-      "Internal AI features for search and content suggestions",
-      "Community contributor program launch",
-    ],
-  },
-  {
-    quarter: "Q4 2026",
-    items: [
-      "SP NET GRAM public beta with premium tier",
-      "SP NET ADMIN OS enterprise onboarding and SSO support",
-      "AI developer API for ecosystem partners",
-      "Full documentation site and developer portal",
+      "SP NET GRAM: complete encryption, channels, and the premium experience — then open the planned public beta.",
+      "SP NET ADMIN OS: continue the core platform and advance the API platform and enterprise onboarding work.",
+      "SP NET AI: move from research into real features — intelligent search and suggestions.",
+      "SP NET BLOCKCHAIN: continue foundation work on the platform and SavaroX token infrastructure.",
+      "Open source: open up parts of the shared infrastructure, with a contributor program in the second half of 2026.",
     ],
   },
 ];
@@ -150,17 +165,22 @@ const faqItems = [
   {
     question: "When will SP NET GRAM be available to the public?",
     answer:
-      "SP NET GRAM is on track for a public beta in Q4 2026. The core messaging infrastructure is built and we are currently focusing on encryption, channels, and the premium experience. We are prioritizing getting the fundamentals right before opening it to everyone.",
+      "SP NET GRAM is planned for a public beta later in 2026. The core messaging infrastructure is built, and the current focus is encryption, channels, and the premium experience. We are prioritizing getting the fundamentals right before opening it to everyone.",
   },
   {
     question: "Why is the AI product on a slower timeline?",
     answer:
-      "AI is a space where rushing leads to poor outcomes. We are taking a deliberate approach: evaluate models, understand the unique problems in our ecosystem, and build features that are genuinely useful rather than generically impressive. The research phase ensures we are solving real problems with AI, not just adding a chatbot to everything.",
+      "AI is a space where rushing leads to poor outcomes. We are taking a deliberate approach: evaluate models, understand the unique problems in our ecosystem, and build features that are genuinely useful rather than generically impressive. SP NET AI is now moving from research into real features — starting with intelligent search and suggestions — while keeping the research phase rigorous.",
   },
   {
     question: "Will SP NET ADMIN OS support third-party integrations?",
     answer:
-      "Yes. The API platform is planned for Q3 2026, and we are designing it from the ground up to be extensible. Webhooks, a REST API, and eventually a plugin system are all on the roadmap. Enterprise administration tools need to work with existing systems, not replace them.",
+      "Yes. The API platform is on the roadmap, and we are designing it from the ground up to be extensible. Webhooks, a REST API, and eventually a plugin system are all planned. Enterprise administration tools need to work with existing systems, not replace them.",
+  },
+  {
+    question: "What is the status of SP NET BLOCKCHAIN and SavaroX?",
+    answer:
+      "SP NET BLOCKCHAIN is in development as a private blockchain platform by SP NET INC, along with its official token, SavaroX. It is long-term foundation work — the platform, token infrastructure, and eventual wallet and explorer services are being built as the ecosystem matures. Progress updates are shared on the System Status page and social channels.",
   },
   {
     question: "How do you decide what to build next?",
@@ -201,9 +221,9 @@ const relatedPages = [
     href: "/products/sp-net-admin-os",
   },
   {
-    title: "SP NET AI",
-    description: "Intelligence powering the SP NET ecosystem.",
-    href: "/products/sp-net-ai",
+    title: "System Status",
+    description: "Honest, real-time status of every project.",
+    href: "/trust/status",
   },
 ];
 
@@ -220,7 +240,7 @@ export default function RoadmapPage() {
         titleAccent="What's next for SP NET INC"
         description="A transparent look at where we are, what we are building, and where the ecosystem is heading. Updated quarterly."
         icon={<Map className="h-4 w-4" />}
-        badge="Last updated July 2026"
+        badge="Last updated August 2026"
       />
 
       <SectionContainer>
@@ -260,7 +280,7 @@ export default function RoadmapPage() {
           <SectionTitle
             label="Right Now"
             title="Current focus"
-            subtitle="These are the priorities driving development in the current quarter. Everything else is secondary."
+            subtitle="These are the priorities driving development right now. Everything else is secondary."
           />
 
           <FadeIn delay={0.1}>
@@ -275,18 +295,18 @@ export default function RoadmapPage() {
                       SP NET GRAM
                     </h3>
                     <span className="text-[10px] font-mono text-blue-400/40 uppercase tracking-wider">
-                      Active development
+                      In development
                     </span>
                   </div>
                 </div>
                 <p className="text-sm text-white/30 leading-relaxed mb-4">
-                  Building the core real-time messaging engine, encryption layer, and channel
-                  architecture. The foundation that everything else in GRAM depends on. Priority is
-                  getting the fundamentals rock-solid before adding features.
+                  The core messaging engine is built. Current work focuses on end-to-end encryption,
+                  channels, and the premium experience — getting the fundamentals rock-solid before
+                  the public beta planned for 2026.
                 </p>
                 <div className="flex items-center gap-2 text-xs text-white/20">
                   <Clock className="h-3.5 w-3.5" />
-                  <span>Estimated completion: Q2 2026</span>
+                  <span>Public beta planned for 2026</span>
                 </div>
               </div>
 
@@ -300,18 +320,68 @@ export default function RoadmapPage() {
                       SP NET ADMIN OS
                     </h3>
                     <span className="text-[10px] font-mono text-violet-400/40 uppercase tracking-wider">
-                      Active development
+                      In development
                     </span>
                   </div>
                 </div>
                 <p className="text-sm text-white/30 leading-relaxed mb-4">
-                  Implementing audit logging, compliance tracking, and role-based access control.
-                  These are the features enterprise teams cannot live without, and they need to work
-                  flawlessly from day one.
+                  Building out the core platform — organization management, analytics, moderation,
+                  and team management — and advancing toward the API platform and enterprise
+                  onboarding. Beta access is planned for 2026.
                 </p>
                 <div className="flex items-center gap-2 text-xs text-white/20">
                   <Clock className="h-3.5 w-3.5" />
-                  <span>Estimated completion: Q2 2026</span>
+                  <span>Beta access planned for 2026</span>
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-6 sm:p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+                    <BrainCircuit className="h-5 w-5 text-emerald-400/60" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-white/70">
+                      SP NET AI
+                    </h3>
+                    <span className="text-[10px] font-mono text-emerald-400/40 uppercase tracking-wider">
+                      Research into features
+                    </span>
+                  </div>
+                </div>
+                <p className="text-sm text-white/30 leading-relaxed mb-4">
+                  Moving from research into real features — intelligent search and suggestions that
+                  make every product smarter. Keeping the AI privacy-first and genuinely useful
+                  rather than generically impressive.
+                </p>
+                <div className="flex items-center gap-2 text-xs text-white/20">
+                  <Clock className="h-3.5 w-3.5" />
+                  <span>Internal features in progress</span>
+                </div>
+              </div>
+
+              <div className="rounded-xl border border-white/[0.04] bg-white/[0.01] p-6 sm:p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-500/10 border border-indigo-500/20">
+                    <Coins className="h-5 w-5 text-indigo-400/60" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-medium text-white/70">
+                      SP NET BLOCKCHAIN
+                    </h3>
+                    <span className="text-[10px] font-mono text-indigo-400/40 uppercase tracking-wider">
+                      Foundation work
+                    </span>
+                  </div>
+                </div>
+                <p className="text-sm text-white/30 leading-relaxed mb-4">
+                  Continuing long-term foundation work on the private blockchain platform and the
+                  SavaroX official token. Digital asset infrastructure is a long game — the
+                  foundation work continues quietly and steadily.
+                </p>
+                <div className="flex items-center gap-2 text-xs text-white/20">
+                  <Clock className="h-3.5 w-3.5" />
+                  <span>Foundation work in progress</span>
                 </div>
               </div>
             </div>
@@ -324,14 +394,14 @@ export default function RoadmapPage() {
           <SectionTitle
             label="Product Timelines"
             title="Product roadmap"
-            subtitle="Detailed milestones for each product in the SP NET ecosystem. Milestones are reviewed and updated quarterly."
+            subtitle="The current stage and next milestones for each product in the SP NET ecosystem. Statuses reflect where work actually stands."
           />
 
           <div className="space-y-16">
             {products.map((product, productIdx) => (
               <FadeIn key={product.id} delay={productIdx * 0.1}>
                 <div>
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-8">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-3">
                     <div className="flex items-center gap-3">
                       <div
                         className="h-3 w-3 rounded-full shrink-0"
@@ -345,6 +415,9 @@ export default function RoadmapPage() {
                       {product.status}
                     </span>
                   </div>
+                  <p className="text-sm text-white/30 leading-relaxed max-w-2xl mb-8">
+                    {product.description}
+                  </p>
 
                   <Timeline layout="left">
                     {product.milestones.map((milestone, i) => {
@@ -366,7 +439,7 @@ export default function RoadmapPage() {
                           <div className="pb-4">
                             <div className="flex items-center gap-2 mb-1">
                               <span className="text-[10px] font-mono text-white/20 uppercase tracking-wider">
-                                {milestone.quarter}
+                                {milestone.label}
                               </span>
                               {milestone.active && (
                                 <span
@@ -392,6 +465,11 @@ export default function RoadmapPage() {
                             >
                               {milestone.title}
                             </p>
+                            {milestone.detail && (
+                              <p className="text-xs text-white/20 leading-relaxed mt-0.5">
+                                {milestone.detail}
+                              </p>
+                            )}
                           </div>
                         </TimelineItem>
                       );
@@ -409,7 +487,7 @@ export default function RoadmapPage() {
           <SectionTitle
             label="2026 Goals"
             title="Short-term goals"
-            subtitle="Concrete, measurable outcomes we are targeting by the end of 2026."
+            subtitle="Concrete, measurable outcomes we are targeting for the remainder of 2026."
           />
 
           <StaggerFade className="space-y-8">
@@ -523,10 +601,9 @@ export default function RoadmapPage() {
                 to be genuinely useful outside of SP NET, not just open-source-washed internal code.
               </p>
               <p>
-                In the second half of 2026, we are launching a contributor program that makes it easy
-                for developers to get involved. Clear good-first-issue labels, a welcoming community
-                Discord, and mentorship for first-time contributors. Great open source projects are
-                built by communities, not just by companies.
+                In the second half of 2026, we are opening up parts of the shared infrastructure and
+                launching a contributor program that makes it easy for developers to get involved.
+                Great open source projects are built by communities, not just by companies.
               </p>
               <p>
                 We are also committing to publishing technical blog posts and architecture decision

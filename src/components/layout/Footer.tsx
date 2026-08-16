@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { ArrowUpRight, Building2, ChevronDown, Code, Cpu, ExternalLink, MessageSquare, Rocket, Settings, Terminal, Zap } from "lucide-react";
 import Image from "next/image";
 import { personal } from "@/data/personal";
+import { products } from "@/data/products";
 import { VerifiedBadge } from "@/components/ui/VerifiedBadge";
 
 import { cn } from "@/lib/utils";
@@ -13,13 +14,10 @@ import { Timeline, TimelineItem } from "@/components/timeline";
 
 /* ─── TYPES ──────────────────────────────────────────────────── */
 
-type LinkStatus = "available" | "development" | "planned" | "future";
-
 type NavLink = {
   label: string;
   href?: string;
   description?: string;
-  status?: LinkStatus;
 };
 
 type NavGroup = {
@@ -28,13 +26,6 @@ type NavGroup = {
 };
 
 /* ─── DATA ───────────────────────────────────────────────────── */
-
-const statusConfig: Record<LinkStatus, { label: string; dot: string }> = {
-  available: { label: "Available", dot: "bg-emerald-400/60" },
-  development: { label: "In Development", dot: "bg-amber-400/60" },
-  planned: { label: "Planned", dot: "bg-blue-400/60" },
-  future: { label: "Future Vision", dot: "bg-white/20" },
-};
 
 const navGroups: NavGroup[] = [
   {
@@ -65,33 +56,33 @@ const navGroups: NavGroup[] = [
   {
     title: "Products",
     links: [
-      { label: "SP NET BLOCKCHAIN", href: "/products/sp-net-blockchain", description: "Private blockchain platform", status: "development" },
-      { label: "SP NET GRAM", href: "/products/sp-net-gram", description: "Modern messaging platform", status: "development" },
-      { label: "SP NET ADMINS OS", href: "/products/sp-net-admin-os", description: "Administration platform", status: "development" },
-      { label: "SP NET AI", href: "/products/sp-net-ai", description: "AI platform", status: "development" },
-      { label: "SP NET API", href: "/products/sp-net-api", description: "Developer platform", status: "future" },
-      { label: "Savan's Portfolio", href: "/", description: "Official founder website", status: "available" },
+      { label: "SP NET BLOCKCHAIN", href: "/products/sp-net-blockchain", description: "Private blockchain platform" },
+      { label: "SP NET GRAM", href: "/products/sp-net-gram", description: "Modern messaging platform" },
+      { label: "SP NET ADMIN OS", href: "/products/sp-net-admin-os", description: "Administration platform" },
+      { label: "SP NET AI", href: "/products/sp-net-ai", description: "AI platform" },
+      { label: "SP NET API", href: "/products/sp-net-api", description: "Developer platform" },
+      { label: "Savan's Portfolio", href: "/", description: "Official founder website" },
     ],
   },
   {
     title: "Blockchain Ecosystem",
     links: [
-      { label: "SavaroX", href: "/products/savaro-x", description: "Official token of SP NET BLOCKCHAIN", status: "development" },
-      { label: "Explorer", href: "/products/sp-net-blockchain", description: "Blockchain explorer", status: "planned" },
-      { label: "Wallet", href: "/products/sp-net-blockchain", description: "Digital asset wallet", status: "planned" },
-      { label: "Developer Platform", href: "/products/sp-net-blockchain", description: "Developer tools", status: "planned" },
-      { label: "Enterprise Solutions", href: "/products/sp-net-blockchain", description: "Enterprise blockchain services", status: "future" },
+      { label: "SavaroX", href: "/products/savaro-x", description: "Official token of SP NET BLOCKCHAIN" },
+      { label: "Explorer", href: "/products/sp-net-blockchain", description: "Blockchain explorer" },
+      { label: "Wallet", href: "/products/sp-net-blockchain", description: "Digital asset wallet" },
+      { label: "Developer Platform", href: "/products/sp-net-blockchain", description: "Developer tools" },
+      { label: "Enterprise Solutions", href: "/products/sp-net-blockchain", description: "Enterprise blockchain services" },
     ],
   },
   {
     title: "Future Products",
     links: [
-      { label: "SP NET Ecosystem", href: "/products/sp-net-ecosystem", description: "Connected platform", status: "future" },
-      { label: "SP NET WORKPLACE", href: "/products", description: "Digital workplace", status: "planned" },
-      { label: "SP NET GAME", href: "/products", description: "Gaming platform", status: "planned" },
-      { label: "SP NET Cloud", href: "/products", description: "Cloud infrastructure", status: "planned" },
-      { label: "SP NET Security", href: "/products", description: "Security platform", status: "planned" },
-      { label: "SP NET Robotics", href: "/products", description: "Robotics platform", status: "future" },
+      { label: "SP NET Ecosystem", href: "/products/sp-net-ecosystem", description: "Connected platform" },
+      { label: "SP NET WORKPLACE", href: "/products", description: "Digital workplace" },
+      { label: "SP NET GAME", href: "/products", description: "Gaming platform" },
+      { label: "SP NET Cloud", href: "/products", description: "Cloud infrastructure" },
+      { label: "SP NET Security", href: "/products", description: "Security platform" },
+      { label: "SP NET Robotics", href: "/products", description: "Robotics platform" },
     ],
   },
   {
@@ -168,9 +159,11 @@ const journeyMilestones = [
   { year: "Future", label: "Beyond Limits", description: "Building technology that connects millions.", status: "BEYOND LIMITS", icon: Rocket },
 ];
 
+const inDevelopmentCount = products.filter((p) => p.status === "building").length;
+
 const quickStats = [
   { value: "2018", label: "Coding Journey Started" },
-  { value: "6+", label: "Products In Development" },
+  { value: `${inDevelopmentCount}`, label: "Products In Development" },
   { value: "1", label: "Technology Ecosystem" },
   { value: "∞", label: "Vision Beyond Limits" },
 ];
@@ -211,7 +204,7 @@ function FooterLink({ link }: { link: NavLink }) {
         target={external ? "_blank" : undefined}
         rel={external ? "noopener noreferrer" : undefined}
         className={cn(
-          "group/link flex flex-col gap-0.5 py-1 min-h-[36px] justify-center",
+          "group/link flex flex-col gap-0.5 py-1 min-h-[40px] lg:min-h-[36px] justify-center",
           link.href ? "cursor-pointer" : "cursor-default"
         )}
       >
@@ -221,14 +214,6 @@ function FooterLink({ link }: { link: NavLink }) {
         )}>
           <span className="h-px w-0 group-hover/link:w-2 bg-white/30 transition-all duration-300" aria-hidden="true" />
           <span className="text-sm">{link.label}</span>
-          {link.status && (
-            <span className="inline-flex items-center gap-1 rounded-full border border-white/[0.06] px-1.5 py-0.5">
-              <span className={`h-1 w-1 rounded-full ${statusConfig[link.status].dot}`} />
-              <span className="text-[8px] font-mono tracking-wider text-white/20 uppercase">
-                {statusConfig[link.status].label}
-              </span>
-            </span>
-          )}
           {external && <ExternalLink className="h-3 w-3 opacity-0 group-hover/link:opacity-60 transition-opacity duration-200" aria-hidden="true" />}
         </span>
         {link.description && (
@@ -338,10 +323,10 @@ export function Footer() {
           {/* ─── NAVIGATION ─── */}
           <FadeSection delay={0.3} className="flex-1">
             <nav aria-label="Footer navigation">
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-6 gap-y-8 items-start">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-x-4 sm:gap-x-6 gap-y-8 items-start">
                 {navGroups.map((group) => (
                   <div key={group.title} className="lg:w-[calc(33.333%-1rem)] xl:w-[calc(20%-1rem)] min-w-0">
-                    <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-3">
+                    <h4 className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/15 mb-3 break-words">
                       {group.title}
                     </h4>
                     <ul className="list-none p-0 m-0 space-y-0.5">

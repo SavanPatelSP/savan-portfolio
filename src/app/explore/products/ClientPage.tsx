@@ -8,9 +8,13 @@ import {
   BrainCircuit,
   Puzzle,
   ArrowUpRight,
-  Globe,
-  Users,
-  Zap,
+  Link2,
+  Coins,
+  Briefcase,
+  Lock,
+  Gamepad2,
+  Cog,
+  Cloud,
 } from "lucide-react";
 import { spring } from "@/lib/motion";
 import { PageHero } from "@/components/ui/PageHero";
@@ -94,25 +98,69 @@ const products = [
     href: "/products/sp-net-ecosystem",
     status: "Planning",
   },
+  {
+    icon: Link2,
+    name: "SP NET BLOCKCHAIN",
+    tagline: "Private blockchain platform",
+    color: "#4338ca",
+    description:
+      "A private blockchain platform built by SP NET INC — the long-term foundation for official tokens, digital assets, wallet infrastructure, and enterprise blockchain services across the ecosystem.",
+    features: [
+      "Official token infrastructure",
+      "Digital asset wallet",
+      "Blockchain explorer",
+      "Developer APIs",
+      "Enterprise solutions",
+    ],
+    href: "/products/sp-net-blockchain",
+    status: "Building",
+  },
+  {
+    icon: Coins,
+    name: "SavaroX",
+    tagline: "Official token of SP NET BLOCKCHAIN",
+    color: "#c084fc",
+    description:
+      "The official token of the SP NET BLOCKCHAIN platform — designed for utility, governance, and ecosystem growth, powering transactions and participation within the SP NET ecosystem.",
+    features: [
+      "Utility token",
+      "Ecosystem governance",
+      "Digital asset design",
+    ],
+    href: "/products/savaro-x",
+    status: "Building",
+  },
 ];
 
 const upcomingProducts = [
   {
-    icon: Globe,
+    icon: Briefcase,
+    title: "SP NET WORKPLACE",
+    description: "A unified digital workspace for documents, projects, and collaboration.",
+    timeline: "2027",
+  },
+  {
+    icon: Lock,
+    title: "SP NET Security",
+    description: "Threat detection, compliance, and incident response for the ecosystem.",
+    timeline: "2027",
+  },
+  {
+    icon: Cloud,
     title: "SP NET Cloud",
-    description: "Cloud storage and computing integrated across the ecosystem.",
-    timeline: "2027",
+    description: "Cloud infrastructure and managed services built for privacy and performance.",
+    timeline: "2028",
   },
   {
-    icon: Users,
-    title: "SP NET Teams",
-    description: "Real-time collaboration tools for distributed teams.",
-    timeline: "2027",
+    icon: Gamepad2,
+    title: "SP NET GAME",
+    description: "Cloud-native gaming, cross-device play, and creator tools.",
+    timeline: "2028",
   },
   {
-    icon: Zap,
-    title: "SP NET Automate",
-    description: "No-code automation connecting all SP NET products and third-party services.",
+    icon: Cog,
+    title: "SP NET Robotics",
+    description: "Bridging digital intelligence and physical-world automation.",
     timeline: "2028",
   },
 ];
@@ -141,7 +189,7 @@ const faqItems = [
   {
     question: "When will everything be available?",
     answer:
-      "All SP NET products are in active development and not yet publicly available. GRAM and ADMIN OS have beta access planned for 2026. AI powers features across both products internally. The Ecosystem platform will launch as the integration layer once the core products are stable. Cloud, Teams, and Automate are on the horizon for 2027-2028. For the latest updates, reach out to PCA at https://t.me/SAVANPATELSP_BOT.",
+      "All SP NET products are in active development and not yet publicly available. GRAM and ADMIN OS have beta access planned for 2026. AI powers features across both products internally. The Ecosystem platform will launch as the integration layer once the core products are stable. SP NET WORKPLACE, SP NET Security, SP NET Cloud, SP NET GAME, and SP NET Robotics are on the horizon for 2027-2028. For the latest updates, reach out to PCA at https://t.me/SAVANPATELSP_BOT.",
   },
 ];
 
@@ -209,7 +257,7 @@ export default function ClientPage() {
         <SectionTitle
           label="Products"
           title="What I'm building right now"
-          subtitle="Four products, each born from a real need, each designed to work beautifully alone and even better together."
+          subtitle="Six products, each born from a real need, each designed to work beautifully alone and even better together."
         />
 
         <div className="space-y-5">

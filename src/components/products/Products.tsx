@@ -40,11 +40,11 @@ const productIcons: Record<string, React.ElementType> = {
 };
 
 const productMilestones: Record<string, { phase: string; progress?: number }> = {
-  "sp-net-blockchain": { phase: "Platform Architecture", progress: 15 },
-  "sp-net-gram": { phase: "Core Architecture Complete", progress: 65 },
-  "sp-net-admin-os": { phase: "Platform Foundation", progress: 50 },
-  "sp-net-ai": { phase: "Research & Prototyping", progress: 25 },
-  "sp-net-api": { phase: "Research & Planning", progress: 20 },
+  "sp-net-blockchain": { phase: "Foundation work" },
+  "sp-net-gram": { phase: "Core messaging built" },
+  "sp-net-admin-os": { phase: "Core platform in development" },
+  "sp-net-ai": { phase: "Research moving into features" },
+  "sp-net-api": { phase: "Early planning" },
   "savan-portfolio": { phase: "Continuously Improving" },
 };
 

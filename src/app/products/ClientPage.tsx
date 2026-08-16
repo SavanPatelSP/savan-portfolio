@@ -176,7 +176,7 @@ export default function ClientPage() {
       <SectionContainer>
         <SectionTitle
           label="Ecosystem"
-          title="One ecosystem, eleven products"
+          title="One ecosystem, thirteen products"
           subtitle="Each product solves a specific problem. Together, they form a unified platform for communication, administration, intelligence, and beyond."
         />
 
@@ -201,7 +201,7 @@ export default function ClientPage() {
         <SectionTitle
           label="Core Products"
           title="What we are building"
-          subtitle="Five products, each born from a real need."
+          subtitle="Seven core products, each born from a real need."
         />
 
         <StaggerFade className="grid grid-cols-1 sm:grid-cols-2 gap-5" staggerDelay={0.08}>

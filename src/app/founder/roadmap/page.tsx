@@ -36,7 +36,7 @@ const jsonLd = {
     name: "SP NET INC",
     url: "https://sp-net.in",
   },
-  dateModified: "2026-07-12",
+  dateModified: "2026-08-16",
   mainEntity: {
     "@type": "Person",
     name: "Savan Patel",

@@ -39,7 +39,7 @@ export const journey = [
 export const founderMetrics = [
   { value: "2018", label: "Coding Journey Started", icon: "code" },
   { value: "2022", label: "SP NET INC Founded", icon: "building" },
-  { value: "3+", label: "Products In Development", icon: "layers" },
+  { value: "4", label: "Products In Development", icon: "layers" },
   { value: "∞", label: "Vision Beyond Limits", icon: "infinity" },
 ];
 

@@ -66,7 +66,7 @@ const timeline = [
 
 const stats = [
   { value: "2022", label: "Founded", icon: Calendar },
-  { value: "3+", label: "Products", icon: Rocket },
+  { value: "4", label: "Products In Development", icon: Rocket },
   { value: "1", label: "Ecosystem", icon: Globe },
   { value: "India", label: "Headquarters", icon: Target },
 ];

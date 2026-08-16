@@ -124,4 +124,4 @@ export function getAdjacentDocs(slug: string): { prev: DocItem | null; next: Doc
 }
 
 export const APP_VERSION = APP_CONFIG.version;
-export const LAST_UPDATED = "July 2026";
+export const LAST_UPDATED = "August 2026";
